@@ -43,10 +43,15 @@ class Checkbox extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<YoastCheckbox type="checkbox" id={ this.props.id } onChange={ this.handleChange.bind( this ) } />
+				<YoastCheckbox
+					type="checkbox"
+					id={ this.props.id }
+					onChange={ this.handleChange.bind( this ) }
+				/>
 				<label htmlFor={ this.props.id }>
 					{ this.props.label }
 				</label>
+				{ this.props.helpLink }
 			</React.Fragment>
 		);
 	}
@@ -60,11 +65,12 @@ Checkbox.propTypes = {
 		PropTypes.array,
 	] ).isRequired,
 	checked: PropTypes.bool,
-
+	helpLink: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
 	checked: false,
+	helpLink: null,
 };
 
 export default Checkbox;
