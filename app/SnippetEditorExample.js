@@ -1,7 +1,7 @@
 // External dependencies.
 import React, { Component } from "react";
 import styled from "styled-components";
-import debounce from "lodash/debounce";
+import { debounce } from "lodash-es";
 
 import { assessments } from "yoastseo";
 const { MetaDescriptionLengthAssessment } = assessments.seo;

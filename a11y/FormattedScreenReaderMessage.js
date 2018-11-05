@@ -1,7 +1,7 @@
 // External dependencies.
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import omit from "lodash/omit";
+import { omit } from "lodash-es";
 import PropTypes from "prop-types";
 
 // Internal dependencies.

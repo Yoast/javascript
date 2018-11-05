@@ -1,7 +1,7 @@
 // External dependencies.
 import React, { Component } from "react";
 import styled from "styled-components";
-import noop from "lodash/noop";
+import { noop } from "lodash-es";
 
 // Internal dependencies.
 import KeywordInput from "../composites/Plugin/Shared/components/KeywordInput";

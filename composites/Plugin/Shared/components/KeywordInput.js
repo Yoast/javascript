@@ -2,9 +2,9 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import uniqueId from "lodash/uniqueId";
+import { uniqueId } from "lodash-es";
 import { __ } from "@wordpress/i18n";
-import noop from "lodash/noop";
+import { noop } from "lodash-es";
 
 // Internal dependencies.
 import colors from "../../../../style-guide/colors.json";

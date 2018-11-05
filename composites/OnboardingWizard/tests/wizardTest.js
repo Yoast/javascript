@@ -10,7 +10,7 @@ import Wizard from "../OnboardingWizard";
 import Config from "../config/production-config";
 import Enzyme from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
-import cloneDeep from "lodash/cloneDeep";
+import { cloneDeep } from "lodash-es";
 import ApiConfig from "../config/api-config";
 import injectTapEventPlugin from "react-tap-event-plugin";
 

@@ -1,6 +1,6 @@
 import { UPDATE_READABILITY_RESULT, SET_READABILITY_RESULTS, SET_OVERALL_READABILITY_SCORE } from "../../actions/contentAnalysis";
-import findIndex from "lodash/findIndex";
-import isUndefined from "lodash/isUndefined";
+import { findIndex } from "lodash-es";
+import { isUndefined } from "lodash-es";
 
 /**
  * Initial state

@@ -3,7 +3,7 @@ import { __ } from "@wordpress/i18n";
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import noop from "lodash/noop";
+import { noop } from "lodash-es";
 
 /* Internal dependencies */
 import AnalysisResult from "./AnalysisResult";

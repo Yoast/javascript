@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import flow from "lodash/flow";
-import omit from "lodash/omit";
+import { flow } from "lodash-es";
+import { omit } from "lodash-es";
 import PropTypes from "prop-types";
 
 import colors from "../../../../style-guide/colors.json";

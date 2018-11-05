@@ -1,6 +1,6 @@
 import Jed from "jed";
 import React from "react";
-import assign from "lodash/assign";
+import { assign } from "lodash-es";
 
 var jed = null;
 

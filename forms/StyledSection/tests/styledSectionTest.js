@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import forEach from "lodash/forEach";
+import { forEach } from "lodash-es";
 
 import StyledSection from "../StyledSection";
 

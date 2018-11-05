@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import debounce from "lodash/debounce";
+import { debounce } from "lodash-es";
 import { __ } from "@wordpress/i18n";
 
 const FixedWidth = styled.div`
