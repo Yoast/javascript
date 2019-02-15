@@ -215,10 +215,15 @@ body {
 			font-size: 14px;
 		}
 
-		[type="text"] {
-			width: 100%;
-			max-width: 450px;
+		&-field[type="text"],
+		&-field[type="url"] {
+			min-width: 250px;
 			box-sizing: border-box;
+
+			&:not(:focus):invalid {
+				outline: 3px dashed $color-error;
+				outline-offset: -1px;
+			}
 		}
 	}
 

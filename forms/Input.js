@@ -15,6 +15,7 @@ const inputTypes = [
 	"radio",
 	"submit",
 	"text",
+	"url",
 ];
 
 /**
@@ -59,37 +60,28 @@ class Input extends React.Component {
 				name={ this.props.name }
 				defaultValue={ this.props.value }
 				onChange={ this.props.onChange }
+				pattern={ this.props.pattern }
 				{ ...this.props.optionalAttributes }
 			/>
 		);
 	}
 }
 
-/**
- * Adds validation for the properties.
- *
- * @type {{type: string, name: string, placeholder: string, value: string, onChange: function, optionalAttributes:object}}
- */
 Input.propTypes = {
-	name: PropTypes.string.isRequired,
-	type: PropTypes.oneOf( inputTypes ).isRequired,
-
+	name: PropTypes.string,
+	type: PropTypes.oneOf( inputTypes ),
 	value: PropTypes.any,
-	onChange: PropTypes.func,
+	onChange: PropTypes.func.isRequired,
 	optionalAttributes: PropTypes.object,
 	hasFocus: PropTypes.bool,
 };
 
-/**
- * Defines the default values for the properties.
- *
- * @type {{type: string, name: string}}
- */
 Input.defaultProps = {
 	name: "input",
 	type: "text",
 	value: "",
 	hasFocus: false,
+	optionalAttributes: {},
 };
 
 export default Input;

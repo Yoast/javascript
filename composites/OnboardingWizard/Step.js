@@ -227,6 +227,8 @@ class Step extends React.Component {
 				label: currentField.properties.label,
 				"label-className": `${this.props.classPrefix}-text-input-label`,
 				"field-className": `${this.props.classPrefix}-text-input-field`,
+				type: currentField.properties.type,
+				pattern: currentField.properties.pattern,
 				optionalAttributes: {
 					"class": `${this.props.classPrefix}-text-input`,
 				},
@@ -290,6 +292,7 @@ Step.defaultProps = {
 	currentStep: "",
 	classPrefix: "yoast-wizard",
 	fullWidth: false,
+	customComponents: {},
 };
 
 export default Step;
