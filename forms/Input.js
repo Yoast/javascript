@@ -71,7 +71,7 @@ Input.propTypes = {
 	name: PropTypes.string,
 	type: PropTypes.oneOf( inputTypes ),
 	value: PropTypes.any,
-	onChange: PropTypes.func.isRequired,
+	onChange: PropTypes.func,
 	optionalAttributes: PropTypes.object,
 	hasFocus: PropTypes.bool,
 };
@@ -82,6 +82,7 @@ Input.defaultProps = {
 	value: "",
 	hasFocus: false,
 	optionalAttributes: {},
+	onChange: () => {},
 };
 
 export default Input;

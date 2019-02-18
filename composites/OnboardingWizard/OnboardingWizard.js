@@ -41,6 +41,7 @@ class OnboardingWizard extends React.Component {
 		this.setPreviousStep = this.setPreviousStep.bind( this );
 		this.listenToHashChange = this.listenToHashChange.bind( this );
 		window.addEventListener( "hashchange", this.listenToHashChange, false );
+		this.validateForm = this.validateForm.bind( this );
 	}
 
 	/**
@@ -115,12 +116,16 @@ class OnboardingWizard extends React.Component {
 	 * and sets the state to the target step when successful.
 	 *
 	 * @param {step} step The step to render after the current state is stored.
-	 * @param {SyntheticEvent} evt The click even that triggered this post step.
+	 * @param {SyntheticEvent} evt The click event that triggered this post step.
 	 *
 	 * @returns {void}
 	 */
 	postStep( step, evt ) {
 		if ( ! step ) {
+			return;
+		}
+
+		if ( this.validateForm() === false ) {
 			return;
 		}
 
@@ -300,6 +305,17 @@ class OnboardingWizard extends React.Component {
 	}
 
 	/**
+	 * Runs browser's constraint validation on form fields.
+	 *
+	 * @returns {boolean} Whether the form inputs are valid.
+	 */
+	validateForm() {
+		if ( this.step.props.hasValidation && "reportValidity" in document.createElement( "form" ) ) {
+			return this.step.stepContainer.querySelector( "form" ).reportValidity();
+		}
+	}
+
+	/**
 	 * When the currentStepId in the state changes, return a snapshot with the new currentStepId.
 	 *
 	 * @param {Object} prevProps The previous props.
@@ -401,6 +417,7 @@ class OnboardingWizard extends React.Component {
 								nextStep={ this.setNextStep }
 								previousStep={ this.setPreviousStep }
 								fullWidth={ step.fullWidth }
+								hasValidation={ step.hasValidation }
 							/>
 							{ navigation }
 						</div>

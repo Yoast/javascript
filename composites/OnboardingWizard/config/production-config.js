@@ -348,6 +348,7 @@ const configuration = {
 				"profileUrlYouTube",
 				"profileUrlGooglePlus",
 			],
+			hasValidation: true,
 		},
 		postTypeVisibility: {
 			title: "Post type visibility",
