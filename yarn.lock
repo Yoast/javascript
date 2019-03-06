@@ -13655,16 +13655,3 @@ yeoman-generator@^2.0.5:
     text-table "^0.2.0"
     through2 "^2.0.0"
     yeoman-environment "^2.0.5"
-
-"yoastseo@git+https://github.com/Yoast/YoastSEO.js.git#develop":
-  version "1.48.0"
-  resolved "git+https://github.com/Yoast/YoastSEO.js.git#d3ce57016ac773605aa429a61371b0e9a7c09f30"
-  dependencies:
-    "@wordpress/autop" "^2.0.2"
-    htmlparser2 "^3.9.2"
-    jed "^1.1.0"
-    lodash-es "^4.17.10"
-    loglevel "^1.6.1"
-    parse5 "^5.1.0"
-    sassdash "0.9.0"
-    tokenizer2 "^2.0.1"
