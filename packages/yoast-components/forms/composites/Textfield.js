@@ -68,7 +68,8 @@ class Textfield extends React.Component {
 				<Input
 					name={ this.props.name }
 					id={ this.props.name }
-					type="text"
+					type={ this.props.type }
+					pattern={ this.props.pattern }
 					onChange={ this.props.onChange }
 					value={ this.props.value }
 					hasFocus={ this.props.hasFocus }
@@ -111,11 +112,6 @@ class Textfield extends React.Component {
 	}
 }
 
-/**
- * Adds validation for the properties.
- *
- * @type {{type: string, name: string, placeholder: string, value: string, onChange: function, optionalAttributes:object}}
- */
 Textfield.propTypes = {
 	label: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
@@ -127,12 +123,20 @@ Textfield.propTypes = {
 	"class": PropTypes.string,
 	explanation: PropTypes.string,
 	autoComplete: PropTypes.string,
+	type: PropTypes.string,
+	pattern: PropTypes.string,
 };
 
 Textfield.defaultProps = {
 	optionalAttributes: {},
 	multiline: false,
+	type: "text",
+	value: "",
 	hasFocus: false,
+	"class": "",
+	explanation: "",
+	autoComplete: null,
+	pattern: null,
 };
 
 export default Textfield;

@@ -228,6 +228,8 @@ class Step extends React.Component {
 				"label-className": `${this.props.classPrefix}-text-input-label`,
 				"field-className": `${this.props.classPrefix}-text-input-field`,
 				autoComplete: currentField.properties.autoComplete,
+				type: currentField.properties.type,
+				pattern: currentField.properties.pattern,
 				optionalAttributes: {
 					"class": `${this.props.classPrefix}-text-input`,
 				},
@@ -255,6 +257,8 @@ class Step extends React.Component {
 	 */
 	render() {
 		const fullWidthClass = this.props.fullWidth ? ` ${ this.props.classPrefix }-content-container__is-full-width` : "";
+		const fields = this.getFieldComponents( this.props.fields );
+		const content = this.props.hasValidation ? <form>{ fields }</form> : fields;
 
 		return (
 			<div
@@ -267,7 +271,7 @@ class Step extends React.Component {
 			>
 				<h1 id="step-title">{ this.props.title }</h1>
 				<div className={ `${ this.props.classPrefix }-content-container${ fullWidthClass }` }>
-					{ this.getFieldComponents( this.props.fields ) }
+					{ content }
 				</div>
 			</div>
 		);
@@ -284,6 +288,7 @@ Step.propTypes = {
 	classPrefix: PropTypes.string,
 	customComponents: PropTypes.object,
 	fullWidth: PropTypes.bool,
+	hasValidation: PropTypes.bool,
 };
 
 Step.defaultProps = {
@@ -291,6 +296,8 @@ Step.defaultProps = {
 	currentStep: "",
 	classPrefix: "yoast-wizard",
 	fullWidth: false,
+	customComponents: {},
+	hasValidation: false,
 };
 
 export default Step;

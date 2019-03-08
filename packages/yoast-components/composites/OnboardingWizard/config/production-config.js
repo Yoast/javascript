@@ -128,15 +128,15 @@ const configuration = {
 			componentName: "Input",
 			properties: {
 				label: "Facebook page url",
-				pattern: "^https://www.facebook.com/([^/]+)/$",
+				type: "url",
+				pattern: "^https:\\/\\/www\\.facebook\\.com\\/[^\\s\\/]+",
 			},
 			data: "{profile_url_facebook}",
 		},
 		profileUrlTwitter: {
 			componentName: "Input",
 			properties: {
-				label: "Twitter url",
-				pattern: "^https://twitter.com/([^/]+)$",
+				label: "Twitter username",
 			},
 			data: "{profile_url_twitter}",
 		},
@@ -144,7 +144,8 @@ const configuration = {
 			componentName: "Input",
 			properties: {
 				label: "Instagram url",
-				pattern: "^https://www.instagram.com/([^/]+)/$",
+				type: "url",
+				pattern: "^https:\\/\\/www\\.instagram\\.com\\/[^\\s\\/]+",
 			},
 			data: "{profile_url_instagram}",
 		},
@@ -152,7 +153,8 @@ const configuration = {
 			componentName: "Input",
 			properties: {
 				label: "LinkedIn url",
-				pattern: "^https://www.linkedin.com/in/([^/]+)$",
+				type: "url",
+				pattern: "^https:\\/\\/www\\.linkedin\\.com/in\\/[^\\s\\/]+",
 			},
 			data: "{profile_url_linkedin}",
 		},
@@ -160,7 +162,8 @@ const configuration = {
 			componentName: "Input",
 			properties: {
 				label: "MySpace url",
-				pattern: "^https://myspace.com/([^/]+)/$",
+				type: "url",
+				pattern: "^https:\\/\\/myspace\\.com\\/[^\\s\\/]+",
 			},
 			data: "{profile_url_myspace}",
 		},
@@ -168,7 +171,8 @@ const configuration = {
 			componentName: "Input",
 			properties: {
 				label: "Pinterest url",
-				pattern: "^https://www.pinterest.com/([^/]+)/$",
+				type: "url",
+				pattern: "^https:\\/\\/www\\.pinterest\\.com\\/[^\\s\\/]+",
 			},
 			data: "{profile_url_pinterest}",
 		},
@@ -176,7 +180,8 @@ const configuration = {
 			componentName: "Input",
 			properties: {
 				label: "YouTube url",
-				pattern: "^https://www.youtube.com/([^/]+)$",
+				type: "url",
+				pattern: "^https:\\/\\/www\\.youtube\\.com\\/[^\\s\\/]+",
 			},
 			data: "{profile_url_youtube}",
 		},
@@ -184,7 +189,8 @@ const configuration = {
 			componentName: "Input",
 			properties: {
 				label: "Google+ URL",
-				pattern: "^https://plus.google.com/([^/]+)$",
+				type: "url",
+				pattern: "^https:\\/\\/plus\\.google\\.com\\/[^\\s\\/]+",
 			},
 			data: "{profile_url_google_plus}",
 		},
@@ -346,6 +352,7 @@ const configuration = {
 				"profileUrlYouTube",
 				"profileUrlGooglePlus",
 			],
+			hasValidation: true,
 		},
 		postTypeVisibility: {
 			title: "Post type visibility",
