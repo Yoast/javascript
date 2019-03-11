@@ -1,7 +1,7 @@
 import { UPDATE_SEO_RESULT, SET_SEO_RESULTS, REMOVE_KEYWORD, SET_SEO_RESULTS_FOR_KEYWORD,
 	SET_OVERALL_SEO_SCORE } from "../../actions/contentAnalysis";
-import findIndex from "lodash/findIndex";
-import omit from "lodash/omit";
+import { findIndex } from "lodash-es";
+import { omit } from "lodash-es";
 
 /**
  * Initial state

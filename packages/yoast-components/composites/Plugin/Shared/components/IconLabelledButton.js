@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import flow from "lodash/flow";
-import omit from "lodash/omit";
+import { flow } from "lodash-es";
+import { omit } from "lodash-es";
 
 import colors from "../../../../style-guide/colors.json";
 import SvgIcon from "./SvgIcon";

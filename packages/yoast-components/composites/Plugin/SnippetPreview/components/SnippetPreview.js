@@ -6,7 +6,7 @@ import transliterate from "yoastseo/src/stringProcessing/transliterate";
 import createRegexFromArray from "yoastseo/src/stringProcessing/createRegexFromArray";
 import replaceSpecialCharactersAndDiacritics from "yoastseo/src/stringProcessing/replaceDiacritics";
 import PropTypes from "prop-types";
-import truncate from "lodash/truncate";
+import { truncate } from "lodash-es";
 import { parse } from "url";
 import { __ } from "@wordpress/i18n";
 

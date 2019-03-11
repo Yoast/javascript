@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import uniqueId from "lodash/uniqueId";
+import { uniqueId } from "lodash-es";
 
 // Internal dependencies
 import HelpText from "../../Shared/components/HelpText";

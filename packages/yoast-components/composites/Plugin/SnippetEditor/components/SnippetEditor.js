@@ -11,7 +11,7 @@ const { measureTextWidth } = helpers;
 
 import stripSpaces from "yoastseo/src/stringProcessing/stripSpaces";
 
-import noop from "lodash/noop";
+import { noop } from "lodash-es";
 
 // Internal dependencies.
 import SnippetPreview from "../../SnippetPreview/components/SnippetPreview";

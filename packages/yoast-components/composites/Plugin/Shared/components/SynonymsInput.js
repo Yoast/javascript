@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uniqueId from "lodash/uniqueId";
+import { uniqueId } from "lodash-es";
 import styled from "styled-components";
 
 import { YoastInputContainer, YoastInputField, YoastInputLabel } from "./YoastInput";

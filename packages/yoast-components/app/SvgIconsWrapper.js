@@ -1,7 +1,7 @@
 /* External dependencies */
 import React from "react";
 import styled from "styled-components";
-import transform from "lodash/transform";
+import { transform } from "lodash-es";
 
 /* Internal dependencies */
 import colors from "../style-guide/colors.json";
