@@ -90,3 +90,4 @@ export { setReadabilityResults,
 	setSeoResultsForKeyword,
 	setOverallReadabilityScore,
 	setOverallSeoScore } from "./composites/Plugin/ContentAnalysis/actions/contentAnalysis";
+export { default as Checkbox } from "./composites/Plugin/Shared/components/Checkbox";

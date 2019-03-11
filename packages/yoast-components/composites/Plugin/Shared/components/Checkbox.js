@@ -6,6 +6,10 @@ const YoastCheckbox = styled.input`
 	margin-right: 0.5em;
 `;
 
+const StyledLabel = styled.label`
+	margin-right: 4px;
+`;
+
 /**
  * Creates a React Checkbox which consists of a checkbox and a label.
  */
@@ -43,10 +47,15 @@ class Checkbox extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<YoastCheckbox type="checkbox" id={ this.props.id } onChange={ this.handleChange.bind( this ) } />
-				<label htmlFor={ this.props.id }>
+				<YoastCheckbox
+					type="checkbox"
+					id={ this.props.id }
+					onChange={ this.handleChange.bind( this ) }
+				/>
+				<StyledLabel htmlFor={ this.props.id }>
 					{ this.props.label }
-				</label>
+				</StyledLabel>
+				{ this.props.helpLink }
 			</React.Fragment>
 		);
 	}
@@ -60,11 +69,12 @@ Checkbox.propTypes = {
 		PropTypes.array,
 	] ).isRequired,
 	checked: PropTypes.bool,
-
+	helpLink: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
 	checked: false,
+	helpLink: null,
 };
 
 export default Checkbox;
