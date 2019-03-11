@@ -15,6 +15,7 @@
     ]
   },
   "scripts": {
+    "lerna": "lerna",
     "lint": "lerna run lint",
     "test": "lerna run test --stream",
     "install-ci": "lerna run install-ci",
