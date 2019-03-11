@@ -6,5 +6,11 @@ out/
 coverage/
 .tscache/
 
+# Ignore common OS files
+[Tt]humbs.db
+[Dd]esktop.ini
+*.DS_store
+.DS_store?
+
 /examples/browserified/example-browserified.js
 /premium-configuration
