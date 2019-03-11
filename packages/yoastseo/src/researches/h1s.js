@@ -1,7 +1,7 @@
 import { getBlocks } from "../helpers/html";
 import { reject } from "lodash-es";
 
-const h1Regex = /<h1.*?>(.*?)<\/h1>/;
+const h1Regex = /<h1(.*?)>(.*?)<\/h1>/;
 
 /**
  * Gets a block from a text and checks if it is totally empty or if it is an empty paragraph.
@@ -34,8 +34,8 @@ export default function( paper ) {
 		const match = h1Regex.exec( block );
 		if ( match ) {
 			h1s.push( {
-				tag: "h1",
-				content: match[ 1 ],
+				attributes: match[ 1 ],
+				content: match[ 2 ],
 				position: index,
 			} );
 		}

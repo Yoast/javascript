@@ -9,15 +9,20 @@ describe( "Gets all H1s in the text", function() {
 
 	it( "should return one object when there is one H1", function() {
 		const mockPaper = new Paper( "<h1>first h1</h1>some content<h2>content h2</h2>" );
-		expect( h1s( mockPaper ) ).toEqual( [ { tag: "h1", content: "first h1", position: 0 } ] );
+		expect( h1s( mockPaper ) ).toEqual( [ { content: "first h1", attributes: "", position: 0 } ] );
+	} );
+
+	it( "should return captured attributes in a H1.", function() {
+		const mockPaper = new Paper( "<h1 id='header_id' class='xyz'>first h1</h1>some content<h2>content h2</h2>" );
+		expect( h1s( mockPaper ) ).toEqual( [ { content: "first h1", attributes: " id='header_id' class='xyz'", position: 0 } ] );
 	} );
 
 	it( "should return all H1s in the text", function() {
 		const mockPaper = new Paper( "<h1>first h1</h1><p>not an h1</p><h1>second h1</h1><h2>not an h1</h2>" );
 
 		expect( h1s( mockPaper ) ).toEqual( [
-			{ tag: "h1", content: "first h1", position: 0 },
-			{ tag: "h1", content: "second h1", position: 2 },
+			{ content: "first h1", attributes: "", position: 0 },
+			{ content: "second h1", attributes: "", position: 2 },
 		] );
 	} );
 
@@ -25,8 +30,8 @@ describe( "Gets all H1s in the text", function() {
 		const mockPaper = new Paper( "<h1>first h1</h1><h1>second h1</h1><h2>not an h1</h2>" );
 
 		expect( h1s( mockPaper ) ).toEqual( [
-			{ tag: "h1", content: "first h1", position: 0 },
-			{ tag: "h1", content: "second h1", position: 1 },
+			{  content: "first h1", attributes: "", position: 0 },
+			{  content: "second h1", attributes: "", position: 1 },
 		] );
 	} );
 
@@ -42,8 +47,8 @@ describe( "Gets all H1s in the text", function() {
 	it( "should find H1 within division tags", function() {
 		const mockPaper = new Paper( "<div><h1>first h1</h1></div><div><p>blah blah</p></div><div><h1>second h1</h1></div>" );
 		expect( h1s( mockPaper ) ).toEqual( [
-			{ tag: "h1", content: "first h1", position: 0 },
-			{ tag: "h1", content: "second h1", position: 2 },
+			{  content: "first h1", attributes: "", position: 0 },
+			{  content: "second h1", attributes: "", position: 2 },
 		] );
 	} );
 
@@ -112,8 +117,8 @@ describe( "Gets all H1s in the text", function() {
 			"important in presenting search results.&#8217;</p>" );
 
 		expect( h1s( mockPaper ) ).toEqual( [
-			{ tag: "h1", content: "Voice Search", position: 0 },
-			{ tag: "h1", content: "So what will the future bring?", position: 11 },
+			{  attributes: "", content: "Voice Search", position: 0 },
+			{  attributes: "", content: "So what will the future bring?", position: 11 },
 		] );
 	} );
 } );
