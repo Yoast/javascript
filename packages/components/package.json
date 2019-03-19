@@ -13,6 +13,9 @@
     "testRegex": ".*Test.js$",
     "testURL": "http://localhost"
   },
+  "dev" : {
+    "styled-components": "^2.1.2"
+  },
   "devDependencies": {
     "grunt": "^1.0.3"
   },

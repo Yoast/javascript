@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the ScoreAssessments matches the snapshot 1`] = `
+<ul
+  className="score-assessments ScoreAssessments__ScoreAssessmentList-io0gsa-5 hvvXEp"
+  role="list"
+>
+  <li
+    className="score-assessments__item ScoreAssessments__ScoreAssessmentItem-io0gsa-0 corxlU"
+  >
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-bullet ScoreAssessments__ScoreAssessmentBullet-io0gsa-2 gORCYt"
+    />
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-text ScoreAssessments__ScoreAssessmentText-io0gsa-3 gsSaAO"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<a href=\\"http://google.com\\">Posts with a <strong>bad</strong> SEO score</a>:",
+        }
+      }
+    />
+  </li>
+  <li
+    className="score-assessments__item ScoreAssessments__ScoreAssessmentItem-io0gsa-0 corxlU"
+  >
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-bullet ScoreAssessments__ScoreAssessmentBullet-io0gsa-2 dUZGlH"
+    />
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-text ScoreAssessments__ScoreAssessmentText-io0gsa-3 gsSaAO"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<a href=\\"http://google.com\\">Posts with an <strong>OK</strong> SEO score</a>:",
+        }
+      }
+    />
+  </li>
+</ul>
+`;
+
+exports[`the ScoreAssessments with some scores matches the snapshot 1`] = `
+<ul
+  className="score-assessments ScoreAssessments__ScoreAssessmentList-io0gsa-5 hvvXEp"
+  role="list"
+>
+  <li
+    className="score-assessments__item ScoreAssessments__ScoreAssessmentItem-io0gsa-0 corxlU"
+  >
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-bullet ScoreAssessments__ScoreAssessmentBullet-io0gsa-2 gORCYt"
+    />
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-text ScoreAssessments__ScoreAssessmentText-io0gsa-3 gsSaAO"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<a href=\\"http://google.com\\">Posts with a <strong>bad</strong> SEO score</a>:",
+        }
+      }
+    />
+  </li>
+  <li
+    className="score-assessments__item ScoreAssessments__ScoreAssessmentItem-io0gsa-0 corxlU"
+  >
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-bullet ScoreAssessments__ScoreAssessmentBullet-io0gsa-2 dUZGlH"
+    />
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-text ScoreAssessments__ScoreAssessmentText-io0gsa-3 gsSaAO"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<a href=\\"http://google.com\\">Posts with an <strong>OK</strong> SEO score</a>:",
+        }
+      }
+    />
+  </li>
+</ul>
+`;
+
+exports[`the ScoreAssessments without scores matches the snapshot 1`] = `
+<ul
+  className="score-assessments ScoreAssessments__ScoreAssessmentList-io0gsa-5 hvvXEp"
+  role="list"
+>
+  <li
+    className="score-assessments__item ScoreAssessments__ScoreAssessmentItem-io0gsa-0 corxlU"
+  >
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-bullet ScoreAssessments__ScoreAssessmentBullet-io0gsa-2 gORCYt"
+    />
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-text ScoreAssessments__ScoreAssessmentText-io0gsa-3 gsSaAO"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<a href=\\"http://google.com\\">Posts with a <strong>bad</strong> SEO score</a>:",
+        }
+      }
+    />
+  </li>
+  <li
+    className="score-assessments__item ScoreAssessments__ScoreAssessmentItem-io0gsa-0 corxlU"
+  >
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-bullet ScoreAssessments__ScoreAssessmentBullet-io0gsa-2 dUZGlH"
+    />
+    <span
+      className="ScoreAssessments__ScoreAssessmentPart-io0gsa-1 score-assessments__item-text ScoreAssessments__ScoreAssessmentText-io0gsa-3 gsSaAO"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<a href=\\"http://google.com\\">Posts with an <strong>OK</strong> SEO score</a>:",
+        }
+      }
+    />
+  </li>
+</ul>
+`;

@@ -2,7 +2,7 @@
 
 exports[`the CellFixedWidth component matches the snapshot 1`] = `
 <span
-  className="Cell__CellFixedWidth-r62am5-2 hkbrwA Cell__CellBase-r62am5-0 jIxadZ"
+  className="Cell__CellBase-r62am5-0 Cell__CellFixedWidth-r62am5-2 fhqYmC"
 >
   This is a cell with a fixed width
 </span>
@@ -10,7 +10,7 @@ exports[`the CellFixedWidth component matches the snapshot 1`] = `
 
 exports[`the CellIcon component matches the snapshot 1`] = `
 <span
-  className="Cell__CellIcon-r62am5-4 dwtVTT Cell__CellFixedWidth-r62am5-2 hkbrwA Cell__CellBase-r62am5-0 jQSCK"
+  className="Cell__CellBase-r62am5-0 Cell__CellFixedWidth-r62am5-2 Cell__CellIcon-r62am5-4 iFszFE"
 >
   Icon
 </span>
@@ -18,7 +18,7 @@ exports[`the CellIcon component matches the snapshot 1`] = `
 
 exports[`the CellMinWidth component matches the snapshot 1`] = `
 <span
-  className="Cell__CellMinWidth-r62am5-3 iRgtRn Cell__CellBase-r62am5-0 cqSzAx"
+  className="Cell__CellBase-r62am5-0 Cell__CellMinWidth-r62am5-3 pYyvB"
 >
   This is a call with a min width
 </span>
@@ -26,7 +26,7 @@ exports[`the CellMinWidth component matches the snapshot 1`] = `
 
 exports[`the CellPrimary component matches the snapshot 1`] = `
 <span
-  className="Cell__CellPrimary-r62am5-1 kTRqdB Cell__CellBase-r62am5-0 Soype"
+  className="Cell__CellBase-r62am5-0 Cell__CellPrimary-r62am5-1 jztDGT"
 >
   This is a primary cell
 </span>
@@ -34,7 +34,7 @@ exports[`the CellPrimary component matches the snapshot 1`] = `
 
 exports[`the CellPrimary with responsiveHeaders matches the snapshot 1`] = `
 <span
-  className="Cell-r62am5-5 dcJwNO Cell__CellPrimary-r62am5-1 kTRqdB Cell__CellBase-r62am5-0 gkXCZQ"
+  className="Cell__CellBase-r62am5-0 Cell__CellPrimary-r62am5-1 Cell-r62am5-5 grewQu"
 >
   This is a primary cell with responsive headers
 </span>
