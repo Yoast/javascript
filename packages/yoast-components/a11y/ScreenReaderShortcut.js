@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Styles from "./Styles";
+import Styles from "@yoast/components/a11y/Styles";
 
 /**
  * Renders a [Skiplink](http://webaim.org/techniques/skipnav/) that is only

@@ -4,7 +4,7 @@ jest.unmock( "prop-types" );
 import React from "react";
 import ReactShallowRenderer from "react-test-renderer/shallow";
 import ScreenReaderShortcut from "../ScreenReaderShortcut";
-import Styles from "../Styles";
+import Styles from "@yoast/components/a11y/Styles";
 import { shallow } from "enzyme";
 
 describe( "ScreenReaderShortcut", () => {

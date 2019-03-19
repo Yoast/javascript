@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import YoastWarning from "../components/YoastWarning";
 import { ThemeProvider } from "styled-components";
+import YoastWarning from "../YoastWarning";
 
 test( "YoastWarning matches the snapshot", () => {
 	/* eslint-disable react/jsx-no-target-blank */

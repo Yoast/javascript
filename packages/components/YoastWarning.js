@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { colors } from "@yoast/components/style-guide";
-import { SvgIcon, getRtlStyle } from "@yoast/components";
+import { colors } from "./style-guide";
+import { SvgIcon, getRtlStyle } from "./";
 
 const WarningBox = styled.div`
 	display: flex;

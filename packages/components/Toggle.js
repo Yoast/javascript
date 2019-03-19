@@ -6,7 +6,7 @@ import { colors } from "@yoast/components/style-guide";
 import { __ } from "@wordpress/i18n";
 
 // Internal dependencies.
-import { getRtlStyle } from "@yoast/components";
+import { getRtlStyle } from "./";
 
 const ToggleDiv = styled.div`
 	display: flex;

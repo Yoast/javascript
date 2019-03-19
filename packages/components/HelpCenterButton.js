@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { colors } from "@yoast/components/style-guide";
-import { YoastButton } from "./YoastButton";
-import { SvgIcon } from "@yoast/components";
+import { colors } from "./style-guide";
+import { SvgIcon, YoastButton } from "./";
 
 /**
  * Returns an icon button that can optionally contain text.

@@ -1,4 +1,4 @@
-import Styles from "../Styles";
+import Styles from "./Styles";
 
 describe( "Styles", () => {
 	it( "contains styles for ScreenReaderText", () => {

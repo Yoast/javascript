@@ -5,7 +5,7 @@ import omit from "lodash/omit";
 import PropTypes from "prop-types";
 
 // Internal dependencies.
-import ScreenReaderText from "./ScreenReaderText";
+import { ScreenReaderText } from "@yoast/components";
 
 /**
  * Combines the text that is passed to the formatted screen reader message.
