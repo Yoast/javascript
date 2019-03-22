@@ -20,7 +20,7 @@ before_install:
 - echo -e "machine github.com\n  login $CI_GITHUB_USER_TOKEN" > ~/.netrc
 
 install:
-- yarn --ignore-optional
+- yarn --ignore-optional --verbose
 - yarn install-ci
 
 script:
