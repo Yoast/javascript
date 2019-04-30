@@ -11,7 +11,8 @@ const TwitterTitleWrapper = styled.p`
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	margin-bottom: 2px;
+	margin: 0;
+	margin-bottom: 5px;
 `;
 
 /**
