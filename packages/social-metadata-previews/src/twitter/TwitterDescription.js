@@ -21,7 +21,7 @@ const TwitterDescription = styled.p`
 
 TwitterDescription.propTypes = {
 	isLarge: PropTypes.bool.isRequired,
-	hasDescription: PropTypes.string.isRequired,
+	hasDescription: PropTypes.bool.isRequired,
 };
 
 export default TwitterDescription;
