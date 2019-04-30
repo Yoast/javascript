@@ -14,12 +14,14 @@ const TwitterDescription = styled.p`
 	max-height: ${ props => props.isLarge ? "36px" : "55px" };
 	line-height: 18px;
 	overflow: hidden;
-	margin-bottom: 5px;
+	margin: 0;
+	margin-bottom: ${ props => props.hasDescription ? "5px" : "0px" };
 	width: ${ props => props.isLarge ? "476px" : "357px" };
 `;
 
 TwitterDescription.propTypes = {
 	isLarge: PropTypes.bool.isRequired,
+	hasDescription: PropTypes.string.isRequired,
 };
 
 export default TwitterDescription;
