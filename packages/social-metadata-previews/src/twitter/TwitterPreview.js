@@ -3,10 +3,8 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 /* Internal dependencies */
-import TwitterTitle from "./TwitterTitle";
-import TwitterDescription from "./TwitterDescription";
-import TwitterSiteName from "./TwitterSiteName";
 import TwitterImage from "../twitter/TwitterImage";
+import TwitterTextContainer from "../twitter/TwitterTextContainer";
 
 /**
  * Renders a TwitterPreview component.
@@ -19,11 +17,12 @@ const TwitterPreview = ( props ) => {
 	return (
 		<Fragment>
 			<TwitterImage src={ props.src } alt={ props.alt } />
-			<TwitterTitle title={ props.title } />
-			<TwitterDescription isLarge={ props.isLarge }>
-				{ props.description }
-			</TwitterDescription>
-			<TwitterSiteName siteName={ props.siteName } />
+			<TwitterTextContainer
+				title={ props.title }
+				isLarge={ props.isLarge }
+				siteName={ props.siteName }
+				description={ props.description }
+			/>
 		</Fragment>
 	);
 };
