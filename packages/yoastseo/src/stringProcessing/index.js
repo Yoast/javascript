@@ -4,6 +4,8 @@ import transliterate from "./transliterate";
 import replaceDiacritics from "./replaceDiacritics";
 import imageInText from "./imageInText";
 import relevantWords from "./relevantWords";
+import getSubheadings from "./getSubheadings";
+import determineProminentWords from "./determineProminentWords";
 import removeHtmlBlocks from "./htmlParser";
 import createWordRegex from "./createWordRegex";
 import wordBoundaries from "../config/wordBoundaries";
@@ -17,6 +19,8 @@ export {
 	relevantWords,
 	removeHtmlBlocks,
 	wordBoundaries,
+	getSubheadings,
+	determineProminentWords,
 
 	// We don't want to expose this, but yoast-components needs it.
 	createWordRegex as __createWordRegex,
