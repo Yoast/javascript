@@ -200,6 +200,70 @@ Paper.prototype.getPermalink = function() {
 	return this._attributes.permalink;
 };
 
+/**
+ * Check whether the SEO title (without replacements like the website name or the current data) is available.
+ * @returns {boolean} Returns true if the Paper has a title without replacements.
+ */
+Paper.prototype.hasTitleWithoutReplacements = function() {
+	return this._attributes.titleWithoutReplacements !== "";
+};
+
+/**
+ * Returns the SEO title (without replacements like the website name or the current data).
+ * @returns {string} Returns the title without replacements.
+ */
+Paper.prototype.getTitleWithoutReplacements = function() {
+	return this._attributes.titleWithoutReplacements;
+};
+
+/**
+ * Check whether the meta description (without replacements like the website name or the current data) is available.
+ * @returns {boolean} Returns true if the Paper has a title without replacements.
+ */
+Paper.prototype.hasDescriptionWithoutReplacements = function() {
+	return this._attributes.descriptionWithoutReplacements !== "";
+};
+
+/**
+ * Returns the meta description (without replacements like the website name or the current data).
+ * @returns {string} Returns the title without replacements.
+ */
+Paper.prototype.getDescriptionWithoutReplacements = function() {
+	return this._attributes.descriptionWithoutReplacements;
+};
+
+/**
+ * Check whether the excerpt is available.
+ * @returns {boolean} Returns true if the Paper has a title without replacements.
+ */
+Paper.prototype.hasExcerpt = function() {
+	return this._attributes.excerpt !== "";
+};
+
+/**
+ * Returns the excerpt.
+ * @returns {string} Returns the title without replacements.
+ */
+Paper.prototype.getExcerpt = function() {
+	return this._attributes.excerpt;
+};
+
+/**
+ * Check whether the title of the post or page is available.
+ * @returns {boolean} Returns true if the Paper has a title without replacements.
+ */
+Paper.prototype.hasPageTitle = function() {
+	return this._attributes.pageTitle !== "";
+};
+
+/**
+ * Returns the title of the post or page.
+ * @returns {string} Returns the title without replacements.
+ */
+Paper.prototype.getPageTitle = function() {
+	return this._attributes.pageTitle;
+};
+
 /*
  * Serializes the Paper instance to an object.
  *

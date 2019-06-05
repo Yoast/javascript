@@ -67,6 +67,42 @@ describe( "Paper", function() {
 			expect( paper.hasTitleWidth() ).toBe( true );
 		} );
 
+		it( "returns the SEO title without replacement variables", function() {
+			const attributes = {
+				titleWithoutReplacements: "title without replacements",
+			};
+			const paper = new Paper( "text", attributes );
+			expect( paper.hasTitleWithoutReplacements() ).toBe( true );
+			expect( paper.getTitleWithoutReplacements() ).toBe( "title without replacements" );
+		} );
+
+		it( "returns the meta description without replacement variables", function() {
+			const attributes = {
+				descriptionWithoutReplacements: "description without replacements",
+			};
+			const paper = new Paper( "text", attributes );
+			expect( paper.hasDescriptionWithoutReplacements() ).toBe( true );
+			expect( paper.getDescriptionWithoutReplacements() ).toBe( "description without replacements" );
+		} );
+
+		it( "returns the post / page title", function() {
+			const attributes = {
+				pageTitle: "page title",
+			};
+			const paper = new Paper( "text", attributes );
+			expect( paper.hasPageTitle() ).toBe( true );
+			expect( paper.getPageTitle() ).toBe( "page title" );
+		} );
+
+		it( "returns the excerpt", function() {
+			const attributes = {
+				excerpt: "excerpt",
+			};
+			const paper = new Paper( "text", attributes );
+			expect( paper.hasExcerpt() ).toBe( true );
+			expect( paper.getExcerpt() ).toBe( "excerpt" );
+		} );
+
 		it( "returns nothing", function() {
 			var paper = new Paper( "text" );
 			expect( paper.hasTitle() ).toBe( false );
