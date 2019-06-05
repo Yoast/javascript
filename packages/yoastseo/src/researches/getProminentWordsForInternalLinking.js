@@ -27,8 +27,10 @@ function getProminentWordsForInternalLinking( paper, researcher ) {
 	const attributes = [
 		paper.getKeyword(),
 		paper.getSynonyms(),
-		paper.getTitle(),
-		paper.getDescription(),
+		paper.getTitleWithoutReplacements(),
+		paper.getDescriptionWithoutReplacements(),
+		paper.getPageTitle(),
+		paper.getExcerpt(),
 		subheadings.join( " " ),
 	];
 

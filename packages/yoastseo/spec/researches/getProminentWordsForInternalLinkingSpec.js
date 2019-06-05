@@ -50,8 +50,8 @@ describe( "relevantWords research", function() {
 			"Bing and Google’s indices. How does this work? When you connect your site to MyYoast...", {
 			keyword: "live indexing Yoast SEO",
 			synonyms: "live index",
-			title: "Amazing title",
-			description: "Awesome metadescription",
+			titleWithoutReplacements: "Amazing title",
+			descriptionWithoutReplacements: "Awesome metadescription",
 			locale: "en_EN",
 		} );
 
