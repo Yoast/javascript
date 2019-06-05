@@ -20,16 +20,20 @@ var defaultAttributes = {
 /**
  * Construct the Paper object and set the keyword property.
  *
- * @param {string} text                     The text to use in the analysis.
- * @param {object} [attributes]             The object containing all attributes.
- * @param {Object} [attributes.keyword]     The main keyword.
- * @param {Object} [attributes.synonyms]    The main keyword's synonyms.
- * @param {Object} [attributes.title]       The SEO title.
- * @param {Object} [attributes.description] The SEO description.
- * @param {Object} [attributes.titleWidth]  The width of the title in pixels.
- * @param {Object} [attributes.url]         The slug.
- * @param {Object} [attributes.permalink]   The base url + slug.
- * @param {Object} [attributes.locale]      The locale.
+ * @param {string} text                                        The text to use in the analysis.
+ * @param {object} [attributes]                                The object containing all attributes.
+ * @param {Object} [attributes.keyword]                        The main keyword.
+ * @param {Object} [attributes.synonyms]                       The main keyword's synonyms.
+ * @param {Object} [attributes.title]                          The SEO title.
+ * @param {Object} [attributes.description]                    The SEO description.
+ * @param {Object} [attributes.titleWidth]                     The width of the title in pixels.
+ * @param {Object} [attributes.url]                            The slug.
+ * @param {Object} [attributes.permalink]                      The base url + slug.
+ * @param {Object} [attributes.locale]                         The locale.
+ * @param {string} [attributes.titleWithoutReplacements]       The SEO title, without any replacement variables.
+ * @param {string} [attributes.descriptionWithoutReplacements] The SEO description, without any replacement variables.
+ * @param {string} [attributes.pageTitle]                      The title of this post, page or article.
+ * @param {string} [attributes.excerpt]                        The excerpt.
  *
  * @constructor
  */
