@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "碇 シンジ",
 	description: "è il protagonista della serie televisiva anime Neon Genesis Evangelion",
 	title: "Shinji Ikari (Neon Genesis Evangelion)",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "it_IT",
 	permalink: "https://it.wikipedia.org/wiki/Shinji-Ikari",
 	url: "Shinji-Ikari",
@@ -78,10 +78,10 @@ const expectedResults = {
 		score: 9,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears at the beginning of the SEO title. Good job!",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "listening and reading in search, voice query, voice results",
 	description: "Voice search is gaining popularity. But what will the future bring? Joost and Marieke discuss the pros and cons of voice and describe a possible future scenario.",
 	title: "Voice search: what will the future bring?",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "en_EN",
 	permalink: "https://yoast.com/future-of-voice-search/",
 	url: "future-of-voice-search",
@@ -77,10 +77,10 @@ const expectedResults = {
 		score: 9,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears at the beginning of the SEO title. Good job!",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

@@ -11,7 +11,7 @@ var defaultAttributes = {
 	synonyms: "",
 	description: "",
 	title: "",
-	titleWidth: 0,
+	titleLength: 0,
 	url: "",
 	locale: "en_US",
 	permalink: "",
@@ -26,7 +26,7 @@ var defaultAttributes = {
  * @param {Object} [attributes.synonyms]    The main keyword's synonyms.
  * @param {Object} [attributes.title]       The SEO title.
  * @param {Object} [attributes.description] The SEO description.
- * @param {Object} [attributes.titleWidth]  The width of the title in pixels.
+ * @param {Object} [attributes.titleLength]  The width of the title in pixels.
  * @param {Object} [attributes.url]         The slug.
  * @param {Object} [attributes.permalink]   The base url + slug.
  * @param {Object} [attributes.locale]      The locale.
@@ -136,16 +136,16 @@ Paper.prototype.getTitle = function() {
  * Check whether an title width in pixels is available
  * @returns {boolean} Returns true if the Paper has a title.
  */
-Paper.prototype.hasTitleWidth = function() {
-	return this._attributes.titleWidth !== 0;
+Paper.prototype.hasTitleLength = function() {
+	return this._attributes.titleLength !== 0;
 };
 
 /**
  * Return the title width in pixels, or an empty string of no title width in pixels is available.
  * @returns {string} Returns the title
  */
-Paper.prototype.getTitleWidth = function() {
-	return this._attributes.titleWidth;
+Paper.prototype.getTitleLength = function() {
+	return this._attributes.titleLength;
 };
 
 /**

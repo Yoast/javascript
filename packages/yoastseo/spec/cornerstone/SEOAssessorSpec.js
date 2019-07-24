@@ -21,7 +21,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -37,7 +37,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -53,7 +53,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 			"singleH1",
 		] );
 	} );
@@ -71,7 +71,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -83,7 +83,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLength",
 			"functionWordsInKeyphrase",
 		] );
 	} );
@@ -103,7 +103,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -119,7 +119,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -136,7 +136,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 			"urlKeyword",
 		] );
 	} );
@@ -168,7 +168,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -198,7 +198,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -247,8 +247,8 @@ describe( "running assessments in the assessor", function() {
 			expect( assessment._config.scores.noLinks ).toBe( 3 );
 		} );
 
-		test( "PageTitleWidthAssesment", () => {
-			const assessment = assessor.getAssessment( "titleWidth" );
+		test( "PageTitleLengthAssesment", () => {
+			const assessment = assessor.getAssessment( "titleLength" );
 
 			expect( assessment ).toBeDefined();
 			expect( assessment._config ).toBeDefined();

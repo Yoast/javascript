@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "un assemblage d'étoiles",
 	description: "Une galaxie est un assemblage d'étoiles, de gaz, de poussières et peut-être essentiellement de matière noire, contenant parfois un trou noir supermassif en son centre.",
 	title: "Galaxies",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "fr_FR",
 	permalink: "https://fr.wikipedia.org/wiki/Galaxie",
 	url: "Galaxie",
@@ -79,10 +79,10 @@ const expectedResults = {
 		score: 2,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: Not all the words from your keyphrase \"galaxies des étoiles\" appear in the SEO title. <a href='https://yoa.st/33h' target='_blank'>Try to use the exact match of your keyphrase in the SEO title</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

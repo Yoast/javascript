@@ -354,7 +354,7 @@ We will follow [Semantic Versioning](http://semver.org/) from version 2 and onwa
 
 ## 1.30.0 March 5th, 2018
 ### Added
-* Adds a setter for titleWidth to the snippet preview. 
+* Adds a setter for titleLength to the snippet preview. 
 * Adds a researcher to calculate the reading time for a given paper.
 * Adds a filter to mark Spanish sentences as non-passive when certain exception words occur between the auxiliary and the participle. The list of exception words includes all forms of the copula 'estar'.
 * Adds transition words assessment for Portuguese, props [amesdigital](https://github.com/amesdigital).

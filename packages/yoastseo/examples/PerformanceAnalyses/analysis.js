@@ -1,6 +1,6 @@
 const Paper = require( "../../src/values/Paper" );
 const Researcher = require( "../../src/researcher" );
-const researches = [ "urlLength", "wordCountInText", "findKeywordInPageTitle", "calculateFleschReading", "getLinkStatistics", "getLinks", "linkCount", "imageCount", "altTagCount", "matchKeywordInSubheadings", "stopWordsInKeyword", "getKeywordDensity", "stopWordsInKeyword", "stopWordsInUrl", "metaDescriptionLength", "keyphraseLength", "keywordCountInUrl", "firstParagraph", "metaDescriptionKeyword", "pageTitleWidth", "getParagraphLength", "countSentencesFromText", "countSentencesFromDescription", "getSubheadingTextLengths", "findTransitionWords", "passiveVoice", "getSentenceBeginnings", "relevantWords" ];
+const researches = [ "urlLength", "wordCountInText", "findKeywordInPageTitle", "calculateFleschReading", "getLinkStatistics", "getLinks", "linkCount", "imageCount", "altTagCount", "matchKeywordInSubheadings", "stopWordsInKeyword", "getKeywordDensity", "stopWordsInKeyword", "stopWordsInUrl", "metaDescriptionLength", "keyphraseLength", "keywordCountInUrl", "firstParagraph", "metaDescriptionKeyword", "pageTitleLength", "getParagraphLength", "countSentencesFromText", "countSentencesFromDescription", "getSubheadingTextLengths", "findTransitionWords", "passiveVoice", "getSentenceBeginnings", "relevantWords" ];
 var fs = require( "fs" );
 
 require( "console.table" );

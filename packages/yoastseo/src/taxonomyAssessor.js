@@ -9,7 +9,7 @@ import UrlKeywordAssessment from "./assessments/seo/UrlKeywordAssessment";
 import Assessor from "./assessor";
 import MetaDescriptionLengthAssessment from "./assessments/seo/MetaDescriptionLengthAssessment";
 import TextLengthAssessment from "./assessments/seo/TextLengthAssessment";
-import PageTitleWidthAssessment from "./assessments/seo/PageTitleWidthAssessment";
+import PageTitleLengthAssessment from "./assessments/seo/PageTitleLengthAssessment";
 import FunctionWordsInKeyphrase from "./assessments/seo/FunctionWordsInKeyphraseAssessment";
 import SingleH1Assessment from "./assessments/seo/SingleH1Assessment";
 import { createAnchorOpeningTag } from "./helpers/shortlinker";
@@ -50,7 +50,7 @@ const TaxonomyAssessor = function( i18n, options ) {
 		new MetaDescriptionLengthAssessment(),
 		getTextLengthAssessment(),
 		new TitleKeywordAssessment(),
-		new PageTitleWidthAssessment(),
+		new PageTitleLengthAssessment(),
 		new UrlKeywordAssessment(),
 		new FunctionWordsInKeyphrase(),
 		new SingleH1Assessment(),

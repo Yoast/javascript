@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "WordPress",
 	description: "WordPress (WordPress.org) ist ein freies Content-Management-System, welches ursprünglich zum Aufbau und zur Pflege eines Weblogs entwickelt wurde, da es jeden Beitrag einer oder mehreren frei erstellbaren Kategorien zuweisen kann und dazu automatisch die entsprechenden Navigationselemente erzeugt. Sie ist Teil der Hosting-Plattform WordPress.com (WordPress).",
 	title: "WordPress",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "de_DE",
 	permalink: "https://de.wikipedia.org/wiki/WordPress",
 	url: "WordPress",
@@ -79,10 +79,10 @@ const expectedResults = {
 		score: 2,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: Not all the words from your keyphrase \"WordPress.org Geschichte und Funktionen\" appear in the SEO title. <a href='https://yoa.st/33h' target='_blank'>Try to use the exact match of your keyphrase in the SEO title</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

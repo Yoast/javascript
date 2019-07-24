@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "путеводитель, the Green Book",
 	description: "Зелёная книга - краткое название ежегодного путеводителя для чернокожих автомобилистов, который издавался в США с 1936 по 1966 год",
 	title: "Зелёная книга (путеводитель)",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "ru_RU",
 	permalink: "https://ru.wikipedia.org/wiki/Зелёная_книга_(путеводитель)",
 	url: "Зелёная_книга_(путеводитель)",
@@ -80,10 +80,10 @@ const expectedResults = {
 		score: 9,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears at the beginning of the SEO title. Good job!",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

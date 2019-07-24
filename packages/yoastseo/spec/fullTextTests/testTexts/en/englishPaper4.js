@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "open source contribution, wordpress contribute, contribute to open source",
 	description: "You don't need to be a developer to contribute to WordPress! Carole Olinger explains why she believes all contributors are heros.",
 	title: "Open source: reducing boundaries and creating opportunities",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "en_EN",
 	permalink: "https://yoast.com/open-source-reducing-boundaries-and-creating-opportunities/",
 	url: "open-source-reducing-boundaries-and-creating-opportunities",
@@ -77,10 +77,10 @@ const expectedResults = {
 		score: 6,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: Does not contain the exact match. <a href='https://yoa.st/33h' target='_blank'>Try to write the exact match of your keyphrase in the SEO title</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

@@ -20,7 +20,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -36,7 +36,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -52,7 +52,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 			"singleH1",
 		] );
 	} );
@@ -70,7 +70,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -83,7 +83,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLength",
 			"functionWordsInKeyphrase",
 		] );
 	} );
@@ -101,7 +101,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -120,7 +120,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -136,7 +136,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -153,7 +153,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 			"urlKeyword",
 		] );
 	} );
@@ -185,7 +185,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 
@@ -215,7 +215,7 @@ describe( "running assessments in the assessor", function() {
 			"textLength",
 			"externalLinks",
 			"internalLinks",
-			"titleWidth",
+			"titleLength",
 		] );
 	} );
 } );

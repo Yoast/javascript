@@ -27,7 +27,7 @@ import keyphraseLength from "./researches/keyphraseLength";
 import metaDescriptionKeyword from "./researches/metaDescriptionKeyword.js";
 import keywordCountInUrl from "./researches/keywordCountInUrl";
 import findKeywordInFirstParagraph from "./researches/findKeywordInFirstParagraph.js";
-import pageTitleWidth from "./researches/pageTitleWidth.js";
+import pageTitleLength from "./researches/pageTitleLength.js";
 import wordComplexity from "./researches/getWordComplexity.js";
 import getParagraphLength from "./researches/getParagraphLength.js";
 import countSentencesFromText from "./researches/countSentencesFromText.js";
@@ -77,7 +77,7 @@ var Researcher = function( paper ) {
 		keywordCountInUrl: keywordCountInUrl,
 		firstParagraph: findKeywordInFirstParagraph,
 		metaDescriptionKeyword: metaDescriptionKeyword,
-		pageTitleWidth: pageTitleWidth,
+		pageTitleLength: pageTitleLength,
 		wordComplexity: wordComplexity,
 		getParagraphLength: getParagraphLength,
 		countSentencesFromText: countSentencesFromText,

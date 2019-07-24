@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "Google Inc, Google LLC",
 	description: "Google Inc. została założona w 1998 roku przez dwóch doktorantów Uniwersytetu Stanforda, Amerykanina Larry'ego Page'a i Rosjanina Siergieja Brina.",
 	title: "Google Inc",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "pl_PL",
 	permalink: "https://pl.wikipedia.org/wiki/Google",
 	url: "Google",
@@ -79,10 +79,10 @@ const expectedResults = {
 		score: 2,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: Not all the words from your keyphrase \"Google (firma)\" appear in the SEO title. <a href='https://yoa.st/33h' target='_blank'>Try to use the exact match of your keyphrase in the SEO title</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

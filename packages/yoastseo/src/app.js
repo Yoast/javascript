@@ -24,7 +24,7 @@ import Researcher from "./researcher.js";
 import AssessorPresenter from "./renderers/AssessorPresenter.js";
 import Pluggable from "./pluggable.js";
 import Paper from "./values/Paper.js";
-import { measureTextWidth } from "./helpers/createMeasurementElement.js";
+import { measureTextLength } from "./helpers/createMeasurementElement.js";
 
 import removeHtmlBlocks from "./stringProcessing/htmlParser.js";
 
@@ -65,7 +65,7 @@ var defaults = {
 		"urlLength",
 		"metaDescription",
 		"pageTitleKeyword",
-		"pageTitleWidth",
+		"pageTitleLength",
 		"firstParagraph",
 		"'keywordDoubles" ],
 	typeDelay: 3000,
@@ -531,7 +531,7 @@ App.prototype.getData = function() {
 		this.rawData.meta = this.pluggable._applyModifications( "data_meta_desc", this.rawData.meta );
 	}
 
-	this.rawData.titleWidth = measureTextWidth( this.rawData.metaTitle );
+	this.rawData.titleLength = measureTextLength( this.rawData.metaTitle );
 
 	this.rawData.locale = this.config.locale;
 };
@@ -686,9 +686,9 @@ App.prototype.runAnalyzer = function() {
 	// Insert HTML stripping code
 	text = removeHtmlBlocks( text );
 
-	let titleWidth = this.analyzerData.titleWidth;
+	let titleLength = this.analyzerData.titleLength;
 	if ( this.hasSnippetPreview() ) {
-		titleWidth = this.snippetPreview.getTitleWidth();
+		titleLength = this.snippetPreview.getTitleLength();
 	}
 
 	// Create a paper object for the Researcher
@@ -698,7 +698,7 @@ App.prototype.runAnalyzer = function() {
 		description: this.analyzerData.meta,
 		url: this.analyzerData.url,
 		title: this.analyzerData.metaTitle,
-		titleWidth: titleWidth,
+		titleLength: titleLength,
 		locale: this.config.locale,
 		permalink: this.analyzerData.permalink,
 	} );

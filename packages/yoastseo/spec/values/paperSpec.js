@@ -59,12 +59,12 @@ describe( "Paper", function() {
 		it( "returns title", function() {
 			var attributes = {
 				title: "title",
-				titleWidth: 10,
+				titleLength: 10,
 			};
 			var paper = new Paper( "text", attributes );
 			expect( paper.hasTitle() ).toBe( true );
 			expect( paper.getTitle() ).toBe( "title" );
-			expect( paper.hasTitleWidth() ).toBe( true );
+			expect( paper.hasTitleLength() ).toBe( true );
 		} );
 
 		it( "returns nothing", function() {
@@ -73,7 +73,7 @@ describe( "Paper", function() {
 			expect( paper.hasDescription() ).toBe( false );
 			expect( paper.hasUrl() ).toBe( false );
 			expect( paper.hasKeyword() ).toBe( false );
-			expect( paper.hasTitleWidth() ).toBe( false );
+			expect( paper.hasTitleLength() ).toBe( false );
 		} );
 
 		it( "returns locale", function() {

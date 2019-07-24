@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "Historia miasta Szczecin",
 	description: "W 967 roku Mieszko I przyłączył Pomorze wraz ze Szczecinem do Polski. Czytaj dalej, żeby dowiedzieć się, co się działo później!",
 	title: "Historia Szczecina",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "pl_PL",
 	permalink: "https://pl.wikipedia.org/wiki/Szczecin",
 	url: "Szczecin",
@@ -77,10 +77,10 @@ const expectedResults = {
 		score: 9,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears at the beginning of the SEO title. Good job!",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

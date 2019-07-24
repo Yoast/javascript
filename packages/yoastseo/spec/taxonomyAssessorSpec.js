@@ -20,7 +20,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 		] );
 	} );
 
@@ -33,7 +33,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 		] );
 	} );
 
@@ -46,7 +46,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 			"singleH1",
 		] );
 	} );
@@ -61,7 +61,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 		] );
 	} );
 
@@ -74,7 +74,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 			"functionWordsInKeyphrase",
 		] );
 	} );
@@ -90,7 +90,7 @@ describe( "running assessments in the assessor", function() {
 			"metaDescriptionLength",
 			"textLength",
 			"titleKeyword",
-			"titleWidth",
+			"titleLengthh",
 		] );
 	} );
 
@@ -103,7 +103,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 		] );
 	} );
 
@@ -117,7 +117,7 @@ describe( "running assessments in the assessor", function() {
 			"keyphraseLength",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 			"urlKeyword",
 		] );
 	} );
@@ -133,7 +133,7 @@ describe( "running assessments in the assessor", function() {
 			"keywordDensity",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 		] );
 	} );
 
@@ -148,7 +148,7 @@ describe( "running assessments in the assessor", function() {
 			"metaDescriptionKeyword",
 			"metaDescriptionLength",
 			"textLength",
-			"titleWidth",
+			"titleLengthh",
 		] );
 	} );
 } );

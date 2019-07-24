@@ -14,7 +14,7 @@ import SubheadingsKeyword from "./assessments/seo/SubHeadingsKeywordAssessment";
 import TextImages from "./assessments/seo/TextImagesAssessment";
 import TextLength from "./assessments/seo/TextLengthAssessment";
 import OutboundLinks from "./assessments/seo/OutboundLinksAssessment";
-import TitleWidth from "./assessments/seo/PageTitleWidthAssessment";
+import titleLength from "./assessments/seo/PageTitleLengthAssessment";
 import FunctionWordsInKeyphrase from "./assessments/seo/FunctionWordsInKeyphraseAssessment";
 import SingleH1Assessment from "./assessments/seo/SingleH1Assessment";
 /**
@@ -43,7 +43,7 @@ const SEOAssessor = function( i18n, options ) {
 		new OutboundLinks(),
 		new TitleKeywordAssessment(),
 		new InternalLinksAssessment(),
-		new TitleWidth(),
+		new titleLength(),
 		new UrlKeywordAssessment(),
 		new FunctionWordsInKeyphrase(),
 		new SingleH1Assessment(),

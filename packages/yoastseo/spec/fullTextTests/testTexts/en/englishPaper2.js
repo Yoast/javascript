@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "Google Click Through Rate, Google CTR",
 	description: "Google Search Console has a totally new interface! And new features: e.g. 16 months of data. Annelieke explains what you can do with it!",
 	title: "Annelieke's Analytics: 16 months of Google Search Console data",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "en_EN",
 	permalink: "https://yoast.com/16-months-of-google-search-console-data/",
 	url: "16-months-of-google-search-console-data",
@@ -79,10 +79,10 @@ const expectedResults = {
 		score: 6,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears in the SEO title, but not at the beginning. <a href='https://yoa.st/33h' target='_blank'>Try to move it to the beginning</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

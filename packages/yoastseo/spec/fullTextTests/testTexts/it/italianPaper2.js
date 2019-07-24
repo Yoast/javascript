@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "il pianeta più vicino al Sole",
 	description: "Mercurio è il pianeta più interno del sistema solare e il più vicino al Sole. È il più piccolo e la sua orbita è anche la più eccentrica, ovvero la meno circolare, degli otto pianeti.",
 	title: "Mercurio (astronomia)",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "it_IT",
 	permalink: "https://it.wikipedia.org/wiki/Mercurio-(astronomia)",
 	url: "Mercurio-(astronomia)",
@@ -76,10 +76,10 @@ const expectedResults = {
 		score: 9,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears at the beginning of the SEO title. Good job!",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

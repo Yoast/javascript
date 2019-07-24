@@ -19,7 +19,7 @@ import TextLengthAssessment from "../../src/assessments/seo/TextLengthAssessment
 import OutboundLinksAssessment from "../../src/assessments/seo/OutboundLinksAssessment";
 import InternalLinksAssessment from "../../src/assessments/seo/InternalLinksAssessment";
 import TitleKeywordAssessment from "../../src/assessments/seo/TitleKeywordAssessment";
-import TitleWidthAssessment from "../../src/assessments/seo/PageTitleWidthAssessment";
+import titleLengthAssessment from "../../src/assessments/seo/PageTitleLengthAssessment";
 import UrlKeywordAssessment from "../../src/assessments/seo/UrlKeywordAssessment";
 import KeyphraseDistributionAssessment from "../../src/assessments/seo/KeyphraseDistributionAssessment";
 
@@ -46,7 +46,7 @@ import imageCount from "../../src/researches/imageCountInText.js";
 import altTagCount from "../../src/researches/imageAltTags.js";
 import wordCountInText from "../../src/researches/wordCountInText.js";
 import findKeywordInPageTitle from "../../src/researches/findKeywordInPageTitle.js";
-import pageTitleWidth from "../../src/researches/pageTitleWidth.js";
+import pageTitleLength from "../../src/researches/pageTitleLength.js";
 import keywordCountInUrl from "../../src/researches/keywordCountInUrl";
 import { keyphraseDistributionResearcher } from "../../src/researches/keyphraseDistribution";
 const keyphraseDistribution = keyphraseDistributionResearcher;
@@ -86,7 +86,7 @@ testPapers.forEach( function( testPaper ) {
 		const outboundLinksAssessment = new OutboundLinksAssessment();
 		const internalLinksAssessment = new InternalLinksAssessment();
 		const titleKeywordAssessment = new TitleKeywordAssessment();
-		const titleWidthAssessment = new TitleWidthAssessment();
+		const titleLengthAssessment = new titleLengthAssessment();
 		const urlKeywordAssessment = new UrlKeywordAssessment();
 		const keyphraseDistributionAssessment = new KeyphraseDistributionAssessment();
 		const fleschReadingAssessment = new FleschReadingAssessment( contentConfiguration( locale ).fleschReading );
@@ -286,18 +286,18 @@ testPapers.forEach( function( testPaper ) {
 			}
 		} );
 
-		it( "returns a score and the associated feedback text for the titleWidth assessment", function() {
-			const isApplicable = titleWidthAssessment.isApplicable( paper );
-			expect( isApplicable ).toBe( expectedResults.titleWidth.isApplicable );
+		it( "returns a score and the associated feedback text for the titleLength assessment", function() {
+			const isApplicable = titleLengthAssessment.isApplicable( paper );
+			expect( isApplicable ).toBe( expectedResults.titleLength.isApplicable );
 
 			if ( isApplicable ) {
-				result.titleWidth = titleWidthAssessment.getResult(
+				result.titleLength = titleLengthAssessment.getResult(
 					paper,
-					factory.buildMockResearcher( pageTitleWidth( paper ) ),
+					factory.buildMockResearcher( pageTitleLength( paper ) ),
 					i18n
 				);
-				expect( result.titleWidth.getScore() ).toBe( expectedResults.titleWidth.score );
-				expect( result.titleWidth.getText() ).toBe( expectedResults.titleWidth.resultText );
+				expect( result.titleLength.getScore() ).toBe( expectedResults.titleLength.score );
+				expect( result.titleLength.getText() ).toBe( expectedResults.titleLength.resultText );
 			}
 		} );
 

@@ -9,7 +9,7 @@ import { Toggle } from "@yoast/components";
 import { setConfigurationAttribute } from "../redux/actions/configuration";
 import { setOption } from "../redux/actions/options";
 import { setPaperAttribute } from "../redux/actions/paper";
-import measureTextWidth from "../utils/measureTextWidth";
+import measureTextLength from "../utils/measureTextLength";
 import { ColumnLeft, ColumnRight, Columns } from "./Columns";
 import { Container } from "./Container";
 import { H3 } from "./headings";
@@ -57,7 +57,7 @@ function renderLeftColumn( props ) {
 		<Container>
 			{ renderPaperAttribute( props, "title", "Write the SEO title", "SEO title", ( id, value ) => {
 				props.setPaperAttribute( id, value );
-				props.setPaperAttribute( "titleWidth", measureTextWidth( value ) );
+				props.setPaperAttribute( "titleLength", measureTextLength( value ) );
 			} ) }
 		</Container>
 

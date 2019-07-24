@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "Istruzione per alle bambine, alle ragazze e alle donne",
 	description: "L'istruzione pubblica sia la scuola privata (dall'istruzione primaria, all'istruzione secondaria, all'istruzione superiore e all'educazione sanitaria in particolare) rivolte espressamente alle bambine, alle ragazze e alle donne.",
 	title: "Istruzione femminile",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "it_IT",
 	permalink: "https://it.wikipedia.org/wiki/Istruzione-femminile",
 	url: "Istruzione-femminile",
@@ -77,10 +77,10 @@ const expectedResults = {
 		score: 2,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: Not all the words from your keyphrase \"L&#39;istruzione femminile\" appear in the SEO title. <a href='https://yoa.st/33h' target='_blank'>Try to use the exact match of your keyphrase in the SEO title</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

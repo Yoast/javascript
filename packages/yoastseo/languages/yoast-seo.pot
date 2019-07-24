@@ -481,7 +481,7 @@ msgid "This page has %1$s %2$soutbound link(s)%3$s."
 msgstr ""
 
 #. Translators:  %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag
-#: js/assessments/seo/pageTitleWidthAssessment.js:92
+#: js/assessments/seo/pagetitleLengthAssessment.js:92
 #, javascript-format
 msgid ""
 "The %1$sSEO title%2$s is too short. Use the space to add keyword variations "
@@ -489,19 +489,19 @@ msgid ""
 msgstr ""
 
 #. Translators:  %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag
-#: js/assessments/seo/pageTitleWidthAssessment.js:97
+#: js/assessments/seo/pagetitleLengthAssessment.js:97
 #, javascript-format
 msgid "The %1$sSEO title%2$s has a nice length."
 msgstr ""
 
 #. Translators:  %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag
-#: js/assessments/seo/pageTitleWidthAssessment.js:102
+#: js/assessments/seo/pagetitleLengthAssessment.js:102
 #, javascript-format
 msgid "The %1$sSEO title%2$s is wider than the viewable limit."
 msgstr ""
 
 #. Translators:  %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag
-#: js/assessments/seo/pageTitleWidthAssessment.js:106
+#: js/assessments/seo/pagetitleLengthAssessment.js:106
 #, javascript-format
 msgid "Please create an %1$sSEO title%2$s."
 msgstr ""

@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "Ester Blenda Nordström, Essan",
 	description: "Det här är en artikel om författaren Ester Nordströms liv.",
 	title: "Ester Blenda Nordström",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "sv_SE",
 	permalink: "https://sv.wikipedia.org/wiki/Ester-Blenda-Nordström",
 	url: "Ester-Blenda-Nordström",
@@ -74,10 +74,10 @@ const expectedResults = {
 		score: 6,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: Does not contain the exact match. <a href='https://yoa.st/33h' target='_blank'>Try to write the exact match of your keyphrase in the SEO title</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

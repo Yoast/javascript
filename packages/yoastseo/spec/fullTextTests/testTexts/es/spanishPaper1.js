@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "Una canción de The Beatles",
 	description: "«Hey Jude» es una canción de la banda británica de rock The Beatles, lanzada en agosto de 1968 como primer sencillo del sello discográfico de la formación, Apple Records.",
 	title: "Hey Jude - la canción de la banda británica de rock The Beatles",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "es_ES",
 	permalink: "https://es.wikipedia.org/wiki/Hey_Jude",
 	url: "Hey-Jude",
@@ -76,10 +76,10 @@ const expectedResults = {
 		score: 6,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: Does not contain the exact match. <a href='https://yoa.st/33h' target='_blank'>Try to write the exact match of your keyphrase in the SEO title</a>.",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

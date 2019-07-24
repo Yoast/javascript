@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "social media SEO, Facebook strategy",
 	description: "Social media should be a part of your SEO strategy. In this post, Marieke explains the first steps towards developing your own social media strategy.",
 	title: "Social Media Strategy: Where to begin?",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "en_EN",
 	permalink: "https://yoast.com/social-media-strategy-where-to-begin/",
 	url: "social-media-strategy-where-to-begin",
@@ -80,10 +80,10 @@ const expectedResults = {
 		score: 9,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears at the beginning of the SEO title. Good job!",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

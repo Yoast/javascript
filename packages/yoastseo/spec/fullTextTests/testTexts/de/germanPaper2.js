@@ -8,7 +8,7 @@ const paper = new Paper( content, {
 	synonyms: "fonologie",
 	description: "Während die Phonetik die eher konkreten Eigenschaften der Sprachlaute untersucht – ihre akustische Beschaffenheit, Artikulation und Wahrnehmung –, betrachtet die Phonologie die Laute in abstrakterer Weise: Sie beschäftigt sich mit der Funktion der Laute für das Sprachsystem der einzelnen Sprachen und stellt somit einen Teilbereich der Grammatik dar.",
 	title: "Phonologie/fonologie",
-	titleWidth: 450,
+	titleLength: 450,
 	locale: "de_DE",
 	permalink: "https://de.wikipedia.org/wiki/Phonologie",
 	url: "Phonologie",
@@ -77,10 +77,10 @@ const expectedResults = {
 		score: 9,
 		resultText: "<a href='https://yoa.st/33g' target='_blank'>Keyphrase in title</a>: The exact match of the keyphrase appears at the beginning of the SEO title. Good job!",
 	},
-	titleWidth: {
+	titleLength: {
 		isApplicable: true,
 		score: 9,
-		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title width</a>: Good job!",
+		resultText: "<a href='https://yoa.st/34h' target='_blank'>SEO title length</a>: Good job!",
 	},
 	urlKeyword: {
 		isApplicable: true,

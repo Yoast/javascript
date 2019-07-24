@@ -106,7 +106,7 @@ describe( "TreeAssessor", () => {
 				synonyms: "rainbow",
 				title: "Lotsa rainbows",
 				description: "Rainbows are awesome, unicorns are too!",
-				titleWidth: 30,
+				titleLength: 30,
 				url: "https://example.com/rainbows",
 				permalink: "rainbows",
 			} );
@@ -153,7 +153,7 @@ describe( "TreeAssessor", () => {
 				synonyms: "rainbow",
 				title: "Lotsa rainbows",
 				description: "Rainbows are awesome, unicorns are too!",
-				titleWidth: 30,
+				titleLength: 30,
 				url: "https://example.com/rainbows",
 				permalink: "rainbows",
 			} );

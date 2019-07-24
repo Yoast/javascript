@@ -11,8 +11,8 @@ import { ErrorBoundary, SvgIcon, Button } from "@yoast/components";
 import { colors } from "@yoast/style-guide";
 import { getDirectionalStyle } from "@yoast/helpers";
 
-const { MetaDescriptionLengthAssessment, PageTitleWidthAssessment } = assessments.seo;
-const { measureTextWidth } = helpers;
+const { MetaDescriptionLengthAssessment, PageTitleLengthAssessment } = assessments.seo;
+const { measureTextLength } = helpers;
 
 // Internal dependencies.
 import SnippetPreview from "../snippet-preview/SnippetPreview";
@@ -50,14 +50,14 @@ const CloseEditorButton = styled( SnippetEditorButton )`
  * @returns {Object} The title progress.
  */
 function getTitleProgress( title ) {
-	const titleWidth = measureTextWidth( title );
-	const pageTitleWidthAssessment = new PageTitleWidthAssessment();
-	const score = pageTitleWidthAssessment.calculateScore( titleWidth );
-	const maximumLength = pageTitleWidthAssessment.getMaximumLength();
+	const titleLength = measureTextLength( title );
+	const pageTitleLengthAssessment = new PageTitleLengthAssessment();
+	const score = pageTitleLengthAssessment.calculateScore( titleLength );
+	const maximumLength = pageTitleLengthAssessment.getMaximumLength();
 
 	return {
 		max: maximumLength,
-		actual: titleWidth,
+		actual: titleLength,
 		score: score,
 	};
 }

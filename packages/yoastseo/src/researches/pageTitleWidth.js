@@ -5,7 +5,7 @@
  */
 export default function( paper ) {
 	if ( paper.hasTitle() ) {
-		return paper.getTitleWidth();
+		return paper.getTitleLength();
 	}
 	return 0;
 }

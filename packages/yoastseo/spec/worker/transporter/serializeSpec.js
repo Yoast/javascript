@@ -93,7 +93,7 @@ describe( "serialize", () => {
 			permalink: "https://example.com/page-0",
 			title: "A text about a keyword.",
 			synonyms: "",
-			titleWidth: 0,
+			titleLength: 0,
 			url: "",
 		} );
 	} );

@@ -25,7 +25,7 @@ var defaults = {
 		title: "",
 		metaDesc: "",
 		urlPath: "",
-		titleWidth: 0,
+		titleLength: 0,
 		metaHeight: 0,
 	},
 	placeholder: {
@@ -282,7 +282,7 @@ function updateProgressBar( element, value, maximum, rating ) {
  * @property {HTMLElement} element.rendered.urlBase       - The rendered url base element.
  * @property {HTMLElement} element.rendered.metaDesc      - The rendered meta description element.
  *
- * @property {HTMLElement} element.measurers.titleWidth   - The rendered title width element.
+ * @property {HTMLElement} element.measurers.titleLength   - The rendered title width element.
  * @property {HTMLElement} element.measurers.metaHeight   - The rendered meta height element.
  *
  * @property {Object}      element.input                  - The input elements.
@@ -298,7 +298,7 @@ function updateProgressBar( element, value, maximum, rating ) {
  * @property {string}      data.title                     - The title.
  * @property {string}      data.urlPath                   - The url path.
  * @property {string}      data.metaDesc                  - The meta description.
- * @property {int}         data.titleWidth                - The width of the title in pixels.
+ * @property {int}         data.titleLength                - The width of the title in pixels.
  * @property {int}         data.metaHeight                - The height of the meta description in pixels.
  *
  * @property {string}      baseURL                        - The basic URL as it will be displayed in google.
@@ -957,13 +957,13 @@ SnippetPreview.prototype.updateProgressBars = function() {
 
 	metaDescription = getAnalyzerMetaDesc.call( this );
 
-	titleRating = rateTitleLength( this.data.titleWidth );
+	titleRating = rateTitleLength( this.data.titleLength );
 	metaDescriptionRating = rateMetaDescLength( metaDescription.length );
 
 	updateProgressBar.call(
 		this,
 		this.element.progress.title,
-		this.data.titleWidth,
+		this.data.titleLength,
 		titleMaxLength,
 		titleRating
 	);
@@ -1255,7 +1255,7 @@ SnippetPreview.prototype.createMeasurementElements = function() {
  */
 SnippetPreview.prototype.measureTitle = function() {
 	if ( this.element.rendered.title.offsetWidth !== 0 || this.element.rendered.title.textContent === "" ) {
-		this.data.titleWidth = this.element.rendered.title.offsetWidth;
+		this.data.titleLength = this.element.rendered.title.offsetWidth;
 	}
 };
 
@@ -1277,8 +1277,8 @@ SnippetPreview.prototype.measureMetaDescription = function() {
  *
  * @returns {Number} The width of the title in pixels.
  */
-SnippetPreview.prototype.getTitleWidth = function() {
-	return this.data.titleWidth;
+SnippetPreview.prototype.getTitleLength = function() {
+	return this.data.titleLength;
 };
 
 /**
@@ -1286,12 +1286,12 @@ SnippetPreview.prototype.getTitleWidth = function() {
  *
  * This may be useful in setups where the title field will not always be rendered.
  *
- * @param {Number} titleWidth The width of the title in pixels.
+ * @param {Number} titleLength The width of the title in pixels.
  *
  * @returns {void}
  */
-SnippetPreview.prototype.setTitleWidth = function( titleWidth ) {
-	this.data.titleWidth = titleWidth;
+SnippetPreview.prototype.settitleLength = function( titleLength ) {
+	this.data.titleLength = titleLength;
 };
 
 /**
