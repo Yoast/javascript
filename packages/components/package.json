@@ -27,8 +27,10 @@
     "@yoast/helpers": "^0.4.0-rc.2",
     "@yoast/style-guide": "^0.4.0-rc.1",
     "interpolate-components": "^1.1.1",
+    "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
+    "react-intl": "^2.9.0",
     "react-modal": "^3.8.1",
     "react-tabs": "^2.3.0",
     "styled-components": "^4.2.0"
