@@ -3,44 +3,54 @@
 // * Make the same change in the configuration-wizard/src/helpers/_colors.scss file.
 // * Run `grunt scss_to_json`.
 //
-$palette_white:              #fff;    // Safe to use with $palette_grey_text – $palette_black.
+$palette_white:                 #fff;    // Safe to use with $palette_grey_text – $palette_black.
 // Shades of gray from lighter to darker.
-$palette_grey_ultra_light:   #f7f7f7; // Safe to use with $palette_grey_text – $palette_black.
-$palette_grey_light:         #f1f1f1; // Safe to use with $palette_grey_text – $palette_black.
-$palette_grey_medium_light:  #e2e4e7; // Color copied from Gutenberg.
-$palette_grey:               #ddd;    // Safe to use with $palette_grey_dark – $palette_black.
-$palette_grey_medium:        #ccc;    // Safe to use with $palette_grey_dark – $palette_black.
-$palette_grey_disabled:      #a0a5aa; // Should be used only for disabled controls text. Also used for the "none"" score icon.
-$palette_grey_medium_dark:   #888;    // Safe to use with $palette_black or $palette_white bold > 18.5px.
-$palette_grey_text_light:    #767676; // Lightest gray for text on a white background.
-$palette_grey_text:          #616161; // Safe to use with $palette_white – $palette_grey.
-$palette_grey_dark:          #555;    // Safe to use with $palette_white – $palette_grey_medium.
-$palette_black:              #000;    // Safe to use with $palette_white – $palette_grey_medium.
+$palette_grey_ultra_light:      #f7f7f7; // Safe to use with $palette_grey_text – $palette_black.
+$palette_grey_light:            #f1f1f1; // Safe to use with $palette_grey_text – $palette_black.
+$palette_grey_medium_light:     #e2e4e7; // Color copied from Gutenberg.
+$palette_grey:                  #ddd;    // Safe to use with $palette_grey_dark – $palette_black.
+$palette_grey_medium:           #ccc;    // Safe to use with $palette_grey_dark – $palette_black.
+$palette_grey_disabled:         #a0a5aa; // Should be used only for disabled controls text. Also used for the "none"" score icon.
+$palette_grey_medium_dark:      #888;    // Safe to use with $palette_black or $palette_white bold > 18.5px.
+$palette_grey_text_light:       #767676; // Lightest gray for text on a white background.
+$palette_grey_text:             #616161; // Safe to use with $palette_white – $palette_grey.
+$palette_grey_dark:             #555;    // Safe to use with $palette_white – $palette_grey_medium.
+$palette_black:                 #000;    // Safe to use with $palette_white – $palette_grey_medium.
 
-$palette_purple: 	         #5d237a; // Safe to use with $palette_white – $palette_grey_medium.
-$palette_purple_dark:        #6c2548; // Safe to use with $palette_white – $palette_grey_medium.
-$palette_pink:               #d73763; // Safe to use with $palette_white and $palette_black.
-$palette_pink_light:         #e1bee7; // Safe to use with $palette_grey_dark – $palette_black.
-$palette_pink_dark:          #a4286a; // Safe to use with $palette_white – $palette_grey.
-$palette_blue:               #0066cd; // Safe to use with $palette_white – $palette_grey_light and lighter.
-$palette_blue_light:         #a9a9ce; // Safe to use with $palette_black.
-$palette_blue_medium:        #1e8cbe; // Safe to use with $palette_black.
-$palette_blue_link:          #0073aa; // WordPress color.
-$palette_blue_focus:         #5b9dd9; // WordPress color.
-$palette_blue_dark:          #084a67; // Safe to use with $palette_white – $palette_grey_medium.
-$palette_green:              #77b227; // Safe to use with $palette_black.
-$palette_green_light:        #7ad03a; // Safe to use with $palette_black.
-$palette_green_medium_light: #64a60a; // Safe to use with $palette_black or $palette_white bold > 18.5px.
-$palette_green_medium:       #008a00; // Safe to use with $palette_white and $palette_black. Also used for the smiley score icon.
-$palette_green_blue:         #009288; // Safe to use with $palette_black.
-$palette_orange:             #dc5c04; // Safe to use with $palette_black.
-$palette_orange_light:       #ee7c1b; // Safe to use with $palette_black.
-$palette_red:                #dc3232; // Safe to use with $palette_white and $palette_black.
-$palette_red_light:          #f9bdbd; // Safe to use with $palette_grey_dark.
-$palette_yellow:             #ffeb3b; // Safe to use with $palette_grey_text - $palette_black.
-$palette_yellow_score:       #f5c819; // Used for the OK SEO score icon.
-$palette_button_upsell:      #fec228; // Used for the Upsell Button.
-$palette_button_upsell_hover:#f2ae01; // Used for the Upsell Button.
+$palette_purple: 	            #5d237a; // Safe to use with $palette_white – $palette_grey_medium.
+$palette_purple_dark:           #6c2548; // Safe to use with $palette_white – $palette_grey_medium.
+$palette_pink:                  #d73763; // Safe to use with $palette_white and $palette_black.
+$palette_pink_light:            #e1bee7; // Safe to use with $palette_grey_dark – $palette_black.
+$palette_pink_dark:             #a4286a; // Safe to use with $palette_white – $palette_grey.
+$palette_blue:                  #0066cd; // Safe to use with $palette_white – $palette_grey_light and lighter.
+$palette_blue_light:            #a9a9ce; // Safe to use with $palette_black.
+$palette_blue_medium:           #1e8cbe; // Safe to use with $palette_black.
+$palette_blue_link:             #0073aa; // WordPress color.
+$palette_blue_focus:            #5b9dd9; // WordPress color.
+$palette_blue_dark:             #084a67; // Safe to use with $palette_white – $palette_grey_medium.
+$palette_green:                 #77b227; // Safe to use with $palette_black.
+$palette_green_light:           #7ad03a; // Safe to use with $palette_black.
+$palette_green_medium_light:    #64a60a; // Safe to use with $palette_black or $palette_white bold > 18.5px.
+$palette_green_medium:          #008a00; // Safe to use with $palette_white and $palette_black. Also used for the smiley score icon.
+$palette_green_blue:            #009288; // Safe to use with $palette_black.
+$palette_orange:                #dc5c04; // Safe to use with $palette_black.
+$palette_orange_light:          #ee7c1b; // Safe to use with $palette_black.
+$palette_red:                   #dc3232; // Safe to use with $palette_white and $palette_black.
+$palette_red_light:             #f9bdbd; // Safe to use with $palette_grey_dark.
+$palette_yellow:                #ffeb3b; // Safe to use with $palette_grey_text - $palette_black.
+$palette_yellow_score:          #f5c819; // Used for the OK SEO score icon.
+$palette_button_upsell:         #fec228; // Used for the Upsell Button.
+$palette_button_upsell_hover:   #f2ae01; // Used for the Upsell Button.
+
+$palette_alert_blue_contrast:         #004973; // Adjusted color for links in the alert component.
+$palette_alert_info_blue:             #00468F; // Color introduced with the alert component.
+$palette_alert_info_blue_light:       #CCE5FF; // Color introduced with the alert component.
+$palette_alert_error_red:             #8F1919; // Color introduced with the alert component.
+$palette_alert_error_red_light:       #F9DCDC; // Color introduced with the alert component.
+$palette_alert_success_green:         #395315; // Color introduced with the alert component.
+$palette_alert_success_green_light:   #E2F2CC; // Color introduced with the alert component.
+$palette_alert_warning_yellow:        #674E00; // Color introduced with the alert component.
+$palette_alert_warning_yellow_light:  #FFF3CD; // Color introduced with the alert component.
 
 $color_bad:                  $palette_red;
 $color_ok:                   $palette_orange_light;
@@ -121,3 +131,14 @@ $color_grey_light:           $palette_grey_light;
 $color_yellow:               $palette_yellow;
 $color_yellow_score:         $palette_yellow_score;
 $color_error_message:        $palette_red_light;
+
+// Colors for the alert component.
+$color_alert_blue_link:             $palette_alert_blue_contrast;
+$color_alert_info_blue:             $palette_alert_info_blue;
+$color_alert_info_blue_light:       $palette_alert_info_blue_light;
+$color_alert_error_red:             $palette_alert_error_red;
+$color_alert_error_red_light:       $palette_alert_error_red_light;
+$color_alert_success_green:         $palette_alert_success_green;
+$color_alert_success_green_light:   $palette_alert_success_green_light;
+$color_alert_warning_yellow:        $palette_alert_warning_yellow;
+$color_alert_warning_yellow_light:  $palette_alert_warning_yellow_light;

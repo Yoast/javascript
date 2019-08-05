@@ -4,6 +4,7 @@ import { __ } from "@wordpress/i18n";
 
 import { CourseDetails, FullHeightCard, Warning } from "@yoast/components";
 import { getDirectionalStyle, getCourseFeed, makeOutboundLink } from "@yoast/helpers";
+import { Alert } from "@yoast/components";
 
 const Container = styled.div`
 	max-width: 1024px;
@@ -161,6 +162,25 @@ export default class ComponentsExample extends React.Component {
 						<YoastLinkCustomRel href="https://yoast.com/" rel="bookmark nofollow">yoast.com (custom rel attribute)</YoastLinkCustomRel>
 						<br /><small>expected: target=&quot;_blank&quot; rel=&quot;bookmark nofollow&quot; and visually hidden message</small>
 					</p>
+					<h2> Alerts </h2>
+					<Alert dismissable={ true } cookieName="errorAlert" type="error">
+						This is an <b>error</b> alert! <b>Something went wrong </b> 😢 <br />
+					</Alert>
+					<Alert dismissable={ true } cookieName="infoAlert" type="info">
+						Norway knighted a penguin &
+						<br />
+						Sweden has a rabbit show-jumping competition called Kaninhoppning.
+						<p>End of <b>info</b> alert </p>
+					</Alert>
+					<Alert dismissable={ false } cookieName="warningAlert" type="warning">
+						<i>Watch out where the huskies go,
+							and don't you eat that yellow snow. </i>
+						This <b>warning</b> alert cannot be dismissed.
+					</Alert>
+					<Alert dismissable={ true } cookieName="successAlert" type="success">
+						This is a <b>success</b> alert with a link in it: &nbsp;
+						<YoastLink href="https://yoast.com">yoast.com </YoastLink>
+					</Alert>
 				</Container>
 				<h2>Courses overview cards</h2>
 				<p>Full width example to test the cards wrapping.</p>

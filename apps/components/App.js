@@ -18,7 +18,7 @@ import { Loader } from "@yoast/components";
 import FacebookPreviewExample from "./FacebookPreviewExample";
 import LinkSuggestionsWrapper from "./LinkSuggestionsExample";
 import WordOccurrencesWrapper from "./WordOccurrencesWrapper";
-
+import { IntlProvider } from 'react-intl';
 // Setup empty translations to prevent Jed error.
 setLocaleData( { "": {} }, "yoast-components" );
 
@@ -246,13 +246,15 @@ class App extends React.Component {
 	render() {
 		return (
 			<ThemeProvider theme={ { isRtl: this.state.isRtl } }>
-				<div>
-					{ this.getMenu() }
-					<LanguageDirectionContainer>
-						{ this.renderLanguageDirectionButton() }
-					</LanguageDirectionContainer>
-					{ this.getContent() }
-				</div>
+				<IntlProvider locale="en">
+					<div>
+						{ this.getMenu() }
+						<LanguageDirectionContainer>
+							{ this.renderLanguageDirectionButton() }
+						</LanguageDirectionContainer>
+						{ this.getContent() }
+					</div>
+				</IntlProvider>
 			</ThemeProvider>
 		);
 	}

@@ -17,5 +17,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "grunt": "^1.0.4"
   }
 }
