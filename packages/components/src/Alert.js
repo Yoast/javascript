@@ -5,15 +5,15 @@ import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 import { defineMessages, injectIntl, intlShape } from "react-intl";
 
-/* Internal dependencies */
+/* Yoast dependencies */
 import { colors } from "@yoast/style-guide";
 
 /**
- * Returns an error icon SVG.
+ * Returns an error icon SVG data URI.
  *
  * @param {string} color The desired color for the SVG.
  *
- * @returns {string} The SVG image.
+ * @returns {string} The SVG image data URI.
  */
 const errorIcon = ( color ) =>
 	"data:image/svg+xml;charset=utf8," + encodeURIComponent(
@@ -24,11 +24,11 @@ const errorIcon = ( color ) =>
 	);
 
 /**
- * Returns an info icon SVG.
+ * Returns an info icon SVG data URI.
  *
  * @param {string} color The desired color for the SVG.
  *
- * @returns {string} The SVG image.
+ * @returns {string} The SVG image data URI.
  */
 export const infoIcon = ( color ) =>
 	"data:image/svg+xml;charset=utf8," + encodeURIComponent(
@@ -39,11 +39,11 @@ export const infoIcon = ( color ) =>
 	);
 
 /**
- * Returns a warning icon SVG.
+ * Returns a warning icon SVG data URI.
  *
  * @param {string} color The desired color for the SVG.
  *
- * @returns {string} The SVG image.
+ * @returns {string} The SVG image data URI.
  */
 export const warningIcon = ( color ) =>
 	"data:image/svg+xml;charset=utf8," + encodeURIComponent(
@@ -53,11 +53,11 @@ export const warningIcon = ( color ) =>
 	);
 
 /**
- * Returns a success icon SVG.
+ * Returns a success icon SVG data URI.
  *
  * @param {string} color The desired color for the SVG.
  *
- * @returns {string} The SVG image.
+ * @returns {string} The SVG image data URI.
  */
 export const successIcon = ( color ) =>
 	"data:image/svg+xml;charset=utf8," + encodeURIComponent(
@@ -68,11 +68,11 @@ export const successIcon = ( color ) =>
 	);
 
 /**
- * Returns a close icon SVG.
+ * Returns a close icon SVG data URI.
  *
  * @param {string} color The desired color for the SVG.
  *
- * @returns {string} The SVG image.
+ * @returns {string} The SVG image data URI.
  */
 export const closeIcon = ( color ) =>
 	"data:image/svg+xml;charset=utf8," + encodeURIComponent(
@@ -121,23 +121,26 @@ const AlertIcon = styled.span`
 
 const AlertMessage = styled.div`
 	flex: 1 1 auto;
+
+	& p:first-child {
+		margin-top: 0;
+	}
+
+	& p:last-child {
+		margin-bottom: 0;
+	}
 `;
 
 const StyledCloseButtonTopRight = styled.button`
-	border: 0;
-	border-radius: 4px;
-	cursor: pointer;
-	vertical-align: top;
-	background-repeat: no-repeat;
-	background-image: url( ${ props => props.iconSource } );
-	background-size: ${ props => props.iconSize };
-	background-color: transparent;
-
 	align-self: flex-start;
-	background-position: 50%;
 	height: 1.25rem;
-	max-width: 1.25rem;
+	min-width: 1.25rem;
 	margin: 0 0 0 1em;
+	padding: 0;
+	border: 0;
+	cursor: pointer;
+	background: transparent url( ${ props => props.iconSource } ) no-repeat center;
+	background-size: ${ props => props.iconSize };
 
 	&:hover,
 	&:focus {
