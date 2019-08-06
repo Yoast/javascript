@@ -228,7 +228,7 @@ class Alert extends React.Component {
 	 * @returns {void}
 	 */
 	onCrossClick() {
-		Cookies.set( this.props.cookieName, "true", { expires: 7 } );
+		Cookies.set( this.props.cookieName, "hide", { expires: 7 } );
 		this.setState( { hideAlert: true } );
 	}
 
