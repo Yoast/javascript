@@ -24,7 +24,7 @@ test( "the undismissable warning alert matches the snapshot", () => {
 	const component = renderer.create(
 		<Alert dismissable={ false } cookieName="warningAlert" type="warning">
 			<i>Watch out where the huskies go,
-				and don't you eat that yellow snow. </i>
+				and don&apos;t you eat that yellow snow. </i>
 			This <b>warning</b> alert cannot be dismissed.
 		</Alert>
 	);

@@ -243,7 +243,7 @@ class Alert extends React.Component {
 							onClick={ this.onCrossClick }
 							iconSource={ this.options.closeIcon }
 							iconSize="1rem"
-							aria-label={ __("close", "yoast-components" ) }
+							aria-label={ __( "close", "yoast-components" ) }
 						/>
 					}
 				</AlertBody>
