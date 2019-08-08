@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
-import { defineMessages, injectIntl, intlShape } from "react-intl";
+import { __ } from "@wordpress/i18n";
 
 /* Internal dependencies */
 import { colors } from "@yoast/style-guide";
@@ -80,13 +80,6 @@ export const closeIcon = ( color ) =>
 	// eslint-disable-next-line
 	'<path fill="' + color + '" d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z" />' + "</svg>"
 	);
-
-const messages = defineMessages( {
-	close: {
-		id: "alert.close",
-		defaultMessage: "close",
-	},
-} );
 
 const AlertBody = styled.div`
 	display: flex;
@@ -225,7 +218,7 @@ class Alert extends React.Component {
 	 * @returns {void}
 	 */
 	onCrossClick() {
-		Cookies.set( this.props.cookieName, "true", { expires: 7 } );
+		Cookies.set( this.props.cookieName, "hide", { expires: 7 } );
 		this.setState( { hideAlert: true } );
 	}
 
@@ -247,7 +240,7 @@ class Alert extends React.Component {
 							onClick={ this.onCrossClick }
 							iconSource={ this.options.closeIcon }
 							iconSize="1rem"
-							aria-label={ this.props.intl.formatMessage( messages.close ) }
+							aria-label={ __("close", "yoast-components" ) }
 						/>
 					}
 				</AlertBody>
@@ -256,7 +249,6 @@ class Alert extends React.Component {
 }
 
 Alert.propTypes = {
-	intl: intlShape.isRequired,
 	children: PropTypes.any.isRequired,
 	dismissable: PropTypes.any.isRequired,
 	cookieName: PropTypes.string,
@@ -267,4 +259,4 @@ Alert.defaultProps = {
 	cookieName: "",
 };
 
-export default injectIntl( Alert );
+export default Alert;
