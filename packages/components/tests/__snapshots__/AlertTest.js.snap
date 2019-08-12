@@ -2,7 +2,7 @@
 
 exports[`the default info Alert matches the snapshot 1`] = `
 <div
-  className="dVtPeI"
+  className="cZMcrk"
 >
   <span
     className="ehCebz"
@@ -31,7 +31,7 @@ exports[`the default info Alert matches the snapshot 1`] = `
 
 exports[`the error alert matches the snapshot 1`] = `
 <div
-  className="upGPO"
+  className="gyOzkT"
 >
   <span
     className="iLAVbb"
@@ -60,7 +60,7 @@ exports[`the error alert matches the snapshot 1`] = `
 
 exports[`the success alert with link matches the snapshot 1`] = `
 <div
-  className="gpgXFz"
+  className="jpPwfc"
 >
   <span
     className="ePcGuf"
@@ -96,7 +96,7 @@ exports[`the success alert with link matches the snapshot 1`] = `
 
 exports[`the undismissable warning alert matches the snapshot 1`] = `
 <div
-  className="gaxTEF"
+  className="knYbsI"
 >
   <span
     className="GBVXz"
