@@ -92,11 +92,11 @@ const AlertBody = styled.div`
 	margin-bottom: 20px;
 
 	a {
-		color: ${ colors.$palette_alert_blue_link };
+		color: ${ colors.$color_alert_blue_link };
 
 		&:hover,
 		&:focus {
-			color: ${ colors.$palette_alert_blue_link };
+			color: ${ colors.$color_alert_blue_link };
 		}
 	}
 `;
