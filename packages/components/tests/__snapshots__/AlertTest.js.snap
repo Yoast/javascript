@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the default info Alert matches the snapshot 1`] = `
+<div
+  className="cZMcrk"
+>
+  <span
+    className="ehCebz"
+  />
+  <div
+    className="jlXClR"
+  >
+    Norway knighted a penguin &
+    <br />
+    Sweden has a rabbit show-jumping competition called Kaninhoppning.
+    <p>
+      End of 
+      <b>
+        info
+      </b>
+       alert 
+    </p>
+  </div>
+  <button
+    aria-label="close"
+    className="gXcXMi"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`the error alert matches the snapshot 1`] = `
+<div
+  className="gyOzkT"
+>
+  <span
+    className="iLAVbb"
+  />
+  <div
+    className="jlXClR"
+  >
+    This is an 
+    <b>
+      error
+    </b>
+     alert! 
+    <b>
+      Something went wrong 
+    </b>
+     😢 
+    <br />
+  </div>
+  <button
+    aria-label="close"
+    className="bEZEdw"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`the success alert with link matches the snapshot 1`] = `
+<div
+  className="jpPwfc"
+>
+  <span
+    className="ePcGuf"
+  />
+  <div
+    className="jlXClR"
+  >
+    This is a 
+    <b>
+      success
+    </b>
+     alert with a link in it:  
+    <a
+      href="https://yoast.com"
+      rel={null}
+      target="_blank"
+    >
+      yoast.com 
+      <span
+        className="A11yNotice-sc-1feyioo-0 gHCoqL"
+      >
+        (Opens in a new browser tab)
+      </span>
+    </a>
+  </div>
+  <button
+    aria-label="close"
+    className="gNHmoi"
+    onClick={[Function]}
+  />
+</div>
+`;
+
+exports[`the undismissable warning alert matches the snapshot 1`] = `
+<div
+  className="knYbsI"
+>
+  <span
+    className="GBVXz"
+  />
+  <div
+    className="jlXClR"
+  >
+    <i>
+      Watch out where the huskies go, and don't you eat that yellow snow. 
+    </i>
+    This 
+    <b>
+      warning
+    </b>
+     alert cannot be dismissed.
+  </div>
+</div>
+`;
