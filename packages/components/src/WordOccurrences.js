@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { __, sprintf } from "@wordpress/i18n";
+import { __, _n, sprintf } from "@wordpress/i18n";
 
 const ProminentWordOccurrence = styled.span`
 	display: inline-block;
@@ -54,7 +54,15 @@ const WordBar = ( { word, occurrence, width } ) => {
 			<ProminentWord>{ word }</ProminentWord>
 			<ProminentWordOccurrence>
 				<span aria-hidden={ true }>{ occurrence }</span>
-				<span className="screen-reader-text">{ sprintf( __( "%d occurrences", "yoast-components" ), occurrence ) }</span>
+				<span className="screen-reader-text">
+					{
+						sprintf(
+							/* translators: %d: Prominent words occurrences. */
+							_n( "%d occurrence", "%d occurrences", occurrence, "yoast-components" ),
+							occurrence
+						)
+					}
+				</span>
 			</ProminentWordOccurrence>
 		</WordBarContainer>
 	);

@@ -108,7 +108,7 @@ class WordOccurrencesWrapper extends React.Component {
 					nextState.relevantWords[ index ]._stem = input;
 					break;
 				case "_occurrences":
-					nextState.relevantWords[ index ].setOccurrences( input );
+					nextState.relevantWords[ index ].setOccurrences( parseInt( input, 10 ) );
 					break;
 			}
 			return nextState;
