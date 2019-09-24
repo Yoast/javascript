@@ -1915,6 +1915,11 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.1.tgz#5c85d662f76fa1d34575766c5dcd6615abcd30d8"
   integrity sha512-FZdkNBDqBRHKQ2MEbSC17xnPFOhZxeJ2YGSfr2BKf3sujG49Qe3bB+rGCwQfIaA7WHnGeGkSijX4FuBCdrzW/g==
 
+"@yoast/feature-flag@^0.1.0-rc.1":
+  version "0.1.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@yoast/feature-flag/-/feature-flag-0.1.0-rc.1.tgz#0ce23069c1f6e34f1f5105ebe6934efbbb8bc16e"
+  integrity sha512-jrdans/PMgGULhfdWi4hiTf7ur1jz1Kj+4omv070T6W4vqZuJ1v3ahZiBfvCiNPjC4KJm72AkaLiTbNhzukZIQ==
+
 JSONStream@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-0.10.0.tgz#74349d0d89522b71f30f0a03ff9bd20ca6f12ac0"
