@@ -100,7 +100,7 @@ class ReplacementVariableEditor extends React.Component {
 				>
 					{ label }
 				</SimulatedLabel>
-				{ addVariableButton }
+				{ replacementVariables.length > 0 && addVariableButton }
 				<InputContainer
 					onClick={ onFocus }
 					isActive={ isActive }
