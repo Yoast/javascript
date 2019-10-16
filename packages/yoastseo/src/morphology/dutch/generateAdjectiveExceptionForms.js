@@ -17,8 +17,6 @@ import {
  * @returns {string[]}  The original form. The form returned should be the same with the input.
  *
  */
-
-
 export function indeclinable( morphologyDataAdjectives, stemmedWord ) {
 	const exceptionStems = morphologyDataAdjectives.exceptions.indeclinable;
 	if ( exceptionStems.includes( stemmedWord ) ) {
@@ -69,7 +67,6 @@ export function enGetAllSuffixes( morphologyDataAdjectives, morphologyDataStemMo
  *
  * @returns {string[]}	The created Adjective forms.
  */
-
 export function enGet5Suffixes( morphologyDataAdjectives, morphologyDataStemModifications, stemmedWord ) {
 	const exceptionStems = morphologyDataAdjectives.exceptions.enGet5Suffixes;
 	const comparativeSuffixes = morphologyDataAdjectives.comparativeSuffixesEr.slice( 0, 2 );
