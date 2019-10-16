@@ -7,24 +7,6 @@ import {
 import {
 	applySuffixesToStem,
 } from "../../../src/morphology/morphoHelpers/suffixHelpers";
-
-/**
- *  Returns form of the indeclinable adjectives. These adjectives should not get any suffixes.
- *
- * @param {Object}  morphologyDataAdjectives    The Dutch morphology data for adjectives.
- * @param {string}  stemmedWord                 The stemmed word for which to get suffixes.
- *
- * @returns {string[]}  The original form. The form returned should be the same with the input.
- *
- */
-export function indeclinable( morphologyDataAdjectives, stemmedWord ) {
-	const exceptionStems = morphologyDataAdjectives.exceptions.indeclinable;
-	if ( exceptionStems.includes( stemmedWord ) ) {
-		return stemmedWord;
-	}
-	return [];
-}
-
 /**
  * Returns form of the adjectives which only take partitive suffix -s.
  *
@@ -113,7 +95,6 @@ export function enGet2Suffixes( morphologyDataAdjectives, morphologyDataStemModi
  */
 export function generateAdjectiveExceptionForms( morphologyDataAdjectives, morphologyDataStemModifications, stemmedWord ) {
 	const exceptionChecks = [
-		indeclinable,
 		stemSuffixS,
 		enGetAllSuffixes,
 		enGet5Suffixes,

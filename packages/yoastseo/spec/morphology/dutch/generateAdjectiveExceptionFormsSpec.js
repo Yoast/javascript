@@ -4,11 +4,6 @@ import getMorphologyData from "../../specHelpers/getMorphologyData";
 const morphologyDataNL = getMorphologyData( "nl" ).nl;
 
 describe( "Test for checking adjective exceptions in Dutch", () => {
-	it( "creates forms for indeclinable exception words", () => {
-		expect( generateAdjectiveExceptionForms( morphologyDataNL.adjectives, "acajou" ) ).toEqual(
-			"acajou"
-		);
-	} );
 	it( "creates forms for adjectives which only take partitive suffix -s", () => {
 		expect( generateAdjectiveExceptionForms( morphologyDataNL.adjectives, "halal" ) ).toEqual(
 			[ "halals" ]
