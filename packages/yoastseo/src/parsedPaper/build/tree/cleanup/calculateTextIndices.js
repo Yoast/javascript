@@ -88,17 +88,23 @@ const handleIgnoredContent = function( element, html, currentOffset ) {
 /**
  * Sets the start and end text positions of a comment.
  *
- * @param {module:parsedPaper/structure.FormattingElement}	element			The formatting element to assign start and end text positions to.
+ * @param {module:parsedPaper/structure.FormattingElement}	comment			The formatting element to assign start and end text positions to.
  * @param {int}												currentOffset	A sum of all characters in the source code that don't get rendered
  * 																			(e.g., tags, comments).
  *
- * @returns {void}
+ * @returns {number} The new current offset after taking this comment into account.
  *
  * @private
  */
-const computeCommentStartEndTextIndices = function( element, currentOffset ) {
-	element.textStartIndex = element.location.startOffset - currentOffset;
-	element.textEndIndex = element.textStartIndex;
+const computeCommentStartEndTextIndices = function( comment, currentOffset ) {
+	comment.textStartIndex = comment.location.startOffset - currentOffset;
+	comment.textEndIndex = comment.textStartIndex;
+
+	const length = comment.location.endOffset - comment.location.startOffset;
+
+	const newOffset = currentOffset + length;
+
+	return newOffset;
 };
 
 /**
@@ -165,7 +171,7 @@ const calculateTextIndices = function( node, html ) {
 
 		// Comments are self-closing formatting elements that are completely ignored in rendering.
 		if ( element.tag === "comment" ) {
-			computeCommentStartEndTextIndices( element, currentOffset );
+			currentOffset = computeCommentStartEndTextIndices( element, currentOffset );
 			return;
 		}
 
@@ -177,9 +183,9 @@ const calculateTextIndices = function( node, html ) {
 		}
 
 		/*
-		  If this element is an ignored element its contents are not in the text,
-		  so its content should be added to the respective formatting element instead,
-		  and the current offset should be updated.
+		 * If this element is an ignored element its contents are not in the text,
+		 * so its content should be added to the respective formatting element instead,
+		 * and the current offset should be updated.
 		 */
 		if ( ignoredHtmlElements.includes( element.tag ) ) {
 			currentOffset = handleIgnoredContent( element, html, currentOffset );
