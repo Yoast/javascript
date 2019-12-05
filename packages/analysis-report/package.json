@@ -24,7 +24,7 @@
     "prop-types": "^15.6.0",
     "react": "16.6.3",
     "react-dom": "16.6.3",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "@yoast/browserslist-config": "^1.0.0",
@@ -32,7 +32,7 @@
     "jest": "^22.4.3",
     "jest-cli": "^22.4.3",
     "jest-runtime": "^22.4.3",
-    "jest-styled-components": "^6.3.1",
+    "jest-styled-components": "^6.3.4",
     "react-test-renderer": "^16.2.0"
   },
   "peerDependencies": {
