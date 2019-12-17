@@ -65,16 +65,20 @@ describe( "Adds noun suffixes", () => {
 		expect( addNounSuffixes( "baby", morphologyDataNL.addSuffixes, morphologyDataNL.nouns.suffixes ).sort() ).toEqual( [
 			"baby's",
 			"baby'tje",
+			"baby'tjes",
 		].sort() );
 	} );
 	it( "Adds default noun suffixes to a Dutch stem when the correct suffix cannot be predicted", () => {
 		expect( addNounSuffixes( "hond", morphologyDataNL.addSuffixes, morphologyDataNL.nouns.suffixes ).sort() ).toEqual( [
 			"hondje",
+			"hondjes",
 			"hondertje",
+			"hondertjes",
 			"honden",
 			"honders",
 			"hondes",
 			"hondetje",
+			"hondetjes",
 		].sort() );
 	} );
 	it( "Creates a second stem with doubled consonant and adds the right suffixes to each stem", () => {
@@ -83,21 +87,26 @@ describe( "Adds noun suffixes", () => {
 			"ballers",
 			"balles",
 			"balletje",
+			"balletjes",
 		].sort() );
 	} );
 	it( "Creates a second stem with voiced consonant and adds the right suffixes to each stem", () => {
 		expect( addNounSuffixes( "huis", morphologyDataNL.addSuffixes, morphologyDataNL.nouns.suffixes ).sort() ).toEqual( [
 			"huisje",
+			"huisjes",
 			"huisertje",
+			"huisertjes",
 			"huizen",
 			"huizers",
 			"huizes",
 			"huizetje",
+			"huizetjes",
 		].sort() );
 	} );
 	it( "Creates a second stem with an undoubled vowel and adds the right suffixes to each stem", () => {
 		expect( addNounSuffixes( "spoor", morphologyDataNL.addSuffixes, morphologyDataNL.nouns.suffixes ).sort() ).toEqual( [
 			"spoortje",
+			"spoortjes",
 			"sporen",
 			"sporers",
 			"spores",
@@ -111,6 +120,7 @@ describe( "Adds noun suffixes", () => {
 	it( "Replaces -g with -k in stems ending in -ing before attaching the diminutive suffix", () => {
 		expect( addNounSuffixes( "ketting", morphologyDataNL.addSuffixes, morphologyDataNL.nouns.suffixes ).sort() ).toEqual( [
 			"kettinkje",
+			"kettinkjes",
 			"kettingen",
 			"kettingers",
 			"kettinges",

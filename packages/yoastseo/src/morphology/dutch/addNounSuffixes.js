@@ -52,6 +52,22 @@ const getPluralSuffixes = function( stemmedWord, morphologyDataPluralSuffixes ) 
 };
 
 /**
+ * Gets the predicted or default diminutive suffixes. Then creates the plural form of all the diminutive suffixes and
+ * returns all the diminutive suffixes.
+ *
+ * @param {string} stemmedWord The stemmed word.
+ * @param {Object} morphologyDataDiminutiveSuffixes The morphology data for adding diminutive suffixes.
+ * @returns {string[]} The diminutive suffixes.
+ */
+const getDiminutiveSuffixes = function( stemmedWord, morphologyDataDiminutiveSuffixes ) {
+	const singularDiminutiveSuffixes = getSuffixes( stemmedWord, morphologyDataDiminutiveSuffixes );
+
+	const pluralDiminutiveSuffixes = singularDiminutiveSuffixes.map( suffix => suffix + "s" );
+
+	return singularDiminutiveSuffixes.concat( pluralDiminutiveSuffixes );
+};
+
+/**
  * Creates additional modified stems if needed and adds the relevant suffixes to the stem(s) in order to create noun forms.
  *
  * @param {string} stemmedWord The stemmed word.
@@ -71,7 +87,7 @@ export function addNounSuffixes( stemmedWord, morphologyDataAddSuffixes, morphol
 	const pluralSuffixes = getPluralSuffixes( stemmedWord, morphologyDataNounSuffixes.pluralSuffixes );
 
 	// Get diminutive suffixes.
-	const diminutiveSuffixes = getSuffixes( stemmedWord, morphologyDataNounSuffixes.diminutiveSuffixes );
+	const diminutiveSuffixes = getDiminutiveSuffixes( stemmedWord, morphologyDataNounSuffixes.diminutiveSuffixes );
 
 	// Join the diminutive and plural suffixes
 	let combinedSuffixes = pluralSuffixes.concat( diminutiveSuffixes );
@@ -79,16 +95,16 @@ export function addNounSuffixes( stemmedWord, morphologyDataAddSuffixes, morphol
 	const nounForms = [];
 
 	/* If the kje suffix exists in the suffixes for this word,
-	remove the last character of the stem, attach the suffix to the stem, and add the resulting
-	form to the noun forms array. */
+	remove the last character of the stem, add the suffixes -kje and -kjes to the stem, and add the resulting
+	forms to the noun forms array. */
 	if ( combinedSuffixes.includes( "kje" ) ) {
-		combinedSuffixes = combinedSuffixes.filter( suffix => suffix !== "kje" );
-		const kjeForm = stemmedWord.slice( 0, -1 ) + "kje";
-		nounForms.push( kjeForm );
+		const kjeSuffixes = combinedSuffixes.filter( suffix => suffix.includes( "kje" ) );
+		combinedSuffixes = combinedSuffixes.filter( suffix => ! suffix.includes( "kje" ) );
+		nounForms.push.apply( nounForms, applySuffixesToStem( stemmedWord.slice( 0, -1 ), kjeSuffixes ) );
 	}
 
 	// Then find the suffixes that require a stem modification (except for "kje")...
-	const stemModificationSuffixes = [ "en", "ers", "es", "etje" ];
+	const stemModificationSuffixes = [ "en", "ers", "es", "etje", "etjes" ];
 	const suffixesForModifiedStem = combinedSuffixes.filter( suffix => stemModificationSuffixes.includes( suffix ) );
 
 	// ...and remove them from the suffixesForUnmodifiedStem array;
