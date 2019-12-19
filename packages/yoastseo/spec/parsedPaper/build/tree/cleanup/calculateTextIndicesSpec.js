@@ -193,9 +193,7 @@ describe( "calculateTextIndices", () => {
 		expect( formattingElement.textStartIndex ).toEqual( 10 );
 		expect( formattingElement.textEndIndex ).toEqual( 10 );
 	} );
-} );
 
-describe.skip( "These tests are currently broken, will be fixed in https://github.com/Yoast/javascript/issues/409", () => {
 	it( "correctly processes comments before another tag", () => {
 		const source = "<p>This is a <!--Here is a comment!--><b>paragraph</b></p>";
 

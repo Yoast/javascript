@@ -434,10 +434,35 @@ class TreeAdapter {
 		}
 
 		/*
-		  Some node types do not have children (like Paragraph and Heading),
-		  but parse5 always expects a node to have children.
+		 * Some node types do not have children (like Paragraph and Heading),
+		 * but parse5 always expects a node to have children.
 		 */
-		return node.children || [];
+		let children = node.children || [];
+
+		/*
+		 * This code is because of the following scenario:
+		 *
+		 * ```html
+		 *     <p>This is a <b><!--Here is a comment!-->paragraph</b></p>
+		 * ```
+		 *
+		 * In that case parse5 assumes that the comment is a child of the <b>,
+		 * but that will not happen because of our TreeAdapter. That's why we
+		 * need to return the formatting elements after the `node` if we
+		 * determine that the node is a formatting element.
+		 */
+		if ( children.length === 0 && node instanceof FormattingElement ) {
+			const formattingElement = node;
+
+			const container = formattingElement.parent;
+			const parentFormatting = container.textContainer.formatting;
+
+			const elementIndex = parentFormatting.indexOf( formattingElement );
+
+			children = parentFormatting.slice( elementIndex + 1 );
+		}
+
+		return children;
 	}
 
 	/**
