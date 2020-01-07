@@ -104,7 +104,7 @@ export function addNounSuffixes( stemmedWord, morphologyDataAddSuffixes, morphol
 	}
 
 	// Then find the suffixes that require a stem modification (except for "kje")...
-	const stemModificationSuffixes = [ "en", "ers", "es", "etje", "etjes" ];
+	const stemModificationSuffixes = morphologyDataNounSuffixes.requireStemModification;
 	const suffixesForModifiedStem = combinedSuffixes.filter( suffix => stemModificationSuffixes.includes( suffix ) );
 
 	// ...and remove them from the suffixesForUnmodifiedStem array;
