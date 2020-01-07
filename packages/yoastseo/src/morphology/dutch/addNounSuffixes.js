@@ -100,7 +100,7 @@ export function addNounSuffixes( stemmedWord, morphologyDataAddSuffixes, morphol
 	if ( combinedSuffixes.includes( "kje" ) ) {
 		const kjeSuffixes = combinedSuffixes.filter( suffix => suffix.includes( "kje" ) );
 		combinedSuffixes = combinedSuffixes.filter( suffix => ! suffix.includes( "kje" ) );
-		nounForms.push.apply( nounForms, applySuffixesToStem( stemmedWord.slice( 0, -1 ), kjeSuffixes ) );
+		nounForms.push( ...applySuffixesToStem( stemmedWord.slice( 0, -1 ), kjeSuffixes ) );
 	}
 
 	// Then find the suffixes that require a stem modification (except for "kje")...
