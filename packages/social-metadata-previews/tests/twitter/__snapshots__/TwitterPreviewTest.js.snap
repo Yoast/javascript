@@ -37,7 +37,8 @@ Array [
     Select image
   </div>,
   .c0 {
-  font-weight: bold;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 700;
   font-size: 14px;
   max-height: 18px;
   line-height: 18px;
@@ -53,7 +54,9 @@ Array [
     YoastCon Workshops • Yoast
   </p>,
   .c0 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
+  font-weight: 400;
   max-height: 55px;
   line-height: 18px;
   overflow: hidden;
@@ -67,10 +70,13 @@ Array [
     
   </p>,
   .c0 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
   text-transform: lowercase;
   color: #8899a6;
   max-height: 18px;
-  line-height: 18px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

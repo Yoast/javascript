@@ -2,7 +2,8 @@
 
 exports[`TwitterTitle matches the snapshot by default 1`] = `
 .c0 {
-  font-weight: bold;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 700;
   font-size: 14px;
   max-height: 18px;
   line-height: 18px;

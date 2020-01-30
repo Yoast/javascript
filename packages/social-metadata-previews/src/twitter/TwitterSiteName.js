@@ -4,10 +4,13 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const TwitterSiteNameWrapper = styled.p`
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 400;
 	text-transform: lowercase;
 	color: #8899a6;
 	max-height: 18px;
-	line-height: 18px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;

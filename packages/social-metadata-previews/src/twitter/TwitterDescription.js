@@ -10,7 +10,9 @@ import PropTypes from "prop-types";
  * @returns {React.Component} The rendered element.
  */
 const TwitterDescription = styled.p`
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
+	font-weight: 400;
 	max-height: ${ props => props.isLarge ? "36px" : "55px" };
 	line-height: 18px;
 	overflow: hidden;

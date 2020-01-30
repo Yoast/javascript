@@ -2,7 +2,9 @@
 
 exports[`TwitterDescription matches the snapshot for the summary card 1`] = `
 .c0 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
+  font-weight: 400;
   max-height: 55px;
   line-height: 18px;
   overflow: hidden;
@@ -17,7 +19,9 @@ exports[`TwitterDescription matches the snapshot for the summary card 1`] = `
 
 exports[`TwitterDescription matches the snapshot for the summary with large image card 1`] = `
 .c0 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
+  font-weight: 400;
   max-height: 36px;
   line-height: 18px;
   overflow: hidden;

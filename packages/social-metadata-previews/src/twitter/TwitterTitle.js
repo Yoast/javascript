@@ -4,7 +4,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const TwitterTitleWrapper = styled.p`
-	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 700;
 	font-size: 14px;
 	max-height: 18px;
 	line-height: 18px;
