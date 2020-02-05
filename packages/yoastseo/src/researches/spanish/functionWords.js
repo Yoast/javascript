@@ -229,7 +229,7 @@ const generalAdjectivesAdverbs = [ "enfrente", "claro", "bueno", "mejor", "mejor
 	"buenérrima", "buenérrimos", "buenérrimas", "nuevo", "nueva", "nuevos", "nuevas", "novísimo", "novísima", "novísimos", "novísimas",
 	"nuevísimo", "nuevísima", "nuevísimos", "nuevísimas", "viejo", "viejos", "vieja", "viejas", "anterior", "grande", "gran", "grandes",
 	"mayores", "mayor", "máximo", "máxima", "grandísimo", "grandísima", "máximos", "máximas", "grandísimos", "grandísimas", "fácil",
-	"fáciles", "rápido", "rápida", "rápidos", "rápidas", "lejos", "lejas", "difícil", "difíciles", "propio", "propios", "propia", "propias",
+	"fáciles", "rápido", "rápida", "rápidos", "rápidas", "lejos", "lejas", "lejote", "lejotes", "difícil", "difíciles", "propio", "propios", "propia", "propias",
 	"largo", "larga", "largos", "largas", "bajos", "baja", "bajas", "inferior", "ínfimo", "ínfima", "ínfimos", "ínfimas", "bajísimo", "bajísima",
 	"bajísimos", "bajísimas", "alto", "alta", "altos", "altas", "superior", "superiores", "supremo", "suprema", "supremos", "supremas", "sumo",
 	"suma", "sumos", "sumas", "altísimo", "altísima", "altísimos", "altísimas", "regular", "regulares", "normal", "pequeño", "pequeña",
