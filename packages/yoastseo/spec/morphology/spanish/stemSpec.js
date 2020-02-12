@@ -52,6 +52,12 @@ const wordsToStem = [
 	// // Input a word that looks like a verb form and is on the list of stems that belong together.
 	// [ "san", "san" ],
 	// [ "virgen", "virgen" ],
+	// // Input a word that ends in -í, either a verb or a noun.
+	// [ "entendí", "entend" ],
+	// [ "marroquí", "marroqu" ],
+	// // Input an adverb that ends in -mente.
+	// [ "actualmente", "actual" ],
+	// [ "aparentemente", "aparent" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
