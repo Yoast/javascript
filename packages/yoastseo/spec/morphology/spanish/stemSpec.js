@@ -58,6 +58,24 @@ const wordsToStem = [
 	// // Input an adverb that ends in -mente.
 	// [ "actualmente", "actual" ],
 	// [ "aparentemente", "aparent" ],
+	// // Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by bil.
+	// [ "notabilísimo", "notabl" ],
+	// [ "respetabilísimas", "respetabl" ],
+	// // Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by qu, gu.
+	// [ "riquísimo", "ric" ],
+	// [ "amiguísimas", "amig" ],
+	// // Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by c.
+	// [ "felicísimo", "feliz" ],
+	// [ "velocísimas", "veloz" ],
+	// // Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by i.
+	// [ "friísimo", "fri" ],
+	// [ "impiísima", "impi" ],
+	// // Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
+	// [ "rapidísimo", "rapid" ],
+	// [ "generalísimas", "general" ],
+	// // Input a word that ends in -érrimo, -érrima, -érrimos, érrimas.
+	// [ "genialérrima", "genial" ],
+	// [ "tristérrimo", "trist" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
