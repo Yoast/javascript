@@ -76,6 +76,14 @@ const wordsToStem = [
 	// // Input a word that ends in -érrimo, -érrima, -érrimos, érrimas.
 	// [ "genialérrima", "genial" ],
 	// [ "tristérrimo", "trist" ],
+	// // Exceptions in superlatives.
+	// [ "habilísima", "habil" ],
+	// [ "majérrimo", "majérrim" ],
+	// [ "cérrimo", "cérrim" ],
+	// [ "gérrimo", "gérrim" ],
+	// [ "torísimo", "torísim" ],
+	// [ "físima", "físim" ],
+	// [ "dísima", "dísim" ]
 ];
 
 describe( "Test for stemming Spanish words", () => {
