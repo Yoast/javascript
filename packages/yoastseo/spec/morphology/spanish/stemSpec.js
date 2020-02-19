@@ -40,6 +40,8 @@ const wordsToStem = [
 	// // Input a word that is on the stems that belong together list.
 	// [ "dollar", "dolar" ],
 	// [ "chalets", "chale" ],
+	// [ "sé", "sab" ],
+	// [ "quepa", "cab" ],
 	// // Input a word that ends in -en, -es, -éis, -emos and is not preceded by gu.
 	// [ "valéis", "val" ],
 	// [ "dirigen", "dirig" ],
@@ -84,16 +86,20 @@ const wordsToStem = [
 	// [ "torísimo", "torísim" ],
 	// [ "físima", "físim" ],
 	// [ "dísima", "dísim" ],
-	// // Exceptions in irregular verbs.
-	// [ "]
-	// [ "sé", "sab" ],
-	// [ "quepa", "cab" ],
-	// [ "dijimos", "dec" ],
-	// [ "hecho", "hac" ],
-	// [ "trajere", "tra" ],
-	// [ "haya", "hac" ],
-	// [ "yerran", "ergu" ],
-];
+	// // Input a verb where stem ends on -í-, ú- and precedes -o, -as, -a, -an, -e, -es, -en.
+	// [ "espían", "espi" ],
+	// [ "envías", "envi" ],
+	// [ "consensúas", "consensu" ],
+	// [ "licúa", licu" ],
+	// // Input a verb where stem ends on -qu-, -gu- and precedes -é, -e, -es, -emos, -éis, -en
+	// [ "apliques", "aplic" ],
+	// [ "ataquemos", atac" ],
+	// [ "conjuguen", "conjug" ],
+	// [ "juzguéis", "juzg" ],
+	// Exceptions for rules on stem-modifying verbs.
+	// [ "aguaste", "agu" ]
+
+
 
 describe( "Test for stemming Spanish words", () => {
 	it( "stems Spanish words", () => {
