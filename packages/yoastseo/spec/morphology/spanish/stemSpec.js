@@ -83,7 +83,16 @@ const wordsToStem = [
 	// [ "gérrimo", "gérrim" ],
 	// [ "torísimo", "torísim" ],
 	// [ "físima", "físim" ],
-	// [ "dísima", "dísim" ]
+	// [ "dísima", "dísim" ],
+	// // Exceptions in irregular verbs.
+	// [ "]
+	// [ "sé", "sab" ],
+	// [ "quepa", "cab" ],
+	// [ "dijimos", "dec" ],
+	// [ "hecho", "hac" ],
+	// [ "trajere", "tra" ],
+	// [ "haya", "hac" ],
+	// [ "yerran", "ergu" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
