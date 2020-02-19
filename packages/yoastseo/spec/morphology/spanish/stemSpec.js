@@ -98,11 +98,11 @@ const wordsToStem = [
 	// [ "juzguéis", "juzg" ],
 	// Exceptions for rules on stem-modifying verbs.
 	// [ "aguaste", "agu" ]
-
-
+];
 
 describe( "Test for stemming Spanish words", () => {
 	it( "stems Spanish words", () => {
 		wordsToStem.forEach( wordToStem => expect( stem( morphologyDataES, wordToStem[ 0 ] ) ).toBe( wordToStem[ 1 ] ) );
 	} );
 } );
+
