@@ -83,7 +83,40 @@ const wordsToStem = [
 	// [ "gérrimo", "gérrim" ],
 	// [ "torísimo", "torísim" ],
 	// [ "físima", "físim" ],
-	// [ "dísima", "dísim" ]
+	// [ "dísima", "dísim" ],
+	// // Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -igir]
+	// ["dirijo","dirig"],
+	// ["exijamos","exig"],
+	// // Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -egir]
+	// ["elija","eleg"],
+	// ["corrijáis","correg"],
+	// // Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -igir]
+	// ["infligieras", "inflig"],
+	// ["transigió", "transig"],
+	// // Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -egir]
+	// ["colige", "coleg"],
+	// ["rigiera", "reg"],
+	// // Input a word whose stem ends in zc ∧ suffix = {o, [pres. subj suffixes], a, as, amos, áis, an}.
+	// ["conozco", "conoc"],
+	// ["traduzcamos", "traduc"],
+	// // Input a word whose stem ends in -c ∧ suffix = {é}.
+	// ["lancé", "lanz"],
+	// ["visualicé", "visualiz"],
+	// // Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	// ["sintió", "sent"],
+	// ["sugiriese", "suger"],
+	// // Input a word whose stem ends in x: X = CVC(C) ∧ V = {u} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	// ["murieron", "mor"],
+	// ["durmió", "dorm"],
+	// // Input a word whose stem contains ie (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
+	// ["cierno", "cern"],
+	// ["aciertas", "acert"],
+	// // Input a word whose stem contains ue (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
+	// ["recuerdan", "record"],
+	// ["resuelves", "resolv"],
+	// // Input a word whose stem contains ue in the infinitive.
+	// ["quejan", "quej"],
+	// ["quemas", "quem"],
 ];
 
 describe( "Test for stemming Spanish words", () => {
