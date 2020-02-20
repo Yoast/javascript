@@ -16,6 +16,11 @@ module.exports = {
 				return ( ! insideParsedPaper ) || insideParsedPaperScoreAggregator;
 			},
 			dest: "dist/",
+		},
+		{
+			expand: true,
+			src: "index.js",
+			dest: "dist/",
 		} ],
 		options: {
 			sourceMap: true,
