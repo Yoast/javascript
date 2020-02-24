@@ -40,6 +40,8 @@ const wordsToStem = [
 	// // Input a word that is on the stems that belong together list.
 	// [ "dollar", "dolar" ],
 	// [ "chalets", "chale" ],
+	// [ "sé", "sab" ],
+	// [ "quepa", "cab" ],
 	// // Input a word that ends in -en, -es, -éis, -emos and is not preceded by gu.
 	// [ "valéis", "val" ],
 	// [ "dirigen", "dirig" ],
@@ -85,38 +87,50 @@ const wordsToStem = [
 	// [ "físima", "físim" ],
 	// [ "dísima", "dísim" ],
 	// // Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -igir]
-	// ["dirijo","dirig"],
-	// ["exijamos","exig"],
+	// [ "dirijo","dirig" ],
+	// [ "exijamos","exig" ],
 	// // Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -egir]
-	// ["elija","eleg"],
-	// ["corrijáis","correg"],
+	// [ "elija","eleg" ],
+	// [ "corrijáis","correg" ],
 	// // Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -igir]
-	// ["infligieras", "inflig"],
-	// ["transigió", "transig"],
+	// [ "infligieras", "inflig" ],
+	// [ "transigió", "transig" ],
 	// // Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -egir]
-	// ["colige", "coleg"],
-	// ["rigiera", "reg"],
+	// [ "colige", "coleg" ],
+	// [ "rigiera", "reg" ],
 	// // Input a word whose stem ends in zc ∧ suffix = {o, [pres. subj suffixes], a, as, amos, áis, an}.
-	// ["conozco", "conoc"],
-	// ["traduzcamos", "traduc"],
+	// [ "conozco", "conoc" ],
+	// [ "traduzcamos", "traduc" ],
 	// // Input a word whose stem ends in -c ∧ suffix = {é}.
-	// ["lancé", "lanz"],
-	// ["visualicé", "visualiz"],
+	// [ "lancé", "lanz" ],
+	// [ "visualicé", "visualiz" ],
 	// // Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
-	// ["sintió", "sent"],
-	// ["sugiriese", "suger"],
+	// [ "sintió", "sent" ],
+	// [ "sugiriese", "suger" ],
 	// // Input a word whose stem ends in x: X = CVC(C) ∧ V = {u} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
-	// ["murieron", "mor"],
-	// ["durmió", "dorm"],
+	// [ "murieron", "mor" ],
+	// [ "durmió", "dorm" ],
 	// // Input a word whose stem contains ie (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
-	// ["cierno", "cern"],
-	// ["aciertas", "acert"],
+	// [ "cierno", "cern" ],
+	// [ "aciertas", "acert" ],
 	// // Input a word whose stem contains ue (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
-	// ["recuerdan", "record"],
-	// ["resuelves", "resolv"],
+	// [ "recuerdan", "record" ],
+	// [ "resuelves", "resolv" ],
 	// // Input a word whose stem contains ue in the infinitive.
-	// ["quejan", "quej"],
-	// ["quemas", "quem"],
+	// [ "quejan", "quej" ],
+	// [ "quemas", "quem" ],
+	// // Input a verb where stem ends on -í-, ú- and precedes -o, -as, -a, -an, -e, -es, -en.
+	// [ "espían", "espi" ],
+	// [ "envías", "envi" ],
+	// [ "consensúas", "consensu" ],
+	// [ "licúa", licu" ],
+	// // Input a verb where stem ends on -qu-, -gu- and precedes -é, -e, -es, -emos, -éis, -en
+	// [ "apliques", "aplic" ],
+	// [ "ataquemos", atac" ],
+	// [ "conjuguen", "conjug" ],
+	// [ "juzguéis", "juzg" ],
+	// Exceptions for rules on stem-modifying verbs.
+	// [ "aguaste", "agu" ]
 ];
 
 describe( "Test for stemming Spanish words", () => {
@@ -124,3 +138,4 @@ describe( "Test for stemming Spanish words", () => {
 		wordsToStem.forEach( wordToStem => expect( stem( morphologyDataES, wordToStem[ 0 ] ) ).toBe( wordToStem[ 1 ] ) );
 	} );
 } );
+
