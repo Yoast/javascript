@@ -14,8 +14,9 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint . --max-warnings=96",
-    "build": "webpack && rm dist/main.js",
-    "prepublishOnly": "rm -rf dist && mkdir dist && find ./src/ -name \\*.js -exec rsync -R {} dist \\; && cp package.json dist/package.json && json -I -f dist/package.json -e \"this.main='src/index.js'\" && cp .babelrc dist/.babelrc && yarn build"
+    "build-css": "webpack && rm dist/main.js",
+    "watch-css": "webpack --watch",
+    "prepublishOnly": "rm -rf dist && mkdir dist && find ./src/ -name \\*.js -exec rsync -R {} dist \\; && cp package.json dist/package.json && json -I -f dist/package.json -e \"this.main='src/index.js'\" && cp .babelrc dist/.babelrc && yarn build-css && echo 'Finished'"
   },
   "jest": {
     "testRegex": ".*Test.js$",
