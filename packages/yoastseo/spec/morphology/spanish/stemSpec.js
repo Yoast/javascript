@@ -80,12 +80,12 @@ const wordsToStem = [
 	// [ "tristérrimo", "trist" ],
 	// // Exceptions in superlatives.
 	// [ "habilísima", "habil" ],
-	// [ "majérrimo", "majérrim" ],
-	// [ "cérrimo", "cérrim" ],
-	// [ "gérrimo", "gérrim" ],
-	// [ "torísimo", "torísim" ],
-	// [ "físima", "físim" ],
-	// [ "dísima", "dísim" ],
+	// [ "majérrimo", "majerrim" ],
+	// [ "cérrimo", "cerrim" ],
+	// [ "gérrimo", "gerrim" ],
+	// [ "torísimo", "torisim" ],
+	// [ "físima", "fisim" ],
+	// [ "dísima", "disim" ],
 	// // Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -igir]
 	// [ "dirijo","dirig" ],
 	// [ "exijamos","exig" ],
@@ -123,19 +123,22 @@ const wordsToStem = [
 	// [ "espían", "espi" ],
 	// [ "envías", "envi" ],
 	// [ "consensúas", "consensu" ],
-	// [ "licúa", licu" ],
+	// [ "licúa", "licu" ],
 	// // Input a verb where stem ends on -qu-, -gu- and precedes -é, -e, -es, -emos, -éis, -en
 	// [ "apliques", "aplic" ],
-	// [ "ataquemos", atac" ],
+	// [ "ataquemos", "atac" ],
 	// [ "conjuguen", "conjug" ],
 	// [ "juzguéis", "juzg" ],
-	// Exceptions for rules on stem-modifying verbs.
+	// // Exceptions for rules on stem-modifying verbs.
 	// [ "aguaste", "agu" ]
 ];
 
 describe( "Test for stemming Spanish words", () => {
-	it( "stems Spanish words", () => {
-		wordsToStem.forEach( wordToStem => expect( stem( morphologyDataES, wordToStem[ 0 ] ) ).toBe( wordToStem[ 1 ] ) );
-	} );
+	for ( let i = 0; i < wordsToStem.length; i++ ) {
+		const wordToCheck = wordsToStem[ i ];
+		it( "stems the word " + wordToCheck[ 0 ], () => {
+			expect( stem( morphologyDataES, wordToCheck[ 0 ] ) ).toBe( wordToCheck[ 1 ] );
+		} );
+	}
 } );
 
