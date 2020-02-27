@@ -12,48 +12,48 @@ const wordsToStem = [
 	[ "abuela", "abuel" ],
 	// Input a word that ends with a clitic pronoun and is a verb.
 	[ "abofarse", "abof" ],
-	//[ "mírame", "mir" ],
+	// [ "mírame", "mir" ],
 	// Input a word that does not ends with a clitic pronoun and is on the exceptions full forms list.
-	//[ "sacratísimo", "sagrad" ],
-	//[ "veamos", "ver" ],
+	// [ "sacratísimo", "sagrad" ],
+	// [ "veamos", "ver" ],
 	// Input a word that looks like a diminutive but is not.
 	[ "acólito", "acolit" ],
 	[ "amalecitas", "amalecit" ],
 	// Input a word that is on the diminutive exceptions list.
-	//[ "reicito", "rey" ],
-	//[ "lucecita", "luz" ],
+	// [ "reicito", "rey" ],
+	// [ "lucecita", "luz" ],
 	// Input a word that is a canonical diminutive.
-	//[ "puertecita", "puert" ],
-	//[ "ventita", "vent" ],
+	// [ "puertecita", "puert" ],
+	// [ "ventita", "vent" ],
 	// Input a word that ends in a suffix preceded by uy.
 	[ "excluyendo", "exclu" ],
 	[ "atribuyes", "atribu" ],
 	// Input a word that undergoes stem modification changes.
-	//[ "recuerdan", "record" ],
-	//[ "comienzo", "comenz" ],
+	// [ "recuerdan", "record" ],
+	// [ "comienzo", "comenz" ],
 	// Input a word that ends in a common verb suffix.
 	[ "saltaron", "salt" ],
-	//[ "revocares", "revoc" ],
+	// [ "revocares", "revoc" ],
 	// Input a word that ends in -os, -s, -a, -o, -á, -í,-ó, -é, -e.
 	[ "agostinas", "agostin" ],
 	[ "boboré", "bobor" ],
 	// Input a word that is on the stems that belong together list.
-	//[ "dollar", "dolar" ],
-	//[ "chalets", "chale" ],
-	//[ "sé", "sab" ],
-	//[ "quepa", "cab" ],
+	// [ "dollar", "dolar" ],
+	// [ "chalets", "chale" ],
+	// [ "sé", "sab" ],
+	// [ "quepa", "cab" ],
 	// Input a word that ends in -en, -es, -éis, -emos and is not preceded by gu.
 	[ "valéis", "val" ],
 	[ "dirigen", "dirig" ],
 	// Input a word that ends in -en, -es, -éis, -emos and is preceded by gu.
-	//[ "distinguen", "distingu" ],
+	// [ "distinguen", "distingu" ],
 	[ "alarguemos", "alarg" ],
 	// Input a word that looks like a verb form but it's not.
-	//[ "cabalgada", "cabalgad" ],
-	//[ "abacerías", "abaceri" ],
+	// [ "cabalgada", "cabalgad" ],
+	// [ "abacerías", "abaceri" ],
 	// Input a word that looks like a verb form and is on the list of stems that belong together.
 	[ "san", "san" ],
-	//[ "virgen", "virgen" ],
+	// [ "virgen", "virgen" ],
 	// Input a word that ends in -í, either a verb or a noun.
 	[ "entendí", "entend" ],
 	[ "marroquí", "marroqu" ],
@@ -65,27 +65,27 @@ const wordsToStem = [
 	[ "aparentemente", "aparent" ],
 	// Input a word that ends in -mente but is not an adverb.
 	[ "mentes", "ment" ],
-	//[ "fundamente", "fundament" ],
+	// [ "fundamente", "fundament" ],
 	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by bil.
-	//[ "notabilísimo", "notabl" ],
-	//[ "respetabilísimas", "respetabl" ],
+	// [ "notabilísimo", "notabl" ],
+	// [ "respetabilísimas", "respetabl" ],
 	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by qu, gu.
-	//[ "riquísimo", "ric" ],
-	//[ "amiguísimas", "amig" ],
+	// [ "riquísimo", "ric" ],
+	// [ "amiguísimas", "amig" ],
 	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by c.
-	//[ "felicísimo", "feliz" ],
-	//[ "velocísimas", "veloz" ],
+	// [ "felicísimo", "feliz" ],
+	// [ "velocísimas", "veloz" ],
 	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by i.
-	//[ "friísimo", "fri" ],
-	//[ "impiísima", "impi" ],
+	// [ "friísimo", "fri" ],
+	// [ "impiísima", "impi" ],
 	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
-	//[ "rapidísimo", "rapid" ],
-	//[ "generalísimas", "general" ],
+	// [ "rapidísimo", "rapid" ],
+	// [ "generalísimas", "general" ],
 	// Input a word that ends in -érrimo, -érrima, -érrimos, érrimas.
-	//[ "genialérrima", "genial" ],
-	//[ "tristérrimo", "trist" ],
+	// [ "genialérrima", "genial" ],
+	// [ "tristérrimo", "trist" ],
 	// Exceptions in superlatives.
-	//[ "habilísima", "habil" ],
+	// [ "habilísima", "habil" ],
 	[ "majérrimo", "majerrim" ],
 	[ "cérrimo", "cerrim" ],
 	[ "gérrimo", "gerrim" ],
@@ -93,35 +93,35 @@ const wordsToStem = [
 	[ "físima", "fisim" ],
 	[ "dísima", "disim" ],
 	// Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -igir]
-	//[ "dirijo","dirig" ],
-	//[ "exijamos","exig" ],
+	// [ "dirijo","dirig" ],
+	// [ "exijamos","exig" ],
 	// Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -egir]
-	//[ "elija","eleg" ],
-	//[ "corrijáis","correg" ],
+	// [ "elija","eleg" ],
+	// [ "corrijáis","correg" ],
 	// Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -igir]
 	[ "infligieras", "inflig" ],
 	[ "transigió", "transig" ],
 	// Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -egir]
-	//[ "colige", "coleg" ],
-	//[ "rigiera", "reg" ],
+	// [ "colige", "coleg" ],
+	// [ "rigiera", "reg" ],
 	// Input a word whose stem ends in zc ∧ suffix = {o, [pres. subj suffixes], a, as, amos, áis, an}.
-	//[ "conozco", "conoc" ],
-	//[ "traduzcamos", "traduc" ],
+	// [ "conozco", "conoc" ],
+	// [ "traduzcamos", "traduc" ],
 	// Input a word whose stem ends in -c ∧ suffix = {é}.
-	//[ "lancé", "lanz" ],
-	//[ "visualicé", "visualiz" ],
+	// [ "lancé", "lanz" ],
+	// [ "visualicé", "visualiz" ],
 	// Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
-	//[ "sintió", "sent" ],
-	//[ "sugiriese", "suger" ],
+	// [ "sintió", "sent" ],
+	// [ "sugiriese", "suger" ],
 	// Input a word whose stem ends in x: X = CVC(C) ∧ V = {u} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
-	//[ "murieron", "mor" ],
-	//[ "durmió", "dorm" ],
+	// [ "murieron", "mor" ],
+	// [ "durmió", "dorm" ],
 	// Input a word whose stem contains ie (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
-	//[ "cierno", "cern" ],
-	//[ "aciertas", "acert" ],
+	// [ "cierno", "cern" ],
+	// [ "aciertas", "acert" ],
 	// Input a word whose stem contains ue (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
-	//[ "recuerdan", "record" ],
-	//[ "resuelves", "resolv" ],
+	// [ "recuerdan", "record" ],
+	// [ "resuelves", "resolv" ],
 	// Input a word whose stem contains ue in the infinitive.
 	[ "quejan", "quej" ],
 	[ "quemas", "quem" ],
@@ -131,12 +131,12 @@ const wordsToStem = [
 	[ "consensúas", "consensu" ],
 	[ "licúa", "licu" ],
 	// Input a verb where stem ends on -qu-, -gu- and precedes -é, -e, -es, -emos, -éis, -en
-	//[ "apliques", "aplic" ],
-	//[ "ataquemos", "atac" ],
+	// [ "apliques", "aplic" ],
+	// [ "ataquemos", "atac" ],
 	[ "conjuguen", "conjug" ],
 	[ "juzguéis", "juzg" ],
 	// Exceptions for rules on stem-modifying verbs.
-	[ "aguaste", "agu" ]
+	[ "aguaste", "agu" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
