@@ -57,9 +57,15 @@ const wordsToStem = [
 	// // Input a word that ends in -í, either a verb or a noun.
 	// [ "entendí", "entend" ],
 	// [ "marroquí", "marroqu" ],
-	// // Input an adverb that ends in -mente.
+	// // Input an adverb that ends in -mente preceded by a consonant.
 	// [ "actualmente", "actual" ],
+	// [ "hábilmente", "habil" ],
+	// // Input an adverb that ends in -mente preceded by a vowel.
+	// [ "rápidamente", "rapid" ],
 	// [ "aparentemente", "aparent" ],
+	// // Input a word that ends in -mente but is not an adverb.
+	// [ "mentes", "ment" ],
+	// [ "fundamente", "fundament" ],
 	// // Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by bil.
 	// [ "notabilísimo", "notabl" ],
 	// [ "respetabilísimas", "respetabl" ],
