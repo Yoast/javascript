@@ -66,24 +66,23 @@ const wordsToStem = [
 	// Input a word that ends in -mente but is not an adverb.
 	[ "mentes", "ment" ],
 	// [ "fundamente", "fundament" ],
-	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by bil.
-	// [ "notabilísimo", "notabl" ],
-	// [ "respetabilísimas", "respetabl" ],
-	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by qu, gu.
-	// [ "riquísimo", "ric" ],
-	// [ "amiguísimas", "amig" ],
-	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by c.
-	// [ "felicísimo", "feliz" ],
-	// [ "velocísimas", "veloz" ],
-	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by i.
-	// [ "friísimo", "fri" ],
-	// [ "impiísima", "impi" ],
-	// Input a word that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
-	// [ "rapidísimo", "rapid" ],
-	// [ "generalísimas", "general" ],
-	// Input a word that ends in -érrimo, -érrima, -érrimos, érrimas.
-	// [ "genialérrima", "genial" ],
-	// [ "tristérrimo", "trist" ],
+	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by bil.
+	[ "notabilísimo", "notabl" ],
+	[ "respetabilísimas", "respetabl" ],
+	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by qu, gu.
+	[ "riquísimo", "ric" ],
+	[ "amiguísimas", "amig" ],
+	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by c.
+	[ "felicísimo", "feliz" ],
+	[ "velocísimas", "veloz" ],
+	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by i.
+	[ "impiísima", "impi" ],
+	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
+	[ "rapidísimo", "rapid" ],
+	[ "generalísimas", "general" ],
+	// Input a superlative that ends in -érrimo, -érrima, -érrimos, érrimas.
+	[ "genialérrima", "genial" ],
+	[ "tristérrimo", "trist" ],
 	// Exceptions in superlatives.
 	// [ "habilísima", "habil" ],
 	[ "majérrimo", "majerrim" ],
@@ -143,7 +142,7 @@ describe( "Test for stemming Spanish words", () => {
 	for ( let i = 0; i < wordsToStem.length; i++ ) {
 		const wordToCheck = wordsToStem[ i ];
 		it( "stems the word " + wordToCheck[ 0 ], () => {
-			expect( stem( morphologyDataES, wordToCheck[ 0 ] ) ).toBe( wordToCheck[ 1 ] );
+			expect( stem( wordToCheck[ 0 ], morphologyDataES ) ).toBe( wordToCheck[ 1 ] );
 		} );
 	}
 } );

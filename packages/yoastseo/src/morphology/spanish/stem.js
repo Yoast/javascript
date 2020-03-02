@@ -1,5 +1,9 @@
 /* eslint-disable max-statements, require-jsdoc, complexity */
 // The function will be further adjected anyways, so it makes no sense to randomly split it in smaller functions now.
+// The orginal stemmer is available at https://github.com/dmarman/lorca/blob/master/src/stemmer.js.
+import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
+import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
+
 /**
  * Copyright (C) 2018 Domingo Martín Mancera
  *
@@ -82,22 +86,42 @@ const removeAccent = function( word ) {
 	return word;
 };
 
+/**
+ * The function considers if the input word can be a superlative and if so stems it.
+ * @param   {string}   word                                      The word to stem.
+ * @param   {string}   r1Text                                    The R1 region of the word to stem.
+ * @param   {Object}   superlativesStemming                      An object containing information about how to stem superlatives.
+ * @param   {string[]} superlativesStemming.superlativeSuffixes  An array of suffixes possible in superlatives.
+ * @param   {string[]} superlativesStemming.notSuperlatives      An array of words that look like superlatives but are not.
+ * @param   {Array}    superlativesStemming.superlativeToStem    An array of pairs of regexes to match.
+ * @returns {string}   A stemmed superlative or the input word, if it is not a superlative.
+ */
+const tryStemAsSuperlative = function( word, r1Text, superlativesStemming ) {
+	const superlativeSuffix = endsInArr( r1Text, superlativesStemming.superlativeSuffixes );
+
+	// Immediately return the input word if no superlative suffix is found or the word is in the stopList.
+	if ( superlativeSuffix === "" || superlativesStemming.notSuperlatives.includes( word ) ) {
+		return word;
+	}
+
+	return buildOneFormFromRegex( word, createRulesFromMorphologyData( superlativesStemming.superlativeToStem ) ) || word;
+};
 
 /**
  * Stems Spanish words.
  *
- * @param {Object} morphologyData  The Spanish morphology data.
  * @param {string} word            The word to stem.
+ * @param {Object} morphologyData  The Spanish morphology data.
  *
  * @returns {string} The stemmed word.
  */
-export default function stem( morphologyData, word ) {
+export default function stem( word, morphologyData ) {
 	const length = word.length;
 
 	word.toLowerCase();
 
 	if ( length < 2 ) {
-		return this.removeAccent( word );
+		return removeAccent( word );
 	}
 
 	let r1 = length;
@@ -206,6 +230,12 @@ export default function stem( morphologyData, word ) {
 		word = word.slice( 0, -suf10.length );
 	}
 
+	// Check if the word is a superlative. Stem it as a superlative if so, and immediately return the result.
+	const ifSuperlative = tryStemAsSuperlative( word, r1Text, morphologyData.superlativesStemming );
+	if ( ifSuperlative !== word ) {
+		return ifSuperlative;
+	}
+
 	if ( word !== wordAfter0 ) {
 		rvText = word.slice( rv );
 	}
@@ -262,6 +292,8 @@ export default function stem( morphologyData, word ) {
 			word = word.slice( 0, -1 );
 		}
 	}
+
+	// Apply the rule that checks for multiple stems, take removeAccent( word ) as input.
 
 	return removeAccent( word );
 }
