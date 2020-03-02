@@ -293,7 +293,6 @@ export default function stem( word, morphologyData ) {
 		}
 	}
 
-	// Apply the rule that checks for multiple stems, take removeAccent( word ) as input.
 
 	return removeAccent( word );
 }
