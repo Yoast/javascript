@@ -293,6 +293,5 @@ export default function stem( word, morphologyData ) {
 		}
 	}
 
-
 	return removeAccent( word );
 }
