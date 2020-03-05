@@ -136,6 +136,8 @@ const wordsToStem = [
 	[ "juzguéis", "juzg" ],
 	// Exceptions for rules on stem-modifying verbs.
 	[ "aguaste", "agu" ],
+	// [ "engreíais", "engre" ],
+	// [ "interdijese", "interdec" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
