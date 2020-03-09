@@ -87,6 +87,26 @@ const removeAccent = function( word ) {
 };
 
 /**
+ * The function considers if the input word can be an adverb in -mente and if so stems it.
+ * @param   {string}   word                                      The word to stem.
+ * @param   {string}   r1Text                                    The R1 region of the word to stem.
+ * @param   {Object}   menteStemming                      An object containing information about how to stem mente-adverbs.
+ * @param   {string[]} menteStemming.notMente      An array of words that look like mente-adverbs but are not.
+ * @param   {Array}    menteStemming.menteToStem    An array of pairs of regexes to match.
+ * @returns {string}   A stemmed adverb or the input word, if it is not an adverb.
+ */
+const tryStemAsMente = function( word, r1Text, menteStemming ) {
+	const suffix = endsIn( r1Text, "mente" );
+
+	// Immediately return the input word if no mente suffix is found or the word is in the stopList.
+	if ( suffix === "" || menteStemming.notMenteAdverbs.includes( word ) ) {
+		return word;
+	}
+
+	return buildOneFormFromRegex( word, createRulesFromMorphologyData( menteStemming.menteToStem ) ) || word;
+};
+
+/**
  * The function considers if the input word can be a superlative and if so stems it.
  * @param   {string}   word                                      The word to stem.
  * @param   {string}   r1Text                                    The R1 region of the word to stem.
@@ -170,7 +190,7 @@ export default function stem( word, morphologyData ) {
 
 	const suffix = endsInArr( word, pronounSuffix );
 
-	if ( suffix !== "" ) {
+	if ( suffix !== "" && ! morphologyData.wordsThatLookLikeButAreNot.notVerbsEndingInPersonalPronouns.includes( word ) ) {
 		let preSuffix = endsInArr( rvText.slice( 0, -suffix.length ), pronounSuffixPre1 );
 
 		if ( preSuffix === "" ) {
@@ -201,12 +221,8 @@ export default function stem( word, morphologyData ) {
 	const suf3 = endsInArr( r2Text, [ "logía", "logías" ] );
 	const suf4 = endsInArr( r2Text, [ "ución", "uciones" ] );
 	const suf5 = endsInArr( r2Text, [ "encia", "encias" ] );
-	const suf6 = endsInArr( r2Text, [ "ativamente", "ivamente", "osamente", "icamente", "adamente" ] );
-	const suf7 = endsInArr( r1Text, [ "amente" ] );
-	const suf8 = endsInArr( r2Text, [ "antemente", "ablemente", "iblemente", "mente" ] );
 	const suf9 = endsInArr( r2Text, [ "abilidad", "abilidades", "icidad", "icidades", "ividad", "ividades", "idad", "idades" ] );
 	const suf10 = endsInArr( r2Text, [ "ativa", "ativo", "ativas", "ativos", "iva", "ivo", "ivas", "ivos" ] );
-
 
 	if ( suf1 !== "" ) {
 		word = word.slice( 0, -suf1.length );
@@ -218,22 +234,22 @@ export default function stem( word, morphologyData ) {
 		word = word.slice( 0, -suf4.length ) + "u";
 	} else if ( suf5 !== "" ) {
 		word = word.slice( 0, -suf5.length ) + "ente";
-	} else if ( suf6 !== "" ) {
-		word = word.slice( 0, -suf6.length );
-	} else if ( suf7 !== "" ) {
-		word = word.slice( 0, -suf7.length );
-	} else if ( suf8 !== "" ) {
-		word = word.slice( 0, -suf8.length );
 	} else if ( suf9 !== "" ) {
 		word = word.slice( 0, -suf9.length );
 	} else if ( suf10 !== "" ) {
 		word = word.slice( 0, -suf10.length );
 	}
 
+	// Check if the word is an adverb in -mente. Stem it as a adverb if so, and immediately return the result.
+	const ifMente = tryStemAsMente( word, r1Text, morphologyData.menteStemming );
+	if ( ifMente !== word ) {
+		return removeAccent( ifMente );
+	}
+
 	// Check if the word is a superlative. Stem it as a superlative if so, and immediately return the result.
 	const ifSuperlative = tryStemAsSuperlative( word, r1Text, morphologyData.superlativesStemming );
 	if ( ifSuperlative !== word ) {
-		return ifSuperlative;
+		return removeAccent( ifSuperlative );
 	}
 
 	if ( word !== wordAfter0 ) {
@@ -246,7 +262,8 @@ export default function stem( word, morphologyData ) {
 		// Do step 2a if no ending was removed by step 1.
 		const suf = endsInArr( rvText, [ "ya", "ye", "yan", "yen", "yeron", "yendo", "yo", "yó", "yas", "yes", "yais", "yamos" ] );
 
-		if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) ) {
+		if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) &&
+			! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
 			word = word.slice( 0, -suf.length );
 		}
 
@@ -269,9 +286,11 @@ export default function stem( word, morphologyData ) {
 				"isteis", "ados", "idos", "amos", "ábamos", "íamos", "imos", "áramos",
 				"iéramos", "iésemos", "ásemos" ] );
 			const suf12 = endsInArr( rvText, [ "en", "es", "éis", "emos" ] );
-			if ( suf11 !== "" ) {
+			if ( suf11 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
+				! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
 				word = word.slice( 0, -suf11.length );
-			} else if ( suf12 !== "" ) {
+			} else if ( suf12 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
+				! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
 				word = word.slice( 0, -suf12.length );
 				if ( endsIn( word, "gu" ) ) {
 					word = word.slice( 0, -1 );
@@ -283,7 +302,7 @@ export default function stem( word, morphologyData ) {
 	rvText = word.slice( rv );
 
 	const suf13 = endsInArr( rvText, [ "os", "a", "o", "á", "í", "ó" ] );
-	if ( suf13 !== "" ) {
+	if ( suf13 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) ) {
 		word = word.slice( 0, -suf13.length );
 	} else if ( ( endsInArr( rvText, [ "e", "é" ] ) ) !== "" ) {
 		word = word.slice( 0, -1 );

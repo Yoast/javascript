@@ -7,6 +7,8 @@ const wordsToStem = [
 	// Input a word that ends in -s but is not a plural.
 	[ "caos", "caos" ],
 	[ "gas", "gas" ],
+	[ "martes", "martes" ],
+	[ "microondas", "microondas" ],
 	// Input a word that ends with a clitic pronoun and is on the list of words that end like pronouns suffixes but are not verbs.
 	[ "anime", "anim" ],
 	[ "abuela", "abuel" ],
@@ -65,7 +67,7 @@ const wordsToStem = [
 	[ "aparentemente", "aparent" ],
 	// Input a word that ends in -mente but is not an adverb.
 	[ "mentes", "ment" ],
-	// [ "fundamente", "fundament" ],
+	[ "fundamente", "fundament" ],
 	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by bil.
 	[ "notabilísimo", "notabl" ],
 	[ "respetabilísimas", "respetabl" ],
