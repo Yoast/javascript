@@ -28,16 +28,13 @@ const wordsToStem = [
 	// Input a word that ends in a suffix preceded by uy.
 	[ "excluyendo", "exclu" ],
 	[ "atribuyes", "atribu" ],
-	// Input a word that undergoes stem modification changes.
-	// [ "recuerdan", "record" ],
-	// [ "comienzo", "comenz" ],
 	// Input a word that ends in a common verb suffix.
 	[ "saltaron", "salt" ],
 	// [ "revocares", "revoc" ],
 	// Input a word that ends in -os, -s, -a, -o, -á, -í,-ó, -é, -e.
 	[ "agostinas", "agostin" ],
 	[ "boboré", "bobor" ],
-	// Input a word that is on the stems that belong together list.
+	// Input a word that is on the list of stems that belong together.
 	// [ "dollar", "dolar" ],
 	// [ "chalets", "chale" ],
 	// [ "sé", "sab" ],
@@ -83,7 +80,7 @@ const wordsToStem = [
 	// Input a superlative that ends in -érrimo, -érrima, -érrimos, érrimas.
 	[ "genialérrima", "genial" ],
 	[ "tristérrimo", "trist" ],
-	// Exceptions in superlatives.
+	// Input a superlative exception.
 	// [ "habilísima", "habil" ],
 	[ "majérrimo", "majerrim" ],
 	[ "cérrimo", "cerrim" ],
@@ -124,7 +121,7 @@ const wordsToStem = [
 	// Input a word whose stem contains ue in the infinitive.
 	[ "quejan", "quej" ],
 	[ "quemas", "quem" ],
-	// Input a verb where stem ends on -í-, ú- and precedes -o, -as, -a, -an, -e, -es, -en.
+	// Input a verb where stem ends on -í-, ú- and precedes -o, -as, -a, -an, -e, -es, -en. [verbs in -iar and -uar]
 	[ "espían", "espi" ],
 	[ "envías", "envi" ],
 	[ "consensúas", "consensu" ],
@@ -134,10 +131,16 @@ const wordsToStem = [
 	// [ "ataquemos", "atac" ],
 	[ "conjuguen", "conjug" ],
 	[ "juzguéis", "juzg" ],
-	// Exceptions for rules on stem-modifying verbs.
+	// Input a word that is an exception to rules on stem-modifying verbs.
 	[ "aguaste", "agu" ],
 	// [ "engreíais", "engre" ],
 	// [ "interdijese", "interdec" ],
+	// Input a verb whose stem ends in g ∧ suffix = {o}. [verbs in -guir]
+	// [ "distingo", "distingu" ],
+	// [ "extingo", "extingu" ],
+	// Input a verb whose stem ends in c ∧ suffix = {o}. [verbs in -quir]
+	// [ "delinco", "delinqu" ],
+	// [ "derelinco", "derelinqu" ]
 ];
 
 describe( "Test for stemming Spanish words", () => {
