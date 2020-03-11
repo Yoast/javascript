@@ -27,8 +27,10 @@ export function stemTOrDFromEndOfWord( morphologyDataNL, stemmedWord, word ) {
 		return null;
 	}
 	const wordsEndingInTOrDExceptionList = morphologyDataNL.stemming.stemExceptions.ambiguousTAndDEndings.tOrDArePartOfStem.doNotStemTOrD;
-	if ( wordsEndingInTOrDExceptionList.includes( stemmedWord ) ) {
-		return stemmedWord;
+	for ( let i = 0; i < wordsEndingInTOrDExceptionList.length; i++ ) {
+		if ( stemmedWord.endsWith( wordsEndingInTOrDExceptionList[ i ] ) ) {
+			return null;
+		}
 	}
 	// If none of the conditions above is true, stem the t/d from the word.
 	stemmedWord = stemmedWord.slice( 0, -1 );

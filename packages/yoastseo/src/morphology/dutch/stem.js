@@ -67,20 +67,6 @@ const checkOtherStemmingExceptions = function( word, morphologyDataNLStemming ) 
 		return stemFromFullForm;
 	}
 
-	/*
-	 * Checks whether the word is in the exception list of diminutives that need to be stemmed and that additionally need
-	 * to have the final vowel removed. If it is return the stem here.
-	 */
-	const stemFromFullFormAndDeleteFinalVowel = removeSuffixFromFullForm(
-		morphologyDataNLStemming.stemExceptions.stemTjeAndOnePrecedingVowel.forms,
-		morphologyDataNLStemming.stemExceptions.stemTjeAndOnePrecedingVowel.suffix,
-		word
-	);
-
-	if ( stemFromFullFormAndDeleteFinalVowel ) {
-		return stemFromFullFormAndDeleteFinalVowel.slice( 0, -1 );
-	}
-
 	return null;
 };
 
