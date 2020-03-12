@@ -1,8 +1,7 @@
-import { checkIfWordEndingIsOnExceptionList } from "../morphoHelpers/exceptionListHelpers";
+import { checkIfWordEndingIsOnExceptionList, checkIfWordIsOnVerbExceptionList } from "../morphoHelpers/exceptionListHelpers";
 import { removeSuffixFromFullForm } from "../morphoHelpers/stemHelpers";
 import detectAndStemSuffixes from "./detectAndStemSuffixes";
 import { generateCorrectStemWithTAndDEnding } from "./getStemWordsWithTAndDEnding.js";
-import { flatten } from "lodash-es";
 import checkExceptionsWithFullForms from "../morphoHelpers/checkExceptionsWithFullForms";
 import { detectAndStemRegularParticiple } from "./detectAndStemRegularParticiple";
 
@@ -80,7 +79,7 @@ const checkOtherStemmingExceptions = function( word, morphologyDataNLStemming ) 
  */
 export default function stem( word, morphologyDataNL ) {
 	// Check whether the word is in the list of words with full forms for which we define the stem. If it is, return the canonical stem.
-	let stemmedWord = checkExceptionsWithFullForms( morphologyDataNL.stemming.stemmingExceptionStemsWithFullForms, word );
+	let stemmedWord = checkExceptionsWithFullForms( morphologyDataNL, word );
 	if ( stemmedWord ) {
 		return stemmedWord;
 	}
@@ -91,21 +90,23 @@ export default function stem( word, morphologyDataNL ) {
 		return stemmedWord;
 	}
 
-	// Check whether the word is on the list of words that should not be stemmed, and if yes, return the word
-	const wordsNotToBeStemmed = flatten( Object.values( morphologyDataNL.stemming.stemExceptions.wordsNotToBeStemmedExceptions ) );
-	if ( checkIfWordEndingIsOnExceptionList( word, wordsNotToBeStemmed ) ) {
+	// Check whether the word is on the list of words that should not be stemmed, and if yes, return the word. Example: gans -> gans
+	const wordsNotToBeStemmed = morphologyDataNL.stemming.stemExceptions.wordsNotToBeStemmedExceptions;
+	if ( checkIfWordIsOnVerbExceptionList( word, wordsNotToBeStemmed.verbs, morphologyDataNL.verbs.compoundVerbsPrefixes ) ||
+		 checkIfWordEndingIsOnExceptionList( word, wordsNotToBeStemmed.endingMatch ) ||
+		 wordsNotToBeStemmed.exactMatch.includes( word ) ) {
 		return word;
 	}
 
 	/*
 	 * Check whether the word ends in -t/-te/-ten/-tend/-de/-den/-dend. If it does, run through a series of checks aimed at
 	 * predicting whether the -t/d is part of the stem or the suffix. If the word was matched in one of the checks, stem it
-	 * accordingly and return the stem.
+	 * accordingly and return the stem. Example: boot -> boot, squasht -> squash
 	 */
 	const tAndDEndings = morphologyDataNL.stemming.stemExceptions.ambiguousTAndDEndings.otherTAndDEndings;
 	for ( const ending of tAndDEndings ) {
 		if ( word.endsWith( ending ) ) {
-			stemmedWord = generateCorrectStemWithTAndDEnding( morphologyDataNL.stemming, word );
+			stemmedWord = generateCorrectStemWithTAndDEnding( morphologyDataNL, word );
 			if ( stemmedWord ) {
 				return stemmedWord;
 			}
