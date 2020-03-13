@@ -1,3 +1,5 @@
+<!--based of https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Switch_role-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +27,10 @@
 
 </head>
 <body>
-<form>
-	<div class="yoast-field-group">
 
-		<label class="yoast-field-group__title">Label name</label>
+<div class="yoast-field-group__toggle">
+	<div>
+		<span id="simple-toggle" class="yoast-field-group__title">Test the Toggle false</span>
 		<a class="yoast-field-group__help" target="_blank" aria-expanded="false" href="https://yoast.com">
 				<span class="yoast-field-group__help-icon" aria-hidden="true">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" role="img" aria-hidden="true"
@@ -37,18 +39,36 @@
 				</span>
 			<span class="screen-reader-text">Tell what this link does.</span>
 		</a>
-		<div class="yoast-field-group__toggle">
-			<label>Setting for something</label>
-			<div class=""
-				<input type="checkbox" id="toggle-off" name="toggle-name" value="off" checked="checked">
-				<span state="toggle-off">Off</span>
-				<a></a>
-				<span state="toggle-on">On</span>
-
-			</div>
-		</div>
 	</div>
+	<div class="yoast-toggle">
+		<div tabindex="0" role="checkbox" aria-labelledby="simple-toggle" aria-checked="false" aria-disabled="false"
+			 class=""><span class=""></span>
+		</div>
+		<span aria-hidden="true" class="yoast-toggle__status-left">Off</span>
+		<span aria-hidden="true" class="yoast-toggle__status-right">On</span>
+	</div>
+</div>
 
-</form>
+<div class="yoast-field-group__toggle">
+	<div>
+		<span id="simple-toggle" class="yoast-field-group__title">Test the Toggle True</span>
+		<a class="yoast-field-group__help" target="_blank" aria-expanded="false" href="https://yoast.com">
+				<span class="yoast-field-group__help-icon" aria-hidden="true">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" role="img" aria-hidden="true"
+						 focusable="false"><defs/><path
+							d="M12 6A6 6 0 110 6a6 6 0 0112 0zM6.2 2C4.8 2 4 2.5 3.3 3.5l.1.4.8.7.4-.1c.5-.5.8-.9 1.4-.9.5 0 1.1.4 1.1.8s-.3.6-.7.9C5.8 5.6 5 6 5 7c0 .2.2.4.3.4h1.4L7 7c0-.8 2-.8 2-2.6C9 3 7.5 2 6.2 2zM6 8a1.1 1.1 0 100 2.2A1.1 1.1 0 006 8z"/></svg>
+				</span>
+			<span class="screen-reader-text">Tell what this link does.</span>
+		</a>
+	</div>
+	<div class="yoast-toggle">
+		<div tabindex="0" role="checkbox" aria-labelledby="simple-toggle" aria-checked="true" aria-disabled="false"
+			 class=""><span class=""></span>
+		</div>
+		<span aria-hidden="true" class="yoast-toggle__status-left">Off</span>
+		<span aria-hidden="true" class="yoast-toggle__status-right">On</span>
+	</div>
+</div>
+
 </body>
 </html>
