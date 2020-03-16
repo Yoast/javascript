@@ -37,7 +37,7 @@
     "collectCoverageFrom": [
       "src/**/*.js",
       "!**/*.*Test.js",
-      "!grunt/**/*.js",
+      "!tools/grunt/**/*.js",
       "!*.js",
       "!app/**/*.js",
       "!src/a11y/examples/example.js",

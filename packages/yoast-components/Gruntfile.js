@@ -6,15 +6,15 @@ module.exports = function( grunt ) {
 	// Define project configuration
 	const project = {
 		paths: {
-			grunt: "grunt/",
+			grunt: "tools/grunt/",
 			get config() {
 				return this.grunt + "config/";
 			},
 		},
 		files: {
 			components: [
-				"**/*.js",
-				"*.js",
+				"src/**/*.js",
+				"src/*.js",
 				"!node_modules/**",
 				"!node_modules/*",
 			],
