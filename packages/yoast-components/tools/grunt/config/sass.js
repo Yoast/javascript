@@ -8,8 +8,8 @@ module.exports = {
 	},
 	build: {
 		files: {
-			"css-dist/yoast-components.min.css": "css/all.scss",
-			"css-dist/yoast-components-standalone.min.css": "css/standalone.scss",
+			"dist/css/yoast-components.min.css": "src/css/all.scss",
+			"dist/css/yoast-components-standalone.min.css": "src/css/standalone.scss",
 		},
 	},
 	example: {
