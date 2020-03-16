@@ -1,4 +1,4 @@
-var removeModifier = require( "../../../js/helpers/bem/removeModifier" );
+var removeModifier = require( "../../../src/js/helpers/bem/removeModifier" );
 
 describe( "removeModifier", function() {
 	var mockElement, mockParent;

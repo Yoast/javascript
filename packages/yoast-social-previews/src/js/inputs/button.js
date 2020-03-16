@@ -1,5 +1,5 @@
 var defaults = require( "lodash/object/defaults" );
-var buttonTemplate = require( "../../js/templates" ).fields.button;
+var buttonTemplate = require( "../templates" ).fields.button;
 var minimizeHtml = require( "../helpers/minimizeHtml" );
 var defaultAttributes = {
 	value: "",
