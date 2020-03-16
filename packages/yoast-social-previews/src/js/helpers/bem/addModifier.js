@@ -1,4 +1,4 @@
-var addClass = require( "./../addClass" );
+var addClass = require( "../addClass" );
 var addModifierToClass = require( "./addModifierToClass" );
 
 /**

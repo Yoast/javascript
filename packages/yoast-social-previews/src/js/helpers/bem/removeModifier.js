@@ -1,4 +1,4 @@
-var removeClass = require( "./../removeClass" );
+var removeClass = require( "../removeClass" );
 var addModifierToClass = require( "./addModifierToClass" );
 
 /**

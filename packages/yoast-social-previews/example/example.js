@@ -1,5 +1,5 @@
-var FacebookPreview = require( "../js/facebookPreview.js" );
-var TwitterPreview  = require( "../js/twitterPreview.js" );
+var FacebookPreview = require( "../src/js/facebookPreview.js" );
+var TwitterPreview  = require( "../src/js/twitterPreview.js" );
 
 var facebookPreview = new FacebookPreview(
 	{

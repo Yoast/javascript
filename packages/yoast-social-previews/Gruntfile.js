@@ -5,25 +5,25 @@ module.exports = function( grunt ) {
 	// Define project configuration.
 	var project = {
 		paths: {
-			grunt: "grunt/",
-			js: "js/",
-			css: "css/",
+			grunt: "tools/grunt/",
+			js: "src/js/",
+			css: "src/css/",
 			get config() {
 				return this.grunt + "config/";
 			},
 		},
 		files: {
 			js: [
-				"js/**/*.js",
-				"grunt/config/*.js",
-				"!js/config/*.js",
+				"src/js/**/*.js",
+				"tools/grunt/config/*.js",
+				"!src/js/config/*.js",
 				"<%= files.grunt %>",
 			],
 			jsDontLint: [
-				"!js/templates.js",
+				"!src/js/templates.js",
 			],
-			scss: "css/*.scss",
-			templates: "templates/**/*.jst",
+			scss: "src/css/*.scss",
+			templates: "src/templates/**/*.jst",
 			jed: "node_modules/jed/jed.js",
 			get config() {
 				return project.paths.config + "*.js";

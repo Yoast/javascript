@@ -1,4 +1,4 @@
-var addModifier = require( "../../../js/helpers/bem/addModifier" );
+var addModifier = require( "../../../src/js/helpers/bem/addModifier" );
 
 describe( "addModifier", function() {
 	var mockElement, mockParent;
