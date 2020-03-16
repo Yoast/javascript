@@ -25,7 +25,10 @@
 	},
 	"jest": {
 		"testRegex": ".*Test.js$",
-		"testEnvironment": "node"
+		"testEnvironment": "node",
+		"modulePathIgnorePatterns": [
+			"<rootDir>[/\\\\](dist|node_modules)[/\\\\]"
+		]
 	},
 	"devDependencies": {
 		"browserslist": "^4.7.3"

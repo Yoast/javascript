@@ -115,7 +115,10 @@
         "lines": 83,
         "statements": 83
       }
-    }
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|node_modules)[/\\\\]"
+    ]
   },
   "yoast": {
     "premiumConfiguration": ""

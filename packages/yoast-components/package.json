@@ -52,6 +52,9 @@
     },
     "transformIgnorePatterns": [
       "/node_modules/(?!yoastseo|lodash-es).+\\.js$"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|node_modules)[/\\\\]"
     ]
   },
   "author": "Yoast",

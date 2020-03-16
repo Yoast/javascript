@@ -51,7 +51,10 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!yoastseo|lodash-es).+\\.js$"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/tools/jest/setupTests.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/tools/jest/setupTests.js",
+    "modulePathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|node_modules)[/\\\\]"
+    ]
   },
   "publishConfig": {
     "access": "public"
