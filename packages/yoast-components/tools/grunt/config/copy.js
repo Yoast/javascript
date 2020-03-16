@@ -4,7 +4,7 @@ module.exports = {
 		files: [ {
 			src: [
 				".babelrc",
-				"**/*",
+				"src/**/*",
 				"!dist/**/*",
 				"!node_modules/**/*",
 			],
