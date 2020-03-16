@@ -28,7 +28,10 @@
   "jest": {
     "testRegex": ".*Test.js$",
     "testEnvironment": "node",
-    "setupTestFrameworkScriptFile": "<rootDir>/tools/jest/setupTests.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/tools/jest/setupTests.js",
+    "modulePathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|node_modules)[/\\\\]"
+    ]
   },
   "devDependencies": {
     "@yoast/browserslist-config": "^1.2.1",
