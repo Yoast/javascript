@@ -5,6 +5,8 @@ node_modules/
 out/
 coverage/
 .tscache/
+.idea/
+dist/
 
 /examples/browserified/example-browserified.js
 /premium-configuration
