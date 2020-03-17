@@ -7,7 +7,7 @@ module.exports = function( grunt ) {
 		paths: {
 			grunt: "tools/grunt/",
 			js: "src/js/",
-			css: "src/css/",
+			css: "css/",
 			get config() {
 				return this.grunt + "config/";
 			},
@@ -22,8 +22,8 @@ module.exports = function( grunt ) {
 			jsDontLint: [
 				"!src/js/templates.js",
 			],
-			scss: "src/css/*.scss",
-			templates: "src/templates/**/*.jst",
+			scss: "css/*.scss",
+			templates: "templates/**/*.jst",
 			jed: "node_modules/jed/jed.js",
 			get config() {
 				return project.paths.config + "*.js";

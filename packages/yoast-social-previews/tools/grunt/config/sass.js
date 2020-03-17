@@ -8,7 +8,7 @@ module.exports = {
 	},
 	build: {
 		files: {
-			"dist/yoast-social-preview.min.css": "src/css/social_preview.scss",
+			"dist/yoast-social-preview.min.css": "css/social_preview.scss",
 		},
 	},
 };
