@@ -1,4 +1,4 @@
-var Button = require( "../../js/inputs/button" );
+var Button = require( "../../src/js/inputs/button" );
 
 describe( 'a button', function() {
 	it( 'should accept a value', function() {

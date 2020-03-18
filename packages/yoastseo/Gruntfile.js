@@ -5,7 +5,7 @@ module.exports = function( grunt ) {
 	// Define project configuration
 	var project = {
 		paths: {
-			grunt: "grunt/",
+			grunt: "tools/grunt/",
 			js: "src/",
 			css: "css/",
 			/**
@@ -20,10 +20,10 @@ module.exports = function( grunt ) {
 		files: {
 			js: [
 				"src/**/*.js",
-				"grunt/config/*.js",
+				"tools/grunt/config/*.js",
 				"!src/config/*.js",
 				"<%= files.grunt %>",
-				"!js",
+				"!src/js",
 			],
 			jsDontLint: [
 				"!src/templates.js",

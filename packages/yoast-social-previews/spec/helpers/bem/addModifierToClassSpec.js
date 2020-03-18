@@ -1,4 +1,4 @@
-var addModifierToClass = require( "../../../js/helpers/bem/addModifierToClass" );
+var addModifierToClass = require( "../../../src/js/helpers/bem/addModifierToClass" );
 
 describe( "addModifierToClass", function() {
 

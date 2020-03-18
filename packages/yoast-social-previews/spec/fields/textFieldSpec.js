@@ -1,4 +1,4 @@
-var TextField = require( "../../js/inputs/textInput" );
+var TextField = require( "../../src/js/inputs/textInput" );
 
 describe( 'a text field', function() {
 

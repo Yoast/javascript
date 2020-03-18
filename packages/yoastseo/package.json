@@ -7,7 +7,7 @@
     "SEO",
     "text analysis"
   ],
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "GPL-3.0",
   "version": "1.71.0-rc.0",
   "repository": {
@@ -115,7 +115,10 @@
         "lines": 83,
         "statements": 83
       }
-    }
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|node_modules)[/\\\\]"
+    ]
   },
   "yoast": {
     "premiumConfiguration": "release-yoast-seo/13.4"

@@ -8,7 +8,7 @@
     "url": "https://github.com/Yoast/javascript.git",
     "directory": "packages/yoast-components"
   },
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "echo 'The yoast-components demo app has been moved to javascript/apps/components (https://github.com/Yoast/javascript/tree/develop/apps/components). Please run yarn start there.'",
     "test": "jest",
@@ -18,8 +18,8 @@
   "jest": {
     "testURL": "http://localhost",
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/jest/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/jest/__mocks__/styleMock.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tests/__mocks__/styleMock.js"
     },
     "unmockedModulePathPatterns": [
       "react",
@@ -33,15 +33,15 @@
     ],
     "testRegex": ".*Test.js$",
     "coverageDirectory": "coverage",
-    "setupTestFrameworkScriptFile": "<rootDir>/jest/setupTests.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/tools/jest/setupTests.js",
     "collectCoverageFrom": [
-      "**/*.js",
+      "src/**/*.js",
       "!**/*.*Test.js",
-      "!grunt/**/*.js",
+      "!tools/grunt/**/*.js",
       "!*.js",
       "!app/**/*.js",
-      "!a11y/examples/example.js",
-      "!utils/helpers/*.js",
+      "!src/a11y/examples/example.js",
+      "!src/utils/helpers/*.js",
       "!coverage/**/*.js"
     ],
     "snapshotSerializers": [
@@ -52,6 +52,9 @@
     },
     "transformIgnorePatterns": [
       "/node_modules/(?!yoastseo|lodash-es).+\\.js$"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|node_modules)[/\\\\]"
     ]
   },
   "author": "Yoast",
