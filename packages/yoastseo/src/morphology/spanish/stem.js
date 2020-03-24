@@ -3,6 +3,7 @@
 // The orginal stemmer is available at https://github.com/dmarman/lorca/blob/master/src/stemmer.js.
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
+import { checkVerbStemModifications } from "./checkVerbStemModifications";
 
 /**
  * Copyright (C) 2018 Domingo Martín Mancera
@@ -250,6 +251,12 @@ export default function stem( word, morphologyData ) {
 	const ifSuperlative = tryStemAsSuperlative( word, r1Text, morphologyData.superlativesStemming );
 	if ( ifSuperlative !== word ) {
 		return removeAccent( ifSuperlative );
+	}
+
+	// Check if word is a verb to which stem modifications apply. If so, stem it and immediately return the result.
+	const modifiedVerbStem = checkVerbStemModifications( word, morphologyData );
+	if ( modifiedVerbStem ) {
+		return modifiedVerbStem;
 	}
 
 	if ( word !== wordAfter0 ) {
