@@ -140,6 +140,10 @@ const wordsToStem = [
 	[ "aguaste", "agu" ],
 	// [ "engreíais", "engre" ],
 	// [ "interdijese", "interdec" ],
+	// Input a verb that has multiple stems.
+	[ "compuesta", "compon" ],
+	[ "compongo", "compon" ],
+	[ "componer", "compon" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {

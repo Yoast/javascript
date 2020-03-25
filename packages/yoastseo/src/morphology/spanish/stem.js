@@ -127,6 +127,18 @@ const tryStemAsSuperlative = function( word, r1Text, superlativesStemming ) {
 	return buildOneFormFromRegex( word, createRulesFromMorphologyData( superlativesStemming.superlativeToStem ) ) || word;
 };
 
+const checkVerbsWithMultipleStems = function( stemmedWord, morphologyData ) {
+	const verbsWithMultipleStems = morphologyData.stemsThatBelongToOneWord.verbs;
+
+	for ( const paradigm of verbsWithMultipleStems ) {
+		if ( paradigm.includes( stemmedWord ) ) {
+			return paradigm[ 0 ];
+		}
+	}
+	return null;
+};
+
+
 /**
  * Stems Spanish words.
  *
@@ -310,6 +322,11 @@ export default function stem( word, morphologyData ) {
 		if ( endsIn( rvText, "u" ) && endsIn( word, "gu" ) ) {
 			word = word.slice( 0, -1 );
 		}
+	}
+
+	const canonicalStem = checkVerbsWithMultipleStems( word, morphologyData );
+	if ( canonicalStem ) {
+		return canonicalStem;
 	}
 
 	return removeAccent( word );
