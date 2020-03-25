@@ -127,6 +127,14 @@ const tryStemAsSuperlative = function( word, r1Text, superlativesStemming ) {
 	return buildOneFormFromRegex( word, createRulesFromMorphologyData( superlativesStemming.superlativeToStem ) ) || word;
 };
 
+/**
+ * Checks whether a stem is in an exception list of verbs with multiple stems and if so returns the canonical stem.
+ *
+ * @param {string} stemmedWord	   The stemmed word to be checked.
+ * @param {Object} morphologyData  The Spanish morphology data.
+ *
+ * @returns {null|string} The canonical stem or null if nothing was found.
+ */
 const checkVerbsWithMultipleStems = function( stemmedWord, morphologyData ) {
 	const verbsWithMultipleStems = morphologyData.stemsThatBelongToOneWord.verbs;
 
@@ -137,7 +145,6 @@ const checkVerbsWithMultipleStems = function( stemmedWord, morphologyData ) {
 	}
 	return null;
 };
-
 
 /**
  * Stems Spanish words.
