@@ -153,6 +153,21 @@ const wordsToStem = [
 	// Input a verb that ends in guar.
 	[ "menguamos", "mengu" ],
 	[ "mengüé", "mengu" ],
+	// Input a verb that ends in ducir.
+	[ "abducir", "abduc" ],
+	[ "abduzco", "abduc" ],
+	[ "abdujo", "abduc" ],
+	[ "abdujerás", "abduc" ],
+	[ "abdujeses", "abduc" ],
+	// Input a verb that ends in seguir.
+	[ "autoseguir", "autosegu" ],
+	[ "autosiga", "autosegu" ],
+	[ "autosiguemos", "autosegu" ],
+	[ "autoseguid", "autosegu" ],
+	// Input a verb that ends in sentir.
+	[ "desconsentir", "desconsent" ],
+	[ "desconsiento", "desconsent" ],
+	[ "desconsintió", "desconsent" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
