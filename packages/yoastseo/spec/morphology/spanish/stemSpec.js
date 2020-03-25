@@ -101,10 +101,16 @@ const wordsToStem = [
 	// [ "corrijáis","correg" ],
 	// Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -igir]
 	[ "infligieras", "inflig" ],
+	[ "inflijo", "inflig" ],
 	[ "transigió", "transig" ],
+	[ "transijáis", "transig" ],
 	// Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -egir]
-	// [ "colige", "coleg" ],
-	// [ "rigiera", "reg" ],
+	[ "colegíamos", "colij" ],
+	[ "colige", "colij" ],
+	[ "colijan", "colij" ],
+	[ "registeis", "rij" ],
+	[ "rigiera", "rij" ],
+	[ "rijamos", "rij" ],
 	// Input a word whose stem ends in zc ∧ suffix = {o, [pres. subj suffixes], a, as, amos, áis, an}.
 	// [ "conozco", "conoc" ],
 	// [ "traduzcamos", "traduc" ],
