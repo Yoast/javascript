@@ -128,6 +128,25 @@ const tryStemAsSuperlative = function( word, r1Text, superlativesStemming ) {
 };
 
 /**
+ * Checks whether a stem is in an exception list of verbs with multiple stems and if so returns the canonical stem.
+ *
+ * @param {string} stemmedWord	   The stemmed word to be checked.
+ * @param {Object} morphologyData  The Spanish morphology data.
+ *
+ * @returns {null|string} The canonical stem or null if nothing was found.
+ */
+const checkVerbsWithMultipleStems = function( stemmedWord, morphologyData ) {
+	const verbsWithMultipleStems = morphologyData.stemsThatBelongToOneWord.verbs;
+
+	for ( const paradigm of verbsWithMultipleStems ) {
+		if ( paradigm.includes( stemmedWord ) ) {
+			return paradigm[ 0 ];
+		}
+	}
+	return null;
+};
+
+/**
  * Stems Spanish words.
  *
  * @param {string} word            The word to stem.
@@ -310,6 +329,11 @@ export default function stem( word, morphologyData ) {
 		if ( endsIn( rvText, "u" ) && endsIn( word, "gu" ) ) {
 			word = word.slice( 0, -1 );
 		}
+	}
+
+	const canonicalStem = checkVerbsWithMultipleStems( word, morphologyData );
+	if ( canonicalStem ) {
+		return canonicalStem;
 	}
 
 	return removeAccent( word );
