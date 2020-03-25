@@ -48,7 +48,7 @@ const wordsToStem = [
 	[ "valéis", "val" ],
 	[ "dirigen", "dirig" ],
 	// Input a word that ends in -en, -es, -éis, -emos and is preceded by gu.
-	// [ "distinguen", "distingu" ],
+	[ "distinguen", "distingu" ],
 	[ "alarguemos", "alarg" ],
 	// Input a word that looks like a verb form but it's not.
 	// [ "cabalgada", "cabalgad" ],
@@ -144,6 +144,15 @@ const wordsToStem = [
 	[ "compuesta", "compon" ],
 	[ "compongo", "compon" ],
 	[ "componer", "compon" ],
+	// Input a verb that ends in quir.
+	[ "desagua", "desagu" ],
+	[ "desagüé", "desagu" ],
+	// Input a verb that ends in guir.
+	[ "autoextingo", "autoextingu" ],
+	[ "autoextinguimos", "autoextingu" ],
+	// Input a verb that ends in guar.
+	[ "menguamos", "mengu" ],
+	[ "mengüé", "mengu" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
