@@ -6,8 +6,8 @@ import es from "../../premium-configuration/data/morphologyData-es-v3.json";
 const morphologyData = {
 	en,
 	de,
-	es,
 	nl,
+	es,
 };
 
 /**
