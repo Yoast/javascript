@@ -174,6 +174,145 @@ const wordsToStem = [
 	[ "desconsentir", "desconsent" ],
 	[ "desconsiento", "desconsent" ],
 	[ "desconsintió", "desconsent" ],
+	// Words that look like verb forms but aren't verbs.
+	// Non-verb ending in -ió
+	[ "chevió", "chevi" ],
+	// [ "cheviós", "chevi" ],
+	// Non-verb ending in -irán
+	[ "caguairán", "caguairan" ],
+	[ "caguairanes", "caguairan" ],
+	// Non-verb ending in -ái
+	[ "samurái", "samurai" ],
+	// [ "samuráis", "samurai" ],
+	// Non-verb ending in -ei
+	[ "chatolei", "chatolei" ],
+	// Non-verb ending in -éi
+	[ "upéi", "upei" ],
+	// Non-verb ending in -ir
+	[ "mártir", "martir" ],
+	[ "mártires", "martir" ],
+	// Non-verb ending in -ír
+	[ "hazmerreír", "hazmerreir" ],
+	// Non-verb ending in -ada
+	[ "abada", "abad" ],
+	[ "abadas", "abad" ],
+	// Non-verb ending in -ado
+	[ "mercado", "mercad" ],
+	// [ "mercados", "mercad" ],
+	// Non-verb ending in -imo
+	[ "mínimo", "minim" ],
+	// [ "mínimos", "minim" ],
+	// Non-verb ending in -emo
+	[ "extremo", "extrem" ],
+	[ "extremos", "extrem" ],
+	// Non-verb ending in -ad
+	[ "ciudad", "ciudad" ],
+	[ "ciudades", "ciudad" ],
+	// Non-verb ending in -ed
+	[ "pared", "pared" ],
+	[ "paredes", "pared" ],
+	// Non-verb ending in -ie
+	[ "serie", "seri" ],
+	[ "series", "seri" ],
+	// Non-verb ending in -ié
+	[ "hincapié", "hincapi" ],
+	// [ "hincapiés", "hincapi" ],
+	// Non-verb ending in -ando
+	[ "contrabando", "contraband" ],
+	[ "contrabandos", "contraband" ],
+	// Non-verb ending in -ándo
+	[ "cuándo", "cuand" ],
+	// Non-verb ending in -aré
+	[ "pagaré", "pagar" ],
+	// [ "pagarés", "pagar" ],
+	// Non-verb ending in -eré
+	[ "tereré", "terer" ],
+	// [ "tererés", "terer" ],
+	// Non-verb ending in -ará
+	[ "yarará", "yarar" ],
+	// [ "yararás", "yarar" ],
+	// Non-verb ending in -erá
+	[ "camerá", "camer" ],
+	// [ "camerás", "camer" ],
+	// Non-verb ending in -irá
+	[ "aragüirá", "aragüir" ],
+	// [ "aragüirás", "aragüir" ],
+	// Non-verb ending in -ia
+	[ "historia", "histori" ],
+	[ "historias", "histori" ],
+	// Non-verb ending in -id
+	[ "apartheid", "apartheid" ],
+	// Non-verb ending in -aba
+	[ "guayaba", "guayab" ],
+	// [ "guayabas", "guayab" ],
+	// Non-verb ending in -asta
+	[ "canasta", "canast" ],
+	[ "canastas", "canast" ],
+	// Non-verb ending in -iste
+	[ "quiste", "quist" ],
+	[ "quistes", "quist" ],
+	// Non-verb ending in -aste
+	// [ "contraste", "contrast" ],
+	[ "contrastes", "contrast" ],
+	// Non-verb ending in -ía
+	[ "policía", "polici" ],
+	// [ "policías", "polici" ],
+	// Non-verb ending in -an
+	[ "eslogan", "eslogan" ],
+	[ "eslóganes", "eslogan" ],
+	// Non-verb ending in -en
+	[ "imagen", "imagen" ],
+	[ "imágenes", "imagen" ],
+	// Non-verb ending in -er
+	[ "mujer", "mujer" ],
+	[ "mujeres", "mujer" ],
+	// Non-verb ending in -iendo
+	[ "arriendo", "arriend" ],
+	[ "arriendos", "arriend" ],
+	// Non-verb ending in -ieron
+	[ "gobieron", "gobieron" ],
+	// Non-verb ending in -iera
+	[ "ingeniera", "ingenier" ],
+	// [ "ingenieras", "ingenier" ],
+	// Non-verb ending in -aron
+	[ "gatillaron", "gatillaron" ],
+	// Non-verb ending in -ida
+	[ "vida", "vid" ],
+	[ "vidas", "vid" ],
+	// Non-verb ending in -ido
+	[ "partido", "part" ],
+	[ "partidos", "part" ],
+	// Non-verb ending in -amo
+	[ "reclamo", "reclam" ],
+	// [ "reclamos", "reclam" ],
+	// Non-verb ending in -ara
+	[ "máscara", "mascar" ],
+	// [ "máscaras", "mascar" ],
+	// Non-verb ending in -ere
+	[ "títere", "titer" ],
+	[ "títeres", "titer" ],
+	// Non-verb ending in -ase
+	[ "base", "bas" ],
+	[ "bases", "bas" ],
+	// Non-verb ending in -ar
+	[ "hogar", "hogar" ],
+	[ "hogares", "hogar" ],
+	// Non-verb ending in -ya
+	[ "playa", "play" ],
+	[ "playas", "play" ],
+	// Non-verb ending in -ye
+	[ "rallye", "rally" ],
+	// Non-verb ending in -yo
+	[ "apoyo", "apoy" ],
+	[ "apoyos", "apoy" ],
+	// Non-verb ending in -yera
+	[ "playera", "player" ],
+	[ "playeras", "player" ],
+	// Non-verb ending in -arán
+	[ "catamarán", "catamaran" ],
+	[ "catamaranes", "catamaran" ],
+	// Non-verb ending in -erán
+	[ "bumerán", "bumeran" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
