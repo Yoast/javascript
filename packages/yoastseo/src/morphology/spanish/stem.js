@@ -158,11 +158,14 @@ const checkVerbsWithMultipleStems = function( stemmedWord, morphologyData ) {
  * @returns {string} The word with the verb suffixes removed (if applicable).
  */
 const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData ) {
-// Do step 2a if no ending was removed by step 1.
+	const notVerbForms = morphologyData.wordsThatLookLikeButAreNot.notVerbForms;
+	const nonPluralsOnS = morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS;
+
+	// Do step 2a if no ending was removed by step 1.
 	const suf = endsInArr( rvText, [ "ya", "ye", "yan", "yen", "yeron", "yendo", "yo", "yó", "yas", "yes", "yais", "yamos" ] );
 
 	if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) &&
-		! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
+		! notVerbForms.includes( word ) ) {
 		word = word.slice( 0, -suf.length );
 	}
 
@@ -185,11 +188,11 @@ const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData 
 			"isteis", "ados", "idos", "amos", "ábamos", "íamos", "imos", "áramos",
 			"iéramos", "iésemos", "ásemos" ] );
 		const suf12 = endsInArr( rvText, [ "en", "es", "éis", "emos" ] );
-		if ( suf11 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
-			! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
+		if ( suf11 !== "" && ! nonPluralsOnS.includes( word ) &&
+			! notVerbForms.includes( word ) ) {
 			word = word.slice( 0, -suf11.length );
-		} else if ( suf12 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
-			! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
+		} else if ( suf12 !== "" && ! nonPluralsOnS.includes( word ) &&
+			! notVerbForms.includes( word ) ) {
 			word = word.slice( 0, -suf12.length );
 			if ( endsIn( word, "gu" ) ) {
 				word = word.slice( 0, -1 );
