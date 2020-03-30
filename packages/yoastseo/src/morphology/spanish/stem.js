@@ -87,6 +87,23 @@ const removeAccent = function( word ) {
 };
 
 /**
+ * Checks whether a word is in the full-form exception list and if so returns the canonical stem.
+ *
+ * @param {string} word	      The word to be checked.
+ * @param {Object} exceptions The list of full-form exceptions to be checked in.
+ *
+ * @returns {null|string} The canonical stem or null if nothing was found.
+ */
+const checkWordInFullFormExceptions = function( word, exceptions ) {
+	for ( const paradigm of exceptions ) {
+		if ( paradigm[ 1 ].includes( word ) ) {
+			return paradigm[ 0 ];
+		}
+	}
+	return null;
+};
+
+/**
  * The function considers if the input word can be an adverb in -mente and if so stems it.
  * @param   {string}   word                                      The word to stem.
  * @param   {string}   r1Text                                    The R1 region of the word to stem.
@@ -245,10 +262,14 @@ const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData 
  * @returns {string} The stemmed word.
  */
 export default function stem( word, morphologyData ) {
-	const length = word.length;
-
 	word.toLowerCase();
 
+	const ifException = checkWordInFullFormExceptions( word, morphologyData.exceptionStemsWithFullForms );
+	if ( ifException ) {
+		return ifException;
+	}
+
+	const length = word.length;
 	if ( length < 2 ) {
 		return removeAccent( word );
 	}

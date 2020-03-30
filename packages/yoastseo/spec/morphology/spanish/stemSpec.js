@@ -16,8 +16,11 @@ const wordsToStem = [
 	[ "abofarse", "abof" ],
 	// [ "mírame", "mir" ],
 	// Input a word that does not ends with a clitic pronoun and is on the exceptions full forms list.
-	// [ "sacratísimo", "sagrad" ],
-	// [ "veamos", "ver" ],
+	[ "sacratísimo", "sagrad" ],
+	[ "veamos", "ver" ],
+	[ "libanesa", "libanes" ],
+	[ "libanés", "libanes" ],
+	[ "crudelísimas", "cruel" ],
 	// Input a word that looks like a diminutive but is not.
 	[ "acólito", "acolit" ],
 	[ "amalecitas", "amalecit" ],
