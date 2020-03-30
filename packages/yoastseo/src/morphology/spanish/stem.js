@@ -147,6 +147,60 @@ const checkVerbsWithMultipleStems = function( stemmedWord, morphologyData ) {
 };
 
 /**
+ * Stems verb suffixes.
+ *
+ * @param {string}  word                The original word.
+ * @param {string}  wordAfter1          The word after step 1.
+ * @param {string}  rvText              The text of the RV.
+ * @param {number}  rv                  The start position of the RV.
+ * @param {Object}  morphologyData      The Spanish morphology data.
+ *
+ * @returns {string} The word with the verb suffixes removed (if applicable).
+ */
+const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData ) {
+// Do step 2a if no ending was removed by step 1.
+	const suf = endsInArr( rvText, [ "ya", "ye", "yan", "yen", "yeron", "yendo", "yo", "yó", "yas", "yes", "yais", "yamos" ] );
+
+	if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) &&
+		! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
+		word = word.slice( 0, -suf.length );
+	}
+
+	if ( word !== wordAfter1 ) {
+		rvText = word.slice( rv );
+	}
+
+	// Do Step 2b if step 2a was done, but failed to remove a suffix.
+	if ( word === wordAfter1 ) {
+		const suf11 = endsInArr( rvText, [ "arían", "arías", "arán", "arás", "aríais", "aría", "aréis",
+			"aríamos", "aremos", "ará", "aré", "erían", "erías", "erán",
+			"erás", "eríais", "ería", "eréis", "eríamos", "eremos", "erá",
+			"eré", "irían", "irías", "irán", "irás", "iríais", "iría", "iréis",
+			"iríamos", "iremos", "irá", "iré", "aba", "ada", "ida", "ía", "ara",
+			"iera", "ad", "ed", "id", "ase", "iese", "aste", "iste", "an",
+			"aban", "ían", "aran", "ieran", "asen", "iesen", "aron", "ieron",
+			"ado", "ido", "ando", "iendo", "ió", "ar", "er", "ir", "as", "abas",
+			"adas", "idas", "ías", "aras", "ieras", "ases", "ieses", "ís", "áis",
+			"abais", "íais", "arais", "ierais", "  aseis", "ieseis", "asteis",
+			"isteis", "ados", "idos", "amos", "ábamos", "íamos", "imos", "áramos",
+			"iéramos", "iésemos", "ásemos" ] );
+		const suf12 = endsInArr( rvText, [ "en", "es", "éis", "emos" ] );
+		if ( suf11 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
+			! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
+			word = word.slice( 0, -suf11.length );
+		} else if ( suf12 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
+			! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
+			word = word.slice( 0, -suf12.length );
+			if ( endsIn( word, "gu" ) ) {
+				word = word.slice( 0, -1 );
+			}
+		}
+	}
+
+	return word;
+};
+
+/**
  * Stems Spanish words.
  *
  * @param {string} word            The word to stem.
@@ -277,45 +331,11 @@ export default function stem( word, morphologyData ) {
 
 	const wordAfter1 = word;
 
-	if ( wordAfter0 === wordAfter1 ) {
-		// Do step 2a if no ending was removed by step 1.
-		const suf = endsInArr( rvText, [ "ya", "ye", "yan", "yen", "yeron", "yendo", "yo", "yó", "yas", "yes", "yais", "yamos" ] );
 
-		if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) &&
-			! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
-			word = word.slice( 0, -suf.length );
-		}
-
-		if ( word !== wordAfter1 ) {
-			rvText = word.slice( rv );
-		}
-
-		// Do Step 2b if step 2a was done, but failed to remove a suffix.
-		if ( word === wordAfter1 ) {
-			const suf11 = endsInArr( rvText, [ "arían", "arías", "arán", "arás", "aríais", "aría", "aréis",
-				"aríamos", "aremos", "ará", "aré", "erían", "erías", "erán",
-				"erás", "eríais", "ería", "eréis", "eríamos", "eremos", "erá",
-				"eré", "irían", "irías", "irán", "irás", "iríais", "iría", "iréis",
-				"iríamos", "iremos", "irá", "iré", "aba", "ada", "ida", "ía", "ara",
-				"iera", "ad", "ed", "id", "ase", "iese", "aste", "iste", "an",
-				"aban", "ían", "aran", "ieran", "asen", "iesen", "aron", "ieron",
-				"ado", "ido", "ando", "iendo", "ió", "ar", "er", "ir", "as", "abas",
-				"adas", "idas", "ías", "aras", "ieras", "ases", "ieses", "ís", "áis",
-				"abais", "íais", "arais", "ierais", "  aseis", "ieseis", "asteis",
-				"isteis", "ados", "idos", "amos", "ábamos", "íamos", "imos", "áramos",
-				"iéramos", "iésemos", "ásemos" ] );
-			const suf12 = endsInArr( rvText, [ "en", "es", "éis", "emos" ] );
-			if ( suf11 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
-				! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
-				word = word.slice( 0, -suf11.length );
-			} else if ( suf12 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) &&
-				! morphologyData.wordsThatLookLikeButAreNot.notVerbForms.includes( word ) ) {
-				word = word.slice( 0, -suf12.length );
-				if ( endsIn( word, "gu" ) ) {
-					word = word.slice( 0, -1 );
-				}
-			}
-		}
+	// Step 2a and 2b stem verb suffixes.
+	const notVerbForms = morphologyData.wordsThatLookLikeButAreNot.notVerbForms;
+	if ( wordAfter0 === wordAfter1 && ! notVerbForms.includes( word ) ) {
+		word = stemVerbSuffixes( word, wordAfter1, rvText, rv, morphologyData );
 	}
 
 	rvText = word.slice( rv );
