@@ -128,17 +128,50 @@ const tryStemAsSuperlative = function( word, r1Text, superlativesStemming ) {
 };
 
 /**
- * Checks whether a stem is in an exception list of verbs with multiple stems and if so returns the canonical stem.
+ * The function considers if the input word can be a diminutive and if so stems it.
+ * @param   {string}   word                                    The word to stem.
+ * @param   {Object}   diminutivesStemming                     An object containing information about how to stem diminutives.
+ * @param   {string[]} diminutivesStemming.notDiminutives      An array of words that look like diminutives but are not.
+ * @param   {Array}    diminutivesStemming.diminutiveToStem    An array of pairs of regexes to match.
+ * @returns {string}   A stemmed diminutive or the input word, if it is not a diminutive.
+ */
+const tryStemAsDiminutive = function( word, diminutivesStemming ) {
+	const diminutiveSuffix = endsInArr( word, [ "ito", "ita", "itos", "itas", "íto", "íta", "ítos", "ítas" ] );
+
+	// Immediately return the input word if no diminutive suffix is found or the word is in the stopList.
+	if ( diminutiveSuffix === "" ||  diminutivesStemming.notDiminutives.includes( word ) ) {
+		return word;
+	}
+
+	return buildOneFormFromRegex( word, createRulesFromMorphologyData(  diminutivesStemming.diminutiveToStem ) ) || word;
+};
+
+/**
+ * Checks whether a stem is in an exception list of verbs, nouns or adjectives with multiple stems and if so returns
+ * the canonical stem.
  *
- * @param {string} stemmedWord	   The stemmed word to be checked.
- * @param {Object} morphologyData  The Spanish morphology data.
+ * @param {string} stemmedWord	            The stemmed word to be checked.
+ * @param {Object} stemsThatBelongToOneWord The POS-specific data that shows how non-canonical stems should be canonicalized.
  *
  * @returns {null|string} The canonical stem or null if nothing was found.
  */
-const checkVerbsWithMultipleStems = function( stemmedWord, morphologyData ) {
-	const verbsWithMultipleStems = morphologyData.stemsThatBelongToOneWord.verbs;
+const canonicalizeStem = function( stemmedWord, stemsThatBelongToOneWord ) {
+	// First check for nouns with multiple stems, which are only diminutives.
+	for ( const paradigm of stemsThatBelongToOneWord.nouns ) {
+		if ( paradigm.includes( stemmedWord ) ) {
+			return paradigm[ 0 ];
+		}
+	}
 
-	for ( const paradigm of verbsWithMultipleStems ) {
+	// Second check for adjectives with multiple stems, which are only adjectives ending in -bl/-bil.
+	for ( const paradigm of stemsThatBelongToOneWord.adjectives ) {
+		if ( paradigm.includes( stemmedWord ) ) {
+			return paradigm[ 0 ];
+		}
+	}
+
+	// Last check for verbs that have irregular forms.
+	for ( const paradigm of stemsThatBelongToOneWord.verbs ) {
 		if ( paradigm.includes( stemmedWord ) ) {
 			return paradigm[ 0 ];
 		}
@@ -328,6 +361,12 @@ export default function stem( word, morphologyData ) {
 		return removeAccent( ifSuperlative );
 	}
 
+	// Check if the word is a diminutive. Stem it as a diminutive if so, and immediately return the result.
+	const ifDiminutive = tryStemAsDiminutive( word, morphologyData.diminutivesStemming );
+	if ( ifDiminutive !== word ) {
+		return removeAccent( ifDiminutive );
+	}
+
 	if ( word !== wordAfter0 ) {
 		rvText = word.slice( rv );
 	}
@@ -354,7 +393,7 @@ export default function stem( word, morphologyData ) {
 		}
 	}
 
-	const canonicalStem = checkVerbsWithMultipleStems( word, morphologyData );
+	const canonicalStem = canonicalizeStem( word, morphologyData.stemsThatBelongToOneWord );
 	if ( canonicalStem ) {
 		return canonicalStem;
 	}
