@@ -112,21 +112,21 @@ const wordsToStem = [
 	// Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -igir]
 	[ "dirijo", "dirig" ],
 	[ "exijamos", "exig" ],
+	[ "inflijo", "inflig" ],
 	// Input a word whose stem ends in ij ∧ suffix = {o, a, as, amos, áis, an}. [verbs in -egir]
 	[ "elija", "eleg" ],
 	[ "corrijáis", "correg" ],
+	[ "rijamos", "reg" ],
+	[ "colijan", "coleg" ],
 	// Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -igir]
 	[ "infligieras", "inflig" ],
-	[ "inflijo", "inflig" ],
 	[ "transigió", "transig" ],
 	[ "transijáis", "transig" ],
 	// Input a word whose stem ends in ig ∧ suffix = {es, e, en, ió, ieron, iendo, [imp. & fut. subj suffixes]}. [verbs in -egir]
-	[ "colegíamos", "colig" ],
-	[ "colige", "colig" ],
-	[ "colijan", "colig" ],
-	[ "registeis", "rig" ],
-	[ "rigiera", "rig" ],
-	[ "rijamos", "rig" ],
+	[ "colegíamos", "coleg" ],
+	[ "colige", "coleg" ],
+	[ "registeis", "reg" ],
+	[ "rigiera", "reg" ],
 	// Input a word whose stem ends in zc ∧ suffix = {o, [pres. subj suffixes], a, as, amos, áis, an}.
 	// [ "conozco", "conoc" ],
 	[ "traduzcamos", "traduc" ],
