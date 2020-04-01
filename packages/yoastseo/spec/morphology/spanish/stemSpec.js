@@ -9,6 +9,7 @@ const wordsToStem = [
 	[ "gas", "gas" ],
 	[ "martes", "martes" ],
 	[ "microondas", "microondas" ],
+	[ "jesús", "jesus" ],
 	// Input a word that ends with a clitic pronoun and is on the list of words that end like pronouns suffixes but are not verbs.
 	[ "anime", "anim" ],
 	[ "abuela", "abuel" ],
