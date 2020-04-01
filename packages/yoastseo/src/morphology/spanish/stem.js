@@ -262,9 +262,10 @@ export default function stem( word, morphologyData ) {
 	if ( ifException ) {
 		return ifException;
 	}
+
 	const nonPluralsOnS = morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS;
 	if ( nonPluralsOnS.includes( word ) ) {
-		return word;
+		return removeAccent( word );
 	}
 
 	const length = word.length;
@@ -405,10 +406,10 @@ export default function stem( word, morphologyData ) {
 
 		if ( notVerbForms.includes( wordWithoutS ) ) {
 			/*
-			* If the word without -s is matched on the non-verbs list, we can perform the next (non-verb) stemming steps
-			* with the -s removed. This is because all possible non-verb suffixes ending in -s also have an equivalent
-			* without the -s (e.g. -as/a; -es/e), so will be stemmed after stripping the -s.
-			*/
+			 * If the word without -s is matched on the non-verbs list, we can perform the next (non-verb) stemming steps
+			 * with the -s removed. This is because all possible non-verb suffixes ending in -s also have an equivalent
+			 * without the -s (e.g. -as/a; -es/e), so will be stemmed after stripping the -s.
+			 */
 			word = wordWithoutS;
 		} else {
 			word = stemVerbSuffixes( word, wordAfter1, rvText, rv, morphologyData );
