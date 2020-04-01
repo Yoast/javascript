@@ -207,9 +207,7 @@ const canonicalizeStem = function( stemmedWord, stemsThatBelongToOneWord ) {
  *
  * @returns {string} The word with the verb suffixes removed (if applicable).
  */
-const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData ) {
-	const nonPluralsOnS = morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS;
-
+const stemVerbSuffixes = function( word, wordAfter1, rvText, rv ) {
 	// Do step 2a if no ending was removed by step 1.
 	const suf = endsInArr( rvText, [ "ya", "ye", "yan", "yen", "yeron", "yendo", "yo", "yó", "yas", "yes", "yais", "yamos" ] );
 
@@ -236,9 +234,9 @@ const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData 
 			"isteis", "ados", "idos", "amos", "ábamos", "íamos", "imos", "áramos",
 			"iéramos", "iésemos", "ásemos" ] );
 		const suf12 = endsInArr( rvText, [ "en", "es", "éis", "emos" ] );
-		if ( suf11 !== "" && ! nonPluralsOnS.includes( word ) ) {
+		if ( suf11 !== "" ) {
 			word = word.slice( 0, -suf11.length );
-		} else if ( suf12 !== "" && ! nonPluralsOnS.includes( word ) ) {
+		} else if ( suf12 !== "" ) {
 			word = word.slice( 0, -suf12.length );
 			if ( endsIn( word, "gu" ) ) {
 				word = word.slice( 0, -1 );
@@ -263,6 +261,10 @@ export default function stem( word, morphologyData ) {
 	const ifException = checkWordInFullFormExceptions( word, morphologyData.exceptionStemsWithFullForms );
 	if ( ifException ) {
 		return ifException;
+	}
+	const nonPluralsOnS = morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS;
+	if ( nonPluralsOnS.includes( word ) ) {
+		return word;
 	}
 
 	const length = word.length;
@@ -394,24 +396,29 @@ export default function stem( word, morphologyData ) {
 	// Step 2a and 2b stem verb suffixes.
 	const notVerbForms = morphologyData.wordsThatLookLikeButAreNot.notVerbForms;
 
-	/**
-	 * The list of non-verbs is checked after removing the possible -s from the end of the word, in case the word was a
-	 * plural of a word on the non-verb list.
-	 */
-	let wordWithoutS = word;
+	if ( wordAfter0 === wordAfter1 ) {
+		// If the word ends in -s, it is removed before checking the non-verbs list, as the list does not include plural forms.
+		let wordWithoutS = word;
+		if ( word.endsWith( "s" ) ) {
+			wordWithoutS = word.slice( 0, -1 );
+		}
 
-	if ( word.endsWith( "s" ) ) {
-		wordWithoutS = word.slice( 0, -1 );
-	}
-
-	if ( wordAfter0 === wordAfter1 && ! notVerbForms.includes( wordWithoutS ) ) {
-		word = stemVerbSuffixes( word, wordAfter1, rvText, rv, morphologyData );
+		if ( notVerbForms.includes( wordWithoutS ) ) {
+			/*
+			* If the word without -s is matched on the non-verbs list, we can perform the next (non-verb) stemming steps
+			* with the -s removed. This is because all possible non-verb suffixes ending in -s also have an equivalent
+			* without the -s (e.g. -as/a; -es/e), so will be stemmed after stripping the -s.
+			*/
+			word = wordWithoutS;
+		} else {
+			word = stemVerbSuffixes( word, wordAfter1, rvText, rv, morphologyData );
+		}
 	}
 
 	rvText = word.slice( rv );
 
 	const suf13 = endsInArr( rvText, [ "os", "a", "o", "á", "í", "ó" ] );
-	if ( suf13 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) ) {
+	if ( suf13 !== "" ) {
 		word = word.slice( 0, -suf13.length );
 	} else if ( ( endsInArr( rvText, [ "e", "é" ] ) ) !== "" ) {
 		word = word.slice( 0, -1 );
