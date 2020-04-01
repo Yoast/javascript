@@ -24,9 +24,11 @@ const wordsToStem = [
 	// Input a word that looks like a diminutive but is not.
 	[ "acólito", "acolit" ],
 	[ "amalecitas", "amalecit" ],
-	// Input a word that is on the diminutive exceptions list.
+	// Input a word that is on the diminutive exceptions list for diminutives ending in -it-.
 	[ "reicito", "rey" ],
+	[ "realitito", "reality" ],
 	[ "lucecita", "luz" ],
+	[ "actricita", "actriz" ],
 	[ "ciudadcita", "ciudad" ],
 	[ "ciudadita", "ciudad" ],
 	// Input a diminutive that is on the stem canonicalization exception list for nouns
@@ -348,7 +350,7 @@ const wordsToStem = [
 
 const paradigms = [
 	// A paradigm with various types of diminutive
-	{ stem: "naric", forms: [ "narices", "naricitas", "narizotas" ] },
+	{ stem: "nariz", forms: [ "nariz", "naricitas", "narizotas" ] },
 	{ stem: "murall", forms: [ "murallas", "murallitas", "murallotas" ] },
 	{ stem: "azucar", forms: [ "azúcar", "azucarita", "azuquítar" ] },
 	{ stem: "pared", forms: [ "pared", "paredcita", "parecita", "paredita", "paredilla" ] },
