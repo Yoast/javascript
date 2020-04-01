@@ -1,4 +1,4 @@
-/* eslint-disable max-statements, require-jsdoc, complexity */
+/* eslint-disable max-statements, complexity */
 // The function will be further adjected anyways, so it makes no sense to randomly split it in smaller functions now.
 // The orginal stemmer is available at https://github.com/dmarman/lorca/blob/master/src/stemmer.js.
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
@@ -18,13 +18,28 @@ import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorph
  * all copies or substantial portions of the Software.
  */
 
-
+/**
+ * Checks if the input character is a Spanish vowel.
+ *
+ * @param {string} c The character to be checked.
+ *
+ * @returns {boolean} Whether the input character is a Spanish vowel.
+ */
 const isVowel = function( c ) {
 	const regex = /[aeiouáéíóú]/gi;
 
 	return regex.test( c );
 };
 
+/**
+ * Checks what the position number of the next vowel is. The function starts searching starting from a position specified
+ * in the start parameter.
+ *
+ * @param {string} word  The word to be analyzed.
+ * @param {int}    start The first position in the word to start checking from.
+ *
+ * @returns {int} The position at which the next vowel occurs.
+ */
 const nextVowelPosition = function( word, start = 0 ) {
 	const length = word.length;
 
@@ -37,6 +52,15 @@ const nextVowelPosition = function( word, start = 0 ) {
 	return length;
 };
 
+/**
+ * Checks what the position number of the next consonant is. The function starts searching starting from a position specified
+ * in the start parameter.
+ *
+ * @param {string} word  The word to be analyzed.
+ * @param {int}    start The first position in the word to start checking from.
+ *
+ * @returns {int} The position at which the next consonant occurs.
+ */
 const nextConsonantPosition = function( word, start = 0 ) {
 	const length = word.length;
 
@@ -49,6 +73,14 @@ const nextConsonantPosition = function( word, start = 0 ) {
 	return length;
 };
 
+/**
+ * Checks whether the input word ends with the input suffix.
+ *
+ * @param {string} word   The word to be analyzed.
+ * @param {string} suffix The suffix to check for.
+ *
+ * @returns {boolean} Whether the word ends with the suffix provided.
+ */
 const endsIn = function( word, suffix ) {
 	if ( word.length < suffix.length ) {
 		return false;
@@ -57,6 +89,14 @@ const endsIn = function( word, suffix ) {
 	return ( word.slice( -suffix.length ) === suffix );
 };
 
+/**
+ * Checks whether the input word ends with one of the input suffixes and returns the longest suffix matched.
+ *
+ * @param {string}   word     The word to be analyzed.
+ * @param {string[]} suffixes The suffix to check for.
+ *
+ * @returns {string} The longest suffix matched in the word from the input list of suffixes.
+ */
 const endsInArr = function( word, suffixes ) {
 	const matches = [];
 	for ( const i in suffixes ) {
@@ -75,6 +115,13 @@ const endsInArr = function( word, suffixes ) {
 	return "";
 };
 
+/**
+ * Replaces accented vowels with non-accented vowels in the input string.
+ *
+ * @param {string}   word     The word to be de-accentified.
+ *
+ * @returns {string} The de-accentified input word.
+ */
 const removeAccent = function( word ) {
 	const accentedVowels = [ "á", "é", "í", "ó", "ú" ];
 	const vowels = [ "a", "e", "i", "o", "u" ];
