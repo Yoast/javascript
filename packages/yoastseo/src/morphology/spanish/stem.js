@@ -208,14 +208,12 @@ const canonicalizeStem = function( stemmedWord, stemsThatBelongToOneWord ) {
  * @returns {string} The word with the verb suffixes removed (if applicable).
  */
 const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData ) {
-	const notVerbForms = morphologyData.wordsThatLookLikeButAreNot.notVerbForms;
 	const nonPluralsOnS = morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS;
 
 	// Do step 2a if no ending was removed by step 1.
 	const suf = endsInArr( rvText, [ "ya", "ye", "yan", "yen", "yeron", "yendo", "yo", "yó", "yas", "yes", "yais", "yamos" ] );
 
-	if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) &&
-		! notVerbForms.includes( word ) ) {
+	if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) ) {
 		word = word.slice( 0, -suf.length );
 	}
 
@@ -238,11 +236,9 @@ const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData 
 			"isteis", "ados", "idos", "amos", "ábamos", "íamos", "imos", "áramos",
 			"iéramos", "iésemos", "ásemos" ] );
 		const suf12 = endsInArr( rvText, [ "en", "es", "éis", "emos" ] );
-		if ( suf11 !== "" && ! nonPluralsOnS.includes( word ) &&
-			! notVerbForms.includes( word ) ) {
+		if ( suf11 !== "" && ! nonPluralsOnS.includes( word ) ) {
 			word = word.slice( 0, -suf11.length );
-		} else if ( suf12 !== "" && ! nonPluralsOnS.includes( word ) &&
-			! notVerbForms.includes( word ) ) {
+		} else if ( suf12 !== "" && ! nonPluralsOnS.includes( word ) ) {
 			word = word.slice( 0, -suf12.length );
 			if ( endsIn( word, "gu" ) ) {
 				word = word.slice( 0, -1 );
@@ -397,7 +393,18 @@ export default function stem( word, morphologyData ) {
 
 	// Step 2a and 2b stem verb suffixes.
 	const notVerbForms = morphologyData.wordsThatLookLikeButAreNot.notVerbForms;
-	if ( wordAfter0 === wordAfter1 && ! notVerbForms.includes( word ) ) {
+
+	/**
+	 * The list of non-verbs is checked after removing the possible -s from the end of the word, in case the word was a
+	 * plural of a word on the non-verb list.
+	 */
+	let wordWithoutS = word;
+
+	if ( word.endsWith( "s" ) ) {
+		wordWithoutS = word.slice( 0, -1 );
+	}
+
+	if ( wordAfter0 === wordAfter1 && ! notVerbForms.includes( wordWithoutS ) ) {
 		word = stemVerbSuffixes( word, wordAfter1, rvText, rv, morphologyData );
 	}
 

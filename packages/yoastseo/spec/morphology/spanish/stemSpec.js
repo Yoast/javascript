@@ -289,7 +289,7 @@ const wordsToStem = [
 	[ "gobieron", "gobieron" ],
 	// Non-verb ending in -iera
 	[ "ingeniera", "ingenier" ],
-	// [ "ingenieras", "ingenier" ],
+	[ "ingenieras", "ingenier" ],
 	// Non-verb ending in -aron
 	[ "gatillaron", "gatillaron" ],
 	// Non-verb ending in -ida
@@ -333,10 +333,12 @@ const wordsToStem = [
 	[ "empaste", "empast" ],
 	// Non-verb ending in -iste
 	[ "quiste", "quist" ],
-	// Non-verb ending in -ido
-	[ "sólida", "solid" ],
 	// Non-verb ending in -ida
+	[ "sólida", "solid" ],
+	//[ "sólidas", "solid" ],
+	// Non-verb ending in -ido
 	[ "antióxido", "antioxid" ],
+	//[ "antióxidos", "antioxid" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
