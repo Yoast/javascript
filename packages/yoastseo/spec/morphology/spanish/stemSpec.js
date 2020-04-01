@@ -329,6 +329,14 @@ const wordsToStem = [
 	[ "catamaranes", "catamaran" ],
 	// Non-verb ending in -erán
 	[ "bumerán", "bumeran" ],
+	// Non-verb ending in -asta
+	[ "empaste", "empast" ],
+	// Non-verb ending in -iste
+	[ "quiste", "quist" ],
+	// Non-verb ending in -ido
+	[ "sólida", "solid" ],
+	// Non-verb ending in -ida
+	[ "antióxido", "antioxid" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
