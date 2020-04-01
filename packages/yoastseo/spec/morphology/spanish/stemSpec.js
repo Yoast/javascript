@@ -128,11 +128,14 @@ const wordsToStem = [
 	[ "registeis", "reg" ],
 	[ "rigiera", "reg" ],
 	// Input a word whose stem ends in zc ∧ suffix = {o, [pres. subj suffixes], a, as, amos, áis, an}.
-	// [ "conozco", "conoc" ],
+	[ "conozco", "conoc" ],
+	[ "conozcamos", "conoc" ],
 	[ "traduzcamos", "traduc" ],
+	[ "compadezco", "compadec" ],
 	// Input a word whose stem ends in -c ∧ suffix = {é}.
-	// [ "lancé", "lanz" ],
-	// [ "visualicé", "visualiz" ],
+	[ "lancé", "lanz" ],
+	[ "visualicé", "visualiz" ],
+	[ "empecé", "empez" ],
 	// Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
 	[ "sintió", "sent" ],
 	[ "sugiriese", "suger" ],
@@ -154,14 +157,15 @@ const wordsToStem = [
 	[ "consensúas", "consensu" ],
 	[ "licúa", "licu" ],
 	// Input a verb where stem ends on -qu-, -gu- and precedes -é, -e, -es, -emos, -éis, -en
-	// [ "apliques", "aplic" ],
-	// [ "ataquemos", "atac" ],
+	[ "apliques", "aplic" ],
+	[ "ataquemos", "atac" ],
+	[ "rebusques", "rebusc" ],
 	[ "conjuguen", "conjug" ],
 	[ "juzguéis", "juzg" ],
 	// Exceptions for rules on stem-modifying verbs.
 	[ "aguaste", "agu" ],
 	[ "engreíais", "engre" ],
-	// [ "interdijese", "interdec" ],
+	[ "interdijese", "interdec" ],
 	// Input a verb that has multiple stems.
 	[ "compuesta", "compon" ],
 	[ "compongo", "compon" ],
