@@ -146,10 +146,12 @@ const tryStemAsSuperlative = function( word, r1Text, superlativesStemming ) {
 
 /**
  * The function considers if the input word can be a diminutive and if so stems it.
- * @param   {string}   word                                    The word to stem.
- * @param   {Object}   diminutivesStemming                     An object containing information about how to stem diminutives.
- * @param   {string[]} diminutivesStemming.notDiminutives      An array of words that look like diminutives but are not.
- * @param   {Array}    diminutivesStemming.diminutiveToStem    An array of pairs of regexes to match.
+ * @param   {string}   word                                         The word to stem.
+ * @param   {Object}   diminutivesStemming                          An object containing information about how to stem diminutives.
+ * @param   {string[]} diminutivesStemming.notDiminutives           An array of words that look like diminutives but are not.
+ * @param   {Array}    diminutivesStemming.diminutiveToStem         An array of pairs of regexes to match.
+ * @param   {Array}    diminutivesStemming.irregularDiminutives     An array containing data for irregular diminutives.
+ *
  * @returns {string}   A stemmed diminutive or the input word, if it is not a diminutive.
  */
 const tryStemAsDiminutive = function( word, diminutivesStemming ) {
@@ -158,6 +160,17 @@ const tryStemAsDiminutive = function( word, diminutivesStemming ) {
 	// Immediately return the input word if no diminutive suffix is found or the word is in the stopList.
 	if ( diminutiveSuffix === "" ||  diminutivesStemming.notDiminutives.includes( word ) ) {
 		return word;
+	}
+
+	// Remove o/a/os/as and check irregular diminutives ending in -it-/-ít-
+	const wordWithoutEnding = word.endsWith( "s" )
+		? word.slice( 0, word.length - 2 )
+		: word.slice( 0, word.length - 1 );
+
+	for ( const paradigm of diminutivesStemming.irregularDiminutives ) {
+		if ( paradigm[ 1 ].includes( wordWithoutEnding ) ) {
+			return paradigm[ 0 ];
+		}
 	}
 
 	return buildOneFormFromRegex( word, createRulesFromMorphologyData(  diminutivesStemming.diminutiveToStem ) ) || word;
