@@ -301,35 +301,21 @@ const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData 
 };
 
 /**
- * Stems Spanish words.
+ * Determines the R1, R2 and RV of the word.
  *
- * @param {string} word            The word to stem.
- * @param {Object} morphologyData  The Spanish morphology data.
- *
- * @returns {string} The stemmed word.
+ * @param {string} word		The word checked.
+ * @returns {number[]} The array of R1, R2, and RV.
  */
-export default function stem( word, morphologyData ) {
-	word.toLowerCase();
-
-	const ifException = checkWordInFullFormExceptions( word, morphologyData.exceptionStemsWithFullForms );
-	if ( ifException ) {
-		return ifException;
-	}
-
-	const length = word.length;
-	if ( length < 2 ) {
-		return removeAccent( word );
-	}
-
-	let r1 = length;
-	let r2 = length;
-	let rv = length;
+const determineWordRegion = function( word ) {
+	let r1 = word.length;
+	let r2 = word.length;
+	let rv = word.length;
 
 	/**
 	 * R1 is the region after the first non-vowel following a vowel, or is the null region at the end of the word if
 	 * there is no such non-vowel.
 	 */
-	for ( let i = 0; i < ( length - 1 ) && r1 === length; i++ ) {
+	for ( let i = 0; i < ( word.length - 1 ) && r1 === word.length; i++ ) {
 		if ( isVowel( word[ i ] ) && ! isVowel( word[ i + 1 ] ) ) {
 			r1 = i + 2;
 		}
