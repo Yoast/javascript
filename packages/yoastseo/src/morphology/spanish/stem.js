@@ -325,13 +325,13 @@ const determineWordRegion = function( word ) {
 	 * R2 is the region after the first non-vowel following a vowel in R1, or is the null region at the end of the
 	 * word if there is no such non-vowel.
 	 */
-	for ( let i = r1; i < ( length - 1 ) && r2 === length; i++ ) {
+	for ( let i = r1; i < ( word.length - 1 ) && r2 === word.length; i++ ) {
 		if ( isVowel( word[ i ] ) && ! isVowel( word[ i + 1 ] ) ) {
 			r2 = i + 2;
 		}
 	}
 
-	if ( length > 3 ) {
+	if ( word.length > 3 ) {
 		if ( ! isVowel( word[ 1 ] ) ) {
 			rv = nextVowelPosition( word, 2 ) + 1;
 		} else if ( isVowel( word[ 0 ] ) && isVowel( word[ 1 ] ) ) {
@@ -340,41 +340,17 @@ const determineWordRegion = function( word ) {
 			rv = 3;
 		}
 	}
+	return [ r1, r2, rv ];
+};
 
-	let r1Text = word.slice( r1 );
-	let r2Text = word.slice( r2 );
-	let rvText = word.slice( rv );
-	const originalWord = word;
-
-	// Step 0: Attached pronoun
-	const pronounSuffix = [ "me", "se", "sela", "selo", "selas", "selos", "la", "le", "lo", "las", "les", "los", "nos" ];
-	const pronounSuffixPre1 = [ "iéndo", "ándo", "ár", "ér", "ír" ];
-	const pronounSuffixPre2 = [ "iendo", "ando", "ar", "er", "ir" ];
-
-	const suffix = endsInArr( word, pronounSuffix );
-
-	if ( suffix !== "" && ! morphologyData.wordsThatLookLikeButAreNot.notVerbsEndingInPersonalPronouns.includes( word ) ) {
-		let preSuffix = endsInArr( rvText.slice( 0, -suffix.length ), pronounSuffixPre1 );
-
-		if ( preSuffix === "" ) {
-			preSuffix = endsInArr( rvText.slice( 0, -suffix.length ), pronounSuffixPre2 );
-
-			if ( preSuffix !== "" || ( endsIn( word.slice( 0, -suffix.length ), "uyendo" ) ) ) {
-				word = word.slice( 0, -suffix.length );
-			}
-		} else {
-			word = removeAccent( word.slice( 0, -suffix.length ) );
-		}
-	}
-
-	if ( word !== originalWord ) {
-		r1Text = word.slice( r1 );
-		r2Text = word.slice( r2 );
-		rvText = word.slice( rv );
-	}
-
-	const wordAfter0 = word;
-
+/**
+ * Stems derivational suffixes such as "anza", "anzas", "ico", "ica", "icos", "icas" etc. E.g. esperanza -> esper
+ *
+ * @param {string} word		The word checked.
+ * @param {string} r2Text	The text of the R2.
+ * @returns {string} The word with removed derivational suffix.
+ */
+const stemDerivationalForms = function( word, r2Text ) {
 	const suf1 = endsInArr( r2Text, [ "anza", "anzas", "ico", "ica", "icos", "icas", "ismo", "ismos",
 		"able", "ables", "ible", "ibles", "ista", "istas", "oso", "osa",
 		"osos", "osas", "amiento", "amientos", "imiento", "imientos" ] );
@@ -402,6 +378,89 @@ const determineWordRegion = function( word ) {
 	} else if ( suf10 !== "" ) {
 		word = word.slice( 0, -suf10.length );
 	}
+	return word;
+};
+
+/**
+ * Stems suffixes "os", "a", "o", "á", "í", "ó", "e", and "é" in RV. e.g. regla -> regl
+ *
+ * @param {string} word					The word checked.
+ * @param {string} rvText				The text of RV.
+ * @param {number} rv                  	The start position of the RV.
+ * @param {Object} morphologyData      	The Spanish morphology data.
+ * @returns {string} The word with removed suffix.
+ */
+const stemSuf13Suffix = function( word, rvText, rv, morphologyData ) {
+	const suf13 = endsInArr( rvText, [ "os", "a", "o", "á", "í", "ó" ] );
+	if ( suf13 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) ) {
+		word = word.slice( 0, -suf13.length );
+	} else if ( ( endsInArr( rvText, [ "e", "é" ] ) ) !== "" ) {
+		word = word.slice( 0, -1 );
+		rvText = word.slice( rv );
+		if ( endsIn( rvText, "u" ) && endsIn( word, "gu" ) ) {
+			word = word.slice( 0, -1 );
+		}
+	}
+	return word;
+};
+
+/**
+ * Stems Spanish words.
+ *
+ * @param {string} word            The word to stem.
+ * @param {Object} morphologyData  The Spanish morphology data.
+ *
+ * @returns {string} The stemmed word.
+ */
+export default function stem( word, morphologyData ) {
+	word.toLowerCase();
+
+	const ifException = checkWordInFullFormExceptions( word, morphologyData.exceptionStemsWithFullForms );
+	if ( ifException ) {
+		return ifException;
+	}
+
+	const length = word.length;
+	if ( length < 2 ) {
+		return removeAccent( word );
+	}
+	// Determine the r1, r2 and rv of the word
+	const [ r1, r2, rv ] = determineWordRegion( word );
+
+	let r1Text = word.slice( r1 );
+	let r2Text = word.slice( r2 );
+	let rvText = word.slice( rv );
+	const originalWord = word;
+
+	// Step 0: Attached pronoun
+	const pronounSuffix = [ "me", "se", "sela", "selo", "selas", "selos", "la", "le", "lo", "las", "les", "los", "nos" ];
+	const pronounSuffixPre1 = [ "iéndo", "ándo", "ár", "ér", "ír" ];
+	const pronounSuffixPre2 = [ "iendo", "ando", "ar", "er", "ir" ];
+
+	const suffix = endsInArr( word, pronounSuffix );
+
+	if ( suffix !== "" && ! morphologyData.wordsThatLookLikeButAreNot.notVerbsEndingInPersonalPronouns.includes( word ) ) {
+		let preSuffix = endsInArr( rvText.slice( 0, -suffix.length ), pronounSuffixPre1 );
+
+		if ( preSuffix === "" ) {
+			preSuffix = endsInArr( rvText.slice( 0, -suffix.length ), pronounSuffixPre2 );
+
+			if ( preSuffix !== "" || ( endsIn( word.slice( 0, -suffix.length ), "uyendo" ) ) ) {
+				word = word.slice( 0, -suffix.length );
+			}
+		} else {
+			word = removeAccent( word.slice( 0, -suffix.length ) );
+		}
+	}
+	if ( word !== originalWord ) {
+		r1Text = word.slice( r1 );
+		r2Text = word.slice( r2 );
+		rvText = word.slice( rv );
+	}
+
+	const wordAfter0 = word;
+	// If the word ends in derivational suffixes such as "anza", "anzas", "ico", "ica", "icos", "icas" etc. the suffix will be stemmed here.
+	word = stemDerivationalForms( word, r2Text );
 
 	// Check if the word is an adverb in -mente. Stem it as a adverb if so, and immediately return the result.
 	const ifMente = tryStemAsMente( word, r1Text, morphologyData.menteStemming );
@@ -435,17 +494,8 @@ const determineWordRegion = function( word ) {
 	}
 
 	rvText = word.slice( rv );
-
-	const suf13 = endsInArr( rvText, [ "os", "a", "o", "á", "í", "ó" ] );
-	if ( suf13 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) ) {
-		word = word.slice( 0, -suf13.length );
-	} else if ( ( endsInArr( rvText, [ "e", "é" ] ) ) !== "" ) {
-		word = word.slice( 0, -1 );
-		rvText = word.slice( rv );
-		if ( endsIn( rvText, "u" ) && endsIn( word, "gu" ) ) {
-			word = word.slice( 0, -1 );
-		}
-	}
+	// If the word ends in one of these suffixes "os", "a", "o", "á", "í", "ó", "e", "é", the suffix will be removed here.
+	word = stemSuf13Suffix( word, rvText, rv, morphologyData );
 
 	const canonicalStem = canonicalizeStem( word, morphologyData.stemsThatBelongToOneWord );
 	if ( canonicalStem ) {
