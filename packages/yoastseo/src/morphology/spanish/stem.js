@@ -558,7 +558,7 @@ export default function stem( word, morphologyData ) {
 
 	/*
 	 * Step 4:
-	 * Stem generic suffixes;.
+	 * Stem generic suffixes;
 	 * If the word ends in "os", "a", "o", "á", "í", "ó", "e", "é", the suffix will be removed here.
 	 */
 	word = stemGenericSuffix( word, rvText, rv );
