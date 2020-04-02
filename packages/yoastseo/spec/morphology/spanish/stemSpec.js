@@ -9,6 +9,7 @@ const wordsToStem = [
 	[ "gas", "gas" ],
 	[ "martes", "martes" ],
 	[ "microondas", "microondas" ],
+	[ "jesús", "jesus" ],
 	// Input a word that ends with a clitic pronoun and is on the list of words that end like pronouns suffixes but are not verbs.
 	[ "anime", "anim" ],
 	[ "abuela", "abuel" ],
@@ -197,13 +198,13 @@ const wordsToStem = [
 	// Words that look like verb forms but aren't verbs.
 	// Non-verb ending in -ió
 	[ "chevió", "chevi" ],
-	// [ "cheviós", "chevi" ],
+	[ "cheviós", "chevi" ],
 	// Non-verb ending in -irán
 	[ "caguairán", "caguairan" ],
 	[ "caguairanes", "caguairan" ],
 	// Non-verb ending in -ái
 	[ "samurái", "samurai" ],
-	// [ "samuráis", "samurai" ],
+	[ "samuráis", "samurai" ],
 	// Non-verb ending in -ei
 	[ "chatolei", "chatolei" ],
 	// Non-verb ending in -éi
@@ -218,10 +219,10 @@ const wordsToStem = [
 	[ "abadas", "abad" ],
 	// Non-verb ending in -ado
 	[ "mercado", "mercad" ],
-	// [ "mercados", "mercad" ],
+	[ "mercados", "mercad" ],
 	// Non-verb ending in -imo
 	[ "mínimo", "minim" ],
-	// [ "mínimos", "minim" ],
+	[ "mínimos", "minim" ],
 	// Non-verb ending in -emo
 	[ "extremo", "extrem" ],
 	[ "extremos", "extrem" ],
@@ -236,7 +237,7 @@ const wordsToStem = [
 	[ "series", "seri" ],
 	// Non-verb ending in -ié
 	[ "hincapié", "hincapi" ],
-	// [ "hincapiés", "hincapi" ],
+	[ "hincapiés", "hincapi" ],
 	// Non-verb ending in -ando
 	[ "contrabando", "contraband" ],
 	[ "contrabandos", "contraband" ],
@@ -244,19 +245,19 @@ const wordsToStem = [
 	[ "cuándo", "cuand" ],
 	// Non-verb ending in -aré
 	[ "pagaré", "pagar" ],
-	// [ "pagarés", "pagar" ],
+	[ "pagarés", "pagar" ],
 	// Non-verb ending in -eré
 	[ "tereré", "terer" ],
-	// [ "tererés", "terer" ],
+	[ "tererés", "terer" ],
 	// Non-verb ending in -ará
 	[ "yarará", "yarar" ],
-	// [ "yararás", "yarar" ],
+	[ "yararás", "yarar" ],
 	// Non-verb ending in -erá
 	[ "camerá", "camer" ],
-	// [ "camerás", "camer" ],
+	[ "camerás", "camer" ],
 	// Non-verb ending in -irá
 	[ "aragüirá", "aragüir" ],
-	// [ "aragüirás", "aragüir" ],
+	[ "aragüirás", "aragüir" ],
 	// Non-verb ending in -ia
 	[ "historia", "histori" ],
 	[ "historias", "histori" ],
@@ -264,7 +265,7 @@ const wordsToStem = [
 	[ "apartheid", "apartheid" ],
 	// Non-verb ending in -aba
 	[ "guayaba", "guayab" ],
-	// [ "guayabas", "guayab" ],
+	[ "guayabas", "guayab" ],
 	// Non-verb ending in -asta
 	[ "canasta", "canast" ],
 	[ "canastas", "canast" ],
@@ -272,11 +273,11 @@ const wordsToStem = [
 	[ "quiste", "quist" ],
 	[ "quistes", "quist" ],
 	// Non-verb ending in -aste
-	// [ "contraste", "contrast" ],
+	[ "contraste", "contrast" ],
 	[ "contrastes", "contrast" ],
 	// Non-verb ending in -ía
 	[ "policía", "polici" ],
-	// [ "policías", "polici" ],
+	[ "policías", "polici" ],
 	// Non-verb ending in -an
 	[ "eslogan", "eslogan" ],
 	[ "eslóganes", "eslogan" ],
@@ -293,7 +294,7 @@ const wordsToStem = [
 	[ "gobieron", "gobieron" ],
 	// Non-verb ending in -iera
 	[ "ingeniera", "ingenier" ],
-	// [ "ingenieras", "ingenier" ],
+	[ "ingenieras", "ingenier" ],
 	// Non-verb ending in -aron
 	[ "gatillaron", "gatillaron" ],
 	// Non-verb ending in -ida
@@ -304,10 +305,10 @@ const wordsToStem = [
 	[ "partidos", "part" ],
 	// Non-verb ending in -amo
 	[ "reclamo", "reclam" ],
-	// [ "reclamos", "reclam" ],
+	[ "reclamos", "reclam" ],
 	// Non-verb ending in -ara
 	[ "máscara", "mascar" ],
-	// [ "máscaras", "mascar" ],
+	[ "máscaras", "mascar" ],
 	// Non-verb ending in -ere
 	[ "títere", "titer" ],
 	[ "títeres", "titer" ],
@@ -335,12 +336,16 @@ const wordsToStem = [
 	[ "bumerán", "bumeran" ],
 	// Non-verb ending in -asta
 	[ "empaste", "empast" ],
+	[ "empastes", "empast" ],
 	// Non-verb ending in -iste
 	[ "quiste", "quist" ],
-	// Non-verb ending in -ido
-	[ "sólida", "solid" ],
+	[ "quistes", "quist" ],
 	// Non-verb ending in -ida
+	[ "sólida", "solid" ],
+	[ "sólidas", "solid" ],
+	// Non-verb ending in -ido
 	[ "antióxido", "antioxid" ],
+	[ "antióxidos", "antioxid" ],
 ];
 
 describe( "Test for stemming Spanish words", () => {
