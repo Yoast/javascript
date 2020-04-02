@@ -71,7 +71,7 @@ const wordsToStem = [
 	// [ "abacerías", "abaceri" ],
 	// Input a word that looks like a verb form and is on the list of stems that belong together.
 	[ "san", "san" ],
-	// [ "virgen", "virgen" ],
+	[ "virgen", "virgen" ],
 	// Input a word that ends in -í, either a verb or a noun.
 	[ "entendí", "entend" ],
 	[ "marroquí", "marroqu" ],
@@ -102,7 +102,7 @@ const wordsToStem = [
 	[ "genialérrima", "genial" ],
 	[ "tristérrimo", "trist" ],
 	// Exceptions in superlatives.
-	// [ "habilísima", "habil" ],
+	[ "habilísima", "habil" ],
 	[ "majérrimo", "majerrim" ],
 	[ "cérrimo", "cerrim" ],
 	[ "gérrimo", "gerrim" ],
