@@ -9,6 +9,7 @@ const wordsToStem = [
 	[ "gas", "gas" ],
 	[ "martes", "martes" ],
 	[ "microondas", "microondas" ],
+	[ "jesús", "jesus" ],
 	// Input a word that ends with a clitic pronoun and is on the list of words that end like pronouns suffixes but are not verbs.
 	[ "anime", "anim" ],
 	[ "abuela", "abuel" ],
@@ -24,9 +25,20 @@ const wordsToStem = [
 	// Input a word that looks like a diminutive but is not.
 	[ "acólito", "acolit" ],
 	[ "amalecitas", "amalecit" ],
-	// Input a word that is on the diminutive exceptions list.
+	// Input a word that is on the diminutive exceptions list for diminutives ending in -it-.
 	[ "reicito", "rey" ],
+	[ "realitito", "reality" ],
 	[ "lucecita", "luz" ],
+	[ "actricita", "actriz" ],
+	[ "ciudadcita", "ciudad" ],
+	[ "ciudadita", "ciudad" ],
+	[ "raicitos", "raiz" ],
+	[ "raicitas", "raiz" ],
+	// Input a diminutive that is on the stem canonicalization exception list for nouns
+	[ "ciudaduela", "ciudad" ],
+	[ "ciudadela", "ciudad" ],
+	[ "abejuela", "abej" ],
+	[ "locuelo", "loc" ],
 	// Input a word that is a typical diminutive and should be stemmed by the rules.
 	[ "puertecita", "puert" ],
 	[ "ventitas", "vent" ],
@@ -71,7 +83,7 @@ const wordsToStem = [
 	// [ "abacerías", "abaceri" ],
 	// Input a word that looks like a verb form and is on the list of stems that belong together.
 	[ "san", "san" ],
-	// [ "virgen", "virgen" ],
+	[ "virgen", "virgen" ],
 	// Input a word that ends in -í, either a verb or a noun.
 	[ "entendí", "entend" ],
 	[ "marroquí", "marroqu" ],
@@ -95,14 +107,17 @@ const wordsToStem = [
 	[ "velocísimas", "veloz" ],
 	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by i.
 	[ "impiísima", "impi" ],
-	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
+	/*
+	 * Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by
+	 * -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
+	 */
 	[ "rapidísimo", "rapid" ],
 	[ "generalísimas", "general" ],
 	// Input a superlative that ends in -érrimo, -érrima, -érrimos, érrimas.
 	[ "genialérrima", "genial" ],
 	[ "tristérrimo", "trist" ],
 	// Exceptions in superlatives.
-	// [ "habilísima", "habil" ],
+	[ "habilísima", "habil" ],
 	[ "majérrimo", "majerrim" ],
 	[ "cérrimo", "cerrim" ],
 	[ "gérrimo", "gerrim" ],
@@ -128,15 +143,24 @@ const wordsToStem = [
 	[ "registeis", "reg" ],
 	[ "rigiera", "reg" ],
 	// Input a word whose stem ends in zc ∧ suffix = {o, [pres. subj suffixes], a, as, amos, áis, an}.
-	// [ "conozco", "conoc" ],
+	[ "conozco", "conoc" ],
+	[ "conozcamos", "conoc" ],
 	[ "traduzcamos", "traduc" ],
+	[ "compadezco", "compadec" ],
 	// Input a word whose stem ends in -c ∧ suffix = {é}.
-	// [ "lancé", "lanz" ],
-	// [ "visualicé", "visualiz" ],
-	// Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	[ "lancé", "lanz" ],
+	[ "visualicé", "visualiz" ],
+	[ "empecé", "empez" ],
+	/*
+	 * Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix =
+	 * {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	 */
 	[ "sintió", "sent" ],
 	[ "sugiriese", "suger" ],
-	// Input a word whose stem ends in x: X = CVC(C) ∧ V = {u} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	/*
+	 * Input a word whose stem ends in x: X = CVC(C) ∧ V = {u} ∧ suffix =
+	 * {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	 */
 	[ "murieron", "mor" ],
 	[ "durmió", "dorm" ],
 	// Input a word whose stem contains ie (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
@@ -154,14 +178,15 @@ const wordsToStem = [
 	[ "consensúas", "consensu" ],
 	[ "licúa", "licu" ],
 	// Input a verb where stem ends on -qu-, -gu- and precedes -é, -e, -es, -emos, -éis, -en
-	// [ "apliques", "aplic" ],
-	// [ "ataquemos", "atac" ],
+	[ "apliques", "aplic" ],
+	[ "ataquemos", "atac" ],
+	[ "rebusques", "rebusc" ],
 	[ "conjuguen", "conjug" ],
 	[ "juzguéis", "juzg" ],
 	// Exceptions for rules on stem-modifying verbs.
 	[ "aguaste", "agu" ],
 	[ "engreíais", "engre" ],
-	// [ "interdijese", "interdec" ],
+	[ "interdijese", "interdec" ],
 	// Input a verb that has multiple stems.
 	[ "compuesta", "compon" ],
 	[ "compongo", "compon" ],
@@ -193,13 +218,13 @@ const wordsToStem = [
 	// Words that look like verb forms but aren't verbs.
 	// Non-verb ending in -ió
 	[ "chevió", "chevi" ],
-	// [ "cheviós", "chevi" ],
+	[ "cheviós", "chevi" ],
 	// Non-verb ending in -irán
 	[ "caguairán", "caguairan" ],
 	[ "caguairanes", "caguairan" ],
 	// Non-verb ending in -ái
 	[ "samurái", "samurai" ],
-	// [ "samuráis", "samurai" ],
+	[ "samuráis", "samurai" ],
 	// Non-verb ending in -ei
 	[ "chatolei", "chatolei" ],
 	// Non-verb ending in -éi
@@ -214,10 +239,10 @@ const wordsToStem = [
 	[ "abadas", "abad" ],
 	// Non-verb ending in -ado
 	[ "mercado", "mercad" ],
-	// [ "mercados", "mercad" ],
+	[ "mercados", "mercad" ],
 	// Non-verb ending in -imo
 	[ "mínimo", "minim" ],
-	// [ "mínimos", "minim" ],
+	[ "mínimos", "minim" ],
 	// Non-verb ending in -emo
 	[ "extremo", "extrem" ],
 	[ "extremos", "extrem" ],
@@ -232,7 +257,7 @@ const wordsToStem = [
 	[ "series", "seri" ],
 	// Non-verb ending in -ié
 	[ "hincapié", "hincapi" ],
-	// [ "hincapiés", "hincapi" ],
+	[ "hincapiés", "hincapi" ],
 	// Non-verb ending in -ando
 	[ "contrabando", "contraband" ],
 	[ "contrabandos", "contraband" ],
@@ -240,19 +265,19 @@ const wordsToStem = [
 	[ "cuándo", "cuand" ],
 	// Non-verb ending in -aré
 	[ "pagaré", "pagar" ],
-	// [ "pagarés", "pagar" ],
+	[ "pagarés", "pagar" ],
 	// Non-verb ending in -eré
 	[ "tereré", "terer" ],
-	// [ "tererés", "terer" ],
+	[ "tererés", "terer" ],
 	// Non-verb ending in -ará
 	[ "yarará", "yarar" ],
-	// [ "yararás", "yarar" ],
+	[ "yararás", "yarar" ],
 	// Non-verb ending in -erá
 	[ "camerá", "camer" ],
-	// [ "camerás", "camer" ],
+	[ "camerás", "camer" ],
 	// Non-verb ending in -irá
 	[ "aragüirá", "aragüir" ],
-	// [ "aragüirás", "aragüir" ],
+	[ "aragüirás", "aragüir" ],
 	// Non-verb ending in -ia
 	[ "historia", "histori" ],
 	[ "historias", "histori" ],
@@ -260,7 +285,7 @@ const wordsToStem = [
 	[ "apartheid", "apartheid" ],
 	// Non-verb ending in -aba
 	[ "guayaba", "guayab" ],
-	// [ "guayabas", "guayab" ],
+	[ "guayabas", "guayab" ],
 	// Non-verb ending in -asta
 	[ "canasta", "canast" ],
 	[ "canastas", "canast" ],
@@ -268,11 +293,11 @@ const wordsToStem = [
 	[ "quiste", "quist" ],
 	[ "quistes", "quist" ],
 	// Non-verb ending in -aste
-	// [ "contraste", "contrast" ],
+	[ "contraste", "contrast" ],
 	[ "contrastes", "contrast" ],
 	// Non-verb ending in -ía
 	[ "policía", "polici" ],
-	// [ "policías", "polici" ],
+	[ "policías", "polici" ],
 	// Non-verb ending in -an
 	[ "eslogan", "eslogan" ],
 	[ "eslóganes", "eslogan" ],
@@ -289,7 +314,7 @@ const wordsToStem = [
 	[ "gobieron", "gobieron" ],
 	// Non-verb ending in -iera
 	[ "ingeniera", "ingenier" ],
-	// [ "ingenieras", "ingenier" ],
+	[ "ingenieras", "ingenier" ],
 	// Non-verb ending in -aron
 	[ "gatillaron", "gatillaron" ],
 	// Non-verb ending in -ida
@@ -300,10 +325,10 @@ const wordsToStem = [
 	[ "partidos", "part" ],
 	// Non-verb ending in -amo
 	[ "reclamo", "reclam" ],
-	// [ "reclamos", "reclam" ],
+	[ "reclamos", "reclam" ],
 	// Non-verb ending in -ara
 	[ "máscara", "mascar" ],
-	// [ "máscaras", "mascar" ],
+	[ "máscaras", "mascar" ],
 	// Non-verb ending in -ere
 	[ "títere", "titer" ],
 	[ "títeres", "titer" ],
@@ -331,13 +356,41 @@ const wordsToStem = [
 	[ "bumerán", "bumeran" ],
 	// Non-verb ending in -asta
 	[ "empaste", "empast" ],
+	[ "empastes", "empast" ],
 	// Non-verb ending in -iste
 	[ "quiste", "quist" ],
-	// Non-verb ending in -ido
-	[ "sólida", "solid" ],
+	[ "quistes", "quist" ],
 	// Non-verb ending in -ida
+	[ "sólida", "solid" ],
+	[ "sólidas", "solid" ],
+	// Non-verb ending in -ido
 	[ "antióxido", "antioxid" ],
+	[ "antióxidos", "antioxid" ],
 ];
+
+const paradigms = [
+	// A paradigm with various types of diminutive
+	{ stem: "nariz", forms: [ "nariz", "naricitas", "narizotas" ] },
+	{ stem: "murall", forms: [ "murallas", "murallitas", "murallotas" ] },
+	{ stem: "azucar", forms: [ "azúcar", "azucarita", "azuquítar" ] },
+	{ stem: "pared", forms: [ "pared", "paredcita", "parecita", "paredita", "paredilla" ] },
+	{ stem: "ciudad", forms: [ "ciudadcita", "ciudadita", "ciudaduela", "ciudadela" ] },
+	{ stem: "alegr", forms: [ "alegre", "alegrete", "alegreta" ] },
+	{ stem: "mam", forms: [ "mama", "mamá", "mamaíta", "mamita", "mamacita", "mami" ] },
+	{ stem: "pap", forms: [ "papa", "papá", "papaíto", "papito", "papacito", "papi" ] },
+	{ stem: "bibliotec", forms: [ "biblioteca", "bibliotecita" ] },
+	{ stem: "muñec", forms: [ "muñeca", "muñecas", "muñeco", "muñecos", "muñecito" ] },
+	{ stem: "chalec", forms: [ "chaleco", "chalecos", "chalecito", "chalecitos" ] },
+	{ stem: "chec", forms: [ "checo", "checos", "checito", "checitos" ] },
+	{ stem: "jaquec", forms: [ "jaqueca", "jaquecas", "jaquecita", "jaquecitas" ] },
+	{ stem: "videotec", forms: [ "videoteca", "videotecas", "videotecita", "videotecitas" ] },
+	{ stem: "rey", forms: [ "reyecito", "reyecitos", "reicito", "reicitos", "reyito", "reyitos" ] },
+	{ stem: "puert", forms: [ "puertecito", "puertecitos", "puertito", "puertitos" ] },
+	{ stem: "beb", forms: [ "bebita", "bebitas", "bebecita", "bebecitas", "bebecito" ] },
+	{ stem: "lunch", forms: [ "lonchecito", "lonchito", "lunchito" ] },
+
+];
+
 
 describe( "Test for stemming Spanish words", () => {
 	for ( let i = 0; i < wordsToStem.length; i++ ) {
@@ -348,3 +401,12 @@ describe( "Test for stemming Spanish words", () => {
 	}
 } );
 
+describe( "Test to make sure all forms of a paradigm get stemmed to the same stem", () => {
+	for ( const paradigm of paradigms ) {
+		for ( const form of paradigm.forms ) {
+			it( "correctly stems the word: " + form + " to " + paradigm.stem, () => {
+				expect( stem( form, morphologyDataES ) ).toBe( paradigm.stem );
+			} );
+		}
+	}
+} );

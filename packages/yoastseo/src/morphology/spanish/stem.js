@@ -193,10 +193,12 @@ const tryStemAsSuperlative = function( word, r1Text, superlativesStemming ) {
 
 /**
  * The function considers if the input word can be a diminutive and if so stems it.
- * @param   {string}   word                                    The word to stem.
- * @param   {Object}   diminutivesStemming                     An object containing information about how to stem diminutives.
- * @param   {string[]} diminutivesStemming.notDiminutives      An array of words that look like diminutives but are not.
- * @param   {Array}    diminutivesStemming.diminutiveToStem    An array of pairs of regexes to match.
+ * @param   {string}   word                                         The word to stem.
+ * @param   {Object}   diminutivesStemming                          An object containing information about how to stem diminutives.
+ * @param   {string[]} diminutivesStemming.notDiminutives           An array of words that look like diminutives but are not.
+ * @param   {Array}    diminutivesStemming.diminutiveToStem         An array of pairs of regexes to match.
+ * @param   {Array}    diminutivesStemming.irregularDiminutives     An array containing data for irregular diminutives.
+ *
  * @returns {string}   A stemmed diminutive or the input word, if it is not a diminutive.
  */
 const tryStemAsDiminutive = function( word, diminutivesStemming ) {
@@ -205,6 +207,17 @@ const tryStemAsDiminutive = function( word, diminutivesStemming ) {
 	// Immediately return the input word if no diminutive suffix is found or the word is in the stopList.
 	if ( diminutiveSuffix === "" ||  diminutivesStemming.notDiminutives.includes( word ) ) {
 		return word;
+	}
+
+	// Remove o/a/os/as and check irregular diminutives ending in -it-/-ít-
+	const wordWithoutEnding = word.endsWith( "s" )
+		? word.slice( 0, word.length - 2 )
+		: word.slice( 0, word.length - 1 );
+
+	for ( const paradigm of diminutivesStemming.irregularDiminutives ) {
+		if ( paradigm[ 1 ].includes( wordWithoutEnding ) ) {
+			return paradigm[ 0 ];
+		}
 	}
 
 	return buildOneFormFromRegex( word, createRulesFromMorphologyData(  diminutivesStemming.diminutiveToStem ) ) || word;
@@ -254,15 +267,11 @@ const canonicalizeStem = function( stemmedWord, stemsThatBelongToOneWord ) {
  *
  * @returns {string} The word with the verb suffixes removed (if applicable).
  */
-const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData ) {
-	const notVerbForms = morphologyData.wordsThatLookLikeButAreNot.notVerbForms;
-	const nonPluralsOnS = morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS;
-
+const stemVerbSuffixes = function( word, wordAfter1, rvText, rv ) {
 	// Do step 2a if no ending was removed by step 1.
 	const suf = endsInArr( rvText, [ "ya", "ye", "yan", "yen", "yeron", "yendo", "yo", "yó", "yas", "yes", "yais", "yamos" ] );
 
-	if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) &&
-		! notVerbForms.includes( word ) ) {
+	if ( suf !== "" && ( word.slice( -suf.length - 1, -suf.length ) === "u" ) ) {
 		word = word.slice( 0, -suf.length );
 	}
 
@@ -285,11 +294,9 @@ const stemVerbSuffixes = function( word, wordAfter1, rvText, rv, morphologyData 
 			"isteis", "ados", "idos", "amos", "ábamos", "íamos", "imos", "áramos",
 			"iéramos", "iésemos", "ásemos" ] );
 		const suf12 = endsInArr( rvText, [ "en", "es", "éis", "emos" ] );
-		if ( suf11 !== "" && ! nonPluralsOnS.includes( word ) &&
-			! notVerbForms.includes( word ) ) {
+		if ( suf11 !== "" ) {
 			word = word.slice( 0, -suf11.length );
-		} else if ( suf12 !== "" && ! nonPluralsOnS.includes( word ) &&
-			! notVerbForms.includes( word ) ) {
+		} else if ( suf12 !== "" ) {
 			word = word.slice( 0, -suf12.length );
 			if ( endsIn( word, "gu" ) ) {
 				word = word.slice( 0, -1 );
@@ -387,12 +394,12 @@ const stemDerivationalForms = function( word, r2Text ) {
  * @param {string} word					The word checked.
  * @param {string} rvText				The text of RV.
  * @param {number} rv                  	The start position of the RV.
- * @param {Object} morphologyData      	The Spanish morphology data.
+
  * @returns {string} The word with removed suffix.
  */
-const stemSuf13Suffix = function( word, rvText, rv, morphologyData ) {
+const stemSuf13Suffix = function( word, rvText, rv ) {
 	const suf13 = endsInArr( rvText, [ "os", "a", "o", "á", "í", "ó" ] );
-	if ( suf13 !== "" && ! morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS.includes( word ) ) {
+	if ( suf13 !== "" ) {
 		word = word.slice( 0, -suf13.length );
 	} else if ( ( endsInArr( rvText, [ "e", "é" ] ) ) !== "" ) {
 		word = word.slice( 0, -1 );
@@ -418,6 +425,11 @@ export default function stem( word, morphologyData ) {
 	const ifException = checkWordInFullFormExceptions( word, morphologyData.exceptionStemsWithFullForms );
 	if ( ifException ) {
 		return ifException;
+	}
+
+	const nonPluralsOnS = morphologyData.wordsThatLookLikeButAreNot.nonPluralsOnS;
+	if ( nonPluralsOnS.includes( word ) ) {
+		return removeAccent( word );
 	}
 
 	const length = word.length;
@@ -489,13 +501,29 @@ export default function stem( word, morphologyData ) {
 
 	// Step 2a and 2b stem verb suffixes.
 	const notVerbForms = morphologyData.wordsThatLookLikeButAreNot.notVerbForms;
-	if ( wordAfter0 === wordAfter1 && ! notVerbForms.includes( word ) ) {
-		word = stemVerbSuffixes( word, wordAfter1, rvText, rv, morphologyData );
+
+	if ( wordAfter0 === wordAfter1 ) {
+		// If the word ends in -s, it is removed before checking the non-verbs list, as the list does not include plural forms.
+		let wordWithoutS = word;
+		if ( word.endsWith( "s" ) ) {
+			wordWithoutS = word.slice( 0, -1 );
+		}
+
+		if ( notVerbForms.includes( wordWithoutS ) ) {
+			/*
+			 * If the word without -s is matched on the non-verbs list, we can perform the next (non-verb) stemming steps
+			 * with the -s removed. This is because all possible non-verb suffixes ending in -s also have an equivalent
+			 * without the -s (e.g. -as/a; -es/e), so will be stemmed after stripping the -s.
+			 */
+			word = wordWithoutS;
+		} else {
+			word = stemVerbSuffixes( word, wordAfter1, rvText, rv, morphologyData );
+		}
 	}
 
 	rvText = word.slice( rv );
 	// If the word ends in one of these suffixes "os", "a", "o", "á", "í", "ó", "e", "é", the suffix will be removed here.
-	word = stemSuf13Suffix( word, rvText, rv, morphologyData );
+	word = stemSuf13Suffix( word, rvText, rv );
 
 	const canonicalStem = canonicalizeStem( word, morphologyData.stemsThatBelongToOneWord );
 	if ( canonicalStem ) {
