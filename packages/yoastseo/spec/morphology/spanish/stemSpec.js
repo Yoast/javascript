@@ -32,10 +32,13 @@ const wordsToStem = [
 	[ "actricita", "actriz" ],
 	[ "ciudadcita", "ciudad" ],
 	[ "ciudadita", "ciudad" ],
+	[ "raicitos", "raiz" ],
+	[ "raicitas", "raiz" ],
 	// Input a diminutive that is on the stem canonicalization exception list for nouns
 	[ "ciudaduela", "ciudad" ],
 	[ "ciudadela", "ciudad" ],
 	[ "abejuela", "abej" ],
+	[ "locuelo", "loc" ],
 	// Input a word that is a typical diminutive and should be stemmed by the rules.
 	[ "puertecita", "puert" ],
 	[ "ventitas", "vent" ],
@@ -381,6 +384,10 @@ const paradigms = [
 	{ stem: "chec", forms: [ "checo", "checos", "checito", "checitos" ] },
 	{ stem: "jaquec", forms: [ "jaqueca", "jaquecas", "jaquecita", "jaquecitas" ] },
 	{ stem: "videotec", forms: [ "videoteca", "videotecas", "videotecita", "videotecitas" ] },
+	{ stem: "rey", forms: [ "reyecito", "reyecitos", "reicito", "reicitos", "reyito", "reyitos" ] },
+	{ stem: "puert", forms: [ "puertecito", "puertecitos", "puertito", "puertitos" ] },
+	{ stem: "beb", forms: [ "bebita", "bebitas", "bebecita", "bebecitas", "bebecito" ] },
+	{ stem: "lunch", forms: [ "lonchecito", "lonchito", "lunchito" ] },
 
 ];
 
