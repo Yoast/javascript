@@ -25,9 +25,20 @@ const wordsToStem = [
 	// Input a word that looks like a diminutive but is not.
 	[ "acólito", "acolit" ],
 	[ "amalecitas", "amalecit" ],
-	// Input a word that is on the diminutive exceptions list.
+	// Input a word that is on the diminutive exceptions list for diminutives ending in -it-.
 	[ "reicito", "rey" ],
+	[ "realitito", "reality" ],
 	[ "lucecita", "luz" ],
+	[ "actricita", "actriz" ],
+	[ "ciudadcita", "ciudad" ],
+	[ "ciudadita", "ciudad" ],
+	[ "raicitos", "raiz" ],
+	[ "raicitas", "raiz" ],
+	// Input a diminutive that is on the stem canonicalization exception list for nouns
+	[ "ciudaduela", "ciudad" ],
+	[ "ciudadela", "ciudad" ],
+	[ "abejuela", "abej" ],
+	[ "locuelo", "loc" ],
 	// Input a word that is a typical diminutive and should be stemmed by the rules.
 	[ "puertecita", "puert" ],
 	[ "ventitas", "vent" ],
@@ -96,7 +107,10 @@ const wordsToStem = [
 	[ "velocísimas", "veloz" ],
 	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by i.
 	[ "impiísima", "impi" ],
-	// Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
+	/*
+	 * Input a superlative that ends in -ísimo, -ísima, ísimos, -ísimas and is preceded by
+	 * -b, -d, -f, -g, -h, -i, -l, -m, -n, -p, -q, -r, -s, -t, -v, -z, -x, -y, -w, -k, -j, -u.
+	 */
 	[ "rapidísimo", "rapid" ],
 	[ "generalísimas", "general" ],
 	// Input a superlative that ends in -érrimo, -érrima, -érrimos, érrimas.
@@ -137,10 +151,16 @@ const wordsToStem = [
 	[ "lancé", "lanz" ],
 	[ "visualicé", "visualiz" ],
 	[ "empecé", "empez" ],
-	// Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	/*
+	 * Input a word whose stem ends in x: X = CVC(C) ∧ V = {i} ∧ suffix =
+	 * {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	 */
 	[ "sintió", "sent" ],
 	[ "sugiriese", "suger" ],
-	// Input a word whose stem ends in x: X = CVC(C) ∧ V = {u} ∧ suffix = {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	/*
+	 * Input a word whose stem ends in x: X = CVC(C) ∧ V = {u} ∧ suffix =
+	 * {í, iste, ió, imos, isteis, ieron, amos, áis, iendo, [imp. & fut. subj suffixes], [pres. subj suffixes], e, o}.
+	 */
 	[ "murieron", "mor" ],
 	[ "durmió", "dorm" ],
 	// Input a word whose stem contains ie (but not in the infinitive) ∧ suffix = {o, es, as, e, a, en, an}.
@@ -348,6 +368,30 @@ const wordsToStem = [
 	[ "antióxidos", "antioxid" ],
 ];
 
+const paradigms = [
+	// A paradigm with various types of diminutive
+	{ stem: "nariz", forms: [ "nariz", "naricitas", "narizotas" ] },
+	{ stem: "murall", forms: [ "murallas", "murallitas", "murallotas" ] },
+	{ stem: "azucar", forms: [ "azúcar", "azucarita", "azuquítar" ] },
+	{ stem: "pared", forms: [ "pared", "paredcita", "parecita", "paredita", "paredilla" ] },
+	{ stem: "ciudad", forms: [ "ciudadcita", "ciudadita", "ciudaduela", "ciudadela" ] },
+	{ stem: "alegr", forms: [ "alegre", "alegrete", "alegreta" ] },
+	{ stem: "mam", forms: [ "mama", "mamá", "mamaíta", "mamita", "mamacita", "mami" ] },
+	{ stem: "pap", forms: [ "papa", "papá", "papaíto", "papito", "papacito", "papi" ] },
+	{ stem: "bibliotec", forms: [ "biblioteca", "bibliotecita" ] },
+	{ stem: "muñec", forms: [ "muñeca", "muñecas", "muñeco", "muñecos", "muñecito" ] },
+	{ stem: "chalec", forms: [ "chaleco", "chalecos", "chalecito", "chalecitos" ] },
+	{ stem: "chec", forms: [ "checo", "checos", "checito", "checitos" ] },
+	{ stem: "jaquec", forms: [ "jaqueca", "jaquecas", "jaquecita", "jaquecitas" ] },
+	{ stem: "videotec", forms: [ "videoteca", "videotecas", "videotecita", "videotecitas" ] },
+	{ stem: "rey", forms: [ "reyecito", "reyecitos", "reicito", "reicitos", "reyito", "reyitos" ] },
+	{ stem: "puert", forms: [ "puertecito", "puertecitos", "puertito", "puertitos" ] },
+	{ stem: "beb", forms: [ "bebita", "bebitas", "bebecita", "bebecitas", "bebecito" ] },
+	{ stem: "lunch", forms: [ "lonchecito", "lonchito", "lunchito" ] },
+
+];
+
+
 describe( "Test for stemming Spanish words", () => {
 	for ( let i = 0; i < wordsToStem.length; i++ ) {
 		const wordToCheck = wordsToStem[ i ];
@@ -357,3 +401,12 @@ describe( "Test for stemming Spanish words", () => {
 	}
 } );
 
+describe( "Test to make sure all forms of a paradigm get stemmed to the same stem", () => {
+	for ( const paradigm of paradigms ) {
+		for ( const form of paradigm.forms ) {
+			it( "correctly stems the word: " + form + " to " + paradigm.stem, () => {
+				expect( stem( form, morphologyDataES ) ).toBe( paradigm.stem );
+			} );
+		}
+	}
+} );
