@@ -77,7 +77,6 @@ const wordsToStem = [
 	// Input a word that is on the stems that belong together list.
 	// [ "dollar", "dolar" ],
 	// [ "chalets", "chale" ],
-	// [ "sé", "sab" ],
 	[ "quepa", "cab" ],
 	// Input a word that ends in -en, -es, -éis, -emos and is not preceded by gu.
 	[ "valéis", "val" ],
@@ -85,9 +84,10 @@ const wordsToStem = [
 	// Input a word that ends in -en, -es, -éis, -emos and is preceded by gu.
 	[ "distinguen", "distingu" ],
 	[ "alarguemos", "alarg" ],
+	// Input a participle of a verb that is also a noun (should be stemmed as a verb)
+	[ "cabalgadas", "cabalg" ],
 	// Input a word that looks like a verb form but it's not.
-	// [ "cabalgada", "cabalgad" ],
-	// [ "abacerías", "abaceri" ],
+	[ "abacerías", "abaceri" ],
 	// Input a word that looks like a verb form and is on the list of stems that belong together.
 	[ "san", "san" ],
 	[ "virgen", "virgen" ],
