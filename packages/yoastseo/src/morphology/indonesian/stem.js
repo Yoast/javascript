@@ -64,8 +64,8 @@ const stemDerivational = function( word, morphologyData ) {
 	const removeSuffixExceptions = morphologyData.stemming.doNotStemWords.doNotStemSuffix;
 
 	/*
-	 * If the word starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
-	 * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here. e.g. kesenangan -> senang
+	 * If the word has more than 2 syllables and starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
+	 * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here. e.g. penyebaran -> sebaran, diperlebarkan -> perlebarkan
 	 */
 	word = removeFirstOrderPrefix( word, morphologyData );
 
