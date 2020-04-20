@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import stem from "../../../../src/morphology/indonesian/stem";
+import { stem } from "../../../../src/morphology/indonesian/stem";
 import getMorphologyData from "../../../specHelpers/getMorphologyData";
 import filterFunctionWordsFromArray from "../../../../src/helpers/filterFunctionWordsFromArray.js";
 
-const morphologyDataIN = getMorphologyData( "in" ).in;
+const morphologyDataIN = getMorphologyData( "ind" ).in;
 // The sample vocabulary used in this test is taken from https://snowballstem.org/algorithms/indonesian/stemmer.html.
 const wordsToStem = [
 	"a",

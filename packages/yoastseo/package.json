@@ -105,7 +105,9 @@
       "/spec/specHelpers/*",
       "/spec/fullTextTests/testTexts",
       "/spec/morphology/spanish/stemmerCoverage/generateStems.js",
-      "/spec/morphology/spanish/stemmerCoverage/goldStandardStems.json"
+      "/spec/morphology/spanish/stemmerCoverage/goldStandardStems.json",
+      "/spec/morphology/indonesian/stemmerCoverage/generateStems.js",
+      "/spec/morphology/indonesian/stemmerCoverage/goldStandardStems.json"
     ],
     "coveragePathIgnorePatterns": [
       "js/templates.js"

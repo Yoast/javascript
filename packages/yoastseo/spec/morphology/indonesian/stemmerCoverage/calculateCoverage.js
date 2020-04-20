@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import stem from "../../../../src/morphology/indonesian/stem";
+import { stem } from "../../../../src/morphology/indonesian/stem";
 import getMorphologyData from "../../../specHelpers/getMorphologyData";
 import goldStandard from "./goldStandardStems.json";
 
-const morphologyDataIN = getMorphologyData( "in" ).in;
+const morphologyDataIN = getMorphologyData( "ind" ).in;
 
 const coverageThreshold = 0.8;
 
