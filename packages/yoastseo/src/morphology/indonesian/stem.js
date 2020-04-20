@@ -18,7 +18,7 @@ const stemDerivational = function( word ) {
 	let wordLength = word.length;
 	/*
 	 * If the word has more than 2 syllables and starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
-	 * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here.
+	 * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here. e.g. penyebaran -> sebaran, diperlebarkan -> perlebarkan
 	 */
 	if ( totalSyllables( word ) > 2 ) {
 		// e.g. kesenangan -> senang
@@ -27,8 +27,9 @@ const stemDerivational = function( word ) {
 	if ( wordLength !== word.length ) {
 		// If the word previously had a first order prefix, assign wordLength to the length of the word after prefix deletion.
 		wordLength = word.length;
-		// If the word after first order prefix deletion is bigger than 2 and ends in either -kan, -an, or -i suffixes, the suffix will be stemmed here. e.g. penyebaran - sebar
+		// If the word after first order prefix deletion is bigger than 2 and ends in either -kan, -an, or -i suffixes, the suffix will be stemmed here.
 		if ( totalSyllables( word ) > 2 ) {
+			// e.g. penyebaran - sebar, perlebarkan -> perlebar
 			word = removeSuffix( word );
 		}
 		/*
@@ -37,18 +38,19 @@ const stemDerivational = function( word ) {
 		 */
 		if ( wordLength !== word.length ) {
 			if ( totalSyllables( word ) > 2 ) {
+				// e.g. perlebar -> lebar
 				word = removeSecondOrderPrefix( word );
 			}
 		}
 	} else {
 		/*
 		 * If the word has more than 2 syllables, does not start with one of the first order prefixes
-		 * but starts with one of the second order prefixes, the prefix will be stemmed here. e.g. peranakan -> anakan
+		 * but starts with one of the second order prefixes, the prefix will be stemmed here. e.g. peranakan -> anakan, bekerja -> kerja
 		 */
 		if ( totalSyllables( word ) > 2 ) {
 			word = removeSecondOrderPrefix( word );
 		}
-		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here. e.g. e.g. anakan -> anak
+		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here. e.g. e.g. anakan -> anak, makanan -> makan
 		if ( totalSyllables( word ) > 2 ) {
 			word = removeSuffix( word );
 		}
