@@ -1,7 +1,6 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
-import { calculateTotalNumberOfSyllables, removePart, isVowel } from "./helpers";
-
+import { calculateTotalNumberOfSyllables, removePart, checkBeginningsList } from "./helpers";
 
 /**
  * Stems the first-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
@@ -12,28 +11,25 @@ import { calculateTotalNumberOfSyllables, removePart, isVowel } from "./helpers"
  * @returns {string} The stemmed word.
  */
 const removeFirstOrderPrefix = function( word, morphologyData ) {
+	const beginningModification = morphologyData.stemming.beginningModification;
+
 	// If a word starts with "men" or "pen" and is present in the nBeginning exception list, the prefix should be replaced with "n".
-	if ( word.startsWith( "men" ) || word.startsWith( "pen" ) ) {
-		if ( morphologyData.stemming.beginningModification.nBeginning.some( exception => word.startsWith( exception ) ) ) {
-			return word.replace( /^(men|pen)/i, "n" );
-		} else if ( isVowel( word.substr( 3, 1 ) ) ) {
-			return word.replace( /^(men|pen)/i, "t" );
+	if ( /^[mp]en/i.test( word ) ) {
+		if ( checkBeginningsList( word, beginningModification.nBeginning ) ) {
+			return word.replace( /^[mp]en/i, "n" );
 		}
 	}
-
-	if ( ( word.startsWith( "meng" ) || word.startsWith( "peng" ) ) &&
-		morphologyData.stemming.beginningModification.kBeginning.some( exception => word.startsWith( exception ) ) ) {
-		return word.replace( /^(meng|peng)/i, "k" );
+	if ( /^[mp]eng/i.test( word ) && checkBeginningsList( word, beginningModification.kBeginning ) ) {
+		return word.replace( /^[mp]eng/i, "k" );
 	}
 
-	if ( ( word.startsWith( "mem" ) || word.startsWith( "pem" ) ) &&
-		morphologyData.stemming.beginningModification.pBeginning.some( exception => word.startsWith( exception ) ) ) {
+	if ( /^[mp]em/i.test( word ) && checkBeginningsList( word, beginningModification.pBeginning ) ) {
 		return word.replace( /^(mem|pem)/i, "p" );
 	}
 
 
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
-	if ( word.startsWith( "ter" ) || morphologyData.stemming.beginningModification.rBeginning.some( exception => word.startsWith( exception ) ) ) {
+	if ( word.startsWith( "ter" ) || checkBeginningsList( word, beginningModification.rBeginning ) ) {
 		return word.replace( /^ter/i, "r" );
 	}
 
@@ -53,8 +49,8 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
  */
 const removeSecondOrderPrefix = function( word, morphologyData ) {
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
-	if ( word.startsWith( "ber" ) || word.startsWith( "per" ) ||
-		morphologyData.stemming.beginningModification.rBeginning.some( exception => word.startsWith( exception ) ) ) {
+	if ( ( word.startsWith( "ber" ) || word.startsWith( "per" ) ) &&
+		checkBeginningsList( word, morphologyData.stemming.beginningModification.rBeginning ) ) {
 		return word.replace( /^(ber|per)/i, "r" );
 	}
 
@@ -85,12 +81,11 @@ const stemDerivational = function( word, morphologyData ) {
 
 	if ( wordLength === word.length ) {
 		/**
-		 * If the word has more than 2 syllables, does not start with one of the first order prefixes
-		 * but starts with one of the second order prefixes, the prefix will be stemmed here, e.g., peranakan -> anakan
+		 * If the word does not start with one of the first order prefixes but starts with one of the second order prefixes,
+		 * the prefix will be stemmed here, e.g., peranakan -> anakan
 		 */
-		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
-			word = removeSecondOrderPrefix( word, morphologyData );
-		}
+		word = removeSecondOrderPrefix( word, morphologyData );
+
 		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here, e.g., anakan -> anak
 		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 			word = removePart( word, removeSuffixRules, removeSuffixExceptions );
