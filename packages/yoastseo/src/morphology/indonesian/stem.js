@@ -15,21 +15,21 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 
 	// If a word starts with "men" or "pen" and is present in the nBeginning exception list, the prefix should be replaced with "n".
 	if ( /^[mp]en/i.test( word ) ) {
-		if ( checkBeginningsList( word, beginningModification.nBeginning ) ) {
+		if ( checkBeginningsList( word, 3, beginningModification.nBeginning ) ) {
 			return word.replace( /^[mp]en/i, "n" );
 		}
 	}
-	if ( /^[mp]eng/i.test( word ) && checkBeginningsList( word, beginningModification.kBeginning ) ) {
+	if ( /^[mp]eng/i.test( word ) && checkBeginningsList( word, 4, beginningModification.kBeginning ) ) {
 		return word.replace( /^[mp]eng/i, "k" );
 	}
 
-	if ( /^[mp]em/i.test( word ) && checkBeginningsList( word, beginningModification.pBeginning ) ) {
+	if ( /^[mp]em/i.test( word ) && checkBeginningsList( word, 3, beginningModification.pBeginning ) ) {
 		return word.replace( /^(mem|pem)/i, "p" );
 	}
 
 
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
-	if ( word.startsWith( "ter" ) || checkBeginningsList( word, beginningModification.rBeginning ) ) {
+	if ( word.startsWith( "ter" ) || checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
 		return word.replace( /^ter/i, "r" );
 	}
 
@@ -50,7 +50,7 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 const removeSecondOrderPrefix = function( word, morphologyData ) {
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
 	if ( ( word.startsWith( "ber" ) || word.startsWith( "per" ) ) &&
-		checkBeginningsList( word, morphologyData.stemming.beginningModification.rBeginning ) ) {
+		checkBeginningsList( word, 3, morphologyData.stemming.beginningModification.rBeginning ) ) {
 		return word.replace( /^(ber|per)/i, "r" );
 	}
 
