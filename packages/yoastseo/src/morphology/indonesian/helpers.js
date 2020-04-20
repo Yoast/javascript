@@ -10,9 +10,9 @@ const vowelCharacters = [ "a", "e", "i", "o", "u" ];
  *
  * @returns {boolean} Whether the input character is an Indonesian vowel.
  */
-const isVowel = function( character ) {
+export function isVowel( character ) {
 	return vowelCharacters.includes( character );
-};
+}
 
 
 /**

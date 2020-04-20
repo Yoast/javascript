@@ -1,6 +1,6 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
-import { calculateTotalNumberOfSyllables, removePart } from "./helpers";
+import { calculateTotalNumberOfSyllables, removePart, isVowel } from "./helpers";
 
 
 /**
@@ -13,10 +13,24 @@ import { calculateTotalNumberOfSyllables, removePart } from "./helpers";
  */
 const removeFirstOrderPrefix = function( word, morphologyData ) {
 	// If a word starts with "men" or "pen" and is present in the nBeginning exception list, the prefix should be replaced with "n".
-	if ( word.startsWith( "men" ) || word.startsWith( "pen" ) ||
-		morphologyData.stemming.beginningModification.nBeginning.some( exception => word.startsWith( exception ) ) ) {
-		return word.replace( /^(men|pen)/i, "n" );
+	if ( word.startsWith( "men" ) || word.startsWith( "pen" ) ) {
+		if ( morphologyData.stemming.beginningModification.nBeginning.some( exception => word.startsWith( exception ) ) ) {
+			return word.replace( /^(men|pen)/i, "n" );
+		} else if ( isVowel( word.substr( 3, 1 ) ) ) {
+			return word.replace( /^(men|pen)/i, "t" );
+		}
 	}
+
+	if ( ( word.startsWith( "meng" ) || word.startsWith( "peng" ) ) &&
+		morphologyData.stemming.beginningModification.kBeginning.some( exception => word.startsWith( exception ) ) ) {
+		return word.replace( /^(meng|peng)/i, "k" );
+	}
+
+	if ( ( word.startsWith( "mem" ) || word.startsWith( "pem" ) ) &&
+		morphologyData.stemming.beginningModification.pBeginning.some( exception => word.startsWith( exception ) ) ) {
+		return word.replace( /^(mem|pem)/i, "p" );
+	}
+
 
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
 	if ( word.startsWith( "ter" ) || morphologyData.stemming.beginningModification.rBeginning.some( exception => word.startsWith( exception ) ) ) {
