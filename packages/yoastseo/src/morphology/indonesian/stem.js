@@ -1,56 +1,105 @@
-import {
-	totalSyllables,
-	removeFirstOrderPrefix,
-	removeSecondOrderPrefix,
-	removeSuffix,
-	removeParticle,
-	removePossessivePronoun,
-} from
+import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
+import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
+import { calculateTotalNumberOfSyllables, removePart } from "./helpers";
 
+
+/**
+ * Stems the first-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
+ *
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string} The stemmed word.
+ */
+const removeFirstOrderPrefix = function( word, morphologyData ) {
+	// If a word starts with "men" or "pen" and is present in the nBeginning exception list, the prefix should be replaced with "n".
+	if ( word.startsWith( "men" ) || word.startsWith( "pen" ) ||
+		morphologyData.stemming.beginningModification.nBeginning.some( exception => word.startsWith( exception ) ) ) {
+		return word.replace( /^(men|pen)/i, "n" );
+	}
+
+	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
+	if ( word.startsWith( "ter" ) || morphologyData.stemming.beginningModification.rBeginning.some( exception => word.startsWith( exception ) ) ) {
+		return word.replace( /^ter/i, "r" );
+	}
+
+	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeFirstOrderPrefixes );
+	const withRemovedFirstOrderPrefix = buildOneFormFromRegex( word, regex );
+
+	return withRemovedFirstOrderPrefix || word;
+};
+
+/**
+ * Stems the second-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
+ *
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string} The stemmed word.
+ */
+const removeSecondOrderPrefix = function( word, morphologyData ) {
+	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
+	if ( word.startsWith( "ber" ) || word.startsWith( "per" ) ||
+		morphologyData.stemming.beginningModification.rBeginning.some( exception => word.startsWith( exception ) ) ) {
+		return word.replace( /^(ber|per)/i, "r" );
+	}
+
+	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeSecondOrderPrefixes );
+	const withRemovedSecondOrderPrefix = buildOneFormFromRegex( word, regex );
+
+	return withRemovedSecondOrderPrefix || word;
+};
 
 /**
  * Stems derivational affixes of Indonesian words.
  *
- * @param {string} word The word to stem.
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
  * @returns {string} The stemmed word.
  */
-const stemDerivational = function( word ) {
+const stemDerivational = function( word, morphologyData ) {
 	let wordLength = word.length;
+	const removeSuffixRules = morphologyData.stemming.regexRules.removeSuffixes;
+	const removeSuffixExceptions = morphologyData.stemming.doNotStemWords.doNotStemSuffix;
+
 	/*
-	 * If the word has more than 2 syllables and starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
-	 * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here.
+	 * If the word starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
+	 * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here. e.g. kesenangan -> senang
 	 */
-	if ( totalSyllables( word ) > 2 ) {
-		// e.g. kesenangan -> senang
-		word = removeFirstOrderPrefix( word );
-	}
-	if ( wordLength !== word.length ) {
-		// If the word previously had a first order prefix, assign wordLength to the length of the word after prefix deletion.
-		wordLength = word.length;
-		// If the word after first order prefix deletion is bigger than 2 and ends in either -kan, -an, or -i suffixes, the suffix will be stemmed here. e.g. penyebaran - sebar
-		if ( totalSyllables( word ) > 2 ) {
-			word = removeSuffix( word );
-		}
-		/*
-		 * If the word previously had a suffix, we check further if the word after first order prefix and suffix deletion has more than 2 syllables.
-		 * If it does have more than 2 syllables and starts with one of the second order prefixes (i.e. ber-, be-, per-, pe-), the prefix will be stemmed here.
+	word = removeFirstOrderPrefix( word, morphologyData );
+
+	if ( wordLength === word.length ) {
+		/**
+		 * If the word has more than 2 syllables, does not start with one of the first order prefixes
+		 * but starts with one of the second order prefixes, the prefix will be stemmed here, e.g., peranakan -> anakan
 		 */
-		if ( wordLength !== word.length ) {
-			if ( totalSyllables( word ) > 2 ) {
-				word = removeSecondOrderPrefix( word );
-			}
+		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+			word = removeSecondOrderPrefix( word, morphologyData );
+		}
+		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here, e.g., anakan -> anak
+		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+			word = removePart( word, removeSuffixRules, removeSuffixExceptions );
 		}
 	} else {
-		/*
-		 * If the word has more than 2 syllables, does not start with one of the first order prefixes
-		 * but starts with one of the second order prefixes, the prefix will be stemmed here. e.g. peranakan -> anakan
-		 */
-		if ( totalSyllables( word ) > 2 ) {
-			word = removeSecondOrderPrefix( word );
+		// If the word previously had a first order prefix, assign wordLength to the length of the word after prefix deletion.
+		wordLength = word.length;
+		/**
+		 * If the word after first order prefix deletion is bigger than 2 and ends in either -kan, -an, or -i suffixes,
+		 * the suffix will be stemmed here. e.g. penyebaran - sebar.
+ 		 */
+		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+			word = removePart( word, removeSuffixRules, removeSuffixExceptions );
 		}
-		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here. e.g. e.g. anakan -> anak
-		if ( totalSyllables( word ) > 2 ) {
-			word = removeSuffix( word );
+		/**
+		 * If the word previously had a suffix, we check further if the word after first order prefix and suffix deletion has more than 2 syllables.
+		 * If it does have more than 2 syllables and starts with one of the second order prefixes (i.e. ber-, be-, per-, pe-), the prefix will
+		 * be stemmed here.
+		 */
+		if ( wordLength !== word.length ) {
+			if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+				word = removeSecondOrderPrefix( word, morphologyData );
+			}
 		}
 	}
 	return word;
@@ -59,22 +108,31 @@ const stemDerivational = function( word ) {
 /**
  * Stems Indonesian words
  *
- * @param {string} word The word to stem
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
  *
- * @returns {string}    The stem of Indonesian word.
+ * @returns {string} The stem of Indonesian word.
  */
-const stem = function ( word ) {
-	// If the word has more than 2 syllables and ends in of the particle endings (i.e. -kah, -lah, -pun), stem the particle here.
-	if ( totalSyllables( word ) > 2 ) {
-		// e.g. bajumulah -> bajumu, bawalah -> bawa
-		word = removeParticle( word );
+export function stem( word, morphologyData ) {
+	if ( calculateTotalNumberOfSyllables( word ) <= 2 ) {
+		return word;
 	}
-	// If the word has more than 2 syllables and ends in of the possessive pronoun endings (i.e. -ku, -mu, -nya), stem the ending here.
-	if ( totalSyllables( word ) > 2 ) {
-		// e.g. bajumu -> baju
-		word = removePossessivePronoun( word );
+
+	/**
+	 * If the word has more than 2 syllables and ends in of the particle endings (i.e. -kah, -lah, -pun), stem the particle here.
+	 * e.g. bajumulah -> bajumu, bawalah -> bawa
+	 */
+	word = removePart( word, morphologyData.stemming.regexRules.removeParticle, morphologyData.stemming.doNotStemWords.doNotStemParticle );
+
+	// If the word (still) has more than 2 syllables and ends in of the possessive pronoun endings (i.e. -ku, -mu, -nya), stem the ending here.
+	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+		// E.g. bajumu -> baju
+		word = removePart( word, morphologyData.stemming.regexRules.removePronoun, morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix );
 	}
-	// If the word has derivational affixes, the affix(es) will be stemmed here.
-	word = stemDerivational( word );
+	// If the word (still) has more than 2 syllables and has derivational affixes, the affix(es) will be stemmed here.
+	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+		word = stemDerivational( word, morphologyData );
+	}
+
 	return word;
-};
+}
