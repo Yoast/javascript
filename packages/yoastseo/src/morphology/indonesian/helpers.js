@@ -43,13 +43,12 @@ export function calculateTotalNumberOfSyllables( word ) {
  * @returns {string} The stemmed word.
  */
 export function removePart( word, regexRules, exceptions ) {
-	if ( exceptions.some( exception => word.endsWith( exception ) ) ) {
+	if ( exceptions.includes( word ) ) {
 		return word;
 	}
 
 	const removePartRegex = createRulesFromMorphologyData( regexRules );
 	const withRemovedPart = buildOneFormFromRegex( word, removePartRegex );
-
 	return withRemovedPart || word;
 }
 
@@ -63,6 +62,6 @@ export function removePart( word, regexRules, exceptions ) {
  * @returns {boolean} Whether the word is found in the list with beginnings.
  */
 export function checkBeginningsList( word, prefixLength, beginnings ) {
-	const wordWithoutPrefix = word.slice( prefixLength - 1 );
+	const wordWithoutPrefix = word.slice( prefixLength );
 	return beginnings.some( beginning => wordWithoutPrefix.startsWith( beginning ) );
 }

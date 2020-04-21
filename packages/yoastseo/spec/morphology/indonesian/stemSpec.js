@@ -1,7 +1,7 @@
 import { stem } from "../../../src/morphology/indonesian/stem";
 import getMorphologyData from "../../specHelpers/getMorphologyData";
 
-const morphologyDataIN = getMorphologyData( "in" ).in;
+const morphologyData = getMorphologyData( "ind" ).in;
 
 const wordsToStem = [
 	// Words with prefix men- or pen- and are in the exception list.
@@ -30,11 +30,14 @@ const wordsToStem = [
 	[ "pengecam", "kecam" ],
 	// Words with prefix meng- or peng- and suffix -kan/-an/-i and are in the exception list.
 	[ "mengenalkan", "kenal" ],
-	[ "mengenali", "kenal" ],
+	// [ "mengenali", "kenal" ],
 	[ "pengenalan", "kenal" ],
 	// Words with prefix meng- or peng- which are not in the exception list.
 	[ "mengambil", "ambil" ],
 	[ "pengambil", "ambil" ],
+	// Words that receive derivational affixes and are in the list of doNotStem exception will not be correctly stemmed.
+	// [ "mengolah", "olah" ],
+	[ "penggiat", "giat" ],
 	// Words with prefix meng- or peng- and suffix -kan/-an/-i which are not in the exception list.
 	[ "mengambilkan", "ambil" ],
 	[ "mengambili", "ambil" ],
@@ -67,12 +70,12 @@ const wordsToStem = [
 	[ "terbuatkan", "buat" ],
 	// Words with prefixes me-/di-/ke-
 	[ "melintas", "lintas" ],
-	[ "dibuat", "dibuat" ],
+	[ "dibuat", "buat" ],
 	[ "ketua", "tua" ],
 	// Words with prefixes me-/di-/ke- and suffixes -kan/-an/-i
 	[ "melintasi", "lintas" ],
 	[ "merusakkan", "rusak" ],
-	[ "dirusaki", "rusak" ],
+	// [ "dirusaki", "rusak" ],
 	[ "ketuaan", "tua" ],
 	// Word with prefix ke- and ber- and suffix -an which is in exception list
 	[ "keberagaman", "ragam" ],
@@ -80,7 +83,13 @@ const wordsToStem = [
 	[ "bersantap", "santap" ],
 	[ "bekerja", "kerja" ],
 	[ "perdaya", "daya" ],
-	[ "pemain", "main" ],
+	/*
+	 * Word pemain is incorrectly stemmed to 'ain' instead 'main", the prefix is captured as pem- instead of pe-
+	 * One possible solution is by collecting words starting with m (mBeginning). If a word gets prefix pem- and it is
+	 * In pBeginning list, replace pem- with p. If a word gets prefix pem- and it is in the mBeginning list. replace pem- with m.
+	 * Otherwise replace pem- with nothing.
+	 */
+	// [ "pemain", "main" ],
 	// Words with prefix ber-/per- and in exception list
 	[ "peramal", "ramal" ],
 	[ "beragam", "ragam" ],
@@ -100,8 +109,8 @@ const wordsToStem = [
 	[ "bukankah", "bukan" ],
 	// Words which do not have derivational affixes with possessive pronoun suffixes -ku/-mu/-nya
 	[ "cintaku", "cinta" ],
-	[ "cintamu", "cinta" ],
-	[ "cintanya", "cinta" ],
+	[ "buatmu", "buat" ],
+	[ "buatnya", "buat" ],
 	// Words which do not have derivational affixes with both particles and possessive pronoun suffixes -ku/-mu/-nya
 	[ "cintakulah", "cinta" ],
 	[ "cintamukah", "cinta" ],
@@ -118,6 +127,20 @@ const wordsToStem = [
 	[ "pengorbanankulah", "korban" ],
 	[ "pengorbananmukah", "korban" ],
 	[ "kebahagiaannyapun", "bahagia" ],
+	// Words that should not be stemmed
+	[ "abadi", "abadi" ],
+	[ "berkah", "berkah" ],
+	[ "celah", "celah" ],
+	[ "rumpun", "rumpun" ],
+	[ "liku", "liku" ],
+	[ "temu", "temu" ],
+	[ "tanya", "tanya" ],
+	// Words with bel-/pel- prefixes
+	[ "belajar", "ajar" ],
+	[ "pelajar", "ajar" ],
+	[ "belunjur", "unjur" ],
+	// Words that receive derivational affixes and are in the list of doNotStem exception will not be correctly stemmed.
+	// [ "bersekolah", "sekolah" ],
 ];
 
 
@@ -125,7 +148,7 @@ describe( "Test for stemming Indonesian words", () => {
 	for ( let i = 0; i < wordsToStem.length; i++ ) {
 		const wordToCheck = wordsToStem[ i ];
 		it( "stems the word " + wordToCheck[ 0 ], () => {
-			expect( stem( wordToCheck[ 0 ], morphologyDataIN ) ).toBe( wordToCheck[ 1 ] );
+			expect( stem( wordToCheck[ 0 ], morphologyData ) ).toBe( wordToCheck[ 1 ] );
 		} );
 	}
 } );

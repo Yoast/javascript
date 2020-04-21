@@ -29,7 +29,7 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 
 
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
-	if ( word.startsWith( "ter" ) || checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
+	if ( word.startsWith( "ter" ) && checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
 		return word.replace( /^ter/i, "r" );
 	}
 
