@@ -3,7 +3,7 @@ import { stem } from "../../../../src/morphology/indonesian/stem";
 import getMorphologyData from "../../../specHelpers/getMorphologyData";
 import goldStandard from "./goldStandardStems.json";
 
-const morphologyDataIN = getMorphologyData( "ind" ).in;
+const morphologyDataIN = getMorphologyData( "id" ).id;
 
 const coverageThreshold = 0.8;
 
