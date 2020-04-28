@@ -1,6 +1,24 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
-import { calculateTotalNumberOfSyllables, removePart, checkBeginningsList } from "./helpers";
+import { calculateTotalNumberOfSyllables, removeEnding, checkBeginningsList } from "./helpers";
+
+/**
+ * MIT License
+ *
+ * Adapted from: Copyright (c) 2013 Adinda Praditya
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ * and associated documentation files (the \"Software\"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish,  distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,  EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+ */
 
 /**
  * Stems the first-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
@@ -48,7 +66,7 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
  * @returns {string} The stemmed word.
  */
 const removeSecondOrderPrefix = function( word, morphologyData ) {
-	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
+	// If a word starts with "ber" or "per" and is present in the rBeginning exception list, the prefix should be replaced with "r".
 	if ( ( word.startsWith( "ber" ) || word.startsWith( "per" ) ) &&
 		checkBeginningsList( word, 3, morphologyData.stemming.beginningModification.rBeginning ) ) {
 		return word.replace( /^(ber|per)/i, "r" );
@@ -88,7 +106,7 @@ const stemDerivational = function( word, morphologyData ) {
 
 		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here, e.g., anakan -> anak
 		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
-			word = removePart( word, removeSuffixRules, removeSuffixExceptions );
+			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions );
 		}
 	} else {
 		// If the word previously had a first order prefix, assign wordLength to the length of the word after prefix deletion.
@@ -98,7 +116,7 @@ const stemDerivational = function( word, morphologyData ) {
 		 * the suffix will be stemmed here. e.g. penyebaran - sebar.
  		 */
 		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
-			word = removePart( word, removeSuffixRules, removeSuffixExceptions );
+			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions );
 		}
 		/**
 		 * If the word previously had a suffix, we check further if the word after first order prefix and suffix deletion has more than 2 syllables.
@@ -131,12 +149,12 @@ export function stem( word, morphologyData ) {
 	 * If the word has more than 2 syllables and ends in of the particle endings (i.e. -kah, -lah, -pun), stem the particle here.
 	 * e.g. bajumulah -> bajumu, bawalah -> bawa
 	 */
-	word = removePart( word, morphologyData.stemming.regexRules.removeParticle, morphologyData.stemming.doNotStemWords.doNotStemParticle );
+	word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle, morphologyData.stemming.doNotStemWords.doNotStemParticle );
 
 	// If the word (still) has more than 2 syllables and ends in of the possessive pronoun endings (i.e. -ku, -mu, -nya), stem the ending here.
 	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 		// E.g. bajumu -> baju
-		word = removePart( word, morphologyData.stemming.regexRules.removePronoun, morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix );
+		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun, morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix );
 	}
 	// If the word (still) has more than 2 syllables and has derivational affixes, the affix(es) will be stemmed here.
 	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
