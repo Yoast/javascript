@@ -1,7 +1,7 @@
 import { stem } from "../../../src/morphology/indonesian/stem";
 import getMorphologyData from "../../specHelpers/getMorphologyData";
 
-const morphologyData = getMorphologyData( "ind" ).in;
+const morphologyData = getMorphologyData( "id" ).id;
 
 const wordsToStem = [
 	// Words with prefix men- or pen- and are in the exception list.

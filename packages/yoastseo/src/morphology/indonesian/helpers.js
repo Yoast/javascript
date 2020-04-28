@@ -42,7 +42,7 @@ export function calculateTotalNumberOfSyllables( word ) {
  *
  * @returns {string} The stemmed word.
  */
-export function removePart( word, regexRules, exceptions ) {
+export function removeEnding( word, regexRules, exceptions ) {
 	if ( exceptions.includes( word ) ) {
 		return word;
 	}
