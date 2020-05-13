@@ -1,4 +1,7 @@
-.yoast .yoast-button {
+.yoast .yoast-button,
+.yoast .tablenav .tablenav-pages .button,
+.yoast .tablenav .tablenav-pages .button.disabled,
+.yoast .tablenav .tablenav-pages .tablenav-pages-navspan {
 	display: inline-block;
 	position: relative;
 	padding: 11px 13px 13px;
