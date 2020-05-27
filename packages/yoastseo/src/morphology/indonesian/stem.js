@@ -44,11 +44,26 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 	if ( /^[mp]em/i.test( word ) && checkBeginningsList( word, 3, beginningModification.pBeginning ) ) {
 		return word.replace( /^(mem|pem)/i, "p" );
 	}
-
-
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
-	if ( word.startsWith( "ter" ) && checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
-		return word.replace( /^ter/i, "r" );
+	const terException = morphologyData.stemming.doNotStemWords.doNotStemPrefix.doNotStemTer;
+	if ( word.startsWith( "ter" ) ) {
+		if ( terException.some( wordWithTer => word.startsWith( wordWithTer ) ) )  {
+			return word;
+		}
+		if ( checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
+			return word.replace( /^ter/i, "r" );
+		}
+	}
+	if ( word.startsWith( "keter" ) ) {
+		word = word.substring( 2, word.length );
+		if ( terException.some( wordWithTer => word.startsWith( wordWithTer ) ) ) {
+			return word;
+		}
+		if ( checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
+			console.log( word );
+			return word.replace( /^ter/i, "r" );
+		}
+		return word.substring( 3, word.length );
 	}
 
 	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeFirstOrderPrefixes );
