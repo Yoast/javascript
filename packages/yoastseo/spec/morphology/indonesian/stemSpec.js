@@ -1,4 +1,4 @@
-import { stem } from "../../../src/morphology/indonesian/stem";
+import stem from "../../../src/morphology/indonesian/stem";
 import getMorphologyData from "../../specHelpers/getMorphologyData";
 
 const morphologyData = getMorphologyData( "id" ).id;
@@ -42,13 +42,20 @@ const wordsToStem = [
 	[ "mengambilkan", "ambil" ],
 	[ "mengambili", "ambil" ],
 	[ "pengambilan", "ambil" ],
-	// Words with prefix mem- or pem- and is in the exception list.
+	// Words with prefix mem- or pem- and is in the exception list of words beginning in -p.
 	[ "memajang", "pajang" ],
 	[ "pemaksa", "paksa" ],
-	// Words with prefix mem- or pem- and suffix -kan/-an/-i and are in the exception list.
+	// Words with prefix mem- or pem- and is in the exception list of words beginning in -m.
+	[ "memundam", "mundam" ],
+	[ "pemasnawi", "masnawi" ],
+	// Words with prefix mem- or pem- and suffix -kan/-an/-i and are in the exception list of words beginning in -p.
 	[ "memaksakan", "paksa" ],
 	[ "memancari", "pancar" ],
 	[ "pemaksaan", "paksa" ],
+	// Words with prefix mem- or pem- and suffix -kan/-an/-i and are in the exception list of words beginning in -m.
+	[ "memundamkan", "mundam" ],
+	[ "memundami", "mundam" ],
+	[ "pemasnawian", "masnawi" ],
 	// Words with prefix mem- or pem- which are not in the exception list.
 	[ "membaca", "baca" ],
 	[ "pembaca", "baca" ],
