@@ -141,6 +141,35 @@ const wordsToStem = [
 	[ "belunjur", "unjur" ],
 	// Words that receive derivational affixes and are in the list of doNotStem exception will not be correctly stemmed.
 	// [ "bersekolah", "sekolah" ],
+	// Plurals formed by reduplication
+	[ "buku-buku", "buku" ],
+	// Plurals formed by reduplication + a suffix
+	[ "buku-bukunya", "buku" ],
+	// Plurals formed by reduplication + multiple suffixes
+	[ "rumah-rumahnyalah", "rumah" ],
+	// Plurals formed by reduplication + a prefix
+	[ "menjadi-jadi", "jadi" ],
+	// Plurals formed by reduplication + a prefix that changes the beginning of the word (1 letter change)
+	[ "memijit-mijit", "pijit" ],
+	// Plurals formed by reduplication + a circumfix
+	[ "melambai-lambaikan", "lambai" ],
+	// Plurals formed by reduplication + a circumfix that changes the beginning of the word (1 letter change)
+	[ "meniru-nirukan", "tiru" ],
+	// Plurals formed by reduplication + a prefix that changes the beginning of the word (2 letter change)
+	[ "mengayuh-ngayuh", "kayuh" ],
+	[ "menyeduh-nyeduh", "seduh" ],
+	// Reduplicated words that aren't plurals shouldn't be stemmed (i.e. words on nonPluralReduplications exception list).
+	[ "kupu-kupu", "kupu-kupu" ],
+	[ "hati-hati", "hati-hati" ],
+	// Reduplicated words with stem changes that aren't plurals shouldn't be stemmed (i.e. words on nonPluralReduplications exception list).
+	[ "mengira-ngira", "kira-kira" ],
+	// Reduplicated words that aren't plurals shouldn't be stemmed (i.e. words on nonPluralReduplicationsFullForms exception list).
+	[ "antah-berantah", "antah-berantah" ],
+	// Non-plurals that aren't full reduplications shouldn't be stemmed.
+	[ "muda-mudi", "muda-mudi" ],
+	[ "corat-coret", "corat-coret" ],
+	[ "gelap-gulita", "gelap-gulita" ],
+	[ "pontang-panting", "pontang-panting" ],
 ];
 
 
