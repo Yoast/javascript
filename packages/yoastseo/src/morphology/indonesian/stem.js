@@ -60,7 +60,6 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 			return word;
 		}
 		if ( checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
-			console.log( word );
 			return word.replace( /^ter/i, "r" );
 		}
 		return word.substring( 3, word.length );
