@@ -62,10 +62,20 @@ const wordsToStem = [
 	[ "pemberdayaan", "daya" ],
 	// Words with ter- prefix and are in the exception list.
 	[ "terambah", "rambah" ],
-	[ "terangkum", "rangkum" ],
+	[ "terintang", "rintang" ],
+	// Words with prefix ter- and are in the doNotStemTer exception list.
+	[ "terang", "terang" ],
+	[ "teritorial", "teritorial" ],
+	// Words with prefixes ke- and ter- and are in the doNotStemTer exception list.
+	[ "ketermolabil", "termolabil" ],
+	[ "keterindil", "terindil" ],
+	// Words with prefixes ke- and ter- and not in the exception lists.
+	[ "keterarahan", "arah" ],
+	[ "keterbatasan", "batas" ],
 	// Words with ter- prefix and are not in the exception list.
 	[ "terpaksa", "paksa" ],
 	[ "terdiam", "diam" ],
+	[ "terarah", "arah" ],
 	// Words with ter- prefix and suffixes -kan and are not in the exception list.
 	[ "terbuatkan", "buat" ],
 	// Words with prefixes me-/di-/ke-
