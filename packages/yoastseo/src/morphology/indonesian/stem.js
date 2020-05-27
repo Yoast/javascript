@@ -64,7 +64,6 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 		}
 		return word.substring( 3, word.length );
 	}
-
 	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeFirstOrderPrefixes );
 	const withRemovedFirstOrderPrefix = buildOneFormFromRegex( word, regex );
 
