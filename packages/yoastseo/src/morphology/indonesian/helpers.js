@@ -1,5 +1,6 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
+import { checkIfWordEndingIsOnExceptionList } from "../morphoHelpers/exceptionListHelpers";
 
 const vowelCharacters = [ "a", "e", "i", "o", "u" ];
 
@@ -39,14 +40,22 @@ export function calculateTotalNumberOfSyllables( word ) {
  * @param {string} word         The word to stem.
  * @param {Array} regexRules    The list of regex-based rules to apply to the word in order to stem it.
  * @param {string[]} exceptions The list of words that should not get the ending removed.
+ * @param {Object} morphologyData The Indonesian morphology data file
  *
  * @returns {string} The stemmed word.
  */
-export function removeEnding( word, regexRules, exceptions ) {
+export function removeEnding( word, regexRules, exceptions, morphologyData ) {
 	if ( exceptions.includes( word ) ) {
 		return word;
 	}
-
+	const wordsWithKEnding = morphologyData.stemming.doNotStemWords.doNotStemK;
+	console.log( wordsWithKEnding );
+	if ( word.endsWith( "kan" ) ) {
+		const wordWithoutSuffixAn = word.substring( 0, word.length - 2 );
+		if ( checkIfWordEndingIsOnExceptionList( wordWithoutSuffixAn, wordsWithKEnding ) ) {
+			word = wordWithoutSuffixAn;
+		}
+	}
 	const removePartRegex = createRulesFromMorphologyData( regexRules );
 	const withRemovedPart = buildOneFormFromRegex( word, removePartRegex );
 	return withRemovedPart || word;

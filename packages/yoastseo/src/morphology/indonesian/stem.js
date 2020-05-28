@@ -1,6 +1,7 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
 import { calculateTotalNumberOfSyllables, removeEnding, checkBeginningsList } from "./helpers";
+import { checkIfWordEndingIsOnExceptionList } from "../morphoHelpers/exceptionListHelpers";
 
 /**
  * MIT License
@@ -106,7 +107,7 @@ const stemDerivational = function( word, morphologyData ) {
 
 		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here, e.g., anakan -> anak
 		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
-			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions );
+			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions, morphologyData );
 		}
 	} else {
 		// If the word previously had a first order prefix, assign wordLength to the length of the word after prefix deletion.
@@ -116,7 +117,7 @@ const stemDerivational = function( word, morphologyData ) {
 		 * the suffix will be stemmed here. e.g. penyebaran - sebar.
  		 */
 		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
-			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions );
+			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions, morphologyData );
 		}
 		/**
 		 * If the word previously had a suffix, we check further if the word after first order prefix and suffix deletion has more than 2 syllables.
@@ -149,12 +150,14 @@ export function stem( word, morphologyData ) {
 	 * If the word has more than 2 syllables and ends in of the particle endings (i.e. -kah, -lah, -pun), stem the particle here.
 	 * e.g. bajumulah -> bajumu, bawalah -> bawa
 	 */
-	word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle, morphologyData.stemming.doNotStemWords.doNotStemParticle );
+	word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle,
+		morphologyData.stemming.doNotStemWords.doNotStemParticle, morphologyData );
 
 	// If the word (still) has more than 2 syllables and ends in of the possessive pronoun endings (i.e. -ku, -mu, -nya), stem the ending here.
 	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 		// E.g. bajumu -> baju
-		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun, morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix );
+		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun,
+			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
 	}
 	// If the word (still) has more than 2 syllables and has derivational affixes, the affix(es) will be stemmed here.
 	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
