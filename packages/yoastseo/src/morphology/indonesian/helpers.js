@@ -1,6 +1,5 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
-import { checkIfWordEndingIsOnExceptionList } from "../morphoHelpers/exceptionListHelpers";
 
 const vowelCharacters = [ "a", "e", "i", "o", "u" ];
 
@@ -48,14 +47,17 @@ export function removeEnding( word, regexRules, exceptions, morphologyData ) {
 	if ( exceptions.includes( word ) ) {
 		return word;
 	}
+
+	// Check words ending in -kan whether they are words whose stem ending in -k that get suffix -an or not.
 	const wordsWithKEnding = morphologyData.stemming.doNotStemWords.doNotStemK;
-	console.log( wordsWithKEnding );
 	if ( word.endsWith( "kan" ) ) {
 		const wordWithoutSuffixAn = word.substring( 0, word.length - 2 );
-		if ( checkIfWordEndingIsOnExceptionList( wordWithoutSuffixAn, wordsWithKEnding ) ) {
+		// If a word has stem ending -k and gets suffix -an, then only stem -an here.
+		if ( wordsWithKEnding.includes( wordWithoutSuffixAn ) ) {
 			word = wordWithoutSuffixAn;
 		}
 	}
+
 	const removePartRegex = createRulesFromMorphologyData( regexRules );
 	const withRemovedPart = buildOneFormFromRegex( word, removePartRegex );
 	return withRemovedPart || word;

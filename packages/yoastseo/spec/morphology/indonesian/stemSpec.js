@@ -146,6 +146,8 @@ const wordsToStem = [
 	[ "peranakan", "anak" ],
 	[ "rembukan", "rembuk" ],
 	[ "pengedukan", "keduk" ],
+	[ "berserakan", "serak" ],
+	[ "penyuntikan", "suntik" ],
 ];
 
 

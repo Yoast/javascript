@@ -1,7 +1,6 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
 import { calculateTotalNumberOfSyllables, removeEnding, checkBeginningsList } from "./helpers";
-import { checkIfWordEndingIsOnExceptionList } from "../morphoHelpers/exceptionListHelpers";
 
 /**
  * MIT License
