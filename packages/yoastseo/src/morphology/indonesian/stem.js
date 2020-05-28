@@ -237,7 +237,7 @@ const stemPlural = function( word, morphologyData ) {
  *
  * @returns {string} The stem of an Indonesian word.
  */
-export function stem( word, morphologyData ) {
+export default function stem( word, morphologyData ) {
 	const stemmedPlural = stemPlural( word, morphologyData );
 
 	if ( stemmedPlural ) {
