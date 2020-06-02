@@ -19,16 +19,55 @@ import { calculateTotalNumberOfSyllables, removeEnding, checkBeginningsList } fr
  * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
  */
-
 /**
- * Stems the first-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
+ * Checks for words starting on ter- and keter- and whether it is on an exception list of words which require a stem mofification
+ * after removing the prefix. Returns the stem if the prefix was found and the word was matched on an exception list.
  *
- * @param {string} word           The word to stem.
- * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
  *
- * @returns {string} The stemmed word.
+ * @param {Object}	morphologyData	The Indonesian morphology data file.
+ * @param {string}	word			The word to check.
+ *
+ *
+ * @returns {string|null}	The stem or null if a prefix was not found, or was found but the word was not on the exception list.
  */
-const removeFirstOrderPrefix = function( word, morphologyData ) {
+const terExceptionCheck = function( morphologyData, word ) {
+/* If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r
+If a word starts with "ter" and is present in the doNotStemTer exception list, it must not be removed.
+ */
+	const terException = morphologyData.stemming.doNotStemWords.doNotStemPrefix.doNotStemTer;
+	if ( word.startsWith( "ter" ) ) {
+		if ( terException.some( wordWithTer => word.startsWith( wordWithTer ) ) )  {
+			return word;
+		}
+		if ( checkBeginningsList( word, 3, morphologyData.stemming.beginningModification.rBeginning ) ) {
+			return word.replace( /^ter/i, "r" );
+		}
+	}
+	/* If a word starts with "keter" and is present in the rBeginning exception list, the prefix should be replaced with "r
+	If a word starts with "keter" and is present in the doNotStemTer exception list, the prefix must not be removed.
+	*/
+	if ( word.startsWith( "keter" ) ) {
+		word = word.substring( 2, word.length );
+		if ( terException.some( wordWithTer => word.startsWith( wordWithTer ) ) ) {
+			return word;
+		}
+		if ( checkBeginningsList( word, 3, morphologyData.stemming.beginningModification.rBeginning ) ) {
+			return word.replace( /^ter/i, "r" );
+		}
+		return word.substring( 3, word.length );
+	}
+};
+/**
+ * Checks whether a word has a first order prefix and whether it is on an exception list of words which require a stem mofification
+ * after removing the prefix. Returns the stem if the prefix was found and the word was matched on an exception list.
+ *
+ *
+ * @param {string}	word			The word to check.
+ * @param {Object}	morphologyData	The Indonesian morphology data file.
+ *
+ * @returns {string|null}	The stem or null if a prefix was not found, or was found but the word was not on the exception list.
+ */
+const checkFirstOrderPrefixExceptions = function( word, morphologyData ) {
 	const beginningModification = morphologyData.stemming.beginningModification;
 
 	// If a word starts with "men" or "pen" and is present in the nBeginning exception list, the prefix should be replaced with "n".
@@ -41,28 +80,33 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 		return word.replace( /^[mp]eng/i, "k" );
 	}
 
-	if ( /^[mp]em/i.test( word ) && checkBeginningsList( word, 3, beginningModification.pBeginning ) ) {
-		return word.replace( /^(mem|pem)/i, "p" );
-	}
-	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
-	const terException = morphologyData.stemming.doNotStemWords.doNotStemPrefix.doNotStemTer;
-	if ( word.startsWith( "ter" ) ) {
-		if ( terException.some( wordWithTer => word.startsWith( wordWithTer ) ) )  {
-			return word;
-		}
-		if ( checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
-			return word.replace( /^ter/i, "r" );
+	if ( /^[mp]em/i.test( word ) ) {
+		if ( checkBeginningsList( word, 3, beginningModification.pBeginning ) ) {
+			return word.replace( /^(mem|pem)/i, "p" );
+		} else if ( checkBeginningsList( word, 3, beginningModification.mBeginning ) ) {
+			return word.replace( /^(mem|pem)/i, "m" );
 		}
 	}
-	if ( word.startsWith( "keter" ) ) {
-		word = word.substring( 2, word.length );
-		if ( terException.some( wordWithTer => word.startsWith( wordWithTer ) ) ) {
-			return word;
-		}
-		if ( checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
-			return word.replace( /^ter/i, "r" );
-		}
-		return word.substring( 3, word.length );
+	const terExceptions = terExceptionCheck( morphologyData, word );
+	if ( terExceptions ) {
+		return terExceptions;
+	}
+};
+
+/**
+ * Stems the first-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
+ *
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string} The stemmed word.
+ */
+const removeFirstOrderPrefix = function( word, morphologyData ) {
+	// Checks whether the word has a first order prefix and requires a stem modification.
+	const firstOrderPrefixException = checkFirstOrderPrefixExceptions( word, morphologyData );
+
+	if ( firstOrderPrefixException ) {
+		return firstOrderPrefixException;
 	}
 	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeFirstOrderPrefixes );
 	const withRemovedFirstOrderPrefix = buildOneFormFromRegex( word, regex );
@@ -153,7 +197,7 @@ const stemDerivational = function( word, morphologyData ) {
  *
  * @returns {string} The stem of Indonesian word.
  */
-export function stem( word, morphologyData ) {
+export default function stem( word, morphologyData ) {
 	if ( calculateTotalNumberOfSyllables( word ) <= 2 ) {
 		return word;
 	}
