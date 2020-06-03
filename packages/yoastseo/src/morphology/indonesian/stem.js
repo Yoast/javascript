@@ -204,11 +204,6 @@ const stemPlural = function( word, morphologyData ) {
 		return null;
 	}
 
-	// Check words that look like plurals but that shouldn't receive any stemming.
-	if ( morphologyData.stemming.nonPluralReduplicationsFullForms.includes( word ) ) {
-		return word;
-	}
-
 	const splitWord = word.split( "-" );
 
 	if ( splitWord.length === 2 ) {
@@ -262,6 +257,11 @@ const stemPlural = function( word, morphologyData ) {
  * @returns {string} The stem of an Indonesian word.
  */
 export default function stem( word, morphologyData ) {
+	// Check words that shouldn't receive any stemming.
+	if ( morphologyData.stemming.shouldNotBeStemmed.includes( word ) ) {
+		return word;
+	}
+
 	const stemmedPlural = stemPlural( word, morphologyData );
 
 	if ( stemmedPlural ) {
