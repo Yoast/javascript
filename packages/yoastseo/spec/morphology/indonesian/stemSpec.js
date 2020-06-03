@@ -171,6 +171,14 @@ const wordsToStem = [
 	[ "corat-coret", "corat-coret" ],
 	[ "gelap-gulita", "gelap-gulita" ],
 	[ "pontang-panting", "pontang-panting" ],
+	// More specs for plurals/re-duplications.
+	[ "membunuh-bunuh", "bunuh" ],
+	[ "menarik-narik", "tarik" ],
+	[ "tidur-tiduran", "tidur" ],
+	[ "menunda-nunda", "tunda" ],
+	[ "menjadi-jadi", "jadi" ],
+	[ "menarik-narik", "tarik" ],
+	[ "bertingkat-tingkat", "tingkat" ],
 ];
 
 
