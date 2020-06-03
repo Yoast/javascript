@@ -42,13 +42,20 @@ const wordsToStem = [
 	[ "mengambilkan", "ambil" ],
 	[ "mengambili", "ambil" ],
 	[ "pengambilan", "ambil" ],
-	// Words with prefix mem- or pem- and is in the exception list.
+	// Words with prefix mem- or pem- and is in the exception list of words beginning in -p.
 	[ "memajang", "pajang" ],
 	[ "pemaksa", "paksa" ],
-	// Words with prefix mem- or pem- and suffix -kan/-an/-i and are in the exception list.
+	// Words with prefix mem- or pem- and is in the exception list of words beginning in -m.
+	[ "memundam", "mundam" ],
+	[ "pemasnawi", "masnawi" ],
+	// Words with prefix mem- or pem- and suffix -kan/-an/-i and are in the exception list of words beginning in -p.
 	[ "memaksakan", "paksa" ],
 	[ "memancari", "pancar" ],
 	[ "pemaksaan", "paksa" ],
+	// Words with prefix mem- or pem- and suffix -kan/-an/-i and are in the exception list of words beginning in -m.
+	[ "memundamkan", "mundam" ],
+	[ "memundami", "mundam" ],
+	[ "pemasnawian", "masnawi" ],
 	// Words with prefix mem- or pem- which are not in the exception list.
 	[ "membaca", "baca" ],
 	[ "pembaca", "baca" ],
@@ -83,13 +90,7 @@ const wordsToStem = [
 	[ "bersantap", "santap" ],
 	[ "bekerja", "kerja" ],
 	[ "perdaya", "daya" ],
-	/*
-	 * Word pemain is incorrectly stemmed to 'ain' instead 'main", the prefix is captured as pem- instead of pe-
-	 * One possible solution is by collecting words starting with m (mBeginning). If a word gets prefix pem- and it is
-	 * In pBeginning list, replace pem- with p. If a word gets prefix pem- and it is in the mBeginning list. replace pem- with m.
-	 * Otherwise replace pem- with nothing.
-	 */
-	// [ "pemain", "main" ],
+	[ "pemain", "main" ],
 	// Words with prefix ber-/per- and in exception list
 	[ "peramal", "ramal" ],
 	[ "beragam", "ragam" ],
