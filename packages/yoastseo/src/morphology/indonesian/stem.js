@@ -21,14 +21,16 @@ import { calculateTotalNumberOfSyllables, removeEnding, checkBeginningsList } fr
  */
 
 /**
- * Stems the first-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
+ * Checks whether a word has a first order prefix and whether it is on an exception list of words which require a stem mofification
+ * after removing the prefix. Returns the stem if the prefix was found and the word was matched on an exception list.
  *
- * @param {string} word           The word to stem.
- * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
  *
- * @returns {string} The stemmed word.
+ * @param {string}	word			The word to check.
+ * @param {Object}	morphologyData	The Indonesian morphology data file.
+ *
+ * @returns {string|null}	The stem or null if a prefix was not found, or was found but the word was not on the exception list.
  */
-const removeFirstOrderPrefix = function( word, morphologyData ) {
+const checkFirstOrderPrefixExceptions = function( word, morphologyData ) {
 	const beginningModification = morphologyData.stemming.beginningModification;
 
 	// If a word starts with "men" or "pen" and is present in the nBeginning exception list, the prefix should be replaced with "n".
@@ -41,16 +43,38 @@ const removeFirstOrderPrefix = function( word, morphologyData ) {
 		return word.replace( /^[mp]eng/i, "k" );
 	}
 
-	if ( /^[mp]em/i.test( word ) && checkBeginningsList( word, 3, beginningModification.pBeginning ) ) {
-		return word.replace( /^(mem|pem)/i, "p" );
+	if ( /^[mp]em/i.test( word ) ) {
+		if ( checkBeginningsList( word, 3, beginningModification.pBeginning ) ) {
+			return word.replace( /^(mem|pem)/i, "p" );
+		} else if ( checkBeginningsList( word, 3, beginningModification.mBeginning ) ) {
+			return word.replace( /^(mem|pem)/i, "m" );
+		}
 	}
-
 
 	// If a word starts with "ter" and is present in the rBeginning exception list, the prefix should be replaced with "r".
 	if ( word.startsWith( "ter" ) && checkBeginningsList( word, 3, beginningModification.rBeginning ) ) {
 		return word.replace( /^ter/i, "r" );
 	}
+};
 
+
+/**
+ * Stems the first-order prefix of a word based on regexRules. If the word is found in an exception list, implements a stem modification.
+ *
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string} The stemmed word.
+ */
+const removeFirstOrderPrefix = function( word, morphologyData ) {
+	// Checks whether the word has a first order prefix and requires a stem modification.
+	const firstOrderPrefixException = checkFirstOrderPrefixExceptions( word, morphologyData );
+
+	if ( firstOrderPrefixException ) {
+		return firstOrderPrefixException;
+	}
+
+	// If the word was not found on an exception list, simply remove the prefix if found.
 	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeFirstOrderPrefixes );
 	const withRemovedFirstOrderPrefix = buildOneFormFromRegex( word, regex );
 
