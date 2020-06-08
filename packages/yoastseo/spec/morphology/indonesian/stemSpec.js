@@ -142,6 +142,13 @@ const wordsToStem = [
 	[ "belunjur", "unjur" ],
 	// Words that receive derivational affixes and are in the list of doNotStem exception will not be correctly stemmed.
 	// [ "bersekolah", "sekolah" ],
+	// Words ending in k that get suffix -an
+	[ "anakan", "anak" ],
+	[ "peranakan", "anak" ],
+	[ "rembukan", "rembuk" ],
+	[ "pengedukan", "keduk" ],
+	[ "berserakan", "serak" ],
+	[ "penyuntikan", "suntik" ],
 ];
 
 

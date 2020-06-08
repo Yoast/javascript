@@ -39,12 +39,23 @@ export function calculateTotalNumberOfSyllables( word ) {
  * @param {string} word         The word to stem.
  * @param {Array} regexRules    The list of regex-based rules to apply to the word in order to stem it.
  * @param {string[]} exceptions The list of words that should not get the ending removed.
+ * @param {Object} morphologyData The Indonesian morphology data file
  *
  * @returns {string} The stemmed word.
  */
-export function removeEnding( word, regexRules, exceptions ) {
+export function removeEnding( word, regexRules, exceptions, morphologyData ) {
 	if ( exceptions.includes( word ) ) {
 		return word;
+	}
+
+	// Check words ending in -kan whether they are words whose stem ending in -k that get suffix -an or not.
+	const wordsWithKEnding = morphologyData.stemming.doNotStemWords.doNotStemK;
+	if ( word.endsWith( "kan" ) ) {
+		const wordWithoutSuffixAn = word.substring( 0, word.length - 2 );
+		// If a word has stem ending -k and gets suffix -an, then only stem -an here.
+		if ( wordsWithKEnding.includes( wordWithoutSuffixAn ) ) {
+			word = wordWithoutSuffixAn;
+		}
 	}
 
 	const removePartRegex = createRulesFromMorphologyData( regexRules );
