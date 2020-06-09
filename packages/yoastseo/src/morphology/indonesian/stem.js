@@ -169,6 +169,8 @@ export default function stem( word, morphologyData ) {
 		return word;
 	}
 
+	word = stemDerivational( word, morphologyData );
+
 	/**
 	 * If the word has more than 2 syllables and ends in of the particle endings (i.e. -kah, -lah, -pun), stem the particle here.
 	 * e.g. bajumulah -> bajumu, bawalah -> bawa
