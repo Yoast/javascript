@@ -56,7 +56,7 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 	const inputWord = word;
 
 	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
-	if ( word.startsWith( "di" ) ) {
+	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, singleSyllableWords ) ) {
 		word = word.substring( 2, word.length );
 	}
 
