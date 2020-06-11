@@ -55,10 +55,15 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 	const removeSuffixExceptions = morphologyData.stemming.doNotStemWords.doNotStemSuffix;
 	const inputWord = word;
 
+	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
+	if ( word.startsWith( "di" ) ) {
+		word = word.substring( 2, word.length );
+	}
+
 	// Check if a word starts with one of the words in the list, has maximum 3 syllables, and ends in one of the single syllable suffixes
 	if ( singleSyllableWords.some( shortWord => word.startsWith( shortWord ) ) && calculateTotalNumberOfSyllables( word ) <= 3 &&
 		checkSingleSyllableWordSuffix( word, suffixCombination ) ) {
-		// If the word gets a particle suffix, stem the particle. E.g. pelkanlah -> pelkan, pellah -> pel, vasmulah -> vasmu
+		// If the word gets a particle suffix, stem the particle. E.g. cekkanlah -> cekkan, pelkan -> pel, vasmulah -> vasmu
 		word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle,
 			morphologyData.stemming.doNotStemWords.doNotStemParticle, morphologyData );
 
@@ -66,30 +71,11 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun,
 			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
 
-		/*
-		 * If the word gets either -kan suffix, has exactly 2 syllables and is not in the exception list of words that should not be stemmed
-		 * stem -kan here. Only suffix -kan that can be attached to single syllable words that does not get prefix di-. E.g. pelkan -> pel
-		 */
-		if ( word.endsWith( "kan" ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
-			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions, morphologyData );
-		}
-	}
-
-	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, singleSyllableWords ) &&
-		calculateTotalNumberOfSyllables( word ) <= 4 ) {
-		// Stem prefix di-. E.g. ditikkanlah -> tikkanlah, dicas -> cas, diklikkan -> klikkan, dibomlah -> bomlah, dibomi - bomi
-		const wordWithoutDi = word.substring( 2, word.length );
-
-		// If the word also ends in one of the particle suffixes, stem the suffix. E.g. tikkanlah -> tikkan, bomlah -> bom
-		word = removeEnding( wordWithoutDi, morphologyData.stemming.regexRules.removeParticle,
-			morphologyData.stemming.doNotStemWords.doNotStemParticle, morphologyData );
-
-		// If the word ends in -kan/-i suffix and has exactly 2 syllables, stem the suffix. E.g. tikkan -> tik, bomi -> bom
+		// If the word ends in -kan/-i suffix and has exactly 2 syllables, stem the suffix. E.g. cekkan -> cek, bomi -> bom
 		if ( /(kan|i)$/i.test( word ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
 			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions, morphologyData );
 		}
 	}
-
 	/*
 	 * We only want to stem single syllable words here.
 	 * Thus, if the output word has more than one syllable, we don't stem the input word at all.
