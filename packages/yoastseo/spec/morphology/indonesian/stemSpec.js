@@ -69,10 +69,20 @@ const wordsToStem = [
 	[ "pemberdayaan", "daya" ],
 	// Words with ter- prefix and are in the exception list.
 	[ "terambah", "rambah" ],
-	[ "terangkum", "rangkum" ],
+	[ "terintang", "rintang" ],
+	// Words with prefix ter- and are in the doNotStemTer exception list.
+	[ "terang", "terang" ],
+	[ "teritorial", "teritorial" ],
+	// Words with prefixes ke- and ter- and are in the doNotStemTer exception list.
+	[ "ketermolabil", "termolabil" ],
+	[ "keterindil", "terindil" ],
+	// Words with prefixes ke- and ter- and not in the exception lists.
+	[ "keterarahan", "arah" ],
+	[ "keterbatasan", "batas" ],
 	// Words with ter- prefix and are not in the exception list.
 	[ "terpaksa", "paksa" ],
 	[ "terdiam", "diam" ],
+	[ "terarah", "arah" ],
 	// Words with ter- prefix and suffixes -kan and are not in the exception list.
 	[ "terbuatkan", "buat" ],
 	// Words with prefixes me-/di-/ke-
@@ -142,6 +152,13 @@ const wordsToStem = [
 	[ "belunjur", "unjur" ],
 	// Words that receive derivational affixes and are in the list of doNotStem exception will not be correctly stemmed.
 	// [ "bersekolah", "sekolah" ],
+	// Words ending in k that get suffix -an
+	[ "anakan", "anak" ],
+	[ "peranakan", "anak" ],
+	[ "rembukan", "rembuk" ],
+	[ "pengedukan", "keduk" ],
+	[ "berserakan", "serak" ],
+	[ "penyuntikan", "suntik" ],
 	// Plurals formed by reduplication
 	[ "buku-buku", "buku" ],
 	// Plurals formed by reduplication + a suffix
