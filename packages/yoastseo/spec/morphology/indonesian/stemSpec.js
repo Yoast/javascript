@@ -159,6 +159,14 @@ const wordsToStem = [
 	[ "pengedukan", "keduk" ],
 	[ "berserakan", "serak" ],
 	[ "penyuntikan", "suntik" ],
+	// Words from kBeginning exception list with peng- preceded by first order prefix.
+	[ "dipengambangkan", "kambang" ],
+	[ "kepengukuhan", "kukuh" ],
+	// Words which start with peng- preceded by first order prefix that are not in an exception list.
+	[ "kepengacaraan", "acara" ],
+	[ "mempengaruhi", "aruh" ],
+	[ "dipengaruhi", "aruh" ],
+	[ "kepenghunian", "huni" ],
 ];
 
 
