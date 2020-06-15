@@ -321,7 +321,6 @@ describe( "Test to correctly count Indonesian reduplications", function() {
 	} );
 
 	it( "doesn't match the plural form buku-buku when only the singular form buku occurs in the string", function() {
-
 		expect( findTopicFormsInString(
 			{
 				keyphraseForms: [ [ "buku-buku" ] ],
