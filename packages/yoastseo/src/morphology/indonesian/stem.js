@@ -51,8 +51,6 @@ const checkSingleSyllableWordSuffix = function( word, suffixesArray ) {
 const stemSingleSyllableWords = function( word, morphologyData ) {
 	const singleSyllableWords = morphologyData.stemming.singleSyllableWords;
 	const suffixCombination = morphologyData.stemming.singleSyllableWordsSuffixes;
-	const removeSuffixRules = morphologyData.stemming.regexRules.removeSuffixes;
-	const removeSuffixExceptions = morphologyData.stemming.doNotStemWords.doNotStemSuffix;
 	const inputWord = word;
 
 	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
@@ -73,7 +71,8 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 
 		// If the word ends in -kan/-i suffix and has exactly 2 syllables, stem the suffix. E.g. cekkan -> cek, bomi -> bom
 		if ( /(kan|i)$/i.test( word ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
-			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions, morphologyData );
+			word = removeEnding( word, morphologyData.stemming.regexRules.removeSuffixes,
+				morphologyData.stemming.doNotStemWords.doNotStemSuffix, morphologyData );
 		}
 	}
 	/*
@@ -259,9 +258,7 @@ const stemDerivational = function( word, morphologyData ) {
 export default function stem( word, morphologyData ) {
 	const singleSyllableWords = stemSingleSyllableWords( word, morphologyData );
 	// Stem the single syllable words
-	if ( singleSyllableWords ) {
-		word = singleSyllableWords;
-	}
+	word = singleSyllableWords;
 
 	if ( calculateTotalNumberOfSyllables( word ) <= 2 ) {
 		return word;
