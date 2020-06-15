@@ -1,4 +1,5 @@
 /** @module stringProcessing/addWordboundary */
+/* eslint-disable no-useless-escape */
 
 /**
  * Returns a string that can be used in a regex to match a matchString with word boundaries.
