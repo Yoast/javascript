@@ -186,7 +186,10 @@ const removeSecondOrderPrefix = function( word, morphologyData ) {
 		checkBeginningsList( word, 3, morphologyData.stemming.beginningModification.rBeginning ) ) {
 		return word.replace( /^(ber|per)/i, "r" );
 	}
-
+	// If a word starts with a first order prefix followed by peng- and is in the kBeginning exception list, then peng- should be replaced with k.
+	if ( /^peng/i.test( word ) && checkBeginningsList( word, 4, morphologyData.stemming.beginningModification.kBeginning ) ) {
+		return word.replace( /^peng/i, "k" );
+	}
 	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeSecondOrderPrefixes );
 	const withRemovedSecondOrderPrefix = buildOneFormFromRegex( word, regex );
 
