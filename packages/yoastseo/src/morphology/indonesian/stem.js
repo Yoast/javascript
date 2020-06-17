@@ -21,6 +21,71 @@ import { calculateTotalNumberOfSyllables, removeEnding, checkBeginningsList } fr
  */
 
 /**
+ * Checks if a single syllable word has one of the suffixes/suffix combination.
+ *
+ * @param {string} word The word to check.
+ * @param {Array} suffixesArray The array of suffixes
+ * @returns {boolean}   Whether the word ends in one of the suffixes or not.
+ */
+const checkSingleSyllableWordSuffix = function( word, suffixesArray ) {
+	for ( const suffix of suffixesArray ) {
+		if ( word.match( suffix ) ) {
+			return true;
+		}
+	}
+};
+
+/**
+ * Stems Indonesian single syllable words. This function concerns single syllable words
+ * with this possible word format [di] + single syllable word + [kan/i] + [ku/mu/nya] + [kah/lah/pun], with [] being optional.
+ * Only prefix di- is checked here as it is the only prefix that is not going to be correctly stemmed
+ * when attached to a single syllable word other than penge-/menge- prefixes. E.g. dipel -> pel, dipelkan -> pel, dipelkanlah -> pel
+ * pelkan -> pel, pelkanlah -> pel, pelmulah -> pel.
+ *
+ *
+ * @param {string}	word			The word to check.
+ * @param {Object}	morphologyData	The Indonesian morphology data file.
+ *
+ * @returns {string} The stemmed word.
+ */
+const stemSingleSyllableWords = function( word, morphologyData ) {
+	const singleSyllableWords = morphologyData.stemming.singleSyllableWords;
+	const suffixCombination = morphologyData.stemming.singleSyllableWordsSuffixes;
+	const inputWord = word;
+
+	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
+	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, singleSyllableWords ) ) {
+		word = word.substring( 2, word.length );
+	}
+
+	// Check if a word starts with one of the words in the list, has maximum 3 syllables, and ends in one of the single syllable suffixes
+	if ( singleSyllableWords.some( shortWord => word.startsWith( shortWord ) ) && calculateTotalNumberOfSyllables( word ) <= 3 &&
+		checkSingleSyllableWordSuffix( word, suffixCombination ) ) {
+		// If the word gets a particle suffix, stem the particle. E.g. cekkanlah -> cekkan, pelkan -> pel, vasmulah -> vasmu
+		word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle,
+			morphologyData.stemming.doNotStemWords.doNotStemParticle, morphologyData );
+
+		// If the word gets a possessive pronoun suffix, stem the possessive pronoun. E.g. vasmu -> vas
+		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun,
+			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
+
+		// If the word ends in -kan/-i suffix and has exactly 2 syllables, stem the suffix. E.g. cekkan -> cek, bomi -> bom
+		if ( /(kan|i)$/i.test( word ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
+			word = removeEnding( word, morphologyData.stemming.regexRules.removeSuffixes,
+				morphologyData.stemming.doNotStemWords.doNotStemSuffix, morphologyData );
+		}
+	}
+	/*
+	 * We only want to stem single syllable words here.
+	 * Thus, if the output word has more than one syllable, we don't stem the input word at all.
+	 */
+	if ( calculateTotalNumberOfSyllables( word ) > 1 || word.length === 1 ) {
+		word = inputWord;
+	}
+	return word;
+};
+
+/**
  * Tries stemming prefixes ke- and ter-. Ke- is always stemmed, and ter- only if it is a prefix and not part of the stem.
  * Also if the stem of the word begins with r-, only te- is stemmed, not ter-.
  *
@@ -121,7 +186,10 @@ const removeSecondOrderPrefix = function( word, morphologyData ) {
 		checkBeginningsList( word, 3, morphologyData.stemming.beginningModification.rBeginning ) ) {
 		return word.replace( /^(ber|per)/i, "r" );
 	}
-
+	// If a word starts with a first order prefix followed by peng- and is in the kBeginning exception list, then peng- should be replaced with k.
+	if ( /^peng/i.test( word ) && checkBeginningsList( word, 4, morphologyData.stemming.beginningModification.kBeginning ) ) {
+		return word.replace( /^peng/i, "k" );
+	}
 	const regex = createRulesFromMorphologyData( morphologyData.stemming.regexRules.removeSecondOrderPrefixes );
 	const withRemovedSecondOrderPrefix = buildOneFormFromRegex( word, regex );
 
@@ -191,8 +259,13 @@ const stemDerivational = function( word, morphologyData ) {
  * @returns {string} The stem of Indonesian word.
  */
 export default function stem( word, morphologyData ) {
+	const singleSyllableWords = stemSingleSyllableWords( word, morphologyData );
+	// Stem the single syllable words
+	word = singleSyllableWords;
+
 	const doNotStemParticle = morphologyData.stemming.doNotStemWords.doNotStemParticle;
 	const doNotStemPronoun = morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix;
+
 	if ( calculateTotalNumberOfSyllables( word ) <= 2 ) {
 		return word;
 	}

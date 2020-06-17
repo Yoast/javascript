@@ -157,6 +157,33 @@ const wordsToStem = [
 	[ "pengedukan", "keduk" ],
 	[ "berserakan", "serak" ],
 	[ "penyuntikan", "suntik" ],
+	// Words from kBeginning exception list with peng- preceded by first order prefix.
+	[ "dipengambangkan", "kambang" ],
+	[ "kepengukuhan", "kukuh" ],
+	// Words which start with peng- preceded by first order prefix that are not in an exception list.
+	[ "kepengacaraan", "acara" ],
+	[ "mempengaruhi", "aruh" ],
+	[ "dipengaruhi", "aruh" ],
+	[ "kepenghunian", "huni" ],
+	// Single syllable words that gets prefix di-
+	[ "dipel", "pel" ],
+	// Single syllable words that gets prefix di- and suffix -kan/-i
+	[ "dipelkan", "pel" ],
+	[ "disahi", "sah" ],
+	// Single syllable words that gets prefix di- and suffix -kan/-i and a particle suffixes
+	[ "dipelkankah", "pel" ],
+	[ "disahkanlah", "sah" ],
+	// Single syllable words that gets prefix di- and particle suffixes
+	[ "dicaspun", "cas" ],
+	[ "dipelkah", "pel" ],
+	// Single syllable words that gets a particle suffix
+	[ "bomkah", "bom" ],
+	// Single syllable words that gets a possessive pronoun suffix
+	[ "vasmu", "vas" ],
+	// Single syllable words that gets a possessive pronoun suffix and a particle suffix
+	[ "vasmupun", "vas" ],
+	// Single syllable words that gets either -kan suffix
+	[ "pelkan", "pel" ],
 	// Words with derivational affixes that need to be stemmed before comparing with the list of doNotStem exception.
 	[ "bersekolah", "sekolah" ],
 	[ "terhimpun", "himpun" ],
