@@ -57,6 +57,13 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, singleSyllableWords ) ) {
 		word = word.substring( 2, word.length );
 	}
+	/*
+	 * If the word gets prefix menge-/penge- and is followed by one of the words in the list, stem the prefix here.
+	 * E.g. pengeboman -> boman
+	 */
+	if ( /^[mp]enge/i.test( word ) && checkBeginningsList( word, 5, singleSyllableWords ) ) {
+		word = word.substring( 5, word.length );
+	}
 
 	// Check if a word starts with one of the words in the list, has maximum 3 syllables, and ends in one of the single syllable suffixes
 	if ( singleSyllableWords.some( shortWord => word.startsWith( shortWord ) ) && calculateTotalNumberOfSyllables( word ) <= 3 &&
@@ -70,7 +77,7 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
 
 		// If the word ends in -kan/-i suffix and has exactly 2 syllables, stem the suffix. E.g. cekkan -> cek, bomi -> bom
-		if ( /(kan|i)$/i.test( word ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
+		if ( /(kan|an|i)$/i.test( word ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
 			word = removeEnding( word, morphologyData.stemming.regexRules.removeSuffixes,
 				morphologyData.stemming.doNotStemWords.doNotStemSuffix, morphologyData );
 		}
