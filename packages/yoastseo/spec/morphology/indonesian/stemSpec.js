@@ -150,8 +150,6 @@ const wordsToStem = [
 	[ "belajar", "ajar" ],
 	[ "pelajar", "ajar" ],
 	[ "belunjur", "unjur" ],
-	// Words that receive derivational affixes and are in the list of doNotStem exception will not be correctly stemmed.
-	// [ "bersekolah", "sekolah" ],
 	// Words ending in k that get suffix -an
 	[ "anakan", "anak" ],
 	[ "peranakan", "anak" ],
@@ -186,8 +184,16 @@ const wordsToStem = [
 	[ "vasmupun", "vas" ],
 	// Single syllable words that gets either -kan suffix
 	[ "pelkan", "pel" ],
+	// Words with derivational affixes that need to be stemmed before comparing with the list of doNotStem exception.
+	[ "bersekolah", "sekolah" ],
+	[ "terhimpun", "himpun" ],
+	[ "merumpun", "rumpun" ],
+	[ "mengolah", "olah" ],
+	[ "melangkah", "langkah" ],
+	[ "bertanya", "tanya" ],
+	[ "meramu", "ramu" ],
+	[ "memangku", "pangku" ],
 ];
-
 
 describe( "Test for stemming Indonesian words", () => {
 	for ( let i = 0; i < wordsToStem.length; i++ ) {
