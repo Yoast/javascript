@@ -194,7 +194,6 @@ const wordsToStem = [
 	[ "tidur-tiduran", "tidur" ],
 	[ "menunda-nunda", "tunda" ],
 	[ "menjadi-jadi", "jadi" ],
-	[ "menarik-narik", "tarik" ],
 	[ "bertingkat-tingkat", "tingkat" ],
 ];
 
