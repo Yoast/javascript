@@ -196,6 +196,21 @@ const wordsToStem = [
 	// Single syllable words that get prefix menge- and suffix -kan/-i
 	[ "mengebomi", "bom" ],
 	[ "mengesahkan", "sah" ],
+	/*
+	  * Two syllable words that look like it starts with one of the single syllable words and ends in one of these suffixes -kan/-an/-i.
+	  * Currently some of these words are incorrectly stemmed.  They will be solved when we implement the root dictionary
+	 */
+	// [ "topan", "topan" ],
+	// [ "lokan", "lokan" ],
+	[ "turban", "turban" ],
+	[ "pingsan", "pingsan" ],
+	[ "tinggi", "tinggi" ],
+	/*
+	  * Two syllable words whose stem starts in one of the single syllable words and gets prefix menge-/penge-
+	  * in which it accidentally overlaps with words starting with e- in kBeginning list and have prefix meng-/peng-
+	 */
+	// [ "mengebiri", "kebiri" ],
+	// [ "pengerat", "kerat" ],
 	// Words with derivational affixes that need to be stemmed before comparing with the list of doNotStem exception.
 	[ "bersekolah", "sekolah" ],
 	[ "terhimpun", "himpun" ],
