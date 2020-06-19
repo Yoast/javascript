@@ -251,14 +251,14 @@ const stemDerivational = function( word, morphologyData ) {
 };
 
 /**
- * Stems Indonesian words
+ * Stems Indonesian singular words.
  *
- * @param {string} word           The word to stem.
+ * @param {string} word           The singular word to stem.
  * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
  *
- * @returns {string} The stem of Indonesian word.
+ * @returns {string} The stem of an Indonesian singular word.
  */
-export default function stem( word, morphologyData ) {
+const stemSingular = function( word, morphologyData ) {
 	const singleSyllableWords = stemSingleSyllableWords( word, morphologyData );
 	// Stem the single syllable words
 	word = singleSyllableWords;
@@ -293,6 +293,91 @@ export default function stem( word, morphologyData ) {
 	if ( calculateTotalNumberOfSyllables( word ) > 2  ) {
 		word = stemDerivational( word, morphologyData );
 	}
+
+	return word;
+};
+
+/**
+ * Stems Indonesian plural words.
+ *
+ * @param {string} word           The plural word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string|null} The stem of an Indonesian plural word or null if no plural was detected.
+ */
+const stemPlural = function( word, morphologyData ) {
+	const hyphenIndex = word.indexOf( "-" );
+
+	// If there is no hyphen in the word, it can't be a reduplicated plural.
+	if ( hyphenIndex === -1  ) {
+		return null;
+	}
+
+	const splitWord = word.split( "-" );
+
+	if ( splitWord.length === 2 ) {
+		let firstPart = splitWord[ 0 ];
+		let secondPart = splitWord[ 1 ];
+
+		firstPart = stemSingular( firstPart, morphologyData );
+		secondPart = stemSingular( secondPart, morphologyData );
+
+		/*
+		 * To compare the first and second part and see whether it's actually a reduplication:
+		 * Trim the beginning of the word since it might be variable due to stem changes caused by prefixes.
+		 * For example, in "meniru-nirukan" the singular stemmer will correctly stem the first "niru" to "tiru" because
+		 * of the prefix "me". Since the second part of the word is stemmed individually, there is no "me" and hence
+		 * "niru" remains "niru". To still be able to link these two forms to each other,
+		 * we compare the two parts of the word after stripping the variable first or first and second letter.
+		 *
+		 */
+		const firstPartBeginningTrimmed = firstPart.substr( 1 );
+		const secondPartBeginningTrimmed = ( secondPart.startsWith( "ng" ) || secondPart.startsWith( "ny" ) )
+			? secondPart.substr( 2 )
+			: secondPart.substr( 1 );
+
+		if ( firstPartBeginningTrimmed === secondPartBeginningTrimmed ) {
+			const nonPlurals = morphologyData.stemming.nonPluralReduplications;
+
+			// Check non-plural reduplication.
+			if ( nonPlurals.includes( firstPart ) && nonPlurals.includes( secondPart ) ) {
+				/*
+				 * In words such as "mengira-ngira" prefix "me" causes a modification on both words (k->ng). This will
+				 * be correctly stemmed for the first word, but not the second. Therefore, the correct base form
+				 * "kira-kira" is created based on a reduplication of the correctly stemmed first part, "kira".
+				 */
+				return firstPart + "-" + firstPart;
+			}
+
+			// Return the stemmed singular form of a reduplicated plural.
+			return firstPart;
+		}
+	}
+
+	return null;
+};
+
+/**
+ * Stems Indonesian words
+ *
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string} The stem of an Indonesian word.
+ */
+export default function stem( word, morphologyData ) {
+	// Check words that shouldn't receive any stemming.
+	if ( morphologyData.stemming.shouldNotBeStemmed.includes( word ) ) {
+		return word;
+	}
+
+	const stemmedPlural = stemPlural( word, morphologyData );
+
+	if ( stemmedPlural ) {
+		return stemmedPlural;
+	}
+
+	word = stemSingular( word, morphologyData );
 
 	return word;
 }
