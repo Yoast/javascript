@@ -280,25 +280,34 @@ export default function stem( word, morphologyData ) {
 	// Stem the single syllable words
 	word = singleSyllableWords;
 
+	const doNotStemParticle = morphologyData.stemming.doNotStemWords.doNotStemParticle;
+	const doNotStemPronoun = morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix;
+
 	if ( calculateTotalNumberOfSyllables( word ) <= 2 ) {
 		return word;
+	}
+
+	// Check if a word after its derivational affixes stemmed exists in the exception list.
+	const firstDerivationalStem = stemDerivational( word, morphologyData );
+	if ( doNotStemParticle.includes( firstDerivationalStem ) || doNotStemPronoun.includes( firstDerivationalStem ) ) {
+		// If it does exist in the exception list, the ending that looks like a particle or a pronoun suffix should not be stemmed.
+		return firstDerivationalStem;
 	}
 
 	/**
 	 * If the word has more than 2 syllables and ends in of the particle endings (i.e. -kah, -lah, -pun), stem the particle here.
 	 * e.g. bajumulah -> bajumu, bawalah -> bawa
 	 */
-	word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle,
-		morphologyData.stemming.doNotStemWords.doNotStemParticle, morphologyData );
+	word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle, doNotStemParticle, morphologyData );
 
 	// If the word (still) has more than 2 syllables and ends in of the possessive pronoun endings (i.e. -ku, -mu, -nya), stem the ending here.
 	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 		// E.g. bajumu -> baju
-		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun,
-			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
+		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun, doNotStemPronoun, morphologyData );
 	}
+
 	// If the word (still) has more than 2 syllables and has derivational affixes, the affix(es) will be stemmed here.
-	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+	if ( calculateTotalNumberOfSyllables( word ) > 2  ) {
 		word = stemDerivational( word, morphologyData );
 	}
 
