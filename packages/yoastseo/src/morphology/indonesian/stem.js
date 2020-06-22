@@ -36,11 +36,32 @@ const checkSingleSyllableWordSuffix = function( word, suffixesArray ) {
 };
 
 /**
+ * Stems the prefix of the single syllable words, i.e. di-/penge-/menge-
+ *
+ * @param {string}	word			The word to check.
+ * @param {Object}	morphologyData	The Indonesian morphology data file.
+ *
+ * @returns {string} The stemmed word.
+ */
+const stemSingleSyllableWordsPrefixes = function( word, morphologyData ) {
+	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
+	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, morphologyData.stemming.singleSyllableWords ) ) {
+		 return word.substring( 2, word.length );
+	}
+	/*
+	 * If the word gets prefix menge-/penge- and is followed by one of the words in the list, stem the prefix here.
+	 * E.g. pengeboman -> boman
+	 */
+	if ( /^[mp]enge/i.test( word ) && checkBeginningsList( word, 5, morphologyData.stemming.singleSyllableWords ) ) {
+		return word.substring( 5, word.length );
+	}
+	return word;
+};
+
+/**
  * Stems Indonesian single syllable words. This function concerns single syllable words
- * with this possible word format [di] + single syllable word + [kan/i] + [ku/mu/nya] + [kah/lah/pun], with [] being optional.
- * Only prefix di- is checked here as it is the only prefix that is not going to be correctly stemmed
- * when attached to a single syllable word other than penge-/menge- prefixes. E.g. dipel -> pel, dipelkan -> pel, dipelkanlah -> pel
- * pelkan -> pel, pelkanlah -> pel, pelmulah -> pel.
+ * with this possible word format [di/penge/menge] + single syllable word + [kan/an/i] + [ku/mu/nya] + [kah/lah/pun], with [] being optional.
+ * E.g. dipel -> pel, dipelkan -> pel, dipelkanlah -> pel, pelkan -> pel, pelmulah -> pel, pengeboman -> bom, mengesahkan -> sah
  *
  *
  * @param {string}	word			The word to check.
@@ -52,11 +73,8 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 	const singleSyllableWords = morphologyData.stemming.singleSyllableWords;
 	const suffixCombination = morphologyData.stemming.singleSyllableWordsSuffixes;
 	const inputWord = word;
-
-	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
-	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, singleSyllableWords ) ) {
-		word = word.substring( 2, word.length );
-	}
+	// If the word starts with prefix di-/penge-/menge-, stem the prefix here. E.g. pengeboman -> boman, dipelkan -> pelkan
+	word = stemSingleSyllableWordsPrefixes( word, morphologyData );
 
 	// Check if a word starts with one of the words in the list, has maximum 3 syllables, and ends in one of the single syllable suffixes
 	if ( singleSyllableWords.some( shortWord => word.startsWith( shortWord ) ) && calculateTotalNumberOfSyllables( word ) <= 3 &&
@@ -69,10 +87,12 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun,
 			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
 
-		// If the word ends in -kan/-i suffix and has exactly 2 syllables, stem the suffix. E.g. cekkan -> cek, bomi -> bom
-		if ( /(kan|i)$/i.test( word ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
-			word = removeEnding( word, morphologyData.stemming.regexRules.removeSuffixes,
-				morphologyData.stemming.doNotStemWords.doNotStemSuffix, morphologyData );
+		// If the word ends in -kan/-an/-i suffix, stem the suffix. E.g. cekkan -> cek, bomi -> bom
+		const wordWithoutDerivationalSuffix = removeEnding( word, morphologyData.stemming.regexRules.removeSuffixes,
+			morphologyData.stemming.doNotStemWords.doNotStemSuffix, morphologyData );
+
+		if ( singleSyllableWords.includes( wordWithoutDerivationalSuffix ) ) {
+			word = wordWithoutDerivationalSuffix;
 		}
 	}
 	/*

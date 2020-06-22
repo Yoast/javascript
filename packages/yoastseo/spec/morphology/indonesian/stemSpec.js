@@ -165,25 +165,52 @@ const wordsToStem = [
 	[ "mempengaruhi", "aruh" ],
 	[ "dipengaruhi", "aruh" ],
 	[ "kepenghunian", "huni" ],
-	// Single syllable words that gets prefix di-
+	// Single syllable words that get prefix di-
 	[ "dipel", "pel" ],
-	// Single syllable words that gets prefix di- and suffix -kan/-i
+	// Single syllable words that get prefix di- and suffix -kan/-i
 	[ "dipelkan", "pel" ],
 	[ "disahi", "sah" ],
-	// Single syllable words that gets prefix di- and suffix -kan/-i and a particle suffixes
+	// Single syllable words that get prefix di- and suffix -kan/-i and a particle suffixes
 	[ "dipelkankah", "pel" ],
 	[ "disahkanlah", "sah" ],
-	// Single syllable words that gets prefix di- and particle suffixes
+	// Single syllable words that get prefix di- and particle suffixes
 	[ "dicaspun", "cas" ],
 	[ "dipelkah", "pel" ],
-	// Single syllable words that gets a particle suffix
+	// Single syllable words that get a particle suffix
 	[ "bomkah", "bom" ],
-	// Single syllable words that gets a possessive pronoun suffix
+	// Single syllable words that get a possessive pronoun suffix
 	[ "vasmu", "vas" ],
-	// Single syllable words that gets a possessive pronoun suffix and a particle suffix
+	// Single syllable words that get a possessive pronoun suffix and a particle suffix
 	[ "vasmupun", "vas" ],
-	// Single syllable words that gets either -kan suffix
+	// Single syllable words that get either -kan suffix
 	[ "pelkan", "pel" ],
+	// Single syllable words that get prefix penge-
+	[ "pengecek", "cek" ],
+	[ "pengelap", "lap" ],
+	// Single syllable words that get prefix menge-
+	[ "mengekir", "kir" ],
+	[ "mengeklik", "klik" ],
+	// Single syllable words that get prefix penge- and suffix -an
+	[ "pengeboman", "bom" ],
+	[ "pengesahan", "sah" ],
+	// Single syllable words that get prefix menge- and suffix -kan/-i
+	[ "mengebomi", "bom" ],
+	[ "mengesahkan", "sah" ],
+	/*
+	  * Two syllable words that look like it starts with one of the single syllable words and ends in one of these suffixes -kan/-an/-i.
+	  * Currently some of these words are incorrectly stemmed.  They will be solved when we implement the root dictionary
+	 */
+	// [ "topan", "topan" ],
+	// [ "lokan", "lokan" ],
+	[ "turban", "turban" ],
+	[ "pingsan", "pingsan" ],
+	[ "tinggi", "tinggi" ],
+	/*
+	  * Two syllable words whose stem starts in one of the single syllable words and gets prefix menge-/penge-
+	  * in which it accidentally overlaps with words starting with e- in kBeginning list and have prefix meng-/peng-
+	 */
+	// [ "mengebiri", "kebiri" ],
+	// [ "pengerat", "kerat" ],
 	// Words with derivational affixes that need to be stemmed before comparing with the list of doNotStem exception.
 	[ "bersekolah", "sekolah" ],
 	[ "terhimpun", "himpun" ],
