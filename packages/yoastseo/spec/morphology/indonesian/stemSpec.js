@@ -256,6 +256,13 @@ const wordsToStem = [
 	[ "menunda-nunda", "tunda" ],
 	[ "menjadi-jadi", "jadi" ],
 	[ "bertingkat-tingkat", "tingkat" ],
+	// Words with a beginning that looks like a valid prefix
+	[ "pelita", "pelita" ],
+	[ "medali", "medali" ],
+	[ "belanja", "belanja" ],
+	// Words with a beginning that looks like a valid prefix and also gets a first order prefix and a suffix
+	[ "membelanjakan", "belanja" ],
+	[ "memberangkatkan", "berangkat" ],
 ];
 
 describe( "Test for stemming Indonesian words", () => {

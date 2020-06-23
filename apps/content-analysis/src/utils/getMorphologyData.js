@@ -24,7 +24,7 @@ function loadLocalMorphologyData() {
 		// eslint-disable-next-line global-require
 		dataIT = require( "../../../../packages/yoastseo/premium-configuration/data/morphologyData-it-v9.json" );
 		// eslint-disable-next-line global-require
-		dataID = require( "../../../../packages/yoastseo/premium-configuration/data/morphologyData-id-v8.json" );
+		dataID = require( "../../../../packages/yoastseo/premium-configuration/data/morphologyData-id-v9.json" );
 	} catch ( error ) {
 		// Falling back to empty data.
 	}

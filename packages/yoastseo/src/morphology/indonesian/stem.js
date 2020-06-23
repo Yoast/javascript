@@ -1,5 +1,6 @@
 import { buildOneFormFromRegex } from "../morphoHelpers/buildFormRule";
 import createRulesFromMorphologyData from "../morphoHelpers/createRulesFromMorphologyData";
+import { flattenSortLength } from "../morphoHelpers/flattenSortLength";
 import { calculateTotalNumberOfSyllables, removeEnding, checkBeginningsList } from "./helpers";
 
 /**
@@ -228,6 +229,7 @@ const stemDerivational = function( word, morphologyData ) {
 	let wordLength = word.length;
 	const removeSuffixRules = morphologyData.stemming.regexRules.removeSuffixes;
 	const removeSuffixExceptions = morphologyData.stemming.doNotStemWords.doNotStemSuffix;
+	const doNotStemPrefix = flattenSortLength( morphologyData.stemming.doNotStemWords.doNotStemPrefix );
 
 	/*
 	 * If the word has more than 2 syllables and starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
@@ -261,7 +263,7 @@ const stemDerivational = function( word, morphologyData ) {
 		 * If it does have more than 2 syllables and starts with one of the second order prefixes (i.e. ber-, be-, per-, pe-), the prefix will
 		 * be stemmed here.
 		 */
-		if ( wordLength !== word.length ) {
+		if ( wordLength !== word.length && ! doNotStemPrefix.includes( word ) ) {
 			if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 				word = removeSecondOrderPrefix( word, morphologyData );
 			}
@@ -386,6 +388,10 @@ const stemPlural = function( word, morphologyData ) {
  * @returns {string} The stem of an Indonesian word.
  */
 export default function stem( word, morphologyData ) {
+	const doNotStemPrefix = flattenSortLength( morphologyData.stemming.doNotStemWords.doNotStemPrefix );
+	if ( doNotStemPrefix.includes( word ) ) {
+		return word;
+	}
 	// Check words that shouldn't receive any stemming.
 	if ( morphologyData.stemming.shouldNotBeStemmed.includes( word ) ) {
 		return word;
