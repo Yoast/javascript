@@ -242,6 +242,7 @@ const wordsToStem = [
 	[ "hati-hati", "hati-hati" ],
 	// Reduplicated words with stem changes that aren't plurals shouldn't be stemmed (i.e. words on nonPluralReduplications exception list).
 	[ "mengira-ngira", "kira-kira" ],
+	[ "mengongko-ngongko", "kongko-kongko" ],
 	// Reduplicated words that aren't plurals shouldn't be stemmed (i.e. words on nonPluralReduplicationsFullForms exception list).
 	[ "antah-berantah", "antah-berantah" ],
 	// Non-plurals that aren't full reduplications shouldn't be stemmed.
