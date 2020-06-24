@@ -116,7 +116,7 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
  * @returns {string|null}	The stem or null if the word did not start with ter/keter.
  */
 const tryStemmingKeAndTer = function( morphologyData, word ) {
-	const terException = morphologyData.stemming.doNotStemWords.doNotStemPrefix.doNotStemTer;
+	const terException = morphologyData.stemming.doNotStemWords.doNotStemPrefix.doNotStemFirstOrderPrefix.doNotStemTer;
 
 	// If prefix -ter is preceded by prefix -ke, remove it first.
 	if ( word.startsWith( "keter" ) ) {
@@ -229,21 +229,26 @@ const stemDerivational = function( word, morphologyData ) {
 	let wordLength = word.length;
 	const removeSuffixRules = morphologyData.stemming.regexRules.removeSuffixes;
 	const removeSuffixExceptions = morphologyData.stemming.doNotStemWords.doNotStemSuffix;
-	const doNotStemPrefix = flattenSortLength( morphologyData.stemming.doNotStemWords.doNotStemPrefix );
+	const doNotStemFirstOrderPrefix = flattenSortLength( morphologyData.stemming.doNotStemWords.doNotStemPrefix.doNotStemFirstOrderPrefix );
+	const doNotStemSecondOrderPrefix = flattenSortLength( morphologyData.stemming.doNotStemWords.doNotStemPrefix.doNotStemSecondOrderPrefix );
 
-	/*
-	 * If the word has more than 2 syllables and starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
-	 * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here. e.g. penyebaran -> sebaran, diperlebarkan -> perlebarkan
-	 */
-	word = removeFirstOrderPrefix( word, morphologyData );
+	// If a word is in the list of words with a beginning that looks like a valid suffix, do not stem the suffix
+	if ( ! doNotStemFirstOrderPrefix.some( wordWithPrefixLookAlike => word.startsWith( wordWithPrefixLookAlike ) ) ) {
+		/**
+	     * If the word has more than 2 syllables and starts with one of first order prefixes (i.e. meng-, meny-, men-, mem-, me-,
+	     * peng-, peny-, pen-, pem-, di-, ter-, ke- ), the prefix will be stemmed here. e.g. penyebaran -> sebaran, diperlebarkan -> perlebarkan
+	    */
+		word = removeFirstOrderPrefix( word, morphologyData );
+	}
 
 	if ( wordLength === word.length ) {
-		/**
-		 * If the word does not start with one of the first order prefixes but starts with one of the second order prefixes,
-		 * the prefix will be stemmed here, e.g., peranakan -> anakan
-		 */
-		word = removeSecondOrderPrefix( word, morphologyData );
-
+		if ( ! doNotStemSecondOrderPrefix.some( wordWithPrefixLookAlike => word.startsWith( wordWithPrefixLookAlike ) ) ) {
+			/**
+			 * If the word does not start with one of the first order prefixes but starts with one of the second order prefixes,
+			 * the prefix will be stemmed here, e.g., peranakan -> anakan
+			 */
+			word = removeSecondOrderPrefix( word, morphologyData );
+		}
 		// If the word has more than 2 syllables and ends in either -kan, -an, or -i suffixes, the suffix will be deleted here, e.g., anakan -> anak
 		if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 			word = removeEnding( word, removeSuffixRules, removeSuffixExceptions, morphologyData );
@@ -261,9 +266,9 @@ const stemDerivational = function( word, morphologyData ) {
 		/**
 		 * If the word previously had a suffix, we check further if the word after first order prefix and suffix deletion has more than 2 syllables.
 		 * If it does have more than 2 syllables and starts with one of the second order prefixes (i.e. ber-, be-, per-, pe-), the prefix will
-		 * be stemmed here.
+		 * be stemmed here unless the word is in the exception list of words with a beginning that looks like a second order prefix.
 		 */
-		if ( wordLength !== word.length && ! doNotStemPrefix.includes( word ) ) {
+		if ( wordLength !== word.length && ! doNotStemSecondOrderPrefix.includes( word ) ) {
 			if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 				word = removeSecondOrderPrefix( word, morphologyData );
 			}
@@ -388,10 +393,6 @@ const stemPlural = function( word, morphologyData ) {
  * @returns {string} The stem of an Indonesian word.
  */
 export default function stem( word, morphologyData ) {
-	const doNotStemPrefix = flattenSortLength( morphologyData.stemming.doNotStemWords.doNotStemPrefix );
-	if ( doNotStemPrefix.includes( word ) ) {
-		return word;
-	}
 	// Check words that shouldn't receive any stemming.
 	if ( morphologyData.stemming.shouldNotBeStemmed.includes( word ) ) {
 		return word;

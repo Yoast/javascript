@@ -260,9 +260,28 @@ const wordsToStem = [
 	[ "pelita", "pelita" ],
 	[ "medali", "medali" ],
 	[ "belanja", "belanja" ],
+	[ "keliling", "keliling" ],
+	[ "diskusi", "diskusi" ],
+	[ "disinfektan", "disinfektan" ],
+	// Words with a beginning that looks like a valid prefix and get non-derivational suffix i.e. -kah/-lah/-pun/-ku/-mu/-nya
+	[ "belanjalah", "belanja" ],
+	[ "berpedomankah", "pedoman" ],
+	[ "pedomannyapun", "pedoman" ],
+	[ "kelilingnya", "keliling" ],
+	[ "keringatku", "keringat" ],
+	[ "kelincimu", "kelinci" ],
+	// Words with a beginning that looks like a valid prefix with a second order prefix
+	[ "bermedali", "medali" ],
+	[ "berdiskusi", "diskusi" ],
+	[ "pendiskusian", "diskusi" ],
+	// Words with a beginning that looks like a valid prefix with a derivational suffix -kan/-an/-i
+	[ "belanjaan", "belanja" ],
+	[ "kecewakan", "kecewa" ],
 	// Words with a beginning that looks like a valid prefix and also gets a first order prefix and a suffix
 	[ "membelanjakan", "belanja" ],
 	[ "memberangkatkan", "berangkat" ],
+	[ "mendiskusikan", "diskusi" ],
+	[ "pendiskusian", "diskusi" ],
 ];
 
 describe( "Test for stemming Indonesian words", () => {
