@@ -341,7 +341,7 @@ const stemPlural = function( word, morphologyData ) {
 
 		firstPart = stemSingular( firstPart, morphologyData );
 		secondPart = stemSingular( secondPart, morphologyData );
-
+        console.log( firstPart, secondPart );
 		/*
 		 * To compare the first and second part and see whether it's actually a reduplication:
 		 * Trim the beginning of the word since it might be variable due to stem changes caused by prefixes.
@@ -355,6 +355,7 @@ const stemPlural = function( word, morphologyData ) {
 		const secondPartBeginningTrimmed = ( secondPart.startsWith( "ng" ) || secondPart.startsWith( "ny" ) )
 			? secondPart.substr( 2 )
 			: secondPart.substr( 1 );
+		console.log( firstPartBeginningTrimmed, secondPartBeginningTrimmed );
 
 		if ( firstPartBeginningTrimmed === secondPartBeginningTrimmed ) {
 			const nonPlurals = morphologyData.stemming.nonPluralReduplications;
