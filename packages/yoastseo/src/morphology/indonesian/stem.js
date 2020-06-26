@@ -36,11 +36,32 @@ const checkSingleSyllableWordSuffix = function( word, suffixesArray ) {
 };
 
 /**
+ * Stems the prefix of the single syllable words, i.e. di-/penge-/menge-
+ *
+ * @param {string}	word			The word to check.
+ * @param {Object}	morphologyData	The Indonesian morphology data file.
+ *
+ * @returns {string} The stemmed word.
+ */
+const stemSingleSyllableWordsPrefixes = function( word, morphologyData ) {
+	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
+	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, morphologyData.stemming.singleSyllableWords ) ) {
+		 return word.substring( 2, word.length );
+	}
+	/*
+	 * If the word gets prefix menge-/penge- and is followed by one of the words in the list, stem the prefix here.
+	 * E.g. pengeboman -> boman
+	 */
+	if ( /^[mp]enge/i.test( word ) && checkBeginningsList( word, 5, morphologyData.stemming.singleSyllableWords ) ) {
+		return word.substring( 5, word.length );
+	}
+	return word;
+};
+
+/**
  * Stems Indonesian single syllable words. This function concerns single syllable words
- * with this possible word format [di] + single syllable word + [kan/i] + [ku/mu/nya] + [kah/lah/pun], with [] being optional.
- * Only prefix di- is checked here as it is the only prefix that is not going to be correctly stemmed
- * when attached to a single syllable word other than penge-/menge- prefixes. E.g. dipel -> pel, dipelkan -> pel, dipelkanlah -> pel
- * pelkan -> pel, pelkanlah -> pel, pelmulah -> pel.
+ * with this possible word format [di/penge/menge] + single syllable word + [kan/an/i] + [ku/mu/nya] + [kah/lah/pun], with [] being optional.
+ * E.g. dipel -> pel, dipelkan -> pel, dipelkanlah -> pel, pelkan -> pel, pelmulah -> pel, pengeboman -> bom, mengesahkan -> sah
  *
  *
  * @param {string}	word			The word to check.
@@ -52,11 +73,8 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 	const singleSyllableWords = morphologyData.stemming.singleSyllableWords;
 	const suffixCombination = morphologyData.stemming.singleSyllableWordsSuffixes;
 	const inputWord = word;
-
-	// If the word gets prefix di-, stem the prefix here. E.g. dicekkanlah -> cekkanlah, dibomi -> bomi
-	if ( word.startsWith( "di" ) && checkBeginningsList( word, 2, singleSyllableWords ) ) {
-		word = word.substring( 2, word.length );
-	}
+	// If the word starts with prefix di-/penge-/menge-, stem the prefix here. E.g. pengeboman -> boman, dipelkan -> pelkan
+	word = stemSingleSyllableWordsPrefixes( word, morphologyData );
 
 	// Check if a word starts with one of the words in the list, has maximum 3 syllables, and ends in one of the single syllable suffixes
 	if ( singleSyllableWords.some( shortWord => word.startsWith( shortWord ) ) && calculateTotalNumberOfSyllables( word ) <= 3 &&
@@ -69,10 +87,12 @@ const stemSingleSyllableWords = function( word, morphologyData ) {
 		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun,
 			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
 
-		// If the word ends in -kan/-i suffix and has exactly 2 syllables, stem the suffix. E.g. cekkan -> cek, bomi -> bom
-		if ( /(kan|i)$/i.test( word ) && calculateTotalNumberOfSyllables( word ) === 2 ) {
-			word = removeEnding( word, morphologyData.stemming.regexRules.removeSuffixes,
-				morphologyData.stemming.doNotStemWords.doNotStemSuffix, morphologyData );
+		// If the word ends in -kan/-an/-i suffix, stem the suffix. E.g. cekkan -> cek, bomi -> bom
+		const wordWithoutDerivationalSuffix = removeEnding( word, morphologyData.stemming.regexRules.removeSuffixes,
+			morphologyData.stemming.doNotStemWords.doNotStemSuffix, morphologyData );
+
+		if ( singleSyllableWords.includes( wordWithoutDerivationalSuffix ) ) {
+			word = wordWithoutDerivationalSuffix;
 		}
 	}
 	/*
@@ -251,39 +271,133 @@ const stemDerivational = function( word, morphologyData ) {
 };
 
 /**
- * Stems Indonesian words
+ * Stems Indonesian singular words.
  *
- * @param {string} word           The word to stem.
+ * @param {string} word           The singular word to stem.
  * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
  *
- * @returns {string} The stem of Indonesian word.
+ * @returns {string} The stem of an Indonesian singular word.
  */
-export default function stem( word, morphologyData ) {
+const stemSingular = function( word, morphologyData ) {
 	const singleSyllableWords = stemSingleSyllableWords( word, morphologyData );
 	// Stem the single syllable words
 	word = singleSyllableWords;
 
+	const doNotStemParticle = morphologyData.stemming.doNotStemWords.doNotStemParticle;
+	const doNotStemPronoun = morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix;
+
 	if ( calculateTotalNumberOfSyllables( word ) <= 2 ) {
 		return word;
+	}
+
+	// Check if a word after its derivational affixes stemmed exists in the exception list.
+	const firstDerivationalStem = stemDerivational( word, morphologyData );
+	if ( doNotStemParticle.includes( firstDerivationalStem ) || doNotStemPronoun.includes( firstDerivationalStem ) ) {
+		// If it does exist in the exception list, the ending that looks like a particle or a pronoun suffix should not be stemmed.
+		return firstDerivationalStem;
 	}
 
 	/**
 	 * If the word has more than 2 syllables and ends in of the particle endings (i.e. -kah, -lah, -pun), stem the particle here.
 	 * e.g. bajumulah -> bajumu, bawalah -> bawa
 	 */
-	word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle,
-		morphologyData.stemming.doNotStemWords.doNotStemParticle, morphologyData );
+	word = removeEnding( word, morphologyData.stemming.regexRules.removeParticle, doNotStemParticle, morphologyData );
 
 	// If the word (still) has more than 2 syllables and ends in of the possessive pronoun endings (i.e. -ku, -mu, -nya), stem the ending here.
 	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
 		// E.g. bajumu -> baju
-		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun,
-			morphologyData.stemming.doNotStemWords.doNotStemPronounSuffix, morphologyData );
+		word = removeEnding( word, morphologyData.stemming.regexRules.removePronoun, doNotStemPronoun, morphologyData );
 	}
+
 	// If the word (still) has more than 2 syllables and has derivational affixes, the affix(es) will be stemmed here.
-	if ( calculateTotalNumberOfSyllables( word ) > 2 ) {
+	if ( calculateTotalNumberOfSyllables( word ) > 2  ) {
 		word = stemDerivational( word, morphologyData );
 	}
+
+	return word;
+};
+
+/**
+ * Stems Indonesian plural words.
+ *
+ * @param {string} word           The plural word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string|null} The stem of an Indonesian plural word or null if no plural was detected.
+ */
+const stemPlural = function( word, morphologyData ) {
+	const hyphenIndex = word.indexOf( "-" );
+
+	// If there is no hyphen in the word, it can't be a reduplicated plural.
+	if ( hyphenIndex === -1  ) {
+		return null;
+	}
+
+	const splitWord = word.split( "-" );
+
+	if ( splitWord.length === 2 ) {
+		let firstPart = splitWord[ 0 ];
+		let secondPart = splitWord[ 1 ];
+
+		firstPart = stemSingular( firstPart, morphologyData );
+		secondPart = stemSingular( secondPart, morphologyData );
+
+		/*
+		 * To compare the first and second part and see whether it's actually a reduplication:
+		 * Trim the beginning of the word since it might be variable due to stem changes caused by prefixes.
+		 * For example, in "meniru-nirukan" the singular stemmer will correctly stem the first "niru" to "tiru" because
+		 * of the prefix "me". Since the second part of the word is stemmed individually, there is no "me" and hence
+		 * "niru" remains "niru". To still be able to link these two forms to each other,
+		 * we compare the two parts of the word after stripping the variable first or first and second letter.
+		 *
+		 */
+		const firstPartBeginningTrimmed = firstPart.substr( 1 );
+		const secondPartBeginningTrimmed = ( secondPart.startsWith( "ng" ) || secondPart.startsWith( "ny" ) )
+			? secondPart.substr( 2 )
+			: secondPart.substr( 1 );
+
+		if ( firstPartBeginningTrimmed === secondPartBeginningTrimmed ) {
+			const nonPlurals = morphologyData.stemming.nonPluralReduplications;
+
+			// Check non-plural reduplication.
+			if ( nonPlurals.includes( firstPart ) && nonPlurals.includes( secondPart ) ) {
+				/*
+				 * In words such as "mengira-ngira" prefix "me" causes a modification on both words (k->ng). This will
+				 * be correctly stemmed for the first word, but not the second. Therefore, the correct base form
+				 * "kira-kira" is created based on a reduplication of the correctly stemmed first part, "kira".
+				 */
+				return firstPart + "-" + firstPart;
+			}
+
+			// Return the stemmed singular form of a reduplicated plural.
+			return firstPart;
+		}
+	}
+
+	return null;
+};
+
+/**
+ * Stems Indonesian words
+ *
+ * @param {string} word           The word to stem.
+ * @param {Object} morphologyData The object that contains regex-based rules and exception lists for Indonesian stemming.
+ *
+ * @returns {string} The stem of an Indonesian word.
+ */
+export default function stem( word, morphologyData ) {
+	// Check words that shouldn't receive any stemming.
+	if ( morphologyData.stemming.shouldNotBeStemmed.includes( word ) ) {
+		return word;
+	}
+
+	const stemmedPlural = stemPlural( word, morphologyData );
+
+	if ( stemmedPlural ) {
+		return stemmedPlural;
+	}
+
+	word = stemSingular( word, morphologyData );
 
 	return word;
 }
