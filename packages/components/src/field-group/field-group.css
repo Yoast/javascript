@@ -5,6 +5,10 @@
     margin: 0 0 24px 0;
 }
 
+.yoast-field-group:last-of-type {
+	margin-bottom: 0;
+}
+
 .yoast-field-group__title {
     display: flex;
     align-items: center;
