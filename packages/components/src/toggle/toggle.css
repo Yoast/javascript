@@ -14,9 +14,11 @@
 	position: relative;
 }
 
+.yoast-toggle__item-disabled .yoast-toggle {
+	display: none;
+}
+
 .yoast-toggle__item-disabled .yoast-button.yoast-button--buy {
-	position: absolute;
-	left: 100%;
 	margin-left: 32px;
 	white-space: nowrap;
 }
