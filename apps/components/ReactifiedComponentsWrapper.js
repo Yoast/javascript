@@ -1,11 +1,8 @@
 import React, { Fragment } from "react";
-import TextInput from "@yoast/components/src/inputs/TextInput";
+import { TextInput, RadioButtonGroup, MultiSelect, Select, DataModel } from "@yoast/components";
 import TextArea from "@yoast/components/src/inputs/TextArea";
 import CheckboxGroup from "@yoast/components/src/checkbox/CheckboxGroup";
-import RadioButtonGroup from "@yoast/components/src/radiobutton/RadioButtonGroup";
-import { MultiSelect, Select } from "@yoast/components/src/select/Select";
 import Toggle from "@yoast/components/src/toggle/Toggle";
-import DataModel from "@yoast/components/src/data-model/DataModel";
 import {
 	Button,
 	ButtonStyledLink,
