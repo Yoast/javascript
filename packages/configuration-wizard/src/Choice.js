@@ -1,5 +1,5 @@
 /* External dependencies */
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 /* Yoast dependencies */
@@ -55,28 +55,6 @@ const Choice = ( props ) => {
 			</fieldset>
 			;
 			/* eslint-enable jsx-a11y/no-onchange */
-		} else if ( fieldName === "separator" ) {
-			return <fieldset className={ "yoast-field-group__title-separator" }>
-				{ fieldKeys.map( ( choiceName, index ) => {
-					const choice = choices[ choiceName ];
-					const id = `${fieldName}-${index}`;
-					// If the value for the choice field equals the name for this choice, the choice is checked.
-					const checked = ( props.value === choiceName );
-
-					return (
-						<Fragment key={ `${ id }-key` }>
-							<Input
-								name={ fieldName } type="radio" label={ choice.label } onChange={ props.onChange }
-								value={ choiceName } optionalAttributes={ { id, checked } } className={ "visually-hidden" }
-							/>
-							<Label
-								for={ id }
-								optionalAttributes={ { "aria-label": choice.screenReaderText } }
-							>{ decodeHTML( choice.label ) }</Label>
-						</Fragment>
-					);
-				} ) }
-			</fieldset>;
 		}
 		return <fieldset className={ "yoast-field-group yoast-wizard-input-radio-" + fieldName }>
 			{ fieldKeys.map( ( choiceName, index ) => {
