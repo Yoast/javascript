@@ -11,8 +11,7 @@ module.exports = {
 		"babel-polyfill",
 
 		// Compile the @yoast/configuration-wizard scss
-		// Needs to be fixed
-		// "@yoast/components/src/configuration-wizard/configuration-wizard.css",
+		"@yoast/configuration-wizard/src/configuration-wizard.scss",
 
 		// Compile the yoast-components standalone .scss
 		"yoast-components/css/standalone.scss",
@@ -75,14 +74,14 @@ module.exports = {
 				test: /\.s?css$/,
 				use: [
 					{
-						loader: 'style-loader',
+						loader: "style-loader",
 						options: {
-							insertAt: 'top'
-						}
+							insertAt: "top",
+						},
 					},
-					'css-loader',
-					'sass-loader',
-				]
+					"css-loader",
+					"sass-loader",
+				],
 			},
 		],
 	},
