@@ -7,11 +7,7 @@ import SvgIcon from "material-ui/SvgIcon";
 /* Yoast dependencies */
 import { colors } from "@yoast/style-guide";
 
-const colorInactive = window.getComputedStyle(document.documentElement).getPropertyValue("--yoast-color-inactive-text");
-
-const style = {
-	fontFamily: "var(--yoast-font-family)",
-}
+const colorInactive = window.getComputedStyle( document.documentElement ).getPropertyValue( "--yoast-color-inactive-text" );
 
 /**
  * Creates a step button for the wizard. The step buttons are meant to be rendered in a stepper component(StepIndicator)
@@ -26,7 +22,7 @@ const style = {
  */
 const StepButton = ( props ) => (
 	<IconButton
-		style={style} className={ props.className } onClick={ props.onClick } tooltip={ props.tooltip } touch={ true }
+		className={ props.className } onClick={ props.onClick } tooltip={ props.tooltip } touch={ true }
 		tooltipPosition="top-center" tooltipStyles={ props.tooltipStyles } aria-label={ props.ariaLabel }
 	>
 		<SvgIcon color={ colorInactive }>
