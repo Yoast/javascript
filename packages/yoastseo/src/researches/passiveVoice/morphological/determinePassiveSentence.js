@@ -8,6 +8,10 @@ const getPassiveVerbsRussian = getPassiveVerbsRussianFactory().all;
 import getPassiveVerbsSwedishFactory from "../../swedish/passiveVoice/participles.js";
 const getPassiveVerbsSwedish = getPassiveVerbsSwedishFactory().all;
 
+const passivePrefixIndonesian = "di";
+import nonPassivesIndonesianFactory from "../../indonesian/passiveVoice/nonPassiveVerbsStartingDi";
+const nonPassivesIndonesian = nonPassivesIndonesianFactory();
+
 /**
  * Matches the sentence against passive verbs.
  *
