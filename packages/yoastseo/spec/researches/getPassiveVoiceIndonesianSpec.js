@@ -32,12 +32,12 @@ describe( "detecting passive voice in sentences", function() {
 
 	it( "does not return passive voice if the passive verb is preceded by 'untuk", function() {
 		// Passive: digunakan.
-		const paper = new Paper( "Kalimat yang dipikirkan lebih baik untuk digunakan", { locale: "id_ID" } );
+		const paper = new Paper( "Kalimat itu lebih baik untuk digunakan", { locale: "id_ID" } );
 		expect( passiveVoice( paper ).passives.length ).toBe( 0 );
 	} );
 
 	it( "does not return passive voice if the word is found in the non-passive exception list", function() {
-		// Non passive: digunakan.
+		// Non passive: dinosaurus.
 		const paper = new Paper( "Saya melihat dinosaurus", { locale: "id_ID" } );
 		expect( passiveVoice( paper ).passives.length ).toBe( 0 );
 	} );
