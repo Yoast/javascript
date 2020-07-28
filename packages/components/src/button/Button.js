@@ -67,31 +67,48 @@ const getVariantIcons = variant => variantToIcon[ variant ] || null;
  *
  * @returns {HTMLButtonElement} A button.
  */
-export const Button = ( props ) => {
-	// Split Button.js specific props from all other props.
-	const {
-		children,
-		className,
-		variant,
-		small,
-		type,
-		...restProps
-	} = props;
+class Button extends React.Component {
+	/**
+	 * Constructs the Button component.
+	 *
+	 * @param {Object} props The props object.
+	 *
+	 * @constructor
+	 */
+	constructor( props ) {
+		super( props );
 
-	const variantIcons = getVariantIcons( variant );
-	const iconBefore = variantIcons && variantIcons.iconBefore;
-	const iconAfter = variantIcons && variantIcons.iconAfter;
+		const variantIcons = getVariantIcons( props.variant );
+		this.iconBefore = variantIcons && variantIcons.iconBefore;
+		this.iconAfter = variantIcons && variantIcons.iconAfter;
+	}
 
-	return <button
-		className={ className || getClassName( variant, small ) }
-		type={ type }
-		{ ...restProps }
-	>
-		{ ! ! iconBefore && <span className={ iconBefore } /> }
-		{ children }
-		{ ! ! iconAfter && <span className={ iconAfter } /> }
-	</button>;
-};
+	/**
+	 * Renders the component's HTML.
+	 *
+	 * @returns { HTMLButtonElement } A button element.
+	 */
+	render() {
+		const {
+			children,
+			className,
+			variant,
+			small,
+			type,
+			...restProps
+		} = this.props;
+
+		return <button
+			className={ className || getClassName( variant, small ) }
+			type={ type }
+			{ ...restProps }
+		>
+			{ ! ! this.iconBefore && <span className={ this.iconBefore } /> }
+			{ children }
+			{ ! ! this.iconAfter && <span className={ this.iconAfter } /> }
+		</button>;
+	}
+}
 
 Button.propTypes = {
 	onClick: PropTypes.func,
