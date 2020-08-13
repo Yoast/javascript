@@ -44,6 +44,14 @@
 	max-height: calc(100% - 48px - 48px);
 }
 
+.yoast-post-settings-modal .components-modal__content {
+	padding: 0;
+}
+
+.yoast-post-settings-modal .components-modal__header {
+	margin: 0;
+}
+
 /* The PostSettingsModal should be full width for mobile devices */
 @media only screen and (max-width: 600px){
 	.yoast-post-settings-modal {
