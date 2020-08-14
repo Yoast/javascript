@@ -73,7 +73,6 @@ export function wrapInHeading( Component, props ) {
 		padding: 0 !important;
 		font-size: ${ props.fontSize } !important;
 		font-weight: ${ props.fontWeight } !important;
-		color: ${ props.color } !important;
 	`;
 
 	return function Wrapped( componentProps ) {
@@ -329,7 +328,6 @@ Collapsible.propTypes = {
 		level: PropTypes.number,
 		fontSize: PropTypes.string,
 		fontWeight: PropTypes.string,
-		color: PropTypes.string,
 	} ),
 };
 
@@ -357,7 +355,6 @@ Collapsible.defaultProps = {
 		level: 2,
 		fontSize: "1rem",
 		fontWeight: "normal",
-		color: "#555",
 	},
 };
 
