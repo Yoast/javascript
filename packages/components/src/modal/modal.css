@@ -46,6 +46,8 @@
 
 .yoast-post-settings-modal .components-modal__content {
 	padding: 0;
+	display: flex;
+	flex-direction: column;
 }
 
 .yoast-post-settings-modal .components-modal__header {
