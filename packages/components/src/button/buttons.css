@@ -93,6 +93,12 @@
 	background-color: var(--yoast-color-sale-darker)
 }
 
+.yoast .yoast-button--post-settings-modal {
+	min-width: 154px;
+	max-height: 40px;
+	align-self: center;
+}
+
 .yoast .yoast-button--buy__caret {
 	flex-shrink: 0;
 	display: inline-block;
