@@ -64,9 +64,11 @@ const changeOptionFormatToReactSelect = ( options ) => {
  *
  * @returns {React.Component} The react-select MultiSelect.
  */
-export const MultiSelect = ( props ) => {
+export const YoastSelect = ( props ) => {
 	const {
 		id,
+		isMulti,
+		isSearchable,
 		selected,
 		options,
 		name,
@@ -96,9 +98,9 @@ export const MultiSelect = ( props ) => {
 			htmlFor={ id }
 		>
 			<ReactSelect
-				isMulti={ true }
+				isMulti={ isMulti }
 				id={ id }
-				name={ `${ name }[]` }
+				name={ name }
 				value={ selectedOptions }
 				options={ reactSelectOptions }
 				hideSelectedOptions={ false }
@@ -106,15 +108,23 @@ export const MultiSelect = ( props ) => {
 				className="yoast-select-container"
 				classNamePrefix="yoast-select"
 				isClearable={ false }
-				isSearchable={ false }
+				isSearchable={ isSearchable }
 				placeholder=""
 			/>
 		</FieldGroup>
 	);
 };
 
-MultiSelect.propTypes = selectProps;
-MultiSelect.defaultProps = selectDefaultProps;
+YoastSelect.propTypes = selectProps;
+YoastSelect.defaultProps = selectDefaultProps;
+
+/**
+ * H
+ * @param {*} props 
+ *
+ * @returns {object} Select.
+ */
+export const MultiSelect = ( props ) => <YoastSelect { ...props } isMulti={ true } isSearchable={ false } />;
 
 /**
  * React wrapper for a basic HTML select.
