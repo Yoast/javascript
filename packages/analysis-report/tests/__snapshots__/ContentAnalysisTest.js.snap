@@ -102,6 +102,10 @@ exports[`ContentAnalysis the ContentAnalysis component with disabled buttons mat
   font-weight: normal;
 }
 
+.c6:hover {
+  background-color: #f0f0f0;
+}
+
 .c6:focus {
   outline: 1px solid #0066cd;
   outline-offset: -1px;
@@ -740,6 +744,10 @@ exports[`ContentAnalysis the ContentAnalysis component with hidden buttons match
   font-weight: normal;
 }
 
+.c6:hover {
+  background-color: #f0f0f0;
+}
+
 .c6:focus {
   outline: 1px solid #0066cd;
   outline-offset: -1px;
@@ -1304,6 +1312,10 @@ exports[`ContentAnalysis the ContentAnalysis component with specified header lev
   border-radius: 0;
   box-shadow: none;
   font-weight: normal;
+}
+
+.c6:hover {
+  background-color: #f0f0f0;
 }
 
 .c6:focus {
@@ -1944,6 +1956,10 @@ exports[`ContentAnalysis the ContentAnalysis component without language notice m
   font-weight: normal;
 }
 
+.c6:hover {
+  background-color: #f0f0f0;
+}
+
 .c6:focus {
   outline: 1px solid #0066cd;
   outline-offset: -1px;
@@ -2582,6 +2598,10 @@ exports[`ContentAnalysis the ContentAnalysis component without problems and cons
   font-weight: normal;
 }
 
+.c6:hover {
+  background-color: #f0f0f0;
+}
+
 .c6:focus {
   outline: 1px solid #0066cd;
   outline-offset: -1px;
@@ -3056,6 +3076,10 @@ exports[`ContentAnalysis the ContentAnalysis component without problems and impr
   font-weight: normal;
 }
 
+.c6:hover {
+  background-color: #f0f0f0;
+}
+
 .c6:focus {
   outline: 1px solid #0066cd;
   outline-offset: -1px;
@@ -3528,6 +3552,10 @@ exports[`ContentAnalysis the ContentAnalysis component without problems matches 
   border-radius: 0;
   box-shadow: none;
   font-weight: normal;
+}
+
+.c6:hover {
+  background-color: #f0f0f0;
 }
 
 .c6:focus {
@@ -4072,6 +4100,10 @@ exports[`ContentAnalysis the ContentAnalysis component without problems, improve
   border-radius: 0;
   box-shadow: none;
   font-weight: normal;
+}
+
+.c6:hover {
+  background-color: #f0f0f0;
 }
 
 .c6:focus {
