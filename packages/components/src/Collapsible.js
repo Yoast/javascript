@@ -34,6 +34,10 @@ export const StyledIconsButton = styled( IconsButton )`
 	box-shadow: none;
 	font-weight: normal;
 
+	:hover {
+		background-color: #f0f0f0;
+	}
+
 	:focus {
 		outline: 1px solid ${ colors.$color_blue };
 		outline-offset: -1px;
