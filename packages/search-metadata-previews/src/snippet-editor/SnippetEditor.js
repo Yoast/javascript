@@ -128,7 +128,7 @@ class SnippetEditor extends React.Component {
 
 		this.state = {
 			// Is opened by default when show close button is hidden.
-			isOpen: ! props.showCloseButton,
+			isOpen: false,
 			activeField: null,
 			hoveredField: null,
 			mappedData: previewData,
@@ -206,6 +206,10 @@ class SnippetEditor extends React.Component {
 		} );
 
 		this.props.onChangeAnalysisData( analysisData );
+	}
+
+	componentDidMount() {
+		setTimeout( this.open, 0 );
 	}
 
 	/**
