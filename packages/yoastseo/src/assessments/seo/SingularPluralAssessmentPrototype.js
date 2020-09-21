@@ -52,7 +52,7 @@ class SingularPluralAssessment extends Assessment {
 	 * @returns {AssessmentResult}      The result of the assessment.
 	 */
 	getResult( paper, researcher, i18n ) {
-		this.singularAndPlural = researcher.getData( "singularAndPlural" );
+		this.singularAndPlural = researcher.getResearch( "singularAndPlural" );
 
 		const calculateResult = this.calculateResult( i18n );
 
@@ -94,7 +94,7 @@ class SingularPluralAssessment extends Assessment {
 					/* Translators: %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag. */
 					i18n.dgettext(
 						"js-text-analysis",
-						"%1$sRanking intention%2$s: Your text reflects your ranking intention. That's great!" ),
+						"%1$sRanking intention%2$s: Your text reflects your ranking intention. Good job!" ),
 					this._config.urlTitle,
 					"</a>"
 				),

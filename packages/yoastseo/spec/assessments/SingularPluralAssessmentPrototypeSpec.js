@@ -14,8 +14,8 @@ describe( "Tests for the ranking intention assessment for English", function() {
 		const researcher = new Researcher( paper );
 		const result = new SingularPluralAssessmentPrototype().getResult( paper, researcher, i18n );
 		expect( result.getScore() ).toBe( 9 );
-		expect( result.getText() ).toBe( "<a href='https://yoa.st/33v' target='_blank'>Ranking intention</a>: " +
-			"Your text reflects your intention. That's great!" );
+		expect( result.getText() ).toBe( "<a href='https://yoa.st/33v' target='_blank'>Ranking intention</a>:" +
+			" Your text reflects your ranking intention. Good job!" );
 	} );
 	it( "runs the ranking intention on the paper with keyword", function() {
 		const paper = new Paper( "There are many pots for plant that you can choose. The pot with tribal pattern is our bestseller.",
