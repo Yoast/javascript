@@ -47,7 +47,7 @@ import h1s from "./researches/h1s";
 import getProminentWordsForInsights from "./researches/getProminentWordsForInsights";
 import getProminentWordsForInternalLinking from "./researches/getProminentWordsForInternalLinking";
 import getWordForms from "./researches/getWordForms";
-import singularAndPluralCount from "./researches/countSingularAndPluralNouns";
+import countSingularAndPluralNouns from "./researches/countSingularAndPluralNouns";
 
 /**
  * This contains all possible, default researches.
@@ -98,7 +98,7 @@ var Researcher = function( paper ) {
 		h1s: h1s,
 		prominentWordsForInsights: getProminentWordsForInsights,
 		prominentWordsForInternalLinking: getProminentWordsForInternalLinking,
-		singularAndPlural: singularAndPluralCount,
+		singularAndPlural: countSingularAndPluralNouns,
 	};
 
 	this._data = {};

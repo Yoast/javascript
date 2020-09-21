@@ -16,7 +16,8 @@ const sentences = [
 	"Ha, a key!",
 	"Again nothing!",
 	"Words, words, words, how boring!",
-	"An ethnic model of plant pot, ethnic model of plants pots",
+	"An ethnic model of plant pot is pretty.",
+	"The pot for plants can be bought in a plant store.",
 ];
 const paper = new Paper(
 	sentences.join( " " ),
@@ -27,11 +28,24 @@ const paper = new Paper(
 
 describe( "Test for counting the singular and plural nouns in a text", function() {
 	it( "counts/marks a string of text with a keyword in it.", function() {
-		expect( countForms( paper, morphologyDataEN ).count ).toEqual( [ [ 1, 1 ], [ 1, 1 ] ] );
+		expect( countForms( paper, morphologyDataEN ).count ).toEqual( [ [ 2, 0 ], [ 1, 2 ] ] );
 		expect( countForms( paper, morphologyDataEN ).markings ).toEqual( [
-			new Mark( { marked: "An ethnic model of <yoastmark class='yoast-text-mark'>plant</yoastmark> <yoastmark class='yoast-text-mark'>pot</yoastmark>," +
-					"ethnic model of <yoastmark class='yoast-text-mark'>plants</yoastmark> <yoastmark class='yoast-text-mark'>pots</yoastmark>",
-			original: "An ethnic model of plant pot, ethnic model of plants pots" } ),
+			{ _properties: { marked: "An ethnic model of <yoastmark class='yoast-text-mark'>plant pot</yoastmark> is pretty.",
+				original: "An ethnic model of plant pot is pretty." } },
+			{ _properties: { marked: "An ethnic model of <yoastmark class='yoast-text-mark'>plant pot</yoastmark> is pretty.",
+				original: "An ethnic model of plant pot is pretty." } },
+			{ _properties: { marked: "The <yoastmark class='yoast-text-mark'>pot</yoastmark> for " +
+						"<yoastmark class='yoast-text-mark'>plants</yoastmark> " +
+						"can be bought in a <yoastmark class='yoast-text-mark'>plant</yoastmark> store.",
+			original: "The pot for plants can be bought in a plant store." } },
+			{ _properties: { marked: "The <yoastmark class='yoast-text-mark'>pot</yoastmark> for " +
+						"<yoastmark class='yoast-text-mark'>plants</yoastmark> " +
+						"can be bought in a <yoastmark class='yoast-text-mark'>plant</yoastmark> store.",
+			original: "The pot for plants can be bought in a plant store." } },
+			{ _properties: { marked: "The <yoastmark class='yoast-text-mark'>pot</yoastmark> for " +
+						"<yoastmark class='yoast-text-mark'>plants</yoastmark> " +
+						"can be bought in a <yoastmark class='yoast-text-mark'>plant</yoastmark> store.",
+			original: "The pot for plants can be bought in a plant store." } },
 		] );
 	} );
 	//
