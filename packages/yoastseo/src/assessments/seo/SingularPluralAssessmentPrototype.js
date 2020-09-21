@@ -53,7 +53,6 @@ class SingularPluralAssessment extends Assessment {
 	 */
 	getResult( paper, researcher, i18n ) {
 		this.singularAndPlural = researcher.getData( "singularAndPlural" );
-		console.log( this.singularAndPlural );
 
 		const calculateResult = this.calculateResult( i18n );
 
