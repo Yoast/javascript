@@ -121,6 +121,7 @@ describe( "running assessments in the assessor", function() {
 			"externalLinks",
 			"internalLinks",
 			"titleWidth",
+			"singularPlural",
 		] );
 	} );
 
@@ -186,6 +187,7 @@ describe( "running assessments in the assessor", function() {
 			"externalLinks",
 			"internalLinks",
 			"titleWidth",
+			"singularPlural",
 		] );
 	} );
 
@@ -216,6 +218,7 @@ describe( "running assessments in the assessor", function() {
 			"externalLinks",
 			"internalLinks",
 			"titleWidth",
+			"singularPlural",
 		] );
 	} );
 } );

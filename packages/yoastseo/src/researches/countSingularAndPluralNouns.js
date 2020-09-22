@@ -12,7 +12,7 @@ import { flattenDeep } from "lodash-es";
  * Determines whether the words in the keyphrase are noun.
  *
  * @param {string} keyphrase        The paper's keyphrase
- * @param {Object} morphologyData The morphology data file for English
+ * @param {Object} morphologyData   The morphology data file for English
  *
  * @returns {null|Array}    The Array of nouns found in the keyphrase or null if there is no noun found.
  */
@@ -40,7 +40,7 @@ const determineWordIsNoun = function( keyphrase, morphologyData ) {
  * E.g. keyphrase: plant pots -> [[ plant, pots ], [ plants, pot ]]
  *
  * @param {string} keyphrase        The paper's keyphrase
- * @param {Object} morphologyData The morphology data file for English
+ * @param {Object} morphologyData   The morphology data file for English
  *
  * @returns {[]}    An array containing the original form of the noun and the other form.
  * If the original form is singular, then the other form is plural and the other way around.
@@ -73,19 +73,19 @@ const createSingularAndPlural = function( keyphrase, morphologyData ) {
 
 /**
  * Calculates the occurrences of each form of the nouns in the text.
- * E.g. plant pots -> { formAndOccurrences: {forms: [[ ethnic, plant, pots ], [ethnics, plants, pot]], count: [[7,7,9], [0,4,5]]},markings }
- * [ plant, pots ], [ plants, pot ] -> [ 7 , 8 ], [ 5, 5 ]
+ * E.g. plant pots -> [ plant, pots ], [ plants, pot ] -> [ 7 , 8 ], [ 5, 5 ]
  *
- * @param {String} paper      The text to match.
+ * @param {String} paper      The text to match
  *
- * @returns {{calculateSingular: *, calculatePlural: *}} The number of occurrences of each form of the nouns in the text
+ * @returns {{count: *, markings: *}} The number of occurrences of each form of the nouns in the text
+ * and the markings of each occurrence in the text.
  */
 export default function( paper ) {
 	const morphologyData = getMorphologyData( "en" ).en;
 	const keyphrase = paper.getKeyword();
 	const text = paper.getText();
 	const locale = "en";
-	// Example: [[ ethnic, plant, pots ], [ ethnics, plants, pot ]]
+
 	const arrayOfForms = createSingularAndPlural( keyphrase, morphologyData );
 	const count = new Array( arrayOfForms.length ).fill( 0 ).map( () => new Array( arrayOfForms[ 0 ].length ).fill( 0 ) );
 
