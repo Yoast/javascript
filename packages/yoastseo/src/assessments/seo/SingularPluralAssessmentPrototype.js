@@ -1,5 +1,4 @@
 import { merge } from "lodash-es";
-
 import Assessment from "../../assessment";
 import AssessmentResult from "../../values/AssessmentResult";
 import { createAnchorOpeningTag } from "../../helpers/shortlinker";
@@ -65,6 +64,11 @@ class SingularPluralAssessment extends Assessment {
 		return assessmentResult;
 	}
 
+	/**
+	 * Calculates the percentage of the occurrences of the singular and plural forms in the text.
+	 *
+	 * @returns {number}    The percentage of the occurrences of the singular and plural forms in the text.
+	 */
 	determinePercentage() {
 		let percentage;
 
