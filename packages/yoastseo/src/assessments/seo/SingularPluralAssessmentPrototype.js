@@ -1,10 +1,13 @@
 import { merge } from "lodash-es";
 import Assessment from "../../assessment";
+import getSentences from "../../stringProcessing/getSentences";
+import { markWordsInSentences } from "../../stringProcessing/markWordsInSentences";
 import AssessmentResult from "../../values/AssessmentResult";
 import { createAnchorOpeningTag } from "../../helpers/shortlinker";
 import countWords from "../../stringProcessing/countWords";
 import formatNumber from "../../helpers/formatNumber";
 import { inRangeEndInclusive as inRange } from "../../helpers/inRange";
+import { mean } from "lodash-es";
 
 /**
  * Represents the assessment that will look if the text aligns with the ranking intention of the keyphrase.
@@ -31,6 +34,7 @@ class SingularPluralAssessment extends Assessment {
 				good: 9,
 				okay: 6,
 				bad: 3,
+				consideration: 0,
 			},
 			urlTitle: createAnchorOpeningTag( "https://yoa.st/33v" ),
 			urlCallToAction: createAnchorOpeningTag( "https://yoa.st/33w" ),
@@ -51,15 +55,13 @@ class SingularPluralAssessment extends Assessment {
 	 * @returns {AssessmentResult}      The result of the assessment.
 	 */
 	getResult( paper, researcher, i18n ) {
-		this.singularAndPlural = researcher.getResearch( "singularAndPlural" );
-
+		this.originalModifiedPairs = researcher.getResearch( "singularAndPlural" );
 		const calculateResult = this.calculateResult( i18n );
-
 		const assessmentResult = new AssessmentResult();
 
 		assessmentResult.setScore( calculateResult.score );
 		assessmentResult.setText( calculateResult.text );
-		assessmentResult.setHasMarks( this.determinePercentage() > 0 );
+		assessmentResult.setHasMarks( this.determinePercentage() < 100 );
 
 		return assessmentResult;
 	}
@@ -70,17 +72,21 @@ class SingularPluralAssessment extends Assessment {
 	 * @returns {number}    The percentage of the occurrences of the singular and plural forms in the text.
 	 */
 	determinePercentage() {
-		let percentage;
+		const originalModifiedPairs = this.originalModifiedPairs;
+		const percentages = [];
 
 		// Prevent division by zero errors.
-		if ( this.singularAndPlural.length !== 0 ) {
-			for ( let i = 0; i < this.singularAndPlural.count[ 0 ].length; i++ ) {
-				const originalFormCount = this.singularAndPlural.count[ 0 ][ i ];
-				const modifiedFormCount = this.singularAndPlural.count[ 1 ][ i ];
-				percentage = formatNumber( ( originalFormCount * 100 ) / ( originalFormCount + modifiedFormCount ) );
+		if ( originalModifiedPairs.length !== 0 ) {
+			for ( const originalModifiedPair of originalModifiedPairs ) {
+				const originalCount = originalModifiedPair.originalCount;
+
+				percentages.push( formatNumber(
+					( originalCount * 100 ) / ( originalCount + originalModifiedPair.modifiedCount )
+				) );
 			}
-			return percentage;
 		}
+
+		return mean( percentages );
 	}
 	/**
 	 * Returns the score for the ranking intention.
