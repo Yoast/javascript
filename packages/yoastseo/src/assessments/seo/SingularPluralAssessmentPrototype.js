@@ -138,12 +138,23 @@ class SingularPluralAssessment extends Assessment {
 	}
 
 	/**
-	 * Marks keywords in the text for the ranking intention assessment.
+	 * Marks modified forms of keywords in the text for the ranking intention assessment.
+	 *
+	 * @param {Paper} paper             The paper to use for the assessment.
 	 *
 	 * @returns {Array<Mark>}   Marks that should be applied.
 	 */
-	getMarks() {
-		return this.singularAndPlural.markings;
+	getMarks( paper ) {
+		const wordsToMark = [];
+
+		// Only mark if a modified form occurs in the text.
+		for ( const originalModifiedPair of this.originalModifiedPairs ) {
+			if ( originalModifiedPair.modifiedCount > 0 ) {
+				wordsToMark.push( originalModifiedPair.modified );
+			}
+		}
+
+		return markWordsInSentences( wordsToMark, getSentences( paper.getText() ), paper.locale );
 	}
 
 	/**
