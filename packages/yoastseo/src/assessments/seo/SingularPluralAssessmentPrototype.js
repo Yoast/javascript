@@ -91,6 +91,26 @@ class SingularPluralAssessment extends Assessment {
 	 */
 	calculateResult( i18n ) {
 		const percentage = this.determinePercentage();
+		const noKeyphraseOccurrences = this.originalModifiedPairs.every(
+			originalModifiedPair => originalModifiedPair.originalCount === 0 && originalModifiedPair.modifiedCount === 0
+		);
+
+		// It's not possible to determine a ranking intention if the keyphrase never occurs in the text.
+		if ( noKeyphraseOccurrences ) {
+			return {
+				score: this._config.scores.consideration,
+				text: i18n.sprintf(
+					/* Translators: %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag. */
+					i18n.dgettext(
+						"js-text-analysis",
+						"%1$sRanking intention%2$s: Include your keyphrase in the text so that we can check ranking intention.",
+					),
+					this._config.urlTitle,
+					"</a>"
+				),
+			};
+		}
+
 		if ( percentage >= 65 ) {
 			return {
 				score: this._config.scores.good,
