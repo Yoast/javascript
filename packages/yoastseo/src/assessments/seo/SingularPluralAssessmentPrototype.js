@@ -69,14 +69,18 @@ class SingularPluralAssessment extends Assessment {
 	/**
 	 * Calculates the percentage of the occurrences of the singular and plural forms in the text.
 	 *
-	 * @returns {number}    The percentage of the occurrences of the singular and plural forms in the text.
+	 * @returns {number}    The percentage of the occurrences of the singular and plural forms in the text
+	 * or NaN if there is no forms found at all in the text.
 	 */
 	determinePercentage() {
 		const originalModifiedPairs = this.originalModifiedPairs;
 		const percentages = [];
+		const textHasKeyphrase = this.originalModifiedPairs.every(
+			originalModifiedPair => originalModifiedPair.originalCount !== 0 || originalModifiedPair.modifiedCount !== 0
+		);
 
 		// Prevent division by zero errors.
-		if ( originalModifiedPairs.length !== 0 ) {
+		if ( textHasKeyphrase ) {
 			for ( const originalModifiedPair of originalModifiedPairs ) {
 				const originalCount = originalModifiedPair.originalCount;
 
@@ -152,12 +156,9 @@ class SingularPluralAssessment extends Assessment {
 				%3$s expands to the percentage of sentences in passive voice, %4$s expands to the recommended value. */
 				i18n.dgettext(
 					"js-text-analysis",
-					"%1$sRanking intention%2$s: Your text does not reflect your ranking intention. Change your keyphrase occurrences!"
-
-				),
+					"%1$sRanking intention%2$s: Your text does not reflect your ranking intention. Change your keyphrase occurrences!" ),
 				this._config.urlTitle,
 				"</a>",
-				percentage + "%",
 				this._config.urlCallToAction,
 			),
 		};
