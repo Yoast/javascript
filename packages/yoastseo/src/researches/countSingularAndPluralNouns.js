@@ -1,7 +1,8 @@
+import { get } from "lodash-es";
 import filterFunctionWordsFromArray from "../helpers/filterFunctionWordsFromArray";
+import getLanguage from "../helpers/getLanguage";
 import { determineIrregularStem, determineIrregularVerbStem } from "../morphology/english/determineStem";
 import getWords from "../stringProcessing/getWords";
-import getMorphologyData from "../../spec/specHelpers/getMorphologyData";
 import { searchAndReplaceWithRegex } from "../morphology/morphoHelpers/regexHelpers";
 import matchTextWithWord from "../stringProcessing/matchTextWithWord";
 
@@ -78,12 +79,12 @@ class OriginalModifiedPair {
 
 /**
  * Creates the singular form of the plural nouns in the keyphrase or the other way around.
- * E.g. keyphrase: plant pots -> [[ plant, pots ], [ plants, pot ]]
+ * E.g. keyphrase: plant pots -> [[ plant, plants ], [ pots, pot ]]
  *
  * @param {string} keyphrase        The paper's keyphrase
  * @param {Object} morphologyData   The morphology data file for English
  *
- * @returns {[]}    An array containing the original form of the noun and the other form.
+ * @returns {[]}    An array containing arrays of original and modified word forms.
  * If the original form is singular, then the other form is plural and the other way around.
  */
 const createSingularAndPlural = function( keyphrase, morphologyData ) {
@@ -112,24 +113,23 @@ const createSingularAndPlural = function( keyphrase, morphologyData ) {
 
 /**
  * Calculates the occurrences of each form of the nouns in the text.
- * E.g. plant pots -> [ plant, pots ], [ plants, pot ] -> [ 7 , 8 ], [ 5, 5 ]
  *
- * @param {String} paper      The text to match
+ * @param {String} paper            The text to match
+ * @param {Researcher} researcher   The researcher.
  *
- * @returns {{count: *, markings: *}} The number of occurrences of each form of the nouns in the text
- * and the markings of each occurrence in the text.
+ * @returns {*[]}   The number of occurrences of each form of the nouns in the text
  */
-export default function( paper ) {
-	const morphologyData = getMorphologyData( "en" ).en;
+export default function( paper, researcher ) {
+	const language = getLanguage( paper.getLocale() );
+	const morphologyData = get( researcher.getData( "morphology" ), language, false );
 	const keyphrase = paper.getKeyword();
 	const text = paper.getText();
-	const locale = "en";
 
 	const originalModifiedPairs = createSingularAndPlural( keyphrase, morphologyData );
 
 	for ( const originalModifiedPair of originalModifiedPairs ) {
-		const originalMatch = matchTextWithWord( text, originalModifiedPair.original, locale );
-		const modifiedMatch = matchTextWithWord( text, originalModifiedPair.modified, locale );
+		const originalMatch = matchTextWithWord( text, originalModifiedPair.original, language );
+		const modifiedMatch = matchTextWithWord( text, originalModifiedPair.modified, language );
 
 		originalModifiedPair.increaseOriginalCount( originalMatch.count );
 		originalModifiedPair.increaseModifiedCount( modifiedMatch.count );
