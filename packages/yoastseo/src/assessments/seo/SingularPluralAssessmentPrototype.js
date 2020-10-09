@@ -193,7 +193,7 @@ class SingularPluralAssessment extends Assessment {
 	 * @returns {boolean}       True if applicable.
 	 */
 	isApplicable( paper ) {
-		return paper.hasText() && paper.hasKeyword() && countWords( paper.getText() ) >= 100 && paper.getLocale() === "en";
+		return paper.hasText() && paper.hasKeyword() && countWords( paper.getText() ) >= 100 && getLanguage( paper.getLocale() ) === "en";
 	}
 }
 export default SingularPluralAssessment;
