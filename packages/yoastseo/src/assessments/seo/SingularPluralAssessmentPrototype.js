@@ -1,5 +1,6 @@
-import { merge } from "lodash-es";
+import { get, merge } from "lodash-es";
 import Assessment from "../../assessment";
+import getLanguage from "../../helpers/getLanguage";
 import getSentences from "../../stringProcessing/getSentences";
 import { markWordsInSentences } from "../../stringProcessing/markWordsInSentences";
 import AssessmentResult from "../../values/AssessmentResult";
@@ -55,9 +56,18 @@ class SingularPluralAssessment extends Assessment {
 	 * @returns {AssessmentResult}      The result of the assessment.
 	 */
 	getResult( paper, researcher, i18n ) {
+		const language = getLanguage( paper.getLocale() );
+		const morphologyData = get( researcher.getData( "morphology" ), language, false );
+		const assessmentResult = new AssessmentResult();
+
+		// Don't calculate a result if no morphology data is available.
+		if ( ! morphologyData ) {
+			return assessmentResult;
+		}
+
+		// This part of the code requires morphology data to run.
 		this.originalModifiedPairs = researcher.getResearch( "singularAndPlural" );
 		const calculateResult = this.calculateResult( i18n );
-		const assessmentResult = new AssessmentResult();
 
 		assessmentResult.setScore( calculateResult.score );
 		assessmentResult.setText( calculateResult.text );
