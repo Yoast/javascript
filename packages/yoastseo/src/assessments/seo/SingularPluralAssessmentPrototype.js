@@ -70,7 +70,7 @@ class SingularPluralAssessment extends Assessment {
 	 * Calculates the percentage of the occurrences of the singular and plural forms in the text.
 	 *
 	 * @returns {number}    The percentage of the occurrences of the singular and plural forms in the text
-	 * or NaN if there is no forms found at all in the text.
+	 * or null if there is no forms found at all in the text.
 	 */
 	determinePercentage() {
 		const originalModifiedPairs = this.originalModifiedPairs;
@@ -90,8 +90,9 @@ class SingularPluralAssessment extends Assessment {
 			}
 		}
 
-		return mean( percentages );
+		return mean( percentages ) || null;
 	}
+
 	/**
 	 * Returns the score for the ranking intention.
 	 *
