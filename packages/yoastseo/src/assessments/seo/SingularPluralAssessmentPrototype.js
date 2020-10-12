@@ -100,7 +100,7 @@ class SingularPluralAssessment extends Assessment {
 			}
 		}
 
-		return mean( percentages ) || null;
+		return Math.min( ...percentages ) || null;
 	}
 
 	/**
@@ -132,7 +132,7 @@ class SingularPluralAssessment extends Assessment {
 			};
 		}
 
-		if ( percentage >= 65 ) {
+		if ( percentage >= 60 ) {
 			return {
 				score: this._config.scores.good,
 				text: i18n.sprintf(
@@ -146,7 +146,7 @@ class SingularPluralAssessment extends Assessment {
 			};
 		}
 
-		if ( inRange( percentage, 45, 64 ) ) {
+		if ( inRange( percentage, 40, 59 ) ) {
 			return {
 				score: this._config.scores.okay,
 				text: i18n.sprintf(

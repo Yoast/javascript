@@ -26,9 +26,10 @@ describe( "Tests for the ranking intention assessment for English", function() {
 		const researcher = new Researcher( paper );
 		researcher.addResearchData( "morphology", morphologyDataEN );
 		const result = new SingularPluralAssessmentPrototype().getResult( paper, researcher, i18n );
-		expect( result.getScore() ).toBe( 9 );
-		expect( result.getText() ).toBe( "<a href='https://yoa.st/33v' target='_blank'>Ranking intention</a>:" +
-			" Your text reflects your ranking intention. Good job!" );
+		expect( result.getScore() ).toBe( 6 );
+		expect( result.getText() ).toBe( "<a href='https://yoa.st/33v' target='_blank'>Ranking intention</a>: " +
+			"Your text does not reflect any particular ranking intention. If your keywords is singular, " +
+			"use more singular occurrences; if your keyphrase is plural, use more plural occurrences!" );
 	} );
 	it( "runs the ranking intention on the paper with keyword", function() {
 		const paper = new Paper( "There is more than a pot you can choose for your plant. The pot with tribal pattern is our bestseller.",
@@ -36,13 +37,12 @@ describe( "Tests for the ranking intention assessment for English", function() {
 		const researcher = new Researcher( paper );
 		researcher.addResearchData( "morphology", morphologyDataEN );
 		const result = new SingularPluralAssessmentPrototype().getResult( paper, researcher, i18n );
-		expect( result.getScore() ).toBe( 6 );
-		expect( result.getText() ).toBe( "<a href='https://yoa.st/33v' target='_blank'>Ranking intention</a>: Your text does not reflect " +
-			"any particular ranking intention. If your keywords is singular, use more singular occurrences; " +
-			"if your keyphrase is plural, use more plural occurrences!" );
+		expect( result.getScore() ).toBe( 3 );
+		expect( result.getText() ).toBe( "<a href='https://yoa.st/33v' target='_blank'>Ranking intention</a>: " +
+			"Your text does not reflect your ranking intention. Change your keyphrase occurrences!" );
 	} );
 	it( "runs the ranking intention on the paper with keyword", function() {
-		const paper = new Paper( "Tortie or tortoiseshell  cats are very special cats. 99% of torties are female.",
+		const paper = new Paper( "Tortie or tortoiseshell cats are very special cats. 99% of torties are female.",
 			{ keyword: "tortie cat", locale: "en_US" } );
 		const researcher = new Researcher( paper );
 		researcher.addResearchData( "morphology", morphologyDataEN );
@@ -61,6 +61,15 @@ describe( "Tests for the ranking intention assessment for English", function() {
 		expect( result.getScore() ).toBe( 0 );
 		expect( result.getText() ).toBe( "<a href='https://yoa.st/33v' target='_blank'>Ranking intention</a>: " +
 			"Include your keyphrase in the text so that we can check ranking intention." );
+	} );
+
+	it( "runs the ranking intention on the paper when there is no morphology data file available", function() {
+		const paper = new Paper( "A paper with plant pots but no morphology.",
+			{ keyword: "plant pots", locale: "en_US" } );
+		const researcher = new Researcher( paper );
+		const result = new SingularPluralAssessmentPrototype().getResult( paper, researcher, i18n );
+		expect( result.getScore() ).toBe( 0 );
+		expect( result.getText() ).toBe( "" );
 	} );
 } );
 
