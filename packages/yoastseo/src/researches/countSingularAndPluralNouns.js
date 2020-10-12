@@ -1,18 +1,16 @@
+import { get } from "lodash-es";
 import filterFunctionWordsFromArray from "../helpers/filterFunctionWordsFromArray";
+import getLanguage from "../helpers/getLanguage";
 import { determineIrregularStem, determineIrregularVerbStem } from "../morphology/english/determineStem";
-import getSentences from "../stringProcessing/getSentences";
 import getWords from "../stringProcessing/getWords";
-import getMorphologyData from "../../spec/specHelpers/getMorphologyData";
 import { searchAndReplaceWithRegex } from "../morphology/morphoHelpers/regexHelpers";
-import { markWordsInSentences } from "../stringProcessing/markWordsInSentences";
 import matchTextWithWord from "../stringProcessing/matchTextWithWord";
-import { flattenDeep } from "lodash-es";
 
 /**
  * Determines whether the words in the keyphrase are noun.
  *
  * @param {string} keyphrase        The paper's keyphrase
- * @param {Object} morphologyData The morphology data file for English
+ * @param {Object} morphologyData   The morphology data file for English
  *
  * @returns {null|Array}    The Array of nouns found in the keyphrase or null if there is no noun found.
  */
@@ -36,19 +34,63 @@ const determineWordIsNoun = function( keyphrase, morphologyData ) {
 };
 
 /**
+ * A pair with the original and a modified version of a keyword.
+ * The original might be singular and the modified the plural, or vice versa.
+ */
+class OriginalModifiedPair {
+	/**
+	 * Sets the original and modified form of a word.
+	 *
+	 * @param {string} original The original form of the word as it occurs in the keyphrase.
+	 * @param {string} modified The modified form, i.e. either a singularized or pluralized version of the original.
+	 *
+	 * @returns {void}
+	 * @constructor
+	 */
+	constructor( original, modified ) {
+		this.original = original;
+		this.modified = modified;
+		this.originalCount = 0;
+		this.modifiedCount = 0;
+	}
+
+	/**
+	 * Increases the count of original occurrences.
+	 *
+	 * @param {string} count The number by which to increase the count.
+	 *
+	 * @returns {void}
+	 */
+	increaseOriginalCount( count ) {
+		this.originalCount += count;
+	}
+
+	/**
+	 * Increases the count of modified occurrences.
+	 *
+	 * @param {string} count The number by which to increase the count.
+	 *
+	 * @returns {void}
+	 */
+	increaseModifiedCount( count ) {
+		this.modifiedCount += count;
+	}
+}
+
+/**
  * Creates the singular form of the plural nouns in the keyphrase or the other way around.
- * E.g. keyphrase: plant pots -> [[ plant, pots ], [ plants, pot ]]
+ * E.g. keyphrase: plant pots -> [[ plant, plants ], [ pots, pot ]]
  *
  * @param {string} keyphrase        The paper's keyphrase
- * @param {Object} morphologyData The morphology data file for English
+ * @param {Object} morphologyData   The morphology data file for English
  *
- * @returns {[]}    An array containing the original form of the noun and the other form.
+ * @returns {[]}    An array containing arrays of original and modified word forms.
  * If the original form is singular, then the other form is plural and the other way around.
  */
 const createSingularAndPlural = function( keyphrase, morphologyData ) {
 	const nounsInKeyphrase = determineWordIsNoun( keyphrase, morphologyData );
-	const originalNouns = [];
-	const modifiedNouns = [];
+	const originalModifiedPairs = [];
+
 	if ( nounsInKeyphrase ) {
 		for ( const noun of nounsInKeyphrase ) {
 			// Stem a plural noun into a singular form
@@ -57,56 +99,41 @@ const createSingularAndPlural = function( keyphrase, morphologyData ) {
 			const pluralNoun = searchAndReplaceWithRegex( noun, morphologyData.nouns.regexNoun.pluralize );
 
 			if ( singularNoun ) {
-				originalNouns.push( noun );
-				modifiedNouns.push( singularNoun );
+				originalModifiedPairs.push( new OriginalModifiedPair( noun, singularNoun ) );
 			} else if ( pluralNoun ) {
-				originalNouns.push( noun );
-				modifiedNouns.push( pluralNoun );
+				originalModifiedPairs.push( new OriginalModifiedPair( noun, pluralNoun ) );
 			} else {
-				originalNouns.push( noun );
-				modifiedNouns.push( noun.concat( "s" ) );
+				originalModifiedPairs.push( new OriginalModifiedPair( noun, noun.concat( "s" ) ) );
 			}
 		}
 	}
-	return [ originalNouns, modifiedNouns ];
+
+	return originalModifiedPairs;
 };
 
 /**
  * Calculates the occurrences of each form of the nouns in the text.
- * E.g. plant pots -> { formAndOccurrences: {forms: [[ ethnic, plant, pots ], [ethnics, plants, pot]], count: [[7,7,9], [0,4,5]]},markings }
- * [ plant, pots ], [ plants, pot ] -> [ 7 , 8 ], [ 5, 5 ]
  *
- * @param {String} paper      The text to match.
+ * @param {String} paper            The text to match
+ * @param {Researcher} researcher   The researcher.
  *
- * @returns {{calculateSingular: *, calculatePlural: *}} The number of occurrences of each form of the nouns in the text
+ * @returns {*[]}   The number of occurrences of each form of the nouns in the text
  */
-export default function( paper ) {
-	const morphologyData = getMorphologyData( "en" ).en;
+export default function( paper, researcher ) {
+	const language = getLanguage( paper.getLocale() );
+	const morphologyData = get( researcher.getData( "morphology" ), language, false );
 	const keyphrase = paper.getKeyword();
 	const text = paper.getText();
-	const locale = "en";
-	// Example: [[ ethnic, plant, pots ], [ ethnics, plants, pot ]]
-	const arrayOfForms = createSingularAndPlural( keyphrase, morphologyData );
-	const count = new Array( arrayOfForms.length ).fill( 0 ).map( () => new Array( arrayOfForms[ 0 ].length ).fill( 0 ) );
 
-	const matchedSentences = [];
-	let matches = [];
-	const sentences = getSentences( text );
-	sentences.forEach( sentence => {
-		for ( let i = 0; i < arrayOfForms.length; i++ ) {
-			for ( let j = 0; j < arrayOfForms[ i ].length; j++ ) {
-				const occurrence = matchTextWithWord( sentence, arrayOfForms[ i ][ j ], locale );
-				if ( occurrence.count > 0 ) {
-					count[ i ][ j ] += occurrence.count;
-					matches.push( occurrence.matches );
-					matchedSentences.push( sentence );
-				}
-			}
-		}
-	} );
-	matches = flattenDeep( matches );
-	return {
-		count: count,
-		markings: markWordsInSentences( matches, matchedSentences, locale ),
-	};
+	const originalModifiedPairs = createSingularAndPlural( keyphrase, morphologyData );
+
+	for ( const originalModifiedPair of originalModifiedPairs ) {
+		const originalMatch = matchTextWithWord( text, originalModifiedPair.original, language );
+		const modifiedMatch = matchTextWithWord( text, originalModifiedPair.modified, language );
+
+		originalModifiedPair.increaseOriginalCount( originalMatch.count );
+		originalModifiedPair.increaseModifiedCount( modifiedMatch.count );
+	}
+
+	return originalModifiedPairs;
 }

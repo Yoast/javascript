@@ -1,11 +1,14 @@
-import { merge } from "lodash-es";
-
+import { get, merge } from "lodash-es";
 import Assessment from "../../assessment";
+import getLanguage from "../../helpers/getLanguage";
+import getSentences from "../../stringProcessing/getSentences";
+import { markWordsInSentences } from "../../stringProcessing/markWordsInSentences";
 import AssessmentResult from "../../values/AssessmentResult";
 import { createAnchorOpeningTag } from "../../helpers/shortlinker";
 import countWords from "../../stringProcessing/countWords";
 import formatNumber from "../../helpers/formatNumber";
 import { inRangeEndInclusive as inRange } from "../../helpers/inRange";
+import { mean } from "lodash-es";
 
 /**
  * Represents the assessment that will look if the text aligns with the ranking intention of the keyphrase.
@@ -32,6 +35,7 @@ class SingularPluralAssessment extends Assessment {
 				good: 9,
 				okay: 6,
 				bad: 3,
+				consideration: 0,
 			},
 			urlTitle: createAnchorOpeningTag( "https://yoa.st/33v" ),
 			urlCallToAction: createAnchorOpeningTag( "https://yoa.st/33w" ),
@@ -52,32 +56,53 @@ class SingularPluralAssessment extends Assessment {
 	 * @returns {AssessmentResult}      The result of the assessment.
 	 */
 	getResult( paper, researcher, i18n ) {
-		this.singularAndPlural = researcher.getResearch( "singularAndPlural" );
-
-		const calculateResult = this.calculateResult( i18n );
-
+		const language = getLanguage( paper.getLocale() );
+		const morphologyData = get( researcher.getData( "morphology" ), language, false );
 		const assessmentResult = new AssessmentResult();
+
+		// Don't calculate a result if no morphology data is available.
+		if ( ! morphologyData ) {
+			return assessmentResult;
+		}
+
+		// This part of the code requires morphology data to run.
+		this.originalModifiedPairs = researcher.getResearch( "singularAndPlural" );
+		const calculateResult = this.calculateResult( i18n );
 
 		assessmentResult.setScore( calculateResult.score );
 		assessmentResult.setText( calculateResult.text );
-		assessmentResult.setHasMarks( this.determinePercentage() > 0 );
+		assessmentResult.setHasMarks( this.determinePercentage() < 100 );
 
 		return assessmentResult;
 	}
 
+	/**
+	 * Calculates the percentage of the occurrences of the singular and plural forms in the text.
+	 *
+	 * @returns {number}    The percentage of the occurrences of the singular and plural forms in the text
+	 * or null if there is no forms found at all in the text.
+	 */
 	determinePercentage() {
-		let percentage;
+		const originalModifiedPairs = this.originalModifiedPairs;
+		const percentages = [];
+		const textHasKeyphrase = this.originalModifiedPairs.every(
+			originalModifiedPair => originalModifiedPair.originalCount !== 0 || originalModifiedPair.modifiedCount !== 0
+		);
 
 		// Prevent division by zero errors.
-		if ( this.singularAndPlural.length !== 0 ) {
-			for ( let i = 0; i < this.singularAndPlural.count[ 0 ].length; i++ ) {
-				const originalFormCount = this.singularAndPlural.count[ 0 ][ i ];
-				const modifiedFormCount = this.singularAndPlural.count[ 1 ][ i ];
-				percentage = formatNumber( ( originalFormCount * 100 ) / ( originalFormCount + modifiedFormCount ) );
+		if ( textHasKeyphrase ) {
+			for ( const originalModifiedPair of originalModifiedPairs ) {
+				const originalCount = originalModifiedPair.originalCount;
+
+				percentages.push( formatNumber(
+					( originalCount * 100 ) / ( originalCount + originalModifiedPair.modifiedCount )
+				) );
 			}
-			return percentage;
 		}
+
+		return mean( percentages ) || null;
 	}
+
 	/**
 	 * Returns the score for the ranking intention.
 	 *
@@ -87,6 +112,26 @@ class SingularPluralAssessment extends Assessment {
 	 */
 	calculateResult( i18n ) {
 		const percentage = this.determinePercentage();
+		const noKeyphraseOccurrences = this.originalModifiedPairs.every(
+			originalModifiedPair => originalModifiedPair.originalCount === 0 && originalModifiedPair.modifiedCount === 0
+		);
+
+		// It's not possible to determine a ranking intention if the keyphrase never occurs in the text.
+		if ( noKeyphraseOccurrences ) {
+			return {
+				score: this._config.scores.consideration,
+				text: i18n.sprintf(
+					/* Translators: %1$s expands to a link on yoast.com, %2$s expands to the anchor end tag. */
+					i18n.dgettext(
+						"js-text-analysis",
+						"%1$sRanking intention%2$s: Include your keyphrase in the text so that we can check ranking intention.",
+					),
+					this._config.urlTitle,
+					"</a>"
+				),
+			};
+		}
+
 		if ( percentage >= 65 ) {
 			return {
 				score: this._config.scores.good,
@@ -122,24 +167,32 @@ class SingularPluralAssessment extends Assessment {
 				%3$s expands to the percentage of sentences in passive voice, %4$s expands to the recommended value. */
 				i18n.dgettext(
 					"js-text-analysis",
-					"%1$sRanking intention%2$s: Your text does not reflect your ranking intention. Change your keyphrase occurrences!"
-
-				),
+					"%1$sRanking intention%2$s: Your text does not reflect your ranking intention. Change your keyphrase occurrences!" ),
 				this._config.urlTitle,
 				"</a>",
-				percentage + "%",
 				this._config.urlCallToAction,
 			),
 		};
 	}
 
 	/**
-	 * Marks keywords in the text for the ranking intention assessment.
+	 * Marks modified forms of keywords in the text for the ranking intention assessment.
+	 *
+	 * @param {Paper} paper             The paper to use for the assessment.
 	 *
 	 * @returns {Array<Mark>}   Marks that should be applied.
 	 */
-	getMarks() {
-		return this.singularAndPlural.markings;
+	getMarks( paper ) {
+		const wordsToMark = [];
+
+		// Only mark if a modified form occurs in the text.
+		for ( const originalModifiedPair of this.originalModifiedPairs ) {
+			if ( originalModifiedPair.modifiedCount > 0 ) {
+				wordsToMark.push( originalModifiedPair.modified );
+			}
+		}
+
+		return markWordsInSentences( wordsToMark, getSentences( paper.getText() ), paper.locale );
 	}
 
 	/**
@@ -151,7 +204,7 @@ class SingularPluralAssessment extends Assessment {
 	 * @returns {boolean}       True if applicable.
 	 */
 	isApplicable( paper ) {
-		return paper.hasText() && paper.hasKeyword() && countWords( paper.getText() ) >= 100;
+		return paper.hasText() && paper.hasKeyword() && countWords( paper.getText() ) >= 100 && getLanguage( paper.getLocale() ) === "en";
 	}
 }
 export default SingularPluralAssessment;
