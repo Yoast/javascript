@@ -8,7 +8,6 @@ import { createAnchorOpeningTag } from "../../helpers/shortlinker";
 import countWords from "../../stringProcessing/countWords";
 import formatNumber from "../../helpers/formatNumber";
 import { inRangeEndInclusive as inRange } from "../../helpers/inRange";
-import { mean } from "lodash-es";
 
 /**
  * Represents the assessment that will look if the text aligns with the ranking intention of the keyphrase.
