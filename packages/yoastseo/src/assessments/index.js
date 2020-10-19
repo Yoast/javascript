@@ -30,6 +30,7 @@ import TitleKeywordAssessment from "./seo/TitleKeywordAssessment";
 import UrlKeywordAssessment from "./seo/UrlKeywordAssessment";
 import UrlLengthAssessment from "./seo/UrlLengthAssessment";
 import UrlStopWordsAssessment from "./seo/urlStopWordsAssessment";
+import SingularPluralAssessmentPrototype from "./seo/SingularPluralAssessmentPrototype";
 
 const readability = {
 	FleschReadingEaseAssessment,
@@ -66,6 +67,7 @@ const seo = {
 	UrlKeywordAssessment,
 	UrlLengthAssessment,
 	UrlStopWordsAssessment,
+	SingularPluralAssessmentPrototype,
 };
 
 export {
