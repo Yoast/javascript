@@ -3,7 +3,11 @@
 All notable changes to this project will be documented in this file.
 We follow [Semantic Versioning](http://semver.org/).
 
-## 1.83.0 October 12th, 2020
+## 5.12.1 November 2nd, 2020
+### Bugfixes
+* Deprecates `OnboardingWizard`, `MessageBox`, `LoadingIndicator`. Use the `@yoast/configuration-wizard` instead.
+
+## 5.12.0 October 13th, 2020
 ### Enhancements
 * Changes the look of the KeyphraseInput component's errors.
 * Improves accessibility of the KeyphraseInput component's errors list.
