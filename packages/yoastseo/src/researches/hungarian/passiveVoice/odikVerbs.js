@@ -228,6 +228,7 @@ const odikVerbStems2 = [
 	"sürget",
 	"szed",
 	"szeg",
+	"szennyez",
 	"szerel",
 	"szerkeszt",
 	"szervez",
