@@ -223,13 +223,17 @@ const determineSentenceIsPassiveHebrew = function( sentence ) {
  */
 const checkHungarianPassive = function( word, verbRootsList, prefixes, suffixes ) {
 	return verbRootsList.some( root => {
-		return suffixes.some( suffix => prefixes.some( function( prefix ) {
-			const pattern1 = prefix + root + suffix;
-			const pattern2 = root + suffix;
-			if ( pattern1 === word || pattern2 === word ) {
-				return true;
+		return suffixes.some( function( suffix ) {
+			const rootAndSuffix = root + suffix;
+
+			// Check whether the word ends in a root + suffix combination.
+			if ( word.endsWith( rootAndSuffix ) ) {
+				const beforeRoot = word.slice( 0, word.indexOf( rootAndSuffix ) );
+
+				// Word is passive if nothing precedes the root or the root is preceded by a valid prefix.
+				return beforeRoot === "" || prefixes.includes( beforeRoot );
 			}
-		} ) );
+		} );
 	} );
 };
 
@@ -242,18 +246,21 @@ const checkHungarianPassive = function( word, verbRootsList, prefixes, suffixes 
  */
 const determineSentenceIsPassiveHungarian = function( sentence ) {
 	const words = getWords( sentence );
+	const passiveVerbs1 = getPassiveVerbsHungarian.odikVerbStems1;
+	const passiveVerbs2 = getPassiveVerbsHungarian.odikVerbStems2;
+
 	for ( const word of words ) {
-		const passiveVerbs1 = getPassiveVerbsHungarian.odikVerbStems1;
 		const checkPassiveVerb1 = checkHungarianPassive( word, passiveVerbs1, verbPrefixes, odikSuffixes1 );
 		if ( checkPassiveVerb1 ) {
 			return true;
 		}
-		const passiveVerbs2 = getPassiveVerbsHungarian.odikVerbStems2;
+
 		const  checkPassiveVerbs2 = checkHungarianPassive( word, passiveVerbs2, verbPrefixes, odikSuffixes2 );
 		if ( checkPassiveVerbs2 ) {
 			return true;
 		}
 	}
+
 	return false;
 };
 
