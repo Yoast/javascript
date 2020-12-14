@@ -3,6 +3,8 @@ import { RenderSaveProps, RenderEditProps } from "./BlockDefinition";
 import { ReactElement } from "@wordpress/element";
 import { BlockConfiguration } from "@wordpress/blocks";
 import Instruction, { InstructionOptions } from "../Instruction";
+import attributeExists from "../../functions/validators/attributeExists";
+import attributeNotEmpty from "../../functions/validators/attributeNotEmpty";
 
 export type BlockInstructionClass = { new( id: number, options: InstructionOptions ): BlockInstruction };
 
@@ -12,11 +14,11 @@ export type BlockInstructionClass = { new( id: number, options: InstructionOptio
 export default abstract class BlockInstruction extends Instruction {
 	/* eslint-disable @typescript-eslint/no-unused-vars */
 	/**
-	 * Renders editing the element.
+	 * Renders saving the element.
 	 *
-	 * @param props} props The props.
-	 * @param leaf   The leaf being rendered.
-	 * @param i      The number the rendered element is of it's parent.
+	 * @param props The props.
+	 * @param leaf  The leaf being rendered.
+	 * @param i     The number the rendered element is of it's parent.
 	 *
 	 * @returns {JSX.Element} The element to render.
 	 */
@@ -25,11 +27,11 @@ export default abstract class BlockInstruction extends Instruction {
 	}
 
 	/**
-	 * Renders saving the element.
+	 * Renders editing the element.
 	 *
-	 * @param props} props The props.
-	 * @param leaf   The leaf being rendered.
-	 * @param i      The number the rendered element is of it's parent.
+	 * @param props The props.
+	 * @param leaf  The leaf being rendered.
+	 * @param i     The number the rendered element is of it's parent.
 	 *
 	 * @returns {JSX.Element} The element to render.
 	 */
@@ -62,9 +64,16 @@ export default abstract class BlockInstruction extends Instruction {
 	/**
 	 * Checks if the instruction block is valid.
 	 *
-	 * @returns {boolean} True if the instruction block is valid, False if the block contains errors.
+	 * @param props The properties from the save or edit methods.
+	 *
+	 * @returns `true` if the instruction block is valid, `false` if the block contains errors.
 	 */
-	valid(): boolean {
+	valid( props: RenderSaveProps | RenderEditProps ): boolean {
+		if ( this.options.required === true ) {
+			return attributeExists( props.attributes, this.options.name as string ) &&
+				attributeNotEmpty( props.attributes, this.options.name as string );
+		}
+
 		return true;
 	}
 }
