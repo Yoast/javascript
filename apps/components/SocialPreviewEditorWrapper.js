@@ -53,7 +53,7 @@ class SocialPreviewEditorWrapper extends React.Component {
 	*/
 	render() {
 		return (
-			<Container>
+			<Container className="yoast">
 				<h2>Facebook</h2>
 				<SocialPreviewEditor
 					title={ this.state.title }
@@ -72,6 +72,7 @@ class SocialPreviewEditorWrapper extends React.Component {
 					) }
 					isPremium={ true }
 					socialPreviewLabel="Facebook share preview"
+					imageWarnings={ [ "Jij bent niet cool genoeg!" ] }
 				/>
 				<br />
 				<h2>Twitter</h2>

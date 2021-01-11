@@ -52,7 +52,7 @@ const selectFileClick = ( message = "YOU CLICKED MY BUTTON!" ) => {
  * @returns {React.Element} The element.
  */
 const SocialPreviewFormWrapper = () =>
-	<ExamplesContainer>
+	<ExamplesContainer className="yoast">
 		<h1>Regular Facebook</h1>
 		<SocialMetadataPreviewForm
 			socialMediumName="Facebook"

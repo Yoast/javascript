@@ -2,10 +2,10 @@ import { __, sprintf } from "@wordpress/i18n";
 import { getDirectionalStyle, join } from "@yoast/helpers";
 import { ReplacementVariableEditor, replacementVariablesShape } from "@yoast/replacement-variable-editor";
 import { angleLeft, angleRight, colors } from "@yoast/style-guide";
+import { ImageSelect } from "@yoast/components";
 import PropTypes from "prop-types";
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import ImageSelect from "./ImageSelect";
 
 /**
  * Sets the color based on whether the caret is active or not (usually hovered).
@@ -184,7 +184,7 @@ class SocialMetadataPreviewForm extends Component {
 		return (
 			<Fragment>
 				<ImageSelectWithCaret
-					title={ imageSelectTitle }
+					label={ imageSelectTitle }
 					onClick={ onSelectImageClick }
 					onRemoveImageClick={ onRemoveImageClick }
 					warnings={ imageWarnings }
