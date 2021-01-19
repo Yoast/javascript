@@ -4,7 +4,6 @@ import * as bundledPlugins from "./src/bundledPlugins";
 import * as helpers from "./src/helpers/_todo";
 import * as markers from "./src/markers";
 import * as interpreters from "./src/scoring/interpreters";
-import * as researchers from "./src/languageProcessing";
 import * as config from "./src/config";
 
 import App from "./src/app";
@@ -45,7 +44,6 @@ export {
 	markers,
 	string,
 	interpreters,
-	researchers,
 };
 
 /*

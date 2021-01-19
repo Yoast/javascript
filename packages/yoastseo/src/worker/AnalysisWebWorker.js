@@ -80,7 +80,7 @@ export default class AnalysisWebWorker {
 	 * @param {Object} scope The scope for the messaging. Expected to have the
 	 *                       `onmessage` event and the `postMessage` function.
 	 */
-	constructor( scope ) {
+	constructor( scope, researcher ) {
 		this._scope = scope;
 
 		this._configuration = {
@@ -99,7 +99,7 @@ export default class AnalysisWebWorker {
 		this._relatedKeywords = {};
 
 		this._i18n = AnalysisWebWorker.createI18n();
-		this._researcher = new Researcher( this._paper );
+		this._researcher = researcher;
 
 		this._contentAssessor = null;
 		this._seoAssessor = null;
