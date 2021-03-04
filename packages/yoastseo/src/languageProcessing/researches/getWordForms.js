@@ -186,10 +186,9 @@ export default function( paper, researcher ) {
 	const functionWords = researcher.getConfig( "functionWords" );
 	const stemmer = researcher.getHelper( "getStemmer" )( researcher );
 	const createBasicWordForms = researcher.getHelper( "createBasicWordForms" );
-	const language = researcher.getConfig( "language" );
-	const allWordsFromPaper = getAllWordsFromPaper( paper ).map( word => word.toLocaleLowerCase( language ) );
-	const keyphrase = paper.getKeyword().toLocaleLowerCase( language ).trim();
-	const synonyms = parseSynonyms( paper.getSynonyms().toLocaleLowerCase( language ).trim() );
+	const allWordsFromPaper = getAllWordsFromPaper( paper ).map( word => word.toLocaleLowerCase() );
+	const keyphrase = paper.getKeyword().toLocaleLowerCase().trim();
+	const synonyms = parseSynonyms( paper.getSynonyms().toLocaleLowerCase().trim() );
 
 	return getWordForms( keyphrase, synonyms, allWordsFromPaper, functionWords, stemmer, createBasicWordForms );
 }
