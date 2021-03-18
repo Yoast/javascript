@@ -2,9 +2,9 @@ import getWords from "../helpers/word/getWords.js";
 import stripSpaces from "../helpers/sanitize/stripSpaces.js";
 import { stripFullTags as stripTags } from "../helpers/sanitize/stripHTMLTags.js";
 
-import { isEmpty } from "lodash-es";
-import { forEach } from "lodash-es";
-import { filter } from "lodash-es";
+import { isEmpty } from "lodash";
+import { forEach } from "lodash";
+import { filter } from "lodash";
 
 /**
  * Compares the first word of each sentence with the first word of the following sentence.
