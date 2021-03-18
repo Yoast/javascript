@@ -14,3 +14,7 @@ import "./TextInput";
 import "./VariableTagRichText";
 import "./Variation";
 import "./VariationPicker";
+
+import VariableTagRichText from "./VariableTagRichText";
+
+export { VariableTagRichText };
