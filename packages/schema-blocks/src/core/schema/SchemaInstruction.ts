@@ -1,5 +1,6 @@
-import { SchemaValue, SchemaDefinitionConfiguration } from "./SchemaDefinition";
-import Instruction, { InstructionOptions } from "../Instruction";
+import { SchemaValue } from "./SchemaDefinition";
+import { SchemaDefinitionConfiguration } from "./SchemaDefinitionConfiguration";
+import { Instruction, InstructionOptions } from "../Instruction";
 import { BlockInstance } from "@wordpress/blocks";
 import { BlockValidation, BlockValidationResult } from "../validation";
 
@@ -8,7 +9,7 @@ export type SchemaInstructionClass = { new( id: number, options: InstructionOpti
 /**
  * SchemaInstruction class.
  */
-export default abstract class SchemaInstruction extends Instruction {
+export abstract class SchemaInstruction extends Instruction {
 	/* eslint-disable @typescript-eslint/no-unused-vars */
 	/**
 	 * Renders schema.

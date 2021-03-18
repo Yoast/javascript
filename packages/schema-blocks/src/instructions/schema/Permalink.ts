@@ -1,6 +1,5 @@
 import { select } from "@wordpress/data";
-
-import SchemaInstruction from "../../core/schema/SchemaInstruction";
+import { SchemaInstruction }  from "../../core/schema/SchemaInstruction";
 
 /**
  * Permalink instruction.

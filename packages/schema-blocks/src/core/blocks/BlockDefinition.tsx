@@ -1,9 +1,9 @@
 import { createElement, Fragment, ReactElement } from "@wordpress/element";
 import { registerBlockType, BlockConfiguration, BlockEditProps, BlockSaveProps } from "@wordpress/blocks";
 import { InspectorControls } from "@wordpress/block-editor";
-import BlockInstruction from "./BlockInstruction";
-import Definition from "../Definition";
-import BlockRootLeaf from "../../leaves/blocks/BlockRootLeaf";
+import { BlockInstruction } from "./BlockInstruction";
+import { Definition } from "../Definition";
+import { BlockRootLeaf } from "../../leaves/blocks/BlockRootLeaf";
 import parse from "../../functions/blocks/parse";
 import { registerBlockDefinition } from "./BlockDefinitionRepository";
 import { PanelBody } from "@wordpress/components";
@@ -26,7 +26,7 @@ export type MutableBlockConfiguration = {
 /**
  * BlockDefinition class.
  */
-export default class BlockDefinition extends Definition {
+export class BlockDefinition extends Definition {
 	public static separatorCharacters = [ "b", "c", "d", "f", "g", "h", "k", "m", "z" ];
 	public static parser = parse;
 
@@ -84,7 +84,7 @@ export default class BlockDefinition extends Definition {
 
 		configuration.edit = props => this.edit( props );
 		configuration.save = props => this.save( props );
-
+		
 		logger.info( "registering block " + name );
 
 		// Register the block to WordPress.

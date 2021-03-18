@@ -1,5 +1,5 @@
 import { SchemaArray } from "../../core/schema/SchemaDefinition";
-import SchemaInstruction from "../../core/schema/SchemaInstruction";
+import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 import { BlockInstance } from "@wordpress/blocks";
 
 /**

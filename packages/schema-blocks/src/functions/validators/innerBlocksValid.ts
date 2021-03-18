@@ -115,5 +115,4 @@ function validateInnerBlocks( blockInstance: BlockInstance, requiredBlocks: Requ
 	return validationResults;
 }
 
-export default validateInnerBlocks;
-export { findMissingBlocks, findRedundantBlocks, validateInnerblockTree };
+export { validateInnerBlocks, findMissingBlocks, findRedundantBlocks, validateInnerblockTree };

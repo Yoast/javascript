@@ -1,6 +1,6 @@
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { RenderSaveProps, RenderEditProps } from "../../core/blocks/BlockDefinition";
-import RichTextBase, { RichTextSaveProps, RichTextEditProps } from "./abstract/RichTextBase";
+import { RichTextBase, RichTextSaveProps, RichTextEditProps } from "./abstract/RichTextBase";
 
 /**
  * RichText instruction.

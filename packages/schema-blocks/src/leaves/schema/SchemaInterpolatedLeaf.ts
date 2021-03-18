@@ -1,12 +1,12 @@
 import { BlockInstance } from "@wordpress/blocks";
-import SchemaLeaf from "../../core/schema/SchemaLeaf";
-import SchemaInstruction from "../../core/schema/SchemaInstruction";
+import { SchemaLeaf } from "../../core/schema/SchemaLeaf";
+import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 import logger from "../../functions/logger";
 
 /**
  * SchemaInterpolatedLeaf class
  */
-export default class SchemaInterpolatedLeaf extends SchemaLeaf {
+export class SchemaInterpolatedLeaf extends SchemaLeaf {
 	public values: Array<string | SchemaInstruction>;
 
 	/**

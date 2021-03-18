@@ -1,4 +1,4 @@
-import BlockLeaf from "../../core/blocks/BlockLeaf";
+import { BlockLeaf } from "../../core/blocks/BlockLeaf";
 import { RenderEditProps, RenderSaveProps } from "../../core/blocks/BlockDefinition";
 import { createElement, AllHTMLAttributes } from "@wordpress/element";
 
@@ -7,7 +7,7 @@ const attributeMap: Record<string, keyof AllHTMLAttributes<unknown>> = { "class"
 /**
  * BlockElementLeaf class.
  */
-export default class BlockElementLeaf extends BlockLeaf {
+export class BlockElementLeaf extends BlockLeaf {
 	public tag: string;
 	public attributes: Record<keyof AllHTMLAttributes<unknown>, BlockLeaf[]>;
 	public children: BlockLeaf[];

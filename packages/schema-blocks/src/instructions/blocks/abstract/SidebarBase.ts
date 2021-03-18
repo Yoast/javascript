@@ -1,4 +1,4 @@
-import BlockInstruction from "../../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../../core/blocks/BlockInstruction";
 import { RenderSaveProps, RenderEditProps } from "../../../core/blocks/BlockDefinition";
 
 export type SidebarBaseOptions = {
@@ -15,7 +15,7 @@ export type SidebarBaseOptions = {
 /**
  * Sidebar input instruction
  */
-export default abstract class SidebarBase extends BlockInstruction {
+export abstract class SidebarBase extends BlockInstruction {
 	public options: SidebarBaseOptions;
 
 	/**

@@ -1,6 +1,7 @@
 import { BlockInstance } from "@wordpress/blocks";
-import logger from "../functions/logger";
 import { BlockValidationResult, BlockValidation } from "./validation";
+import logger from "../functions/logger";
+
 export type InstructionPrimitive = string | number | boolean;
 export type InstructionValue = InstructionPrimitive | InstructionObject | InstructionArray;
 export type InstructionArray = readonly InstructionValue[];
@@ -15,7 +16,7 @@ export type InstructionOptions = InstructionObject & {
 /**
  * Abstract instruction class.
  */
-export default abstract class Instruction {
+export abstract class Instruction {
 	static registeredInstructions: Record<string, InstructionClass<Instruction>>;
 
 	public id: number;

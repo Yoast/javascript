@@ -1,4 +1,4 @@
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { RenderEditProps } from "../../core/blocks/BlockDefinition";
 
 /**

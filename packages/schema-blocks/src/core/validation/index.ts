@@ -1,8 +1,6 @@
-import { BlockValidation } from "./BlockValidation";
-import { BlockValidationResult } from "./BlockValidationResult";
-import { RequiredBlockOption } from "./RequiredBlockOption";
-import { RequiredBlock } from "./RequiredBlock";
-import { RecommendedBlock } from "./RecommendedBlock";
-import { SuggestedBlockProperties } from "./SuggestedBlockProperties";
-
-export { BlockValidation, BlockValidationResult, RequiredBlockOption, RequiredBlock, RecommendedBlock, SuggestedBlockProperties };
+export { BlockValidation } from "./BlockValidation";
+export { BlockValidationResult } from "./BlockValidationResult";
+export { RequiredBlockOption } from "./RequiredBlockOption";
+export { RequiredBlock } from "./RequiredBlock";
+export { RecommendedBlock } from "./RecommendedBlock";
+export { SuggestedBlockProperties } from "./SuggestedBlockProperties";

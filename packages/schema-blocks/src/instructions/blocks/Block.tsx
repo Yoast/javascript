@@ -1,4 +1,4 @@
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { BlockConfiguration } from "@wordpress/blocks";
 
 /**
@@ -33,4 +33,4 @@ class Block extends BlockInstruction {
 	}
 }
 
-BlockInstruction.register( "block", Block );
+BlockInstruction.register("block", Block);

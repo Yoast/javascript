@@ -1,5 +1,5 @@
-import { SchemaDefinitionConfiguration } from "../../core/schema/SchemaDefinition";
-import SchemaInstruction from "../../core/schema/SchemaInstruction";
+import { SchemaDefinitionConfiguration } from "../../core/schema/SchemaDefinitionConfiguration";
+import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 
 /**
  * Schema instruction.

@@ -1,4 +1,4 @@
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { BlockConfiguration } from "@wordpress/blocks";
 import { CheckboxControl } from "@wordpress/components";
 import { createElement, useCallback } from "@wordpress/element";
@@ -20,7 +20,7 @@ class SidebarCheckbox extends BlockInstruction {
 	 *
 	 * @returns The sidebar element.
 	 */
-	sidebar( props: RenderEditProps ): JSX.Element {
+	sidebar(props: RenderEditProps): JSX.Element {
 		const { name, label, help } = this.options;
 
 		/**
@@ -30,16 +30,16 @@ class SidebarCheckbox extends BlockInstruction {
 		 */
 		const onChange = useCallback(
 			newValue => {
-				props.setAttributes( { [ this.options.name ]: newValue } );
+				props.setAttributes({ [this.options.name]: newValue });
 			},
-			[ props ],
+			[props],
 		);
 
 		return <CheckboxControl
-			checked={ props.attributes[ name ] as boolean }
-			label={ label }
-			onChange={ onChange }
-			help={ help }
+			checked={props.attributes[name] as boolean}
+			label={label}
+			onChange={onChange}
+			help={help}
 		/>;
 	}
 
@@ -50,9 +50,9 @@ class SidebarCheckbox extends BlockInstruction {
 	 *
 	 * @returns {JSX.Element} The element to render.
 	 */
-	save( props: RenderSaveProps ): JSX.Element | string {
-		const isChecked = props.attributes[ this.options.name ];
-		if ( isChecked && this.options.output ) {
+	save(props: RenderSaveProps): JSX.Element | string {
+		const isChecked = props.attributes[this.options.name];
+		if (isChecked && this.options.output) {
 			return this.options.output;
 		}
 		return null;
@@ -66,7 +66,7 @@ class SidebarCheckbox extends BlockInstruction {
 	configuration(): Partial<BlockConfiguration> {
 		return {
 			attributes: {
-				[ this.options.name ]: {
+				[this.options.name]: {
 					type: "boolean",
 				},
 			},
@@ -74,4 +74,4 @@ class SidebarCheckbox extends BlockInstruction {
 	}
 }
 
-BlockInstruction.register( "sidebar-checkbox", SidebarCheckbox );
+BlockInstruction.register("sidebar-checkbox", SidebarCheckbox);

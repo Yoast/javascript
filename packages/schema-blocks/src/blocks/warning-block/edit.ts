@@ -16,11 +16,13 @@ export function edit( props: RenderEditProps ): JSX.Element {
 
 	const { removedBlock, warningText, isRequired } = props.attributes;
 
+	const className: string = [ "yoast-warning-block", isRequired ? "required" : "recommended" ].join( " " );
+
 	return createElement(
 		"div",
 		{
 			key: "warning-div",
-			className: [ "yoast-warning-block", isRequired ? "required" : "recommended" ].join( " " ),
+			className: className,
 		},
 		[
 			createElement(

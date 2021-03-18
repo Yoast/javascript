@@ -1,10 +1,10 @@
-import SchemaLeaf from "../../core/schema/SchemaLeaf";
+import { SchemaLeaf } from "../../core/schema/SchemaLeaf";
 import { SchemaPrimitive } from "../../core/schema/SchemaDefinition";
 
 /**
  * SchemaConstantLeaf class
  */
-export default class SchemaConstantLeaf extends SchemaLeaf {
+export class SchemaConstantLeaf extends SchemaLeaf {
 	public constant: SchemaPrimitive;
 
 	/**

@@ -1,11 +1,11 @@
-import BlockLeaf from "../../core/blocks/BlockLeaf";
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockLeaf } from "../../core/blocks/BlockLeaf";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { RenderEditProps, RenderSaveProps } from "../../core/blocks/BlockDefinition";
 
 /**
  * BlockInstructionLeaf class.
  */
-export default class BlockInstructionLeaf extends BlockLeaf {
+export class BlockInstructionLeaf extends BlockLeaf {
 	public instruction: BlockInstruction;
 
 	/**

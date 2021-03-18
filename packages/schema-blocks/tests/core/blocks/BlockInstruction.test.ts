@@ -1,5 +1,5 @@
 import { BlockInstance } from "@wordpress/blocks";
-import BlockInstruction from "../../../src/core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../../src/core/blocks/BlockInstruction";
 import { BlockValidation } from "../../../src/core/validation";
 
 /**

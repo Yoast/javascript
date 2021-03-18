@@ -1,6 +1,6 @@
 /**
  * Leaf class
  */
-export default abstract class Leaf {
+export abstract class Leaf {
 	public parent: Leaf;
 }

@@ -1,11 +1,11 @@
 import { debounce, isEqual } from "lodash";
 import { subscribe, select, dispatch } from "@wordpress/data";
-import SchemaDefinition, { schemaDefinitions } from "../../core/schema/SchemaDefinition";
+import { SchemaDefinition, schemaDefinitions } from "../../core/schema/SchemaDefinition";
 import { BlockInstance } from "@wordpress/blocks";
-import warningWatcher from "./watchers/warningWatcher";
+import { warningWatcher } from "./watchers/warningWatcher";
 import { getBlockDefinition } from "../../core/blocks/BlockDefinitionRepository";
 import { BlockValidation, BlockValidationResult } from "../../core/validation";
-import storeBlockValidation from "./storeBlockValidation";
+import { storeBlockValidation } from "./storeBlockValidation";
 import logger from "../logger";
 
 let updatingSchema = false;

@@ -1,11 +1,10 @@
 import moment from "moment";
 import { createElement, Fragment } from "@wordpress/element";
 import { TextControl } from "@wordpress/components";
-
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { RenderSaveProps, RenderEditProps } from "../../core/blocks/BlockDefinition";
 import { BlockEditProps, BlockConfiguration } from "@wordpress/blocks";
-import SidebarBase, { SidebarBaseOptions } from "./abstract/SidebarBase";
+import { SidebarBase, SidebarBaseOptions } from "./abstract/SidebarBase";
 import { __ } from "@wordpress/i18n";
 
 /**

@@ -1,15 +1,14 @@
 import { createElement, ReactElement, useCallback } from "@wordpress/element";
 import { BlockConfiguration, BlockInstance } from "@wordpress/blocks";
 import { SelectControl } from "@wordpress/components";
-
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { RenderEditProps, RenderSaveProps } from "../../core/blocks/BlockDefinition";
 import { attributeExists, attributeNotEmpty } from "../../functions/validators";
 
 /**
  * Select (a drop-down box) instruction.
  */
-export default class Select extends BlockInstruction {
+export class Select extends BlockInstruction {
 	public options: {
 		/**
 		 * The attribute name the value selected in the select control should be saved as.
@@ -48,14 +47,14 @@ export default class Select extends BlockInstruction {
 	 *
 	 * @returns {JSX.Element} The element to render.
 	 */
-	save( props: RenderSaveProps ): ReactElement | string {
+	save(props: RenderSaveProps): ReactElement | string {
 		const { label, name, hideLabelFromVision } = this.options;
 
-		const value = props.attributes[ name ] as string;
+		const value = props.attributes[name] as string;
 
-		return <span data-id={ name } data-value={ value }>
-			{ ! hideLabelFromVision && <strong>{ label }:</strong> }
-			{ this.label( value ) + " " }
+		return <span data-id={name} data-value={value}>
+			{!hideLabelFromVision && <strong>{label}:</strong>}
+			{this.label(value) + " "}
 		</span>;
 	}
 
@@ -66,9 +65,9 @@ export default class Select extends BlockInstruction {
 	 *
 	 * @returns The label of the selected option.
 	 */
-	protected label( value: string ): string {
-		const foundOption = this.options.options.find( option => option.value === value );
-		if ( foundOption ) {
+	protected label(value: string): string {
+		const foundOption = this.options.options.find(option => option.value === value);
+		if (foundOption) {
 			return foundOption.label;
 		}
 		return null;
@@ -81,13 +80,13 @@ export default class Select extends BlockInstruction {
 	 *
 	 * @returns {JSX.Element} The element to render.
 	 */
-	edit( props: RenderEditProps ): ReactElement | string {
+	edit(props: RenderEditProps): ReactElement | string {
 		const { label, options, hideLabelFromVision, className, defaultValue } = this.options;
 
-		const value = props.attributes[ this.options.name ] as string;
+		const value = props.attributes[this.options.name] as string;
 
-		if ( ! value ) {
-			props.setAttributes( { [ this.options.name ]: defaultValue || options[ 0 ].value } );
+		if (!value) {
+			props.setAttributes({ [this.options.name]: defaultValue || options[0].value });
 		}
 
 		/**
@@ -97,19 +96,19 @@ export default class Select extends BlockInstruction {
 		 */
 		const onChange = useCallback(
 			newValue => {
-				props.setAttributes( { [ this.options.name ]: newValue } );
+				props.setAttributes({ [this.options.name]: newValue });
 			},
-			[ props ],
+			[props],
 		);
 
 		return <SelectControl
-			className={ [ className, "yoast-schema-select" ].join( " " ) }
-			label={ label }
-			value={ value }
-			defaultValue={ defaultValue }
-			onChange={ onChange }
-			options={ options }
-			hideLabelFromVision={ hideLabelFromVision }
+			className={[className, "yoast-schema-select"].join(" ")}
+			label={label}
+			value={value}
+			defaultValue={defaultValue}
+			onChange={onChange}
+			options={options}
+			hideLabelFromVision={hideLabelFromVision}
 		/>;
 	}
 
@@ -121,7 +120,7 @@ export default class Select extends BlockInstruction {
 	configuration(): Partial<BlockConfiguration> {
 		return {
 			attributes: {
-				[ this.options.name ]: {
+				[this.options.name]: {
 					required: this.options.required === true,
 				},
 			},
@@ -135,14 +134,14 @@ export default class Select extends BlockInstruction {
 	 *
 	 * @returns `true` if the instruction block is valid, `false` if the block contains errors.
 	 */
-	valid( blockInstance: BlockInstance ): boolean {
-		if ( this.options.required === true ) {
-			return attributeExists( blockInstance, this.options.name as string ) &&
-				attributeNotEmpty( blockInstance, this.options.name as string );
+	valid(blockInstance: BlockInstance): boolean {
+		if (this.options.required === true) {
+			return attributeExists(blockInstance, this.options.name as string) &&
+				attributeNotEmpty(blockInstance, this.options.name as string);
 		}
 
-		return attributeExists( blockInstance, this.options.name as string );
+		return attributeExists(blockInstance, this.options.name as string);
 	}
 }
 
-BlockInstruction.register( "select", Select );
+BlockInstruction.register("select", Select);

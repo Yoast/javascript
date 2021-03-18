@@ -1,11 +1,11 @@
-import BlockLeaf from "../../core/blocks/BlockLeaf";
+import { BlockLeaf } from "../../core/blocks/BlockLeaf";
 import { createElement, Fragment } from "@wordpress/element";
 import { RenderSaveProps, RenderEditProps } from "../../core/blocks/BlockDefinition";
 
 /**
  * BlockRootLeaf class.
  */
-export default class BlockRootLeaf extends BlockLeaf {
+export class BlockRootLeaf extends BlockLeaf {
 	public children: BlockLeaf[];
 
 	/**

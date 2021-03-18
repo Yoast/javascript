@@ -1,13 +1,12 @@
 import { mapValues } from "lodash";
 import { BlockInstance } from "@wordpress/blocks";
-
-import SchemaLeaf from "../../core/schema/SchemaLeaf";
+import { SchemaLeaf } from "../../core/schema/SchemaLeaf";
 import { SchemaObject } from "../../core/schema/SchemaDefinition";
 
 /**
  * SchemaObjectLeaf class
  */
-export default class SchemaObjectLeaf extends SchemaLeaf {
+export class SchemaObjectLeaf extends SchemaLeaf {
 	public object: Record<string, SchemaLeaf>;
 
 	/**

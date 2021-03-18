@@ -1,22 +1,17 @@
-import BlockLeaf from "./BlockLeaf";
+import { BlockLeaf } from "./BlockLeaf";
 import { RenderSaveProps, RenderEditProps } from "./BlockDefinition";
 import { ReactElement } from "@wordpress/element";
 import { BlockConfiguration, BlockInstance } from "@wordpress/blocks";
 import { BlockValidationResult, BlockValidation } from "../validation";
-import Instruction, { InstructionOptions } from "../Instruction";
+import { Instruction } from "../Instruction";
 import { attributeExists, attributeNotEmpty } from "../../functions/validators";
-import validateMany from "../../functions/validators/validateMany";
+import { validateMany } from "../../functions/validators/validateMany";
 import logger from "../../functions/logger";
-
-export type BlockInstructionClass = {
-	new( id: number, options: InstructionOptions ): BlockInstruction;
-	options: InstructionOptions;
-};
 
 /**
  * BlockInstruction class.
  */
-export default abstract class BlockInstruction extends Instruction {
+export abstract class BlockInstruction extends Instruction {
 	/* eslint-disable @typescript-eslint/no-unused-vars */
 	/**
 	 * Renders saving the element.

@@ -1,6 +1,6 @@
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { RenderSaveProps, RenderEditProps } from "../../core/blocks/BlockDefinition";
-import RichTextBase, { RichTextEditProps, RichTextSaveProps } from "./abstract/RichTextBase";
+import { RichTextBase, RichTextEditProps, RichTextSaveProps } from "./abstract/RichTextBase";
 import { BlockConfiguration, BlockEditProps } from "@wordpress/blocks";
 import { createElement } from "@wordpress/element";
 import { SelectControl } from "@wordpress/components";

@@ -1,4 +1,4 @@
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { ExtendedBlockConfiguration } from "../../type-adapters/ExtendedBlockConfiguration";
 
 export interface VariationInterface {

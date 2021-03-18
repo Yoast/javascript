@@ -1,10 +1,10 @@
 import { RenderEditProps, RenderSaveProps } from "./BlockDefinition";
-import Leaf from "../Leaf";
+import { Leaf } from "../Leaf";
 
 /**
  * BlockLeaf class
  */
-export default abstract class BlockLeaf extends Leaf {
+export abstract class BlockLeaf extends Leaf {
 	public parent: BlockLeaf;
 
 	/**

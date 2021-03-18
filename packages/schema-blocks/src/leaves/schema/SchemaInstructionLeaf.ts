@@ -1,12 +1,12 @@
-import SchemaLeaf from "../../core/schema/SchemaLeaf";
+import { SchemaLeaf } from "../../core/schema/SchemaLeaf";
 import { SchemaValue } from "../../core/schema/SchemaDefinition";
-import SchemaInstruction from "../../core/schema/SchemaInstruction";
+import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 import { BlockInstance } from "@wordpress/blocks";
 
 /**
  * SchemaInstructionLeaf class
  */
-export default class SchemaInstructionLeaf extends SchemaLeaf {
+export class SchemaInstructionLeaf extends SchemaLeaf {
 	public instruction: SchemaInstruction;
 
 	/**

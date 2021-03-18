@@ -1,8 +1,9 @@
-import SchemaInstruction from "./SchemaInstruction";
-import SchemaLeaf from "./SchemaLeaf";
-import Definition from "../Definition";
-import parse from "../../functions/schema/parse";
+import { SchemaInstruction } from "./SchemaInstruction";
+import { SchemaLeaf } from "./SchemaLeaf";
+import { Definition } from "../Definition";
+import { parse } from "../../functions/schema/parse";
 import { BlockInstance } from "@wordpress/blocks";
+import { SchemaDefinitionConfiguration } from "./SchemaDefinitionConfiguration";
 
 export type SchemaPrimitive = string | number | boolean;
 export type SchemaValue = SchemaPrimitive | SchemaObject | SchemaArray;
@@ -11,16 +12,10 @@ export type SchemaArray = SchemaValue[];
 
 export const schemaDefinitions: Record<string, SchemaDefinition> = {};
 
-export type SchemaDefinitionConfiguration = {
-	name: string;
-	onlyNested?: boolean;
-	separateInGraph?: boolean;
-};
-
 /**
  * Schema definition class.
  */
-export default class SchemaDefinition extends Definition {
+export class SchemaDefinition extends Definition {
 	public static separatorCharacters = [ "1", "2", "3", "4", "5", "6", "7", "8", "9" ];
 	public static parser = parse;
 

@@ -67,7 +67,7 @@ function BlockSuggestionAdded( { blockTitle }: BlockSuggestionAddedDto ): ReactE
  *
  * @returns {ReactElement} The rendered sidebar section with block suggestions.
  */
-export default function RequiredBlocks( sidebarTitle: string, block: BlockInstance, suggestedBlocks: SuggestedBlockProperties[] ): ReactElement {
+export function RequiredBlocks( sidebarTitle: string, block: BlockInstance, suggestedBlocks: SuggestedBlockProperties[] ): ReactElement {
 	const suggestedBlockNames = suggestedBlocks
 		.filter( suggestedBlock => typeof getBlockType( suggestedBlock.name ) !== "undefined" )
 		.map( suggestedBlock => suggestedBlock.name );

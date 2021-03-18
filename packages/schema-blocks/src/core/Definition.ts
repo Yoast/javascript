@@ -1,8 +1,8 @@
 import { BlockValidation, BlockValidationResult } from "./validation";
 import { BlockInstance } from "@wordpress/blocks";
 import { isArray, mergeWith } from "lodash";
-import Instruction from "./Instruction";
-import Leaf from "./Leaf";
+import { Instruction } from "./Instruction";
+import { Leaf } from "./Leaf";
 import logger from "../functions/logger";
 
 export type DefinitionClass<T extends Definition> = {
@@ -14,7 +14,7 @@ export type DefinitionClass<T extends Definition> = {
 /**
  * Definition class.
  */
-export default abstract class Definition {
+export abstract class Definition {
 	public separator: string;
 	public template: string;
 	public instructions: Record<string, Instruction>;

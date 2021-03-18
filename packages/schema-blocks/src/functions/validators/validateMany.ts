@@ -8,12 +8,10 @@ import { BlockValidation, BlockValidationResult } from "../../core/validation";
  *
  * @returns {BlockValidationResult} The result of the validation.
  */
-function validateMany( validation: BlockValidationResult ): BlockValidationResult {
+export function validateMany( validation: BlockValidationResult ): BlockValidationResult {
 	validation.result = validation.issues.some( issue =>
 		! isValidResult( issue.result ) )
 		? BlockValidation.Invalid
 		: BlockValidation.Valid;
 	return validation;
 }
-
-export default validateMany;

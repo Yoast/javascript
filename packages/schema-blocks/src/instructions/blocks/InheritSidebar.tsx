@@ -1,11 +1,11 @@
 import { createElement, Fragment, ReactElement } from "@wordpress/element";
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { BlockEditProps, BlockConfiguration } from "@wordpress/blocks";
 import { createBlockEditProps, getParentIdOfType } from "../../functions/gutenberg/block";
 import { getBlockByClientId } from "../../functions/BlockHelper";
-import logger from "../../functions/logger";
 import { getBlockDefinition } from "../../core/blocks/BlockDefinitionRepository";
 import { InstructionOptions } from "../../core/Instruction";
+import logger from "../../functions/logger";
 
 /**
  * Sidebar input instruction.
@@ -24,28 +24,28 @@ export default class InheritSidebar extends BlockInstruction {
 	 *
 	 * @returns The sidebar element.
 	 */
-	sidebar( props: BlockEditProps<Record<string, unknown>>, i: number ): ReactElement {
+	sidebar(props: BlockEditProps<Record<string, unknown>>, i: number): ReactElement {
 		let parentIds: string[] = [];
-		if ( this.options.parents ) {
-			parentIds = getParentIdOfType( props.clientId, this.options.parents );
+		if (this.options.parents) {
+			parentIds = getParentIdOfType(props.clientId, this.options.parents);
 		}
 
 		const elements: ReactElement[] = [];
-		if ( parentIds.length > 0 ) {
-			parentIds.forEach( parentId => {
-				const parentBlock = getBlockByClientId( parentId );
-				const parentBlockDefinition = getBlockDefinition( parentBlock.name );
-				if ( parentBlockDefinition ) {
-					logger.debug( this.options.name + " inherited sidebar from " + parentBlock.name + " definition" );
-					const parentProps = createBlockEditProps( parentBlock );
-					elements.push( ...parentBlockDefinition.sidebarElements( parentProps ) );
+		if (parentIds.length > 0) {
+			parentIds.forEach(parentId => {
+				const parentBlock = getBlockByClientId(parentId);
+				const parentBlockDefinition = getBlockDefinition(parentBlock.name);
+				if (parentBlockDefinition) {
+					logger.debug(this.options.name + " inherited sidebar from " + parentBlock.name + " definition");
+					const parentProps = createBlockEditProps(parentBlock);
+					elements.push(...parentBlockDefinition.sidebarElements(parentProps));
 				}
-			} );
+			});
 		}
 
 		return (
 			<Fragment>
-				{ ...elements }
+				{ ...elements}
 			</Fragment>
 		);
 	}
@@ -59,7 +59,7 @@ export default class InheritSidebar extends BlockInstruction {
 	configuration(): Partial<BlockConfiguration> {
 		return {
 			attributes: {
-				[ this.options.name ]: {
+				[this.options.name]: {
 					parents: this.options.parents,
 				},
 			},
@@ -67,4 +67,4 @@ export default class InheritSidebar extends BlockInstruction {
 	}
 }
 
-BlockInstruction.register( "inherit-sidebar", InheritSidebar );
+BlockInstruction.register("inherit-sidebar", InheritSidebar);

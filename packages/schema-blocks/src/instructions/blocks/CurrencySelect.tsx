@@ -1,5 +1,5 @@
-import Select from "./Select";
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { Select } from "./Select";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { InstructionOptions } from "../../core/Instruction";
 import { arrayOrObjectToOptions } from "../../functions/select";
 
@@ -199,9 +199,9 @@ class CurrencySelect extends Select {
 		id: number,
 		options: InstructionOptions,
 	) {
-		super( id, options );
-		this.options.options = arrayOrObjectToOptions( currencyCodes );
+		super(id, options);
+		this.options.options = arrayOrObjectToOptions(currencyCodes);
 	}
 }
 
-BlockInstruction.register( "currency-select", CurrencySelect );
+BlockInstruction.register("currency-select", CurrencySelect);

@@ -1,16 +1,16 @@
 import { camelCase } from "lodash";
 import { IToken } from "tokenizr";
-import BlockDefinition from "../core/blocks/BlockDefinition";
-import BlockInstruction from "../core/blocks/BlockInstruction";
-import Definition, { DefinitionClass } from "../core/Definition";
-import Instruction, {
+import { BlockDefinition } from "../core/blocks/BlockDefinition";
+import { BlockInstruction } from "../core/blocks/BlockInstruction";
+import { Definition, DefinitionClass } from "../core/Definition";
+import { Instruction,
 	InstructionArray,
 	InstructionValue,
 	InstructionPrimitive,
 	InstructionObject,
 } from "../core/Instruction";
-import SchemaDefinition from "../core/schema/SchemaDefinition";
-import SchemaInstruction from "../core/schema/SchemaInstruction";
+import { SchemaDefinition } from "../core/schema/SchemaDefinition";
+import { SchemaInstruction } from "../core/schema/SchemaInstruction";
 import { generateUniqueSeparator } from "./separator";
 import tokenize from "./tokenize";
 

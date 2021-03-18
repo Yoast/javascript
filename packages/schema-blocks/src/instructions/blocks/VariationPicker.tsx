@@ -1,13 +1,12 @@
-import BlockInstruction from "../../core/blocks/BlockInstruction";
+import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { select, useDispatch, useSelect } from "@wordpress/data";
 import { RenderEditProps } from "../../core/blocks/BlockDefinition";
-import BlockLeaf from "../../core/blocks/BlockLeaf";
+import { BlockLeaf } from "../../core/blocks/BlockLeaf";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore -- __experimentalBlockVariationPicker is defined in the package, though no type info is available.
 import { __experimentalBlockVariationPicker as ExperimentalBlockVariationPicker, useBlockProps } from "@wordpress/block-editor";
 import { get, map } from "lodash";
 import { BlockInstance, createBlock } from "@wordpress/blocks";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createElement } from "@wordpress/element";
 import { VariationInterface } from "./Variation";
 import { BlockValidationResult } from "../../core/validation";
@@ -27,6 +26,8 @@ function includesAVariation( blockInstance: BlockInstance ): boolean {
  * VariationPicker instruction.
  */
 class VariationPicker extends BlockInstruction {
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	/**
 	 * Renders the variation picker if the block doesn't have any inner blocks.
 	 * Otherwise, renders null.

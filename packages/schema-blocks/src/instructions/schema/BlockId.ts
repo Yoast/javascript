@@ -1,4 +1,4 @@
-import SchemaInstruction from "../../core/schema/SchemaInstruction";
+import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 import { BlockInstance } from "@wordpress/blocks";
 import { getBlockSchemaId } from "../../functions/gutenberg/block";
 

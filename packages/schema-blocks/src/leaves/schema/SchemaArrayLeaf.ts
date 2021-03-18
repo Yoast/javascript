@@ -1,11 +1,11 @@
-import SchemaLeaf from "../../core/schema/SchemaLeaf";
+import { SchemaLeaf } from "../../core/schema/SchemaLeaf";
 import { SchemaArray } from "../../core/schema/SchemaDefinition";
 import { BlockInstance } from "@wordpress/blocks";
 
 /**
  * SchemaArrayLeaf class
  */
-export default class SchemaArrayLeaf extends SchemaLeaf {
+export class SchemaArrayLeaf extends SchemaLeaf {
 	public array: SchemaLeaf[];
 
 	/**

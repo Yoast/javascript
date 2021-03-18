@@ -1,12 +1,11 @@
 import { dispatch } from "@wordpress/data";
 import { BlockInstance, createBlock } from "@wordpress/blocks";
 import { __, sprintf } from "@wordpress/i18n";
-
 import { getBlockDefinition } from "../../../core/blocks/BlockDefinitionRepository";
 import InnerBlocks from "../../../instructions/blocks/InnerBlocks";
 import recurseOverBlocks from "../../blocks/recurseOverBlocks";
 import { mapBlocksRecursively } from "../../innerBlocksHelper";
-import BlockDefinition from "../../../core/blocks/BlockDefinition";
+import { BlockDefinition } from "../../../core/blocks/BlockDefinition";
 import { InstructionObject } from "../../../core/Instruction";
 import { getBlockType } from "../../BlockHelper";
 import { RecommendedBlock, RequiredBlock } from "../../../core/validation";
@@ -191,7 +190,7 @@ function addWarningsForRecommendedBlocks(
  * @param blocks The current list of blocks.
  * @param previousBlocks The previous list of blocks.
  */
-export default function warningWatcher( blocks: BlockInstance[], previousBlocks: BlockInstance[] = [] ): void {
+export function warningWatcher( blocks: BlockInstance[], previousBlocks: BlockInstance[] = [] ): void {
 	const currentBlockIds: string[] = mapBlocksRecursively( blocks, block => block.clientId );
 
 	recurseOverBlocks( previousBlocks, ( block: BlockInstance ) => {

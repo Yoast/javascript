@@ -1,4 +1,4 @@
-import BlockDefinition from "./BlockDefinition";
+import { BlockDefinition } from "./BlockDefinition";
 
 // Internal store of all known BlockDefinitions.
 const registeredBlockDefinitions: Record<string, BlockDefinition> = {};

@@ -1,12 +1,11 @@
 import { flatMap } from "lodash";
-
-import BlockLeaf from "../../core/blocks/BlockLeaf";
-import BlockDefinition from "../../core/blocks/BlockDefinition";
-import BlockInstructionLeaf from "../../leaves/blocks/BlockInstructionLeaf";
-import BlockTextLeaf from "../../leaves/blocks/BlockTextLeaf";
-import BlockElementLeaf from "../../leaves/blocks/BlockElementLeaf";
+import { BlockLeaf } from "../../core/blocks/BlockLeaf";
+import { BlockDefinition } from "../../core/blocks/BlockDefinition";
+import { BlockInstructionLeaf } from "../../leaves/blocks/BlockInstructionLeaf";
+import { BlockTextLeaf } from "../../leaves/blocks/BlockTextLeaf";
+import { BlockElementLeaf } from "../../leaves/blocks/BlockElementLeaf";
 import { AllHTMLAttributes } from "@wordpress/element";
-import BlockRootLeaf from "../../leaves/blocks/BlockRootLeaf";
+import { BlockRootLeaf } from "../../leaves/blocks/BlockRootLeaf";
 
 /**
  * Parses text into leaves.

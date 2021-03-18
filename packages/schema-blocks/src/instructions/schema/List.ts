@@ -1,5 +1,5 @@
 import { SchemaArray } from "../../core/schema/SchemaDefinition";
-import SchemaInstruction from "../../core/schema/SchemaInstruction";
+import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 import { stripTags, splitOnTag } from "../../functions/html";
 import { BlockInstance } from "@wordpress/blocks";
 

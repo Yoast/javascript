@@ -2,7 +2,7 @@ import { BlockInstance, createBlock } from "@wordpress/blocks";
 import * as renderer from "react-test-renderer";
 import { mount } from "enzyme";
 import { RequiredBlock } from "../../src/core/validation";
-import BlockSuggestions from "../../src/blocks/BlockSuggestions";
+import { BlockSuggestions } from "../../src/blocks/BlockSuggestions";
 import { insertBlock } from "../../src/functions/innerBlocksHelper";
 
 jest.mock( "@wordpress/blocks", () => {

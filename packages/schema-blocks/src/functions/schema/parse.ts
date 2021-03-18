@@ -1,12 +1,11 @@
 import { mapValues } from "lodash";
-
-import SchemaDefinition, { SchemaValue } from "../../core/schema/SchemaDefinition";
-import SchemaLeaf from "../../core/schema/SchemaLeaf";
-import SchemaObjectLeaf from "../../leaves/schema/SchemaObjectLeaf";
-import SchemaArrayLeaf from "../../leaves/schema/SchemaArrayLeaf";
-import SchemaInstructionLeaf from "../../leaves/schema/SchemaInstructionLeaf";
-import SchemaConstantLeaf from "../../leaves/schema/SchemaConstantLeaf";
-import SchemaInterpolatedLeaf from "../../leaves/schema/SchemaInterpolatedLeaf";
+import { SchemaDefinition, SchemaValue } from "../../core/schema/SchemaDefinition";
+import { SchemaLeaf } from "../../core/schema/SchemaLeaf";
+import { SchemaObjectLeaf } from "../../leaves/schema/SchemaObjectLeaf";
+import { SchemaArrayLeaf } from "../../leaves/schema/SchemaArrayLeaf";
+import { SchemaInstructionLeaf } from "../../leaves/schema/SchemaInstructionLeaf";
+import { SchemaConstantLeaf } from "../../leaves/schema/SchemaConstantLeaf";
+import { SchemaInterpolatedLeaf } from "../../leaves/schema/SchemaInterpolatedLeaf";
 
 /**
  * Parses a JSON value.
@@ -59,7 +58,7 @@ function parseValue( value: SchemaValue, definition: SchemaDefinition ): SchemaL
  *
  * @returns The parsed schema definition.
  */
-export default function parse( definition: SchemaDefinition ): SchemaDefinition {
+export function parse( definition: SchemaDefinition ): SchemaDefinition {
 	const value = JSON.parse( definition.template );
 	definition.tree = parseValue( value, definition );
 
