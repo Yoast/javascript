@@ -3,7 +3,7 @@ import getSentences from "../helpers/sentence/getSentences.js";
 import { normalizeSingle as normalizeSingleQuotes } from "../helpers/sanitize/quotes.js";
 import { isWordInSentence as matchWordInSentence } from "../helpers/word/matchWordInSentence.js";
 
-import { flattenDeep } from "lodash-es";
+import { flattenDeep } from "lodash";
 
 let regexFromDoubleArray = null;
 let regexFromDoubleArrayCacheKey = "";

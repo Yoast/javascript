@@ -1,6 +1,6 @@
 import getSubheadingTexts from "../helpers/html/getSubheadingTexts";
 import countWords from "../helpers/word/countWords";
-import { forEach } from "lodash-es";
+import { forEach } from "lodash";
 
 /**
  * Gets the subheadings from the text and returns the length of these subheading in an array.

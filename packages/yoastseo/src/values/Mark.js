@@ -1,4 +1,4 @@
-import { defaults } from "lodash-es";
+import { defaults } from "lodash";
 
 /**
  * Represents a marked piece of text

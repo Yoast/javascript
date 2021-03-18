@@ -1,8 +1,8 @@
-import { forEach } from "lodash-es";
-import { isNumber } from "lodash-es";
-import { isObject } from "lodash-es";
-import { isUndefined } from "lodash-es";
-import { difference } from "lodash-es";
+import { forEach } from "lodash";
+import { isNumber } from "lodash";
+import { isObject } from "lodash";
+import { isUndefined } from "lodash";
+import { difference } from "lodash";
 import { assessmentPresenterResult as template } from "../../snippetPreview/templates.js";
 import scoreToRating from "../interpreters/scoreToRating.js";
 import createConfig from "../../config/presenter.js";

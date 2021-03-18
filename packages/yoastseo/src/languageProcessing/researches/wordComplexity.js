@@ -2,8 +2,8 @@ import getWords from "../helpers/word/getWords.js";
 import countSyllables from "../helpers/syllables/countSyllables.js";
 import getSentences from "../helpers/sentence/getSentences.js";
 
-import { map } from "lodash-es";
-import { forEach } from "lodash-es";
+import { map } from "lodash";
+import { forEach } from "lodash";
 
 /**
  * Gets the complexity per word, along with the index for the sentence.

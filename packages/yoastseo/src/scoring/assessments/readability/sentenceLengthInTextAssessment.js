@@ -1,4 +1,4 @@
-import { map } from "lodash-es";
+import { map } from "lodash";
 
 import Assessment from "../assessment";
 import getTooLongSentences from "../../helpers/assessments/checkForTooLongSentences";

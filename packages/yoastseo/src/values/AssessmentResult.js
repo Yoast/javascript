@@ -1,6 +1,6 @@
-import { isArray } from "lodash-es";
-import { isUndefined } from "lodash-es";
-import { isNumber } from "lodash-es";
+import { isArray } from "lodash";
+import { isUndefined } from "lodash";
+import { isNumber } from "lodash";
 
 import Mark from "./Mark";
 

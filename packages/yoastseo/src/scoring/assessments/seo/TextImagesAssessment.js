@@ -1,4 +1,4 @@
-import { merge } from "lodash-es";
+import { merge } from "lodash";
 
 import Assessment from "../assessment";
 import { inRangeStartEndInclusive } from "../../helpers/assessments/inRange.js";

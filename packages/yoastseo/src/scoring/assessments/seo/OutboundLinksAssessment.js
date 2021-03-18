@@ -1,4 +1,4 @@
-import { isEmpty, merge } from "lodash-es";
+import { isEmpty, merge } from "lodash";
 
 import Assessment from "../assessment";
 import { createAnchorOpeningTag } from "../../../helpers/shortlinker";

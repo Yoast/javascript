@@ -1,4 +1,4 @@
-import { escapeRegExp } from "lodash-es";
+import { escapeRegExp } from "lodash";
 import getAlttagContent from "../image/getAlttagContent";
 import imageInText from "../image/imageInText";
 import { normalizeSingle } from "../sanitize/quotes";

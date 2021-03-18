@@ -1,4 +1,4 @@
-import { filter, includes, isEmpty } from "lodash-es";
+import { filter, includes, isEmpty } from "lodash";
 import getWords from "../helpers/word/getWords";
 
 /**

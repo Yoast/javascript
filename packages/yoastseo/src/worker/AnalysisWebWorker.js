@@ -2,7 +2,7 @@
 import { autop } from "@wordpress/autop";
 import { enableFeatures } from "@yoast/feature-flag";
 import Jed from "jed";
-import { forEach, has, includes, isNull, isObject, isString, isUndefined, merge, pickBy, isEmpty } from "lodash-es";
+import { forEach, has, includes, isNull, isObject, isString, isUndefined, merge, pickBy, isEmpty } from "lodash";
 import { getLogger } from "loglevel";
 
 // YoastSEO.js dependencies.

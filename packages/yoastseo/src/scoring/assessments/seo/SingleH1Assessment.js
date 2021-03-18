@@ -1,6 +1,6 @@
-import { map } from "lodash-es";
-import { merge } from "lodash-es";
-import { isUndefined } from "lodash-es";
+import { map } from "lodash";
+import { merge } from "lodash";
+import { isUndefined } from "lodash";
 
 import Assessment from "../assessment.js";
 import { createAnchorOpeningTag } from "../../../helpers/shortlinker";

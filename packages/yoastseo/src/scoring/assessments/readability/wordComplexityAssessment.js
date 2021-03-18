@@ -1,4 +1,4 @@
-import { filter, flatMap, flatten, forEach, zip } from "lodash-es";
+import { filter, flatMap, flatten, forEach, zip } from "lodash";
 
 import formatNumber from "../../../helpers/formatNumber";
 import addMark from "../../../markers/addMark";

@@ -1,5 +1,5 @@
 // "use strict";
-import { isUndefined } from "lodash-es";
+import { isUndefined } from "lodash";
 
 import createRulesFromArrays from "../../../../helpers/morphology/createRulesFromArrays.js";
 import { buildOneFormFromRegex } from "../../../../helpers/morphology/buildFormRule";

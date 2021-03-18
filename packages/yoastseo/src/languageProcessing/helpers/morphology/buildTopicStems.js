@@ -1,7 +1,7 @@
 import getWords from "../word/getWords.js";
 import { normalizeSingle } from "../sanitize/quotes";
 
-import { includes, isUndefined, escapeRegExp, memoize } from "lodash-es";
+import { includes, isUndefined, escapeRegExp, memoize } from "lodash";
 
 /**
  * A topic phrase (i.e., a keyphrase or synonym) with stem-original pairs for the words in the topic phrase.

@@ -1,9 +1,9 @@
 import getSentences from "../helpers/sentence/getSentences";
 import { mergeListItems } from "../helpers/sanitize/mergeListItems";
 import { findWordFormsInString } from "../helpers/match/findKeywordFormsInString";
-import { max, uniq as unique } from "lodash-es";
-import { zipWith } from "lodash-es";
-import { flattenDeep } from "lodash-es";
+import { max, uniq as unique } from "lodash";
+import { zipWith } from "lodash";
+import { flattenDeep } from "lodash";
 import { markWordsInSentences } from "../helpers/word/markWordsInSentences";
 
 

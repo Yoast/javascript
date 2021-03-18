@@ -1,6 +1,6 @@
 import countWords from "../helpers/word/countWords.js";
 import matchParagraphs from "../helpers/html/matchParagraphs.js";
-import { filter } from "lodash-es";
+import { filter } from "lodash";
 
 /**
  * Gets all paragraphs and their word counts from the text.

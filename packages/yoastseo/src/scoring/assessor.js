@@ -3,13 +3,13 @@ import removeDuplicateMarks from "../markers/removeDuplicateMarks";
 import AssessmentResult from "../values/AssessmentResult.js";
 import { showTrace } from "../helpers/errors.js";
 
-import { isUndefined } from "lodash-es";
-import { isFunction } from "lodash-es";
-import { forEach } from "lodash-es";
-import { filter } from "lodash-es";
-import { map } from "lodash-es";
-import { findIndex } from "lodash-es";
-import { find } from "lodash-es";
+import { isUndefined } from "lodash";
+import { isFunction } from "lodash";
+import { forEach } from "lodash";
+import { filter } from "lodash";
+import { map } from "lodash";
+import { findIndex } from "lodash";
+import { find } from "lodash";
 
 const ScoreRating = 9;
 

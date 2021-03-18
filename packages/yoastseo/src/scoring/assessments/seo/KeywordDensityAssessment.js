@@ -1,4 +1,4 @@
-import { merge } from "lodash-es";
+import { merge } from "lodash";
 
 import recommendedKeywordCount from "../../helpers/assessments/recommendedKeywordCount.js";
 import Assessment from "../assessment";

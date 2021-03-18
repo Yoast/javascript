@@ -1,5 +1,5 @@
-import { memoize } from "lodash-es";
-import { uniq } from "lodash-es";
+import { memoize } from "lodash";
+import { uniq } from "lodash";
 
 import getWords from "../word/getWords";
 import { normalizeSingle } from "../sanitize/quotes";

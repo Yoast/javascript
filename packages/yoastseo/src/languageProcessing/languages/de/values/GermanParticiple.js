@@ -8,8 +8,8 @@ import { participleLike as auxiliaries } from "../config/internal/passiveVoiceAu
 const exceptionsRegex =
 	/\S+(apparat|arbeit|dienst|haft|halt|keit|kraft|not|pflicht|schaft|schrift|tät|wert|zeit)($|[ \n\r\t.,'()"+-;!?:/»«‹›<>])/ig;
 
-import { includes } from "lodash-es";
-import { map } from "lodash-es";
+import { includes } from "lodash";
+import { map } from "lodash";
 
 /**
  * Creates an Participle object for the German language.

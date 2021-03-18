@@ -1,4 +1,4 @@
-import { forEach } from "lodash-es";
+import { forEach } from "lodash";
 
 /**
  * Checks if the participles make the sentence part passive.

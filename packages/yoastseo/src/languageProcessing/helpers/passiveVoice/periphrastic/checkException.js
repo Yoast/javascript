@@ -1,4 +1,4 @@
-import { isEmpty } from "lodash-es";
+import { isEmpty } from "lodash";
 
 /**
  * Sets sentence part passiveness to passive if no exception rules for the participle apply.

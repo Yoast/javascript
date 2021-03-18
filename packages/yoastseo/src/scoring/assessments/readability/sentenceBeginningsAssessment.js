@@ -1,4 +1,4 @@
-import { filter, flatten, map, partition, sortBy } from "lodash-es";
+import { filter, flatten, map, partition, sortBy } from "lodash";
 
 import marker from "../../../markers/addMark";
 import { createAnchorOpeningTag } from "../../../helpers/shortlinker";

@@ -1,5 +1,5 @@
 import getLanguage from "../languageProcessing/helpers/language/getLanguage.js";
-import { isUndefined } from "lodash-es";
+import { isUndefined } from "lodash";
 
 const transliterations = {
 

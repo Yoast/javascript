@@ -5,7 +5,7 @@ import AssessmentResult from "../../src/values/AssessmentResult.js";
 import Factory from "../specHelpers/factory.js";
 import Paper from "../../src/values/Paper.js";
 
-import { forEach } from "lodash-es";
+import { forEach } from "lodash";
 
 const i18n = Factory.buildJed();
 

@@ -5,7 +5,7 @@ import stripSpaces from "../sanitize/stripSpaces.js";
 import removePunctuation from "../sanitize/removePunctuation.js";
 import matchTextWithWord from "./matchTextWithWord";
 import { normalize as normalizeQuotes } from "../sanitize/quotes.js";
-import { uniq as unique } from "lodash-es";
+import { uniq as unique } from "lodash";
 
 /**
  * Matches strings from an array against a given text.

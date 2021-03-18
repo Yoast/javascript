@@ -1,17 +1,17 @@
 import SnippetPreview from "./snippetPreview/snippetPreview.js";
 
-import { defaultsDeep } from "lodash-es";
-import { isObject } from "lodash-es";
-import { isString } from "lodash-es";
+import { defaultsDeep } from "lodash";
+import { isObject } from "lodash";
+import { isString } from "lodash";
 import MissingArgument from "./errors/missingArgument";
-import { isUndefined } from "lodash-es";
-import { isEmpty } from "lodash-es";
-import { isFunction } from "lodash-es";
-import { isArray } from "lodash-es";
-import { forEach } from "lodash-es";
-import { debounce } from "lodash-es";
-import { throttle } from "lodash-es";
-import { merge } from "lodash-es";
+import { isUndefined } from "lodash";
+import { isEmpty } from "lodash";
+import { isFunction } from "lodash";
+import { isArray } from "lodash";
+import { forEach } from "lodash";
+import { debounce } from "lodash";
+import { throttle } from "lodash";
+import { merge } from "lodash";
 
 import Jed from "jed";
 import SEOAssessor from "./scoring/seoAssessor.js";

@@ -1,4 +1,4 @@
-import { forEach, includes } from "lodash-es";
+import { forEach, includes } from "lodash";
 import getWords from "../../../../helpers/word/getWords";
 import participles from "../../config/internal/passiveVoiceParticiples";
 import SpanishParticiple from "../../values/SpanishParticiple";

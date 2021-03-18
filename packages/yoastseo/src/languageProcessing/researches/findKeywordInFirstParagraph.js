@@ -8,8 +8,8 @@ import findEmptyDivisions from "../helpers/html/findEmptyDivisions";
 import getAnchorsFromText from "../helpers/link/getAnchorsFromText";
 import matchStringWithRegex from "../helpers/regex/matchStringWithRegex";
 
-import { reject } from "lodash-es";
-import { isEmpty } from "lodash-es";
+import { reject } from "lodash";
+import { isEmpty } from "lodash";
 
 /**
  * Removes links from text.

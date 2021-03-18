@@ -1,5 +1,5 @@
 import { flattenSortLength } from "../../../../helpers/morphology/flattenSortLength";
-import { flatten } from "lodash-es";
+import { flatten } from "lodash";
 import stem from "./stem";
 import { stemTOrDFromEndOfWord } from "./stemTOrDFromEndOfWord";
 import { checkExceptionListWithTwoStems } from "../../../../helpers/morphology/exceptionListHelpers";

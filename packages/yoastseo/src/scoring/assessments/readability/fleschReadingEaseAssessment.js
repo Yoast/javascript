@@ -1,4 +1,4 @@
-import { inRange } from "lodash-es";
+import { inRange } from "lodash";
 
 import { createAnchorOpeningTag } from "../../../helpers/shortlinker";
 import AssessmentResult from "../../../values/AssessmentResult";

@@ -1,7 +1,7 @@
 import { normalizeSingle } from "../helpers/sanitize/quotes";
 import { collectStems, StemOriginalPair } from "../helpers/morphology/buildTopicStems";
 
-import { escapeRegExp, uniq, flattenDeep } from "lodash-es";
+import { escapeRegExp, uniq, flattenDeep } from "lodash";
 import getAllWordsFromPaper from "../helpers/morphology/getAllWordsFromPaper";
 import parseSynonyms from "../helpers/sanitize/parseSynonyms";
 

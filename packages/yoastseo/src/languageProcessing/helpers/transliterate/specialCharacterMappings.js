@@ -1,4 +1,4 @@
-import isEqual from "lodash-es/isEqual";
+import isEqual from "lodash/isEqual";
 import filter from "lodash/filter";
 import includes from "lodash/includes";
 import memoize from "lodash/memoize";

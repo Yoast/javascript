@@ -8,11 +8,11 @@ import getWordIndices from "./getIndicesWithRegex.js";
 import includesIndex from "../../word/includesIndex";
 import followsIndex from "../../word/followsIndex";
 
-import { filter } from "lodash-es";
-import { isUndefined } from "lodash-es";
-import { includes } from "lodash-es";
-import { map } from "lodash-es";
-import { forEach } from "lodash-es";
+import { filter } from "lodash";
+import { isUndefined } from "lodash";
+import { includes } from "lodash";
+import { map } from "lodash";
+import { forEach } from "lodash";
 
 /**
  * Gets active verbs (ending in ing) to determine sentence breakers in English.

@@ -1,4 +1,4 @@
-import { filter, map } from "lodash-es";
+import { filter, map } from "lodash";
 import { stripBlockTagsAtStartEnd as stripHTMLTags } from "../../../languageProcessing/helpers/sanitize/stripHTMLTags";
 import marker from "../../../markers/addMark";
 import { createAnchorOpeningTag } from "../../../helpers/shortlinker";

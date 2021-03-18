@@ -1,5 +1,5 @@
-import { isUndefined } from "lodash-es";
-import { isNaN } from "lodash-es";
+import { isUndefined } from "lodash";
+import { isNaN } from "lodash";
 
 import core from "tokenizer2/core";
 import { normalize as normalizeQuotes } from "../../../languageProcessing/helpers/sanitize/quotes";

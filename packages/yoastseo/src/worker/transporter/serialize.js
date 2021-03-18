@@ -1,6 +1,6 @@
-import { isArray } from "lodash-es";
-import { isObject } from "lodash-es";
-import { mapValues } from "lodash-es";
+import { isArray } from "lodash";
+import { isObject } from "lodash";
+import { mapValues } from "lodash";
 
 /**
  * Serializes a data structure to transfer it over a web worker message.

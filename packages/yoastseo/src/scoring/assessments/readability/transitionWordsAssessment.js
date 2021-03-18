@@ -1,4 +1,4 @@
-import { map } from "lodash-es";
+import { map } from "lodash";
 
 import formatNumber from "../../../helpers/formatNumber";
 import { inRangeStartInclusive as inRange } from "../../helpers/assessments/inRange";

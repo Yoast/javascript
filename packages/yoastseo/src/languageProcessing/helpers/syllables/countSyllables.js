@@ -2,14 +2,14 @@
 
 import getWords from "../word/getWords.js";
 
-import { forEach } from "lodash-es";
-import { filter } from "lodash-es";
-import { find } from "lodash-es";
-import { isUndefined } from "lodash-es";
-import { map } from "lodash-es";
-import { sum } from "lodash-es";
-import { memoize } from "lodash-es";
-import { flatMap } from "lodash-es";
+import { forEach } from "lodash";
+import { filter } from "lodash";
+import { find } from "lodash";
+import { isUndefined } from "lodash";
+import { map } from "lodash";
+import { sum } from "lodash";
+import { memoize } from "lodash";
+import { flatMap } from "lodash";
 
 import SyllableCountIterator from "./syllableCountIterator.js";
 import DeviationFragment from "./DeviationFragment";

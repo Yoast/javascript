@@ -2,7 +2,7 @@
 import htmlparser from "htmlparser2";
 
 
-import { includes } from "lodash-es";
+import { includes } from "lodash";
 
 // The array containing the text parts without the blocks defined in inlineTags.
 let textArray;

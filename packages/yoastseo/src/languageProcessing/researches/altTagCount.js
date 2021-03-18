@@ -3,7 +3,7 @@
 import imageInText from "../helpers/image/imageInText";
 import imageAlttag from "../helpers/image/getAlttagContent";
 import { findTopicFormsInString } from "../helpers/match/findKeywordFormsInString";
-import { isEmpty } from "lodash-es";
+import { isEmpty } from "lodash";
 
 /**
  * Matches the alt-tags in the images found in the text.

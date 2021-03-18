@@ -1,4 +1,4 @@
-import { flatten } from "lodash-es";
+import { flatten } from "lodash";
 import { detectAndStemRegularParticiple } from "./detectAndStemRegularParticiple";
 import { flattenSortLength } from "../../../../helpers/morphology/flattenSortLength";
 

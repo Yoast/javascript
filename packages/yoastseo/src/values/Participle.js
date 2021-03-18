@@ -1,4 +1,4 @@
-import { defaults, forEach, isString } from "lodash-es";
+import { defaults, forEach, isString } from "lodash";
 
 import { getType, isSameType } from "../helpers/types";
 

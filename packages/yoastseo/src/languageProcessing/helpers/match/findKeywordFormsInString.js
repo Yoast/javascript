@@ -1,6 +1,6 @@
 import matchTextWithArray from "./matchTextWithArray.js";
-import { sum } from "lodash-es";
-import { isEmpty } from "lodash-es";
+import { sum } from "lodash";
+import { isEmpty } from "lodash";
 
 /**
  * Matches forms of words in the keyphrase against a given text.

@@ -1,4 +1,4 @@
-import { includes } from "lodash-es";
+import { includes } from "lodash";
 
 import Participle from "../../../../values/Participle.js";
 import checkException from "../../../helpers/passiveVoice/periphrastic/checkException.js";

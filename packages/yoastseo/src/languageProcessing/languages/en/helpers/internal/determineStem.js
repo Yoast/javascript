@@ -1,5 +1,5 @@
-import { isUndefined } from "lodash-es";
-import { flatten } from "lodash-es";
+import { isUndefined } from "lodash";
+import { flatten } from "lodash";
 
 import { buildOneFormFromRegex } from "../../../../helpers/morphology/buildFormRule";
 import createRulesFromArrays from "../../../../helpers/morphology/createRulesFromArrays";

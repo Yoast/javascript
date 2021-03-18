@@ -3,7 +3,7 @@
 import wordMatch from "../helpers/match/matchTextWithWord.js";
 import { findTopicFormsInString } from "../helpers/match/findKeywordFormsInString.js";
 
-import { escapeRegExp, filter, includes, isEmpty } from "lodash-es";
+import { escapeRegExp, filter, includes, isEmpty } from "lodash";
 import getWords from "../helpers/word/getWords";
 
 let functionWords = [];

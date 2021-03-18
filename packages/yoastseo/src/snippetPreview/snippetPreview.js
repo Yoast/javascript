@@ -1,10 +1,10 @@
-import { isEmpty } from "lodash-es";
-import { isElement } from "lodash-es";
-import { isUndefined } from "lodash-es";
-import { clone } from "lodash-es";
-import { defaultsDeep } from "lodash-es";
-import { forEach } from "lodash-es";
-import { debounce } from "lodash-es";
+import { isEmpty } from "lodash";
+import { isElement } from "lodash";
+import { isUndefined } from "lodash";
+import { clone } from "lodash";
+import { defaultsDeep } from "lodash";
+import { forEach } from "lodash";
+import { debounce } from "lodash";
 
 import createWordRegex from "../languageProcessing/helpers/regex/createWordRegex";
 import { stripFullTags as stripHTMLTags } from "../languageProcessing/helpers/sanitize/stripHTMLTags";

@@ -1,4 +1,4 @@
-import { filter, merge } from "lodash-es";
+import { filter, merge } from "lodash";
 
 import Assessment from "../assessment";
 import { inRangeEndInclusive as inRange } from "../../helpers/assessments/inRange";

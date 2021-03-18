@@ -1,4 +1,4 @@
-import { get } from "lodash-es";
+import { get } from "lodash";
 import baseStemmer from "../../../helpers/morphology/baseStemmer";
 import stem from "./internal/stem";
 

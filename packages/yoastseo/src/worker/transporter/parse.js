@@ -1,6 +1,6 @@
-import { isArray } from "lodash-es";
-import { isObject } from "lodash-es";
-import { mapValues } from "lodash-es";
+import { isArray } from "lodash";
+import { isObject } from "lodash";
+import { mapValues } from "lodash";
 
 import AssessmentResult from "../../values/AssessmentResult";
 import Mark from "../../values/Mark";

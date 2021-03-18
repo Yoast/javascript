@@ -9,8 +9,8 @@ import getLinkType from "../helpers/link/getLinkType.js";
 import matchTextWithArray from "../helpers/match/matchTextWithArray";
 import urlHelper from "../helpers/url/url.js";
 
-import { flatten } from "lodash-es";
-import { uniq } from "lodash-es";
+import { flatten } from "lodash";
+import { uniq } from "lodash";
 
 let functionWords = [];
 

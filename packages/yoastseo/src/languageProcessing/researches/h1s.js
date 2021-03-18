@@ -1,5 +1,5 @@
 import { getBlocks } from "../helpers/html/html";
-import { reject } from "lodash-es";
+import { reject } from "lodash";
 
 const h1Regex = /<h1.*?>(.*?)<\/h1>/;
 

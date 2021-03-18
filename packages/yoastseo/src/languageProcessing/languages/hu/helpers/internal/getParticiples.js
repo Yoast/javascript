@@ -3,7 +3,7 @@ import participlesInReAndRa from "../../config/internal/participles.js";
 
 import HungarianParticiple from "../../values/HungarianParticiple.js";
 
-import { forEach } from "lodash-es";
+import { forEach } from "lodash";
 
 /**
  * Creates HungarianParticiple Objects for the participles found in a sentence.

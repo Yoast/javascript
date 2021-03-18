@@ -2,7 +2,7 @@ import getSentences from "../helpers/sentence/getSentences.js";
 import { stripFullTags as stripHTMLTags } from "../helpers/sanitize/stripHTMLTags.js";
 import Sentence from "../../values/Sentence.js";
 
-import { forEach } from "lodash-es";
+import { forEach } from "lodash";
 
 // Languages that employ both morphological and periphrastic passive voice marking have not been implemented yet: "da", "nb".
 

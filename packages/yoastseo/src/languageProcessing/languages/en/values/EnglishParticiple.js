@@ -1,4 +1,4 @@
-import { includes, isEmpty, intersection } from "lodash-es";
+import { includes, isEmpty, intersection } from "lodash";
 import Participle from "../../../../values/Participle.js";
 import checkException from "../../../helpers/passiveVoice/periphrastic/checkException.js";
 import nonVerbsEndingEd from "../config/internal/passiveVoiceNonVerbEndingEd.js";

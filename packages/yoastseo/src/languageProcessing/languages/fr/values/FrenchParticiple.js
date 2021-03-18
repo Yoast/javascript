@@ -1,4 +1,4 @@
-import { forEach, includes, memoize } from "lodash-es";
+import { forEach, includes, memoize } from "lodash";
 
 import Participle from "../../../../values/Participle";
 import checkException from "../../../helpers/passiveVoice/periphrastic/checkException";

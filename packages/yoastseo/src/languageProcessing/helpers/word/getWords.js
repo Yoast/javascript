@@ -4,7 +4,7 @@ import { stripFullTags as stripTags } from "../sanitize/stripHTMLTags.js";
 
 import stripSpaces from "../sanitize/stripSpaces.js";
 import removePunctuation from "../sanitize/removePunctuation.js";
-import { map, filter } from "lodash-es";
+import { map, filter } from "lodash";
 
 /**
  * Returns an array with words used in the text.
