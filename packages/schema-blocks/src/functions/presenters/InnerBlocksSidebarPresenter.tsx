@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { createElement } from "@wordpress/element";
 import { BlockInstance } from "@wordpress/blocks";
-import BlockSuggestions from "../../blocks/BlockSuggestions";
+import { BlockSuggestion } from "../../blocks/BlockSuggestions";
 import { __ } from "@wordpress/i18n";
 import getWarnings, { sidebarWarning } from "./SidebarWarningPresenter";
 import { InnerBlocksInstructionOptions } from "../../instructions/blocks/InnerBlocksInstructionOptions";
@@ -24,11 +24,11 @@ export function innerBlocksSidebar( currentBlock: BlockInstance, options: InnerB
 	}
 
 	if ( options.requiredBlocks ) {
-		elements.push( BlockSuggestions( __( "Required Blocks", "yoast-schema-blocks" ), currentBlock, options.requiredBlocks ) );
+		elements.push( BlockSuggestion( __( "Required Blocks", "yoast-schema-blocks" ), currentBlock, options.requiredBlocks ) );
 	}
 
 	if ( options.recommendedBlocks ) {
-		elements.push( BlockSuggestions( __( "Recommended Blocks", "yoast-schema-blocks" ), currentBlock, options.recommendedBlocks ) );
+		elements.push( BlockSuggestion( __( "Recommended Blocks", "yoast-schema-blocks" ), currentBlock, options.recommendedBlocks ) );
 	}
 
 	return elements;
