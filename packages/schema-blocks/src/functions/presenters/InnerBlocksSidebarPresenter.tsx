@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { createElement } from "@wordpress/element";
 import { BlockInstance } from "@wordpress/blocks";
-import BlockSuggestions from "../../blocks/BlockSuggestions";
+import { RequiredBlocks as BlockSuggestions } from "../../blocks/BlockSuggestions";
 import { __ } from "@wordpress/i18n";
 import getWarnings, { sidebarWarning } from "./SidebarWarningPresenter";
 import { InnerBlocksInstructionOptions } from "../../instructions/blocks/InnerBlocksInstructionOptions";
