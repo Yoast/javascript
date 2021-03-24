@@ -26,14 +26,21 @@ export class BlockValidationResult {
 	public issues: BlockValidationResult[]
 
 	/**
+	 * An optional message describing the result.
+	 */
+	public message: string;
+
+	/**
 	 * @param clientId The clientId of the validated block.
 	 * @param name     The name of the validated block.
 	 * @param result   The validation result.
+	 * @param message  An optional message describing the result.
 	 */
-	constructor( clientId: string, name: string, result: BlockValidation ) {
+	constructor( clientId: string, name: string, result: BlockValidation, message?: string ) {
 		this.name = name;
 		this.clientId = clientId;
 		this.result = result;
+		this.message = message;
 		this.issues = [];
 	}
 
