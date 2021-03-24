@@ -1,6 +1,6 @@
 import "../../matchMedia.mock";
 import { BlockValidation, BlockValidationResult } from "../../../src/core/validation";
-import validateMany from "../../../src/functions/validators/validateMany";
+import { validateMany } from "../../../src/functions/validators/validateMany";
 
 describe( "The validateMany function", () => {
 	it( "considers a group of Valid and Unknown blocks to be Valid.", () => {

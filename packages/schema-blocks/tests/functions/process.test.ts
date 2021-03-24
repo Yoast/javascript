@@ -1,7 +1,7 @@
 import "../matchMedia.mock";
 
 import process, { processBlock } from "../../src/functions/process";
-import BlockDefinition from "../../src/core/blocks/BlockDefinition";
+import { BlockDefinition } from "../../src/core/blocks/BlockDefinition";
 import { BlockInstruction } from "../../src/core/blocks/BlockInstruction";
 import "../../src/instructions/blocks/InnerBlocks";
 import InnerBlocks from "../../src/instructions/blocks/InnerBlocks";

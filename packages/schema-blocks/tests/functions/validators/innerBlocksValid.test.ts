@@ -1,7 +1,7 @@
 import "../../matchMedia.mock";
 import { BlockInstance } from "@wordpress/blocks";
 import { BlockValidationResult, BlockValidation, RequiredBlock, RequiredBlockOption } from "../../../src/core/validation";
-import BlockDefinition from "../../../src/core/blocks/BlockDefinition";
+import { BlockDefinition } from "../../../src/core/blocks/BlockDefinition";
 import * as innerBlocksValid from "../../../src/functions/validators/innerBlocksValid";
 import * as blockDefinitionRepository from "../../../src/core/blocks/BlockDefinitionRepository";
 
@@ -250,7 +250,7 @@ describe( "the getInvalidInnerBlocks function", () => {
 		mockDefinition( "existingBlock1", "existingBlock", BlockValidation.Valid );
 
 		// Act.
-		const result: BlockValidationResult[] = innerBlocksValid.default( testBlock, requiredBlocks );
+		const result: BlockValidationResult[] = innerBlocksValid.validateInnerBlocks( testBlock, requiredBlocks );
 
 		// Assert.
 		expect( result.length ).toEqual( 1 );
@@ -289,7 +289,7 @@ describe( "the getInvalidInnerBlocks function", () => {
 		mockDefinition( "requiredBlock1", "requiredBlock", BlockValidation.Valid );
 
 		// Act.
-		const result: BlockValidationResult[] = innerBlocksValid.default( testBlock, requiredBlocks );
+		const result: BlockValidationResult[] = innerBlocksValid.validateInnerBlocks( testBlock, requiredBlocks );
 
 		// Assert.
 		expect( result.length ).toEqual( 2 );
@@ -348,7 +348,7 @@ describe( "the getInvalidInnerBlocks function", () => {
 		mockDefinition( "redundantBlock2", "redundantBlock", BlockValidation.Valid );
 
 		// Act.
-		const result: BlockValidationResult[] = innerBlocksValid.default( testBlock, requiredBlocks );
+		const result: BlockValidationResult[] = innerBlocksValid.validateInnerBlocks( testBlock, requiredBlocks );
 
 		// Assert.
 		expect( result.length ).toEqual( 4 );

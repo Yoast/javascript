@@ -3,7 +3,7 @@ import * as renderer from "react-test-renderer";
 import { ReactElement } from "@wordpress/element";
 import { BlockConfiguration, BlockInstance } from "@wordpress/blocks";
 
-import Select from "../../../src/instructions/blocks/Select";
+import { Select } from "../../../src/instructions/blocks/Select";
 import { RenderSaveProps } from "../../../src/core/blocks/BlockDefinition";
 import { RenderEditProps } from "../../../src/core/blocks/BlockDefinition";
 

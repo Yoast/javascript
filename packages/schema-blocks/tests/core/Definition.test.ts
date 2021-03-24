@@ -1,5 +1,5 @@
 import { BlockInstruction } from "../../src/core/blocks/BlockInstruction";
-import Definition from "../../src/core/Definition";
+import { Definition } from "../../src/core/Definition";
 import { BlockValidation, BlockValidationResult } from "../../src/core/validation";
 import { BlockConfiguration, BlockInstance } from "@wordpress/blocks";
 /**
