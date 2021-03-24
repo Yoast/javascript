@@ -25,7 +25,7 @@ type BlockSuggestionDto = {
  *
  * @returns {ReactElement} The rendered block suggestion.
  */
-function BlockSuggestion( { blockTitle, blockName, blockClientId }: BlockSuggestionDto ): ReactElement {
+export function BlockSuggestion( { blockTitle, blockName, blockClientId }: BlockSuggestionDto ): ReactElement {
 	/**
 	 * Onclick handler for the remove block.
 	 */
