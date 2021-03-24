@@ -1,6 +1,5 @@
 import { BlockValidation } from ".";
 import { BlockInstance } from "@wordpress/blocks";
-import { getBlockType } from "../../functions/BlockHelper";
 import { sprintf, __ } from "@wordpress/i18n";
 
 /**

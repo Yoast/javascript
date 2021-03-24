@@ -1,13 +1,21 @@
 import { dispatch, select } from "@wordpress/data";
 import { BlockInstance } from "@wordpress/blocks";
 
-import { removeBlock, restoreBlock, getBlockType } from "../../src/functions/BlockHelper";
+import { removeBlock, restoreBlock, getBlockType, getHumanReadableBlockName } from "../../src/functions/BlockHelper";
+
+const blockTypes: Record<string, string> = {};
 
 jest.mock( "@wordpress/data", () => {
 	return {
 		select: jest.fn( () => {
 			return {
-				getBlockType: jest.fn(),
+				getBlockType: jest.fn( ( blockName ) => {
+					const title = blockTypes[ blockName ];
+					if ( title ) {
+						return { title };
+					}
+					return null;
+				} ),
 			};
 		} ),
 		dispatch: jest.fn( () => {
@@ -62,5 +70,29 @@ describe( "The getBlockType function", () => {
 		getBlockType( "yoast/recipe" );
 
 		expect( select ).toHaveBeenCalledWith( "core/blocks" );
+	} );
+} );
+
+describe( "The sanitizeBlockName method ", () => {
+	it( "returns a block title from the wordpress store based on its name", () => {
+		blockTypes[ "yoast/testblock" ] = "testBlockWithoutPrefix";
+
+		const result = getHumanReadableBlockName( "yoast/testblock" );
+
+		expect( result ).toEqual( "testBlockWithoutPrefix" );
+	} );
+
+	it( "uses a fallback method to reduce technical block names to human-readable ones.", () => {
+		const testcases = [
+			"test/blok",
+			"test-erde-test/test/blok",
+			"/blok",
+			"blok",
+			"blok/",
+		];
+
+		const results = testcases.map( input => getHumanReadableBlockName( input ) );
+
+		expect( results ).toEqual( [ "blok", "blok", "blok", "blok", "blok/" ] );
 	} );
 } );
