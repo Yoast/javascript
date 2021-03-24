@@ -6,6 +6,7 @@ import recurseOverBlocks from "../blocks/recurseOverBlocks";
 import { getInnerblocksByName } from "../innerBlocksHelper";
 import logger from "../logger";
 import isValidResult from "./isValidResult";
+import { getHumanReadableBlockName } from "../BlockHelper";
 
 /**
  * Finds all blocks that should be in the inner blocks, but aren't.
@@ -22,8 +23,7 @@ function findMissingBlocks( existingRequiredBlocks: BlockInstance[], requiredBlo
 	} );
 
 	// These blocks should've existed, but they don't.
-	return missingRequiredBlocks.map( missingBlock =>
-		new BlockValidationResult( null, missingBlock.name, BlockValidation.MissingBlock ) );
+	return missingRequiredBlocks.map( missingBlock => BlockValidationResult.MissingBlock( getHumanReadableBlockName( missingBlock.name ) ) );
 }
 
 /**

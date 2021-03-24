@@ -1,5 +1,7 @@
 import { BlockValidation } from ".";
 import { BlockInstance } from "@wordpress/blocks";
+import { getBlockType } from "../../functions/BlockHelper";
+import { sprintf, __ } from "@wordpress/i18n";
 
 /**
  * Contains the result of a block validation.
@@ -57,6 +59,22 @@ export class BlockValidationResult {
 			blockInstance.clientId,
 			name || blockInstance.name,
 			BlockValidation.MissingAttribute,
+		);
+	}
+
+	/**
+	 * Named constructor for a 'missing block' validation result.
+	 *
+	 * @param name The name of the missing block.
+	 *
+	 * @constructor
+	 */
+	static MissingBlock( name: string ) {
+		return new BlockValidationResult(
+			null,
+			name,
+			BlockValidation.MissingBlock,
+			sprintf( __( "The '%s' block is required but missing.", "yoast-schema-blocks" ), name ),
 		);
 	}
 
