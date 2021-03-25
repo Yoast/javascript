@@ -7,7 +7,7 @@ import Mark from "../../values/Mark";
 import Paper from "../../values/Paper";
 import Participle from "../../values/Participle";
 import Sentence from "../../values/Sentence";
-import SentencePart from "../../values/SentencePart";
+import Clause from "../../values/Clause";
 import ProminentWord from "../../values/ProminentWord";
 
 const PARSE_CLASSES = {
@@ -16,7 +16,7 @@ const PARSE_CLASSES = {
 	Paper,
 	Participle,
 	Sentence,
-	SentencePart,
+	SentencePart: Clause,
 	ProminentWord,
 };
 

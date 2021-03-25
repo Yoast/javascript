@@ -1,4 +1,4 @@
-import SentencePart from "../../../../values/SentencePart.js";
+import Clause from "../../../../values/Clause.js";
 import getParticiples from "../helpers/internal/getParticiples.js";
 
 /**
@@ -9,10 +9,10 @@ import getParticiples from "../helpers/internal/getParticiples.js";
  * @constructor
  */
 const GermanSentencePart = function( sentencePartText, auxiliaries ) {
-	SentencePart.call( this, sentencePartText, auxiliaries );
+	Clause.call( this, sentencePartText, auxiliaries );
 };
 
-require( "util" ).inherits( GermanSentencePart, SentencePart );
+require( "util" ).inherits( GermanSentencePart, Clause );
 
 /**
  * Returns the participles found in the sentence part.
