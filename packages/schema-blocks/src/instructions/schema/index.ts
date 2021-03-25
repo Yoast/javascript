@@ -7,4 +7,7 @@ import "./InnerBlocksID";
 import "./JobEmploymentType";
 import "./List";
 import "./Permalink";
-import "./Schema";
+import SchemaInstruction from "./Schema";
+
+// Need to export something for the side-effects of the imports to work...
+export { SchemaInstruction };

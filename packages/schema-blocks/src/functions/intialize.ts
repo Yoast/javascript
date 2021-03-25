@@ -1,3 +1,6 @@
+// Import and register instructions.
+import "../instructions";
+
 import logger, { LogLevel } from "./logger";
 import { registerBlockType } from "@wordpress/blocks";
 import { WarningBlock } from "../blocks/warning-block/configuration";
