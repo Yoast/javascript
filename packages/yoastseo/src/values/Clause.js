@@ -45,52 +45,52 @@ class Clause {
 	}
 
 	/**
+	 * Sets the passive.
 	 *
+	 * @param {boolean} passive	 Whether the clause is passive.
 	 *
-	 * @param passive
+	 * @returns {void}
 	 */
 	setPassive( passive ) {
 		this._isPassive = passive;
 	}
 
 	/**
+	 * Sets the participles.
 	 *
-	 * @param participles
+	 * @param {Array} participles	The participles.
+	 *
+	 * @returns {void}
 	 */
 	setParticiples( participles ) {
 		this._participles = participles;
 	}
 
 	/**
+	 * Returns the found participles.
 	 *
-	 * @returns {[]}
+	 * @returns {Array} The participles
 	 */
 	getParticiples() {
 		return this._participles;
 	}
 
 	/**
+	 * Applies language-specific checks to determine whether the clause is passive.
 	 *
-	 * @param isParticiplePassive
+	 * @param {function} isParticiplePassive	The language-specific function for checking whether the clause is passive.
+	 *
+	 * @returns {void}
 	 */
 	checkParticiples( isParticiplePassive ) {
 		const foundParticiples = this.getParticiples();
 		let passive = false;
 		for ( const participle of foundParticiples ) {
-			if ( this.checkParticiplePassiveness( isParticiplePassive( this.getClauseText(), participle ) ) ) {
+			if ( isParticiplePassive( this.getClauseText(), participle ) ) {
 				passive = true;
 			}
 		}
 		this.setPassive( passive );
-	}
-
-	/**
-	 *
-	 * @param isParticiplePassive
-	 * @returns {*}
-	 */
-	checkParticiplePassiveness( isParticiplePassive ) {
-		return isParticiplePassive;
 	}
 
 	/**
@@ -110,9 +110,11 @@ class Clause {
 	}
 
 	/**
+	 * Parses the object to a Clause.
 	 *
-	 * @param serialized
-	 * @returns {Clause}
+	 * @param {Object} serialized The serialized object.
+	 *
+	 * @returns {Clause} The parsed Clause.
 	 */
 	parse( serialized ) {
 		const clause = new Clause( serialized.clauseText, serialized.auxiliaries );
