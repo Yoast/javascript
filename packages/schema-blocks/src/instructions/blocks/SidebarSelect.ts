@@ -1,6 +1,8 @@
+// External imports.
 import { BlockEditProps, BlockConfiguration } from "@wordpress/blocks";
 import { createElement } from "@wordpress/element";
 import { SelectControl } from "@wordpress/components";
+// Internal imports.
 import { BlockInstruction } from "../../core/blocks/BlockInstruction";
 import { RenderEditProps, RenderSaveProps } from "../../core/blocks/BlockDefinition";
 import { arrayOrObjectToOptions } from "../../functions/select";
@@ -32,10 +34,6 @@ class SidebarSelect extends SidebarBase {
 			key: i,
 			multiple: this.options.multiple || false,
 		};
-
-		if ( this.options.multiple === true ) {
-			( attributes as SelectControl.Props<string[]> ).multiple = true;
-		}
 
 		return createElement( SelectControl, attributes );
 	}
