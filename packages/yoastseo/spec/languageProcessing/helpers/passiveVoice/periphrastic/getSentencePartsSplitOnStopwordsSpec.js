@@ -1,10 +1,10 @@
 import getSentencePartsSplitOnStopwords
 	from "../../../../../src/languageProcessing/helpers/passiveVoice/periphrastic/getSentencePartsSplitOnStopwords.js";
 import arrayToRegex from "../../../../../src/languageProcessing/helpers/regex/createRegexFromArray";
-import SentencePart from "../../../../../src/values/SentencePart";
+import Clause from "../../../../../src/values/Clause";
 
 const options1 = {
-	SentencePart: SentencePart,
+	SentencePart: Clause,
 	regexes: {
 		auxiliaryRegex: arrayToRegex( [ "word", "wordt", "worden", "werd" ] ),
 		stopwordRegex: arrayToRegex( [ "als", "dan", "doordat", "hoewel", "omdat" ] ),
@@ -12,7 +12,7 @@ const options1 = {
 };
 
 const options2 = {
-	SentencePart: SentencePart,
+	SentencePart: Clause,
 	regexes: {
 		stopwordRegex: arrayToRegex( [ "als", "dan", "doordat", "hoewel", "omdat" ] ),
 	},

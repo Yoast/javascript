@@ -1,9 +1,9 @@
 import getSentenceParts from "../../../../../src/languageProcessing/helpers/passiveVoice/periphrastic/getSentenceParts.js";
 import arrayToRegex from "../../../../../src/languageProcessing/helpers/regex/createRegexFromArray";
-import SentencePart from "../../../../../src/values/SentencePart";
+import Clause from "../../../../../src/values/Clause";
 
 const options1 = {
-	SentencePart: SentencePart,
+	SentencePart: Clause,
 	stopwords: [ "to", "which", "who", "whom", "that" ],
 	auxiliaries: [ "am", "is", "are", "est", "es", "sont" ],
 	ingExclusions: [ "king", "cling", "ring", "being", "thing", "something", "anything" ],
@@ -18,7 +18,7 @@ const options1 = {
 };
 
 const options2 = {
-	SentencePart: SentencePart,
+	SentencePart: Clause,
 	auxiliaries: [ "am", "is", "are", "est", "es", "sont" ],
 	stopwords: [ "to", "which", "who", "whom", "that" ],
 	regexes: {
@@ -28,7 +28,7 @@ const options2 = {
 };
 
 const options3 = {
-	SentencePart: SentencePart,
+	SentencePart: Clause,
 	auxiliaries: [ "am", "is", "are", "est", "es", "sont" ],
 	stopwords: [ "to", "which", "who", "whom", "that" ],
 	regexes: {

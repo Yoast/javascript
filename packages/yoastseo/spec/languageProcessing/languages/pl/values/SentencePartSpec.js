@@ -1,4 +1,4 @@
-import PolishSentencePart from "../../../../../src/languageProcessing/languages/pl/values/SentencePart.js";
+import PolishSentencePart from "../../../../../src/languageProcessing/languages/pl/values/Clause.js";
 
 describe( "creates a Polish sentence part", function() {
 	it( "makes sure the Polish sentence part inherits all functions", function() {

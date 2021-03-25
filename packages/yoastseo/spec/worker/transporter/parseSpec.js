@@ -3,7 +3,7 @@ import Mark from "../../../src/values/Mark";
 import Paper from "../../../src/values/Paper";
 import Participle from "../../../src/values/Participle";
 import Sentence from "../../../src/values/Sentence";
-import SentencePart from "../../../src/values/SentencePart";
+import Clause from "../../../src/values/Clause";
 import ProminentWord from "../../../src/values/ProminentWord";
 import parse from "../../../src/worker/transporter/parse";
 
@@ -133,14 +133,14 @@ describe( "parse", () => {
 
 	it( "parses serialized SentenceParts", () => {
 		const serialized = {
-			_parseClass: "SentencePart",
+			_parseClass: "Clause",
 			auxiliaries: [ "wird" ],
 			isPassive: true,
 			locale: "de",
 			sentencePartText: "wird geschlossen",
 		};
 
-		const expected = new SentencePart( "wird geschlossen", [ "wird" ], "de" );
+		const expected = new Clause( "wird geschlossen", [ "wird" ], "de" );
 		expected.setPassive( true );
 
 		expect( parse( serialized ) ).toEqual( expected );

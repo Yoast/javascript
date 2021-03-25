@@ -1,9 +1,9 @@
 import getParticiples from "../../../../../../src/languageProcessing/languages/pt/helpers/internal/getParticiples.js";
-import SentencePart from "../../../../../../src/values/SentencePart.js";
+import Clause from "../../../../../../src/values/Clause.js";
 
 describe( "Test for matching Portuguese participles", function() {
 	it( "returns matched irregular participles.", function() {
-		const mockSentence = new SentencePart( "sido acendida con o botão.", [ "sido" ] );
+		const mockSentence = new Clause( "sido acendida con o botão.", [ "sido" ] );
 		const sentencePartText = mockSentence.getSentencePartText();
 		const auxiliaries = mockSentence.getAuxiliaries();
 		const foundParticiples = getParticiples( sentencePartText, auxiliaries );
@@ -16,7 +16,7 @@ describe( "Test for matching Portuguese participles", function() {
 	} );
 
 	it( "returns an empty array when there is no participle or when the sentence is empty", function() {
-		const mockSentence = new SentencePart( "Eu como uma maçã.", [] );
+		const mockSentence = new Clause( "Eu como uma maçã.", [] );
 		const sentencePartText = mockSentence.getSentencePartText();
 		const auxiliaries = mockSentence.getAuxiliaries();
 		expect( getParticiples( sentencePartText, auxiliaries ) ).toEqual( [] );

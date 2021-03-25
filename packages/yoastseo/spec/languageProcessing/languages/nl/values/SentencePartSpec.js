@@ -1,4 +1,4 @@
-import DutchSentencePart from "../../../../../src/languageProcessing/languages/nl/values/SentencePart.js";
+import DutchSentencePart from "../../../../../src/languageProcessing/languages/nl/values/Clause.js";
 
 describe( "creates a Dutch sentence part", function() {
 	it( "makes sure the Dutch sentence part inherits all functions", function() {

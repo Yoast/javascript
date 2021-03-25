@@ -1,4 +1,4 @@
-import GermanSentencePart from "../../../../../src/languageProcessing/languages/de/values/SentencePart.js";
+import GermanSentencePart from "../../../../../src/languageProcessing/languages/de/values/Clause.js";
 
 describe( "creates a German sentence part", function() {
 	it( "makes sure the German sentence part inherits all functions", function() {

@@ -1,6 +1,6 @@
 import getPeriphrasticSentenceParts from "../../../helpers/passiveVoice/periphrastic/getSentenceParts.js";
 import arrayToRegex from "../../../helpers/regex/createRegexFromArray";
-import SentencePart from "../values/SentencePart";
+import SentencePart from "../values/Clause";
 import auxiliaries from "../config/internal/passiveVoiceAuxiliaries.js";
 import stopwords from "../config/stopWords.js";
 

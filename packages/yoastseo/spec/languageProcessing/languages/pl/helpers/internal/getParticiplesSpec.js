@@ -1,9 +1,9 @@
 import getParticiples from "../../../../../../src/languageProcessing/languages/pl/helpers/internal/getParticiples.js";
-import SentencePart from "../../../../../../src/values/SentencePart.js";
+import Clause from "../../../../../../src/values/Clause.js";
 
 describe( "Test for matching Polish participles", function() {
 	it( "returns matched irregular participles.", function() {
-		const mockSentence = new SentencePart( "zostały zakupione.", [ "zostały" ] );
+		const mockSentence = new Clause( "zostały zakupione.", [ "zostały" ] );
 		const sentencePartText = mockSentence.getSentencePartText();
 		const auxiliaries = mockSentence.getAuxiliaries();
 		const foundParticiples = getParticiples( sentencePartText, auxiliaries );
@@ -16,7 +16,7 @@ describe( "Test for matching Polish participles", function() {
 	} );
 
 	it( "returns an empty array when there is no participle or when the sentence is empty.", function() {
-		const mockSentence = new SentencePart( "Chodźmy do sklepu.", [] );
+		const mockSentence = new Clause( "Chodźmy do sklepu.", [] );
 		const sentencePartText = mockSentence.getSentencePartText();
 		const auxiliaries = mockSentence.getAuxiliaries();
 		expect( getParticiples( sentencePartText, auxiliaries ) ).toEqual( [] );

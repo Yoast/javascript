@@ -1,4 +1,4 @@
-import HungarianSentencePart from "../../../../../src/languageProcessing/languages/hu/values/SentencePart.js";
+import HungarianSentencePart from "../../../../../src/languageProcessing/languages/hu/values/Clause.js";
 
 describe( "creates a hungarian sentence part", function() {
 	it( "makes sure the hungarian sentence part inherits all functions", function() {
