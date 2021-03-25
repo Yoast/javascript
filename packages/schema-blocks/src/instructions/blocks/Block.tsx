@@ -33,4 +33,4 @@ class Block extends BlockInstruction {
 	}
 }
 
-BlockInstruction.register("block", Block);
+BlockInstruction.register( "block", Block );

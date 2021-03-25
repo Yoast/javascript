@@ -37,8 +37,8 @@ export default class InnerBlocks extends BlockInstruction {
 	 *
 	 * @returns The inner blocks.
 	 */
-	save(props: RenderSaveProps, leaf: BlockLeaf, i: number): ReactElement | string {
-		return createElement(WordPressInnerBlocks.Content, { key: i });
+	save( props: RenderSaveProps, leaf: BlockLeaf, i: number ): ReactElement | string {
+		return createElement( WordPressInnerBlocks.Content, { key: i } );
 	}
 
 	/**
@@ -50,7 +50,7 @@ export default class InnerBlocks extends BlockInstruction {
 	 *
 	 * @returns The inner blocks.
 	 */
-	edit(props: RenderEditProps, leaf: BlockLeaf, i: number): ReactElement | string {
+	edit( props: RenderEditProps, leaf: BlockLeaf, i: number ): ReactElement | string {
 		const properties: React.ClassAttributes<unknown> & InnerBlocksProps = {
 			key: i,
 		};
@@ -58,15 +58,15 @@ export default class InnerBlocks extends BlockInstruction {
 		this.options.requiredBlocks = this.options.requiredBlocks || [];
 		this.options.recommendedBlocks = this.options.recommendedBlocks || [];
 
-		this.renderAppender(properties);
+		this.renderAppender( properties );
 
-		this.arrangeAllowedBlocks(properties);
+		this.arrangeAllowedBlocks( properties );
 
-		if (this.options.template) {
+		if ( this.options.template ) {
 			properties.template = this.options.template;
 		}
 
-		return createElement(WordPressInnerBlocks, properties as WordPressInnerBlocks.Props);
+		return createElement( WordPressInnerBlocks, properties as WordPressInnerBlocks.Props );
 	}
 
 	/**
@@ -74,28 +74,28 @@ export default class InnerBlocks extends BlockInstruction {
 	 *
 	 * @param properties The properties of the innerblock.
 	 */
-	private renderAppender(properties: React.ClassAttributes<unknown> & InnerBlocksProps) {
-		if (this.options.appender === false) {
+	private renderAppender( properties: React.ClassAttributes<unknown> & InnerBlocksProps ) {
+		if ( this.options.appender === false ) {
 			properties.renderAppender = false;
 			return;
 		}
 
-		if (this.options.appender === "button") {
+		if ( this.options.appender === "button" ) {
 			properties.renderAppender = () => {
 				// The type definition of InnerBlocks are wrong so cast to fix them.
-				return createElement((WordPressInnerBlocks as unknown as { ButtonBlockAppender: ComponentClass }).ButtonBlockAppender);
+				return createElement( ( WordPressInnerBlocks as unknown as { ButtonBlockAppender: ComponentClass } ).ButtonBlockAppender );
 			};
 		} else {
-			properties.renderAppender = () => createElement(WordPressInnerBlocks.DefaultBlockAppender);
+			properties.renderAppender = () => createElement( WordPressInnerBlocks.DefaultBlockAppender );
 		}
 
-		if (typeof this.options.appenderLabel === "string") {
+		if ( typeof this.options.appenderLabel === "string" ) {
 			properties.renderAppender = () => {
 				return createElement(
 					"div",
 					{ className: "yoast-labeled-inserter", "data-label": this.options.appenderLabel },
 					// The type definition of InnerBlocks are wrong so cast to fix them.
-					createElement((WordPressInnerBlocks as unknown as { ButtonBlockAppender: ComponentClass }).ButtonBlockAppender),
+					createElement( ( WordPressInnerBlocks as unknown as { ButtonBlockAppender: ComponentClass } ).ButtonBlockAppender ),
 				);
 			};
 		}
@@ -106,16 +106,16 @@ export default class InnerBlocks extends BlockInstruction {
 	 *
 	 * @param properties The properties of the current block.
 	 */
-	private arrangeAllowedBlocks(properties: React.ClassAttributes<unknown> & InnerBlocksProps) {
-		properties.allowedBlocks = ["yoast/warning-block"];
+	private arrangeAllowedBlocks( properties: React.ClassAttributes<unknown> & InnerBlocksProps ) {
+		properties.allowedBlocks = [ "yoast/warning-block" ];
 
-		if (this.options.allowedBlocks) {
-			properties.allowedBlocks = this.options.allowedBlocks.concat(properties.allowedBlocks);
+		if ( this.options.allowedBlocks ) {
+			properties.allowedBlocks = this.options.allowedBlocks.concat( properties.allowedBlocks );
 		}
 
 		properties.allowedBlocks = properties.allowedBlocks
-			.concat(this.options.requiredBlocks.map(block => block.name))
-			.concat(this.options.recommendedBlocks.map(block => block.name));
+			.concat( this.options.requiredBlocks.map( block => block.name ) )
+			.concat( this.options.recommendedBlocks.map( block => block.name ) );
 	}
 
 	/**
@@ -125,15 +125,15 @@ export default class InnerBlocks extends BlockInstruction {
 	 *
 	 * @returns The sidebar element to render.
 	 */
-	sidebar(props: RenderEditProps): ReactElement {
-		const currentBlock = getBlockByClientId(props.clientId);
-		if (!currentBlock) {
+	sidebar( props: RenderEditProps ): ReactElement {
+		const currentBlock = getBlockByClientId( props.clientId );
+		if ( ! currentBlock ) {
 			return null;
 		}
 
-		const elements: ReactElement[] = innerBlocksSidebar(currentBlock, this.options);
+		const elements: ReactElement[] = innerBlocksSidebar( currentBlock, this.options );
 
-		if (elements && elements.length === 0) {
+		if ( elements && elements.length === 0 ) {
 			return null;
 		}
 
@@ -151,11 +151,11 @@ export default class InnerBlocks extends BlockInstruction {
 	 *
 	 * @returns {BlockValidationResult} The validation result.
 	 */
-	validate(blockInstance: BlockInstance): BlockValidationResult {
-		const validation = new BlockValidationResult(blockInstance.clientId, blockInstance.name, BlockValidation.Unknown);
-		validation.issues = validateInnerBlocks(blockInstance, this.options.requiredBlocks);
-		return validateMany(validation);
+	validate( blockInstance: BlockInstance ): BlockValidationResult {
+		const validation = new BlockValidationResult( blockInstance.clientId, blockInstance.name, BlockValidation.Unknown );
+		validation.issues = validateInnerBlocks( blockInstance, this.options.requiredBlocks );
+		return validateMany( validation );
 	}
 }
 
-BlockInstruction.register("inner-blocks", InnerBlocks);
+BlockInstruction.register( "inner-blocks", InnerBlocks );

@@ -199,9 +199,9 @@ class CurrencySelect extends Select {
 		id: number,
 		options: InstructionOptions,
 	) {
-		super(id, options);
-		this.options.options = arrayOrObjectToOptions(currencyCodes);
+		super( id, options );
+		this.options.options = arrayOrObjectToOptions( currencyCodes );
 	}
 }
 
-BlockInstruction.register("currency-select", CurrencySelect);
+BlockInstruction.register( "currency-select", CurrencySelect );

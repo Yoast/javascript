@@ -24,26 +24,26 @@ export default class TextInput extends BlockInstruction {
 	 *
 	 * @returns The rendered instruction.
 	 */
-	edit(props: RenderEditProps): React.ReactElement | string {
+	edit( props: RenderEditProps ): React.ReactElement | string {
 		const { hideLabelFromVision, label, type, placeholder } = this.options;
 
-		const value = props.attributes[this.options.name] as string;
+		const value = props.attributes[ this.options.name ] as string;
 
 		const onChange = useCallback(
 			newValue => {
-				props.setAttributes({ [this.options.name]: newValue });
+				props.setAttributes( { [ this.options.name ]: newValue } );
 			},
-			[props],
+			[ props ],
 		);
 
 		return <TextControl
-			className={props.className}
-			hideLabelFromVision={hideLabelFromVision}
-			label={label}
-			onChange={onChange}
-			type={type}
-			placeholder={placeholder}
-			value={value}
+			className={ props.className }
+			hideLabelFromVision={ hideLabelFromVision }
+			label={ label }
+			onChange={ onChange }
+			type={ type }
+			placeholder={ placeholder }
+			value={ value }
 		/>;
 	}
 
@@ -54,8 +54,8 @@ export default class TextInput extends BlockInstruction {
 	 *
 	 * @returns The element to render.
 	 */
-	save(props: RenderSaveProps): React.ReactElement | string {
-		return props.attributes[this.options.name] as string;
+	save( props: RenderSaveProps ): React.ReactElement | string {
+		return props.attributes[ this.options.name ] as string;
 	}
 
 	/**
@@ -66,7 +66,7 @@ export default class TextInput extends BlockInstruction {
 	configuration(): Partial<BlockConfiguration> {
 		return {
 			attributes: {
-				[this.options.name]: {
+				[ this.options.name ]: {
 					type: "string",
 				},
 			},
@@ -74,5 +74,5 @@ export default class TextInput extends BlockInstruction {
 	}
 }
 
-BlockInstruction.register("text-input", TextInput);
+BlockInstruction.register( "text-input", TextInput );
 

@@ -25,18 +25,18 @@ export default class Date extends BlockInstruction {
 	 *
 	 * @return The React components to show in the editor when editing this block.
 	 */
-	edit(props: RenderEditProps): JSX.Element {
+	edit( props: RenderEditProps ): JSX.Element {
 		const { attributes, setAttributes } = props;
 
 		const dateFormat = Date.getDateFormat();
 
-		const currentlySelectedDate = dateI18n(dateFormat, attributes[this.options.name]);
+		const currentlySelectedDate = dateI18n( dateFormat, attributes[ this.options.name ] );
 
-		const [selectedDate, setSelectedDate] = useState(currentlySelectedDate);
+		const [ selectedDate, setSelectedDate ] = useState( currentlySelectedDate );
 
-		let currentValue = __("Select a date", "yoast-schema-blocks");
-		if (attributes[this.options.name]) {
-			currentValue = format("Y-m-d", getDate());
+		let currentValue = __( "Select a date", "yoast-schema-blocks" );
+		if ( attributes[ this.options.name ] ) {
+			currentValue = format( "Y-m-d", getDate() );
 		}
 
 		/**
@@ -44,14 +44,14 @@ export default class Date extends BlockInstruction {
 		 *
 		 * @param dateTime The selected date and time in the form 'yyyy-MM-ddThh:mm:ss' (only the date part is used).
 		 */
-		const setDate = useCallback((dateTime: string) => {
-			const date = dateTime ? dateTime.split("T")[0] : null;
+		const setDate = useCallback( ( dateTime: string ) => {
+			const date = dateTime ? dateTime.split( "T" )[ 0 ] : null;
 
-			setAttributes({
-				[this.options.name]: date,
-			});
-			setSelectedDate(dateI18n(dateFormat, date));
-		}, [props, dateFormat, setSelectedDate]);
+			setAttributes( {
+				[ this.options.name ]: date,
+			} );
+			setSelectedDate( dateI18n( dateFormat, date ) );
+		}, [ props, dateFormat, setSelectedDate ] );
 
 		/**
 		 * Render toggle.
@@ -60,34 +60,34 @@ export default class Date extends BlockInstruction {
 		 *
 		 * @return The rendered toggle element.
 		 */
-		const renderToggle = useCallback((renderProps: Dropdown.RenderProps): JSX.Element => {
+		const renderToggle = useCallback( ( renderProps: Dropdown.RenderProps ): JSX.Element => {
 			return <button
-				onClick={renderProps.onToggle}
-				aria-expanded={renderProps.isOpen}
+				onClick={ renderProps.onToggle }
+				aria-expanded={ renderProps.isOpen }
 			>
-				{currentValue}
+				{ currentValue }
 			</button>;
-		}, [selectedDate]);
+		}, [ selectedDate ] );
 
 		/**
 		 * Renders the content of the dropdown element.
 		 *
 		 * @returns The rendered content of the dropdown element.
 		 */
-		const renderContent = useCallback((): JSX.Element => {
+		const renderContent = useCallback( (): JSX.Element => {
 			return <div className="yoast-block-date-picker">
 				<DateTimePicker
-					currentDate={attributes[this.options.name] ? selectedDate : null}
-					onChange={setDate}
+					currentDate={ attributes[ this.options.name ] ? selectedDate : null }
+					onChange={ setDate }
 				/>
 			</div>;
-		}, [selectedDate, setDate]);
+		}, [ selectedDate, setDate ] );
 
 		return <Dropdown
 			className="yoast-block-date-picker-container"
 			position="bottom center"
-			renderToggle={renderToggle}
-			renderContent={renderContent}
+			renderToggle={ renderToggle }
+			renderContent={ renderContent }
 		/>;
 	}
 
@@ -115,16 +115,16 @@ export default class Date extends BlockInstruction {
 	 *
 	 * @return The HTML to save to the database.
 	 */
-	save(props: RenderSaveProps): JSX.Element {
-		const date = props.attributes[this.options.name] as string;
+	save( props: RenderSaveProps ): JSX.Element {
+		const date = props.attributes[ this.options.name ] as string;
 
-		if (!date) {
+		if ( ! date ) {
 			return null;
 		}
 
 		const dateFormat = Date.getDateFormat();
 
-		return <div><time dateTime={date}>{dateI18n(dateFormat, date)}</time></div>;
+		return <div><time dateTime={ date }>{ dateI18n( dateFormat, date ) }</time></div>;
 	}
 
 	/**
@@ -136,7 +136,7 @@ export default class Date extends BlockInstruction {
 	configuration(): Partial<BlockConfiguration> {
 		return {
 			attributes: {
-				[this.options.name]: {
+				[ this.options.name ]: {
 					type: "string",
 				},
 			},
@@ -144,4 +144,4 @@ export default class Date extends BlockInstruction {
 	}
 }
 
-BlockInstruction.register("date", Date);
+BlockInstruction.register( "date", Date );

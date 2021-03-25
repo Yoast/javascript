@@ -84,7 +84,7 @@ export class BlockDefinition extends Definition {
 
 		configuration.edit = props => this.edit( props );
 		configuration.save = props => this.save( props );
-		
+
 		logger.info( "registering block " + name );
 
 		// Register the block to WordPress.
