@@ -6,7 +6,7 @@
  *
  * @constructor
  */
-const SentencePart = function( sentencePartText, auxiliaries ) {
+const Clause = function( sentencePartText, auxiliaries ) {
 	this._sentencePartText = sentencePartText;
 	this._auxiliaries = auxiliaries;
 	this._isPassive = false;
@@ -17,7 +17,7 @@ const SentencePart = function( sentencePartText, auxiliaries ) {
  *
  * @returns {string} The sentence part.
  */
-SentencePart.prototype.getSentencePartText = function() {
+Clause.prototype.getSentencePartText = function() {
 	return this._sentencePartText;
 };
 
@@ -26,7 +26,7 @@ SentencePart.prototype.getSentencePartText = function() {
  *
  * @returns {boolean} returns true if passive, otherwise returns false.
  */
-SentencePart.prototype.isPassive = function() {
+Clause.prototype.isPassive = function() {
 	return this._isPassive;
 };
 
@@ -35,7 +35,7 @@ SentencePart.prototype.isPassive = function() {
  *
  * @returns {Array} The list of auxiliaries.
  */
-SentencePart.prototype.getAuxiliaries = function() {
+Clause.prototype.getAuxiliaries = function() {
 	return this._auxiliaries;
 };
 
@@ -46,18 +46,18 @@ SentencePart.prototype.getAuxiliaries = function() {
  *
  * @returns {void}
  */
-SentencePart.prototype.setPassive = function( passive ) {
+Clause.prototype.setPassive = function( passive ) {
 	this._isPassive = passive;
 };
 
 /**
- * Serializes the SentencePart instance to an object.
+ * Serializes the Clause instance to an object.
  *
- * @returns {Object} The serialized SentencePart.
+ * @returns {Object} The serialized Clause.
  */
-SentencePart.prototype.serialize = function() {
+Clause.prototype.serialize = function() {
 	return {
-		_parseClass: "SentencePart",
+		_parseClass: "Clause",
 		sentencePartText: this._sentencePartText,
 		auxiliaries: this._auxiliaries,
 		isPassive: this._isPassive,
@@ -65,17 +65,17 @@ SentencePart.prototype.serialize = function() {
 };
 
 /**
- * Parses the object to a SentencePart.
+ * Parses the object to a Clause.
  *
  * @param {Object} serialized The serialized object.
  *
- * @returns {SentencePart} The parsed SentencePart.
+ * @returns {Clause} The parsed Clause.
  */
-SentencePart.parse = function( serialized ) {
-	const sentencePart = new SentencePart( serialized.sentencePartText, serialized.auxiliaries );
+Clause.parse = function( serialized ) {
+	const sentencePart = new Clause( serialized.sentencePartText, serialized.auxiliaries );
 	sentencePart.setPassive( serialized.isPassive );
 
 	return sentencePart;
 };
 
-export default SentencePart;
+export default Clause;

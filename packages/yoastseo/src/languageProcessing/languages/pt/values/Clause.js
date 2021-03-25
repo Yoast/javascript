@@ -1,26 +1,26 @@
-import SentencePart from "../../../../values/SentencePart.js";
+import Clause from "../../../../values/Clause.js";
 import getParticiples from "../helpers/internal/getParticiples.js";
 
 /**
- * Creates an Italian-specific sentence part.
+ * Creates a Portuguese-specific sentence part.
  *
  * @param {string} sentencePartText The text from the sentence part.
  * @param {Array} auxiliaries The list with auxiliaries.
  * @constructor
  */
-const ItalianSentencePart = function( sentencePartText, auxiliaries ) {
-	SentencePart.call( this, sentencePartText, auxiliaries );
+const PortugueseSentencePart = function( sentencePartText, auxiliaries ) {
+	Clause.call( this, sentencePartText, auxiliaries );
 };
 
-require( "util" ).inherits( ItalianSentencePart, SentencePart );
+require( "util" ).inherits( PortugueseSentencePart, Clause );
 
 /**
  * Returns the participles found in the sentence part.
  *
  * @returns {Array} The array of Participle Objects.
  */
-ItalianSentencePart.prototype.getParticiples = function() {
+PortugueseSentencePart.prototype.getParticiples = function() {
 	return getParticiples( this.getSentencePartText(), this.getAuxiliaries() );
 };
 
-export default ItalianSentencePart;
+export default PortugueseSentencePart;
