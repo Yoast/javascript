@@ -7,7 +7,7 @@ class Clause {
 	 * Constructs a clause object.
 	 *
 	 * @param {string} clauseText The text in the clause.
-	 * @param {Array} auxiliaries The list of auxiliaries from the sentence part.
+	 * @param {Array} auxiliaries The auxiliaries in the clause.
 	 *
 	 * @constructor
 	 */
@@ -45,7 +45,7 @@ class Clause {
 	}
 
 	/**
-	 * Sets the passive.
+	 * Sets the passiveness of the clause.
 	 *
 	 * @param {boolean} passive	 Whether the clause is passive.
 	 *
@@ -77,20 +77,16 @@ class Clause {
 
 	/**
 	 * Applies language-specific checks to determine whether the clause is passive.
+	 * A clause is passive if it contains at least one passive participle.
 	 *
 	 * @param {function} isParticiplePassive	The language-specific function for checking whether the clause is passive.
 	 *
 	 * @returns {void}
 	 */
-	checkParticiples( isParticiplePassive ) {
-		const foundParticiples = this.getParticiples();
-		let passive = false;
-		for ( const participle of foundParticiples ) {
-			if ( isParticiplePassive( this.getClauseText(), participle ) ) {
-				passive = true;
-			}
-		}
-		this.setPassive( passive );
+	setClausePassiveness( isParticiplePassive ) {
+		const passiveParticiples = this.getParticiples().filter( participle => isParticiplePassive( this.getClauseText(), participle ) );
+
+		this.setPassive( passiveParticiples.length > 0 );
 	}
 
 	/**

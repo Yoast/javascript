@@ -42,15 +42,15 @@ describe( "a test for checking whether clauses are passive", function() {
 		return !! ( clauseText && participle.endsWith( "ed" ) );
 	};
 
-	it( "isPassive returns true after checkParticiples finds a passive", function() {
+	it( "isPassive returns true after setClausePassiveness finds a passive", function() {
 		mockClausePassive.setParticiples( [ "loved" ] );
-		mockClausePassive.checkParticiples( mockIsParticiplePassive );
+		mockClausePassive.setClausePassiveness( mockIsParticiplePassive );
 		expect( mockClausePassive.isPassive() ).toBe( true );
 	} );
 
-	it( "isPassive returns false after checkParticiples doesn't find a passive", function() {
+	it( "isPassive returns false after setClausePassiveness doesn't find a passive", function() {
 		mockClauseActive.setParticiples( [ "tired" ] );
-		mockClauseActive.checkParticiples( mockIsParticiplePassive );
+		mockClauseActive.setClausePassiveness( mockIsParticiplePassive );
 		expect( mockClauseActive.isPassive() ).toBe( false );
 	} );
 } );

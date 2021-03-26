@@ -8,7 +8,7 @@ class Sentence {
 	/**
 	 * Constructor.
 	 *
-	 * @param {string} sentence The sentence
+	 * @param {string} sentence The sentence.
 	 * @constructor
 	 */
 	constructor( sentence ) {
@@ -48,7 +48,7 @@ class Sentence {
 	/**
 	 * Returns an array of clauses.
 	 *
-	 * @returns {Array} returns array of clauses
+	 * @returns {Clause[]} The clauses of the sentence.
 	 */
 	getClauses() {
 		return this._clauses;
@@ -57,7 +57,7 @@ class Sentence {
 	/**
 	 * Sets the clauses.
 	 *
-	 * @param {Object} clauses The clauses
+	 * @param {Clause[]} clauses The clauses of the sentence.
 	 *
 	 * @returns {void}
  	 */
@@ -66,23 +66,19 @@ class Sentence {
 	}
 
 	/**
-	 * Checks whether the clause is passive. Modifies the sentence passiveness.
+	 * Sets the passiveness of the sentence. A sentence is passive if it contains at least one passive clause.
 	 *
 	 * @returns {void}
 	 */
-	checkClauseIsPassive() {
-		const foundClauses = this.getClauses();
-		let passive = false;
-		for ( const clause of foundClauses ) {
-			passive = passive || clause.isPassive();
-		}
-		this.setPassive( passive );
+	setSentencePassiveness() {
+		const passiveClauses = this.getClauses().filter( clause => clause.isPassive() === true );
+		this.setPassive( passiveClauses.length > 0 );
 	}
 
 	/**
 	 * Serializes the Sentence instance to an object.
 	 *
-	 * @returns {Object} The serialized Participle.
+	 * @returns {Object} The serialized Sentence.
 	 */
 	serialize() {
 		return {
