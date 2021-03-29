@@ -7,7 +7,7 @@ import { getBlockSchemaId } from "../../functions/gutenberg/block";
 /**
  * InnerBlocksID instruction.
  */
-class InnerBlocksID extends SchemaInstruction {
+export class InnerBlocksID extends SchemaInstruction {
 	public options: {
 		name: string;
 		allowedBlocks?: string[];

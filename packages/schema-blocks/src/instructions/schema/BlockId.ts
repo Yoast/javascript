@@ -5,7 +5,7 @@ import { getBlockSchemaId } from "../../functions/gutenberg/block";
 /**
  * BlockID instruction.
  */
-class BlockID extends SchemaInstruction {
+export class BlockID extends SchemaInstruction {
 	/**
 	 * Renders schema.
 	 *

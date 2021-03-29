@@ -6,7 +6,7 @@ import { BlockInstance } from "@wordpress/blocks";
 /**
  * List instruction.
  */
-export default class List extends SchemaInstruction {
+export class List extends SchemaInstruction {
 	public options: {
 		name: string;
 		tag: string;

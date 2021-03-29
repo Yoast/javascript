@@ -4,7 +4,7 @@ import { SchemaInstruction }  from "../../core/schema/SchemaInstruction";
 /**
  * Permalink instruction.
  */
-class Permalink extends SchemaInstruction {
+export class Permalink extends SchemaInstruction {
 	/**
 	 * Renders schema.
 	 *

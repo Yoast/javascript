@@ -6,7 +6,7 @@ import { schemaDefinitions, SchemaValue } from "../../core/schema/SchemaDefiniti
 /**
  * InnerBlocks instruction.
  */
-class InnerBlocks extends SchemaInstruction {
+export class InnerBlocks extends SchemaInstruction {
 	public options: {
 		name: string;
 		allowedBlocks?: string[];

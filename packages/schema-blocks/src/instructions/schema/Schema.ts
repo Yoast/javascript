@@ -4,7 +4,7 @@ import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 /**
  * Schema instruction.
  */
-export default class Schema extends SchemaInstruction {
+export class Schema extends SchemaInstruction {
 	public options: {
 		name: string;
 		onlyNested?: boolean;

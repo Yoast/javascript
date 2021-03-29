@@ -5,7 +5,7 @@ import { BlockInstance } from "@wordpress/blocks";
 /**
  * Job employment type instruction.
  */
-export default class JobEmploymentType extends SchemaInstruction {
+export class JobEmploymentType extends SchemaInstruction {
 	public options: {
 		name: string;
 	}

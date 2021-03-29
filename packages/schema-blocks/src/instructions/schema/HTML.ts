@@ -6,7 +6,7 @@ import { BlockInstance } from "@wordpress/blocks";
 /**
  * HTML instruction.
  */
-export default class HTML extends SchemaInstruction {
+export class HTML extends SchemaInstruction {
 	public options: {
 		name: string;
 		default?: string;
