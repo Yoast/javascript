@@ -106,7 +106,7 @@ export function createAnalysisMessages( validation: BlockValidationResult ): sid
  *
  * @returns {string} The sanitized parent block name.
  */
-export function sanitizeParentName( parent: string ): string {
+function sanitizeParentName( parent: string ): string {
 	if ( parent.startsWith( "Yoast " ) ) {
 		return parent.substr( 6 ).toLowerCase();
 	}
@@ -121,7 +121,7 @@ export function sanitizeParentName( parent: string ): string {
  *
  * @returns {string} The presentable warning message, or null if no warnings are found.
  */
-export default function getWarnings( clientId: string ): sidebarWarning[] {
+export function getWarnings( clientId: string ): sidebarWarning[] {
 	const validation: BlockValidationResult = getValidationResult( clientId );
 	if ( ! validation ) {
 		return null;
