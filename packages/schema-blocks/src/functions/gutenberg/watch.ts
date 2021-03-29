@@ -118,7 +118,7 @@ export function validateBlocks( blocks: BlockInstance[] ): BlockValidationResult
 /**
  * Watches Gutenberg for relevant changes.
  */
-export default function watch() {
+export function watch() {
 	subscribe(
 		debounce( () => {
 			if ( updatingSchema || select( "core/block-editor" ).isTyping() ) {

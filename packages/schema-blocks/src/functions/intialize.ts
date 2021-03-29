@@ -1,12 +1,15 @@
 // Import and register instructions.
 import "../instructions";
 
-import logger, { LogLevel } from "./logger";
+// External imports.
 import { registerBlockType } from "@wordpress/blocks";
+
+// Internal imports.
+import logger, { LogLevel } from "./logger";
 import { WarningBlock } from "../blocks/warning-block/configuration";
 import { processBlock, processSchema } from "./process";
-import filter from "./gutenberg/filter";
-import watch from "./gutenberg/watch";
+import { filter } from "./gutenberg";
+import { watch } from "./gutenberg";
 
 /**
  * Removes all whitespace including line breaks from a string.
