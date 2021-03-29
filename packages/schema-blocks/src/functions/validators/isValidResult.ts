@@ -7,6 +7,6 @@ import { BlockValidation } from "../../core/validation";
  *
  * @returns {boolean} Whether the result is Valid or Invalid.
 */
-export default function isValidResult( result: BlockValidation ): boolean {
+export function isValidResult( result: BlockValidation ): boolean {
 	return result === BlockValidation.Valid || result === BlockValidation.Unknown;
 }

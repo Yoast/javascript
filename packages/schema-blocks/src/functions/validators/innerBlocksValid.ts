@@ -5,7 +5,7 @@ import { RequiredBlockOption, BlockValidation, RequiredBlock, BlockValidationRes
 import { recurseOverBlocks } from "../blocks";
 import { getInnerblocksByName } from "../innerBlocksHelper";
 import logger from "../logger";
-import isValidResult from "./isValidResult";
+import { isValidResult } from "./isValidResult";
 import { getHumanReadableBlockName } from "../BlockHelper";
 
 /**

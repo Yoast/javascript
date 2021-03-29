@@ -1,5 +1,5 @@
 import { BlockInstance } from "@wordpress/blocks";
-import attributeNotEmpty from "../../../src/functions/validators/attributeNotEmpty";
+import { attributeNotEmpty } from "../../../src/functions/validators/attributeNotEmpty";
 
 describe( "The attributeNotEmpty function", () => {
 	it( "validates that an attribute exists.", () => {

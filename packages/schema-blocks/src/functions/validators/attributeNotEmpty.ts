@@ -9,8 +9,6 @@ import { isEmpty } from "lodash";
  *
  * @returns If the attribute is considered empty.
  */
-function attributeNotEmpty( blockInstance: BlockInstance, name: string ): boolean {
+export function attributeNotEmpty( blockInstance: BlockInstance, name: string ): boolean {
 	return ! isEmpty( blockInstance.attributes[ name ] as object );
 }
-
-export default attributeNotEmpty;

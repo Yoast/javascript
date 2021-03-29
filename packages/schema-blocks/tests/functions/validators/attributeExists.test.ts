@@ -1,5 +1,5 @@
 import { BlockInstance } from "@wordpress/blocks";
-import attributeExists from "../../../src/functions/validators/attributeExists";
+import { attributeExists } from "../../../src/functions/validators/attributeExists";
 
 describe( "The attributeExists function", () => {
 	it( "validates that an attribute exists.", () => {

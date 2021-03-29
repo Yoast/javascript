@@ -8,8 +8,6 @@ import { BlockInstance } from "@wordpress/blocks";
  *
  * @returns If an attribute with the given name exists.
  */
-function attributeExists( blockInstance: BlockInstance, name: string ): boolean {
+export function attributeExists( blockInstance: BlockInstance, name: string ): boolean {
 	return Object.prototype.hasOwnProperty.call( blockInstance.attributes, name );
 }
-
-export default attributeExists;
