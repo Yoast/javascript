@@ -1,4 +1,4 @@
-import tokenize from "../../src/functions/tokenize";
+import { tokenize } from "../../src/functions/tokenize";
 import testData from "./tokenize.testdata";
 
 describe.each( testData )( "the tokenize function", ( data ) => {

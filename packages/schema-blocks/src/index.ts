@@ -1,4 +1,4 @@
-import initialize from "./functions/intialize";
+import { initialize } from "./functions";
 
 export { LogLevel } from "./functions/logger";
 

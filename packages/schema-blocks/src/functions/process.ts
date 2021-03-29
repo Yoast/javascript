@@ -12,7 +12,7 @@ import { Instruction,
 import { SchemaDefinition } from "../core/schema/SchemaDefinition";
 import { SchemaInstruction } from "../core/schema/SchemaInstruction";
 import { generateUniqueSeparator } from "./separator";
-import tokenize from "./tokenize";
+import { tokenize } from "./tokenize";
 
 let nextId = 0;
 
@@ -191,5 +191,4 @@ function process<T extends Definition>(
 	return definitionClass.parser( definition );
 }
 
-export default process;
-export { processSchema, processBlock };
+export { process, processSchema, processBlock };

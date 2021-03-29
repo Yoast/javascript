@@ -151,7 +151,7 @@ lexer.rule( "definition-value", /\s*"([^"\\]+|\\.)*"/, ( ctx, matches ) => {
  *
  * @returns An array of tokens.
  */
-export default function tokenize( text: string ): IToken[] {
+export function tokenize( text: string ): IToken[] {
 	lexer.reset();
 	lexer.input( text );
 	return lexer.tokens();
