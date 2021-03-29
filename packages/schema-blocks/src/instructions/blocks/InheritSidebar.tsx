@@ -10,7 +10,7 @@ import logger from "../../functions/logger";
 /**
  * Sidebar input instruction.
  */
-export default class InheritSidebar extends BlockInstruction {
+export class InheritSidebar extends BlockInstruction {
 	public options: InstructionOptions & {
 		parents: string[];
 	};

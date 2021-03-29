@@ -12,7 +12,7 @@ export interface VariationInterface {
 /**
  * Variation instruction.
  */
-export default class Variation extends BlockInstruction implements VariationInterface {
+export class Variation extends BlockInstruction implements VariationInterface {
 	name: string;
 	title: string;
 	isDefault?: boolean;

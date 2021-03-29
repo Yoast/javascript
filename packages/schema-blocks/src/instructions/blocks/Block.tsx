@@ -4,7 +4,7 @@ import { BlockConfiguration } from "@wordpress/blocks";
 /**
  * Block instruction.
  */
-class Block extends BlockInstruction {
+export class Block extends BlockInstruction {
 	/**
 	 * Passes on the options as configuration.
 	 *

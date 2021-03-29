@@ -8,7 +8,7 @@ import { SidebarBaseOptions } from "./abstract/SidebarBase";
 /**
  * Shows a checkbox in the sidebar.
  */
-class SidebarCheckbox extends BlockInstruction {
+export class SidebarCheckbox extends BlockInstruction {
 	public options: SidebarBaseOptions & {
 		output?: string;
 	}

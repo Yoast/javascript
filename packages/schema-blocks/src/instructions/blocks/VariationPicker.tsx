@@ -25,7 +25,7 @@ function includesAVariation( blockInstance: BlockInstance ): boolean {
 /**
  * VariationPicker instruction.
  */
-class VariationPicker extends BlockInstruction {
+export class VariationPicker extends BlockInstruction {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	/**
 	 * Renders the variation picker if the block doesn't have any inner blocks.

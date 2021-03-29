@@ -11,7 +11,7 @@ import { SidebarBase, SidebarBaseOptions } from "./abstract/SidebarBase";
 /**
  * SidebarSelect instruction.
  */
-class SidebarSelect extends SidebarBase {
+export class SidebarSelect extends SidebarBase {
 	public options: SidebarBaseOptions & {
 		options: string[] | Record<string, string>;
 		multiple?: boolean;

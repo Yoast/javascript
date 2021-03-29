@@ -13,7 +13,7 @@ import { useCallback } from "react";
 /**
  * Adds a date picker to the schema block.
  */
-export default class Date extends BlockInstruction {
+export class Date extends BlockInstruction {
 	options: {
 		name: string;
 	};

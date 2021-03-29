@@ -188,7 +188,7 @@ const currencyCodes = [
 /**
  * Instruction for selecting a currency.
  */
-class CurrencySelect extends Select {
+export class CurrencySelect extends Select {
 	/**
 	 * Creates a currency select instruction.
 	 *

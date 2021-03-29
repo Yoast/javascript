@@ -5,7 +5,7 @@ import { RichTextBase, RichTextSaveProps, RichTextEditProps } from "./abstract/R
 /**
  * RichText instruction.
  */
-export default class RichText extends RichTextBase {
+export class RichText extends RichTextBase {
 	public options: {
 		tag: keyof HTMLElementTagNameMap;
 		name: string;

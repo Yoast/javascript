@@ -25,7 +25,7 @@ interface InnerBlocksProps extends Omit<WordPressInnerBlocks.Props, "renderAppen
 /**
  * InnerBlocks instruction.
  */
-export default class InnerBlocks extends BlockInstruction {
+export class InnerBlocks extends BlockInstruction {
 	public options: InnerBlocksInstructionOptions;
 
 	/**

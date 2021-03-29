@@ -8,7 +8,7 @@ import { BlockConfiguration } from "@wordpress/blocks";
 /**
  * The text input instruction.
  */
-export default class TextInput extends BlockInstruction {
+export class TextInput extends BlockInstruction {
 	public options: {
 		name: string;
 		type: string;

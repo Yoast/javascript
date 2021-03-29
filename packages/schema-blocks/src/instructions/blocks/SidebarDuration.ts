@@ -25,7 +25,7 @@ function updateDuration( props: RenderEditProps, name: string, duration: moment.
 /**
  * Sidebar duration instruction.
  */
-class SidebarDuration extends SidebarBase {
+export class SidebarDuration extends SidebarBase {
 	public options: SidebarBaseOptions;
 
 	/**
