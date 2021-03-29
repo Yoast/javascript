@@ -3,7 +3,7 @@ import { mocked } from "ts-jest/utils";
 
 import { __experimentalGetSettings, dateI18n, DateSettings } from "@wordpress/date";
 
-import Date from "../../../src/instructions/blocks/Date";
+import { Date } from "../../../src/instructions/blocks/Date";
 import { RenderEditProps, RenderSaveProps } from "../../../src/core/blocks/BlockDefinition";
 
 jest.mock( "@wordpress/date", () => ( {

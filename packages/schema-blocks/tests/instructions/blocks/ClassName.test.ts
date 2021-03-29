@@ -1,4 +1,4 @@
-import ClassName from "../../../src/instructions/blocks/ClassName";
+import { ClassName } from "../../../src/instructions/blocks/ClassName";
 import { RenderEditProps } from "../../../src/core/blocks/BlockDefinition";
 
 describe( "The ClassName instruction", () => {

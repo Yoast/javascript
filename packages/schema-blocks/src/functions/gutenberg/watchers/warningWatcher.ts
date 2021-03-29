@@ -2,7 +2,7 @@ import { dispatch } from "@wordpress/data";
 import { BlockInstance, createBlock } from "@wordpress/blocks";
 import { __, sprintf } from "@wordpress/i18n";
 import { getBlockDefinition } from "../../../core/blocks/BlockDefinitionRepository";
-import InnerBlocks from "../../../instructions/blocks/InnerBlocks";
+import { InnerBlocks } from "../../../instructions/blocks/InnerBlocks";
 import { recurseOverBlocks } from "../../blocks/";
 import { mapBlocksRecursively } from "../../innerBlocksHelper";
 import { BlockDefinition } from "../../../core/blocks/BlockDefinition";

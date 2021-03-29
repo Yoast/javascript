@@ -1,5 +1,5 @@
 import "../matchMedia.mock";
-import InnerBlocks from "../../src/instructions/blocks/InnerBlocks";
+import { InnerBlocks } from "../../src/instructions/blocks/InnerBlocks";
 
 
 jest.mock( "@yoast/components", () => {
