@@ -77,7 +77,7 @@ function parseNode( node: ChildNode, definition: BlockDefinition ): BlockLeaf[] 
  *
  * @returns The parsed BlockDefinition.
  */
-export default function parse( definition: BlockDefinition ): BlockDefinition {
+export function parse( definition: BlockDefinition ): BlockDefinition {
 	const parser = new DOMParser();
 	const doc    = parser.parseFromString( definition.template, "text/html" );
 

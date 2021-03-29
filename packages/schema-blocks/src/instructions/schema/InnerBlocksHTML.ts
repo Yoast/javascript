@@ -1,7 +1,7 @@
 import { SchemaInstruction } from "../../core/schema/SchemaInstruction";
 import { SchemaValue } from "../../core/schema/SchemaDefinition";
 import { stripTags } from "../../functions/html";
-import { getInnerBlocksAttributes } from "../../functions/blocks";
+import { getInnerBlocksAttributes } from "../../functions/innerBlocksHelper";
 import { BlockInstance } from "@wordpress/blocks";
 
 /**

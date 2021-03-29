@@ -8,7 +8,7 @@ import { BlockInstance } from "@wordpress/blocks";
 *
 * @returns {void}
 */
-export default function recurseOverBlocks( blocks: BlockInstance[], callback: Function ) {
+export function recurseOverBlocks( blocks: BlockInstance[], callback: Function ) {
 	for ( const block of blocks ) {
 		// eslint-disable-next-line callback-return
 		callback( block );

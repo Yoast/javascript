@@ -1,6 +1,6 @@
 import { BlockInstance } from "@wordpress/blocks";
-import { dispatch } from "@wordpress/data";
-import recurseOverBlocks from "./blocks/recurseOverBlocks";
+import { dispatch, select } from "@wordpress/data";
+import { recurseOverBlocks } from "./blocks";
 
 /**
  * Searches recursively in the inner blocks to get all instances of blocks whose name occurs in blockNames.
@@ -62,4 +62,26 @@ function insertBlock( block: BlockInstance, clientId: string, index?: number ): 
 	dispatch( "core/block-editor" ).insertBlock( block, index, clientId );
 }
 
-export { filterBlocksRecursively, getInnerblocksByName, mapBlocksRecursively, insertBlock };
+/**
+ * Gets attributes of inner blocks.
+ *
+ * @param clientId The client ID of the parent block.
+ * @param blocks   A mapping of block name to attribute key.
+ *
+ * @returns An array contain block names and values.
+ */
+function getInnerBlocksAttributes( clientId: string, blocks: Record<string, string> ): { name: string; value: unknown }[] {
+	let innerBlocks = select( "core/block-editor" ).getBlock( clientId ).innerBlocks;
+	innerBlocks     = innerBlocks.filter( block => block.name in blocks );
+
+	const values = [];
+
+	for ( const block of innerBlocks ) {
+		const key   = blocks[ block.name ];
+		values.push( { name: block.name, value: block.attributes[ key ] } );
+	}
+
+	return values;
+}
+
+export { filterBlocksRecursively, getInnerblocksByName, mapBlocksRecursively, insertBlock, getInnerBlocksAttributes };

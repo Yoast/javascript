@@ -4,7 +4,7 @@ import { InspectorControls } from "@wordpress/block-editor";
 import { BlockInstruction } from "./BlockInstruction";
 import { Definition } from "../Definition";
 import { BlockRootLeaf } from "../../leaves/blocks/BlockRootLeaf";
-import parse from "../../functions/blocks/parse";
+import { parse } from "../../functions/blocks/";
 import { registerBlockDefinition } from "./BlockDefinitionRepository";
 import { PanelBody } from "@wordpress/components";
 import logger from "../../functions/logger";
