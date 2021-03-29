@@ -1,5 +1,5 @@
 import { BlockValidation, BlockValidationResult } from "../../../src/core/validation";
-import getWarnings, { createAnalysisMessages } from "../../../src/functions/presenters/SidebarWarningPresenter";
+import { getWarnings, createAnalysisMessages } from "../../../src/functions/presenters/SidebarWarningPresenter";
 
 const validations: Record<string, BlockValidationResult> = {};
 
