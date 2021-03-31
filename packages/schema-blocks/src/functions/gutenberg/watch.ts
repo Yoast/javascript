@@ -1,4 +1,4 @@
-import { debounce, isEqual } from "lodash";
+import { debounce, isEqual, isUndefined } from "lodash";
 import { subscribe, select, dispatch } from "@wordpress/data";
 import SchemaDefinition, { schemaDefinitions } from "../../core/schema/SchemaDefinition";
 import { BlockInstance } from "@wordpress/blocks";
@@ -8,6 +8,8 @@ import { BlockValidation, BlockValidationResult } from "../../core/validation";
 import storeBlockValidation from "./storeBlockValidation";
 import logger from "../logger";
 import { BlockPresence } from "../../core/validation/BlockValidationResult";
+import { getBlockType } from "../BlockHelper";
+import {ExtendedBlock} from "../../type-adapters/ExtendedBlock";
 
 let updatingSchema = false;
 let previousRootBlocks: BlockInstance[];
@@ -143,6 +145,41 @@ export default function watch() {
 				previousRootBlocks = rootBlocks;
 			}
 			updatingSchema = false;
+		}, 250, { trailing: true } ),
+	);
+
+	watchEmptyVariations();
+}
+
+/**
+ * Watches the empty variation containers.
+ */
+function watchEmptyVariations() {
+	subscribe(
+		debounce( () => {
+			const rootBlocks: BlockInstance[] = select( "core/block-editor" ).getBlocks();
+			if ( rootBlocks === previousRootBlocks ) {
+				return;
+			}
+
+			rootBlocks.forEach( block => {
+				if ( isUndefined( block.attributes[ "is-yoast-schema-block" ] ) ) {
+					return;
+				}
+
+				if ( block.innerBlocks && block.innerBlocks.length > 0 ) {
+					block.innerBlocks.forEach( innerBlock => {
+						const blockType = getBlockType( innerBlock.name ) as ExtendedBlock;
+						if ( isUndefined( blockType.variations ) ) {
+							return;
+						}
+
+						if ( innerBlock.innerBlocks.length === 0 ) {
+							dispatch( "core/block-editor" ).removeBlock( innerBlock.clientId );
+						}
+					} );
+				}
+			} );
 		}, 250, { trailing: true } ),
 	);
 }
