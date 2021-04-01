@@ -1,4 +1,4 @@
-import { debounce, isEqual, isUndefined } from "lodash";
+import { debounce, isEqual } from "lodash";
 import { subscribe, select, dispatch } from "@wordpress/data";
 import SchemaDefinition, { schemaDefinitions } from "../../core/schema/SchemaDefinition";
 import { BlockInstance } from "@wordpress/blocks";
@@ -8,10 +8,7 @@ import { BlockValidation, BlockValidationResult } from "../../core/validation";
 import storeBlockValidation from "./storeBlockValidation";
 import logger from "../logger";
 import { BlockPresence } from "../../core/validation/BlockValidationResult";
-import { getBlockType } from "../BlockHelper";
-import { ExtendedBlock } from "../../type-adapters/ExtendedBlock";
-import { mapBlocksRecursively } from "../innerBlocksHelper";
-import recurseOverBlocks from "../blocks/recurseOverBlocks";
+import emptyVariationsWatcher from "./watchers/emptyVariationsWatcher";
 
 let updatingSchema = false;
 let previousRootBlocks: BlockInstance[];
@@ -141,7 +138,7 @@ export default function watch() {
 				storeBlockValidation( validations );
 
 				warningWatcher( rootBlocks, previousRootBlocks );
-				watchEmptyVariations( rootBlocks, previousRootBlocks );
+				emptyVariationsWatcher( rootBlocks, previousRootBlocks );
 
 				generateSchemaForBlocks( rootBlocks, validations, previousRootBlocks );
 
@@ -152,43 +149,3 @@ export default function watch() {
 	);
 }
 
-/**
- * Watches the empty variation containers.
- *
- *
- * @param blocks The current list of blocks.
- * @param previousBlocks The previous list of blocks.
- */
-function watchEmptyVariations( blocks: BlockInstance[], previousBlocks: BlockInstance[] ) {
-	const currentBlockIds: string[] = mapBlocksRecursively( blocks, block => block.clientId );
-
-	if ( ! previousBlocks ) {
-		return;
-	}
-
-	recurseOverBlocks( previousBlocks, ( block: BlockInstance ) => {
-		// Is it a Yoast block?
-		if ( isUndefined( block.attributes[ "is-yoast-schema-block" ] ) ) {
-			return;
-		}
-
-		const removedInnerBlocks: BlockInstance[] = block.innerBlocks
-			.filter( innerBlock => ! currentBlockIds.includes( innerBlock.clientId ) );
-
-		// Nothing has been removed.
-		if ( removedInnerBlocks.length === 0 ) {
-			return;
-		}
-
-		// Does the block have variations.
-		const blockType = getBlockType( block.name ) as ExtendedBlock;
-		if ( isUndefined( blockType.variations )  ) {
-			return;
-		}
-
-		const currentBlock = select( "core/block-editor" ).getBlock( block.clientId );
-		if ( currentBlock.innerBlocks.length === 0 ) {
-			dispatch( "core/block-editor" ).removeBlock( currentBlock.clientId );
-		}
-	} );
-}
