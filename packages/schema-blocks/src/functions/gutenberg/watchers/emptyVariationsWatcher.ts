@@ -8,8 +8,7 @@ import { ExtendedBlock } from "../../../type-adapters/ExtendedBlock";
 import { dispatch, select } from "@wordpress/data";
 
 /**
- * Watches the empty variation containers.
- *
+ * Watches the empty variation containers and remove them when needed.
  *
  * @param blocks The current list of blocks.
  * @param previousBlocks The previous list of blocks.
