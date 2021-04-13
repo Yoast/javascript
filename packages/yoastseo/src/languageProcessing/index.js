@@ -3,6 +3,7 @@ import transliterate from "./helpers/transliterate/transliterate";
 import createRegexFromArray from "./helpers/regex/createRegexFromArray";
 import imageInText from "./helpers/image/imageInText";
 import stripSpaces from "./helpers/sanitize/stripSpaces";
+import stripHTMLTags from "./helpers/sanitize/stripHTMLTags";
 import baseStemmer from "./helpers/morphology/baseStemmer";
 import getWords from "./helpers/word/getWords";
 import AbstractResearcher from "./AbstractResearcher";
@@ -52,4 +53,5 @@ export {
 	exceptionListHelpers,
 	stemHelpers,
 	areWordsInSentence,
+	stripHTMLTags,
 };
