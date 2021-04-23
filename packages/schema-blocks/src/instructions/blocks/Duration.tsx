@@ -1,6 +1,6 @@
 import { BlockConfiguration } from "@wordpress/blocks";
-import { TextControl } from "@wordpress/components";
 import { RichText } from "@wordpress/block-editor";
+import { __, sprintf } from "@wordpress/i18n";
 import moment from "moment";
 
 import { ReactElement, createElement, useCallback, Fragment } from "react";
@@ -38,14 +38,11 @@ export default class Duration extends BlockInstruction {
 
 		const value = props.attributes.value as string || "";
 
-		return <Fragment>
-				<RichText.Content
-					type="number"
-					value={ value }
-					tagName="p"
-				/>
-			</Fragment>;
-
+		return <RichText.Content
+			name={ name }
+			value={ sprintf( __( "%d minutes", "wordpress-seo" ), value ) }
+			tagName="p"
+		/>;
 	}
 
 	/**
@@ -58,30 +55,35 @@ export default class Duration extends BlockInstruction {
 	edit( props: RenderEditProps ): ReactElement | string {
 		const onChange = useCallback(
 			value => {
-				const n = parseInt( value, 10 );
-				if ( isNaN( n ) ) {
-					return;
+				const parsedValue = parseInt( value, 10 );
+				console.log( parsedValue, value );
+				if ( isNaN( parsedValue ) ) {
+					props.setAttributes( { value: props.attributes.value } );
 				}
 				props.setAttributes( {
-					value,
-					iso8601Value: moment.duration( n, "minutes" ).toISOString(),
+					value: parsedValue,
+					iso8601Value: moment.duration( parsedValue, "minutes" ).toISOString(),
 				} );
 			},
-			[ props ],
+			[ props.attributes.value ],
 		);
 
-		return <Fragment>
-			<RichText
-				multiline={ false }
-				placeholder="#"
-				style={{ display: "inline-block" }}
-				tagName="p"
-				label="Cooking time"
-				className="minutes-input"
-				onChange={ onChange }
-				value={ props.attributes.value as string }
-			/><p style={{ display: "inline-block" }}>{ " " }minutes</p>
-		</Fragment>;
+		console.log( props.attributes.value );
+
+		return (
+			<p>
+				<RichText
+					keepPlaceholderOnFocus={ true }
+					multiline={ false }
+					placeholder="#"
+					tagName="span"
+					aria-label={ __( "Cooking time", "wordpress-seo" ) }
+					className="minutes-input"
+					onChange={ onChange }
+					value={ props.attributes.value as string }
+				/>{ " " }minutes
+			</p>
+		);
 	}
 
 	/**
