@@ -144,3 +144,8 @@
 .yoast-schema-blocks-icon svg {
 	fill:none;
 }
+
+.wp-block-yoast-cooking-time .minutes-input {
+	display: inline-block;
+	max-width: 100px;
+}
