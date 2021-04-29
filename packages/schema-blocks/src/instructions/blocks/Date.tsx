@@ -4,11 +4,11 @@ import { DateTimePicker, Dropdown } from "@wordpress/components";
 import { createElement, useState } from "@wordpress/element";
 import { __experimentalGetSettings, dateI18n, format } from "@wordpress/date";
 import { __ } from "@wordpress/i18n";
+import { useCallback, useRef } from "react";
 
 // Internal imports.
 import BlockInstruction from "../../core/blocks/BlockInstruction";
 import { RenderEditProps, RenderSaveProps } from "../../core/blocks/BlockDefinition";
-import { useCallback } from "react";
 
 /**
  * Adds a date picker to the schema block.
@@ -39,6 +39,8 @@ export default class Date extends BlockInstruction {
 			currentValue = format( "Y-m-d", attributes[ this.options.name ] as string );
 		}
 
+		const ref = useRef<HTMLElement>();
+
 		/**
 		 * Sets the selected date.
 		 *
@@ -51,6 +53,11 @@ export default class Date extends BlockInstruction {
 				[ this.options.name ]: date,
 			} );
 			setSelectedDate( dateI18n( dateFormat, date, false ) );
+
+			// Hide the date picker again.
+			if ( ref.current ) {
+				ref.current.blur();
+			}
 		}, [ props, dateFormat, setSelectedDate ] );
 
 		/**
