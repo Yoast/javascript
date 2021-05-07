@@ -1,9 +1,11 @@
 import { BlockConfiguration } from "@wordpress/blocks";
 import { RichText } from "@wordpress/block-editor";
 import { __, sprintf } from "@wordpress/i18n";
+import { TextControl } from "@wordpress/components";
 import moment from "moment";
+import interpolateComponents from "interpolate-components";
 
-import { ReactElement, createElement, useCallback, Fragment } from "react";
+import { ReactElement, createElement, useCallback } from "react";
 import BlockInstruction from "../../core/blocks/BlockInstruction";
 import { RenderEditProps, RenderSaveProps } from "../../core/blocks/BlockDefinition";
 
@@ -24,7 +26,14 @@ export default class Duration extends BlockInstruction {
 		 * An optional extra class name or class names.
 		 */
 		className?: string;
+		
 	};
+
+	/**
+	 * The format to be displayed.
+	 */
+	/* translators: %d will be replaced with the number of minutes, {{p}} and {{/p}} will be replaced with opening and closing paragraph tags */
+	private format: string = __( "%d minutes", "wordpress-seo" );
 
 	/**
 	 * Renders saving the element.
@@ -36,11 +45,11 @@ export default class Duration extends BlockInstruction {
 	save( props: RenderSaveProps ): ReactElement | string {
 		const { name } = this.options;
 
-		const value = props.attributes.value as string || "";
+		const value = props.attributes.value as number || 0;
 
 		return <RichText.Content
 			name={ name }
-			value={ sprintf( __( "%d minutes", "wordpress-seo" ), value ) }
+			value={ sprintf( this.format, value ) }
 			tagName="p"
 		/>;
 	}
@@ -54,35 +63,34 @@ export default class Duration extends BlockInstruction {
 	 */
 	edit( props: RenderEditProps ): ReactElement | string {
 		const onChange = useCallback(
-			value => {
-				const parsedValue = parseInt( value, 10 );
-				console.log( parsedValue, value );
-				if ( isNaN( parsedValue ) ) {
-					props.setAttributes( { value: props.attributes.value } );
-				}
+			( value = 0 ) => {
+				
 				props.setAttributes( {
-					value: parsedValue,
-					iso8601Value: moment.duration( parsedValue, "minutes" ).toISOString(),
+					value,
+					iso8601Value: moment.duration( value, "minutes" ).toISOString(),
 				} );
 			},
 			[ props.attributes.value ],
 		);
 
-		console.log( props.attributes.value );
-
 		return (
-			<p>
-				<RichText
-					keepPlaceholderOnFocus={ true }
-					multiline={ false }
-					placeholder="#"
-					tagName="span"
-					aria-label={ __( "Cooking time", "wordpress-seo" ) }
-					className="minutes-input"
-					onChange={ onChange }
-					value={ props.attributes.value as string }
-				/>{ " " }minutes
-			</p>
+			<div className="yoast-schema-flex">
+				{ interpolateComponents( {
+					/* translators: {{input/}} will be replaced with an input field, {{p}} and {{/p}} will be replaced with opening and closing paragraph tags. Note: The input field cannot be within the paragraph tags. */
+					mixedString: __( "{{input/}}{{p}} minutes{{/p}}", "wordpress-seo" ),
+					components: {
+						input: <TextControl
+							type="number"
+							placeholder="#"
+							aria-label={ __( "Cooking time", "wordpress-seo" ) }
+							className="minutes-input"
+							onChange={ onChange }
+							value={ props.attributes.value as number || "" }
+						/>,
+						p: <p/>,
+					}
+				} )  }
+			</div>
 		);
 	}
 
@@ -95,7 +103,7 @@ export default class Duration extends BlockInstruction {
 		return {
 			attributes: {
 				value: {
-					type: "string",
+					type: "number",
 				},
 				iso8601Value: {
 					type: "string",
