@@ -26,13 +26,12 @@ export default class Duration extends BlockInstruction {
 		 * An optional extra class name or class names.
 		 */
 		className?: string;
-		
 	};
 
 	/**
 	 * The format to be displayed.
 	 */
-	/* translators: %d will be replaced with the number of minutes, {{p}} and {{/p}} will be replaced with opening and closing paragraph tags */
+	/* translators: %d will be replaced with the number of minutes. */
 	private format: string = __( "%d minutes", "wordpress-seo" );
 
 	/**
@@ -64,7 +63,6 @@ export default class Duration extends BlockInstruction {
 	edit( props: RenderEditProps ): ReactElement | string {
 		const onChange = useCallback(
 			( value = 0 ) => {
-				
 				props.setAttributes( {
 					value,
 					iso8601Value: moment.duration( value, "minutes" ).toISOString(),
@@ -76,7 +74,8 @@ export default class Duration extends BlockInstruction {
 		return (
 			<div className="yoast-schema-flex">
 				{ interpolateComponents( {
-					/* translators: {{input/}} will be replaced with an input field, {{p}} and {{/p}} will be replaced with opening and closing paragraph tags. Note: The input field cannot be within the paragraph tags. */
+					/* translators: {{input/}} will be replaced with an input field, {{p}} and {{/p}} will be replaced with opening and closing
+					paragraph tags. Note: The input field cannot be within the paragraph tags. */
 					mixedString: __( "{{input/}}{{p}} minutes{{/p}}", "wordpress-seo" ),
 					components: {
 						input: <TextControl
@@ -87,9 +86,9 @@ export default class Duration extends BlockInstruction {
 							onChange={ onChange }
 							value={ props.attributes.value as number || "" }
 						/>,
-						p: <p/>,
-					}
-				} )  }
+						p: <p />,
+					},
+				} ) }
 			</div>
 		);
 	}
