@@ -148,4 +148,5 @@
 .wp-block-yoast-cooking-time .minutes-input {
 	display: inline-block;
 	max-width: 100px;
+	min-width: 40px;
 }
