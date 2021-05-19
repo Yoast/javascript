@@ -64,8 +64,5 @@ export const TriggerReplacementVariableSuggestionsButton = styled( StandardButto
 	font-size: 13px;
 	width: 103px;
 	height: 28px;
-	& svg {
-		${ getDirectionalStyle( "margin-right", "margin-left" ) }: 7px;
-		fill: ${ colors.$color_grey_dark };
-	}
+	border-color: rgba(0, 0, 0, .2);
 `;

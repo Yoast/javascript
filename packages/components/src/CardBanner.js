@@ -7,14 +7,14 @@ import { colors } from "@yoast/style-guide";
 
 const BannerContents = styled.span`
 	position: absolute;
-	
+
 	top: 8px;
 	left: -8px;
-	
+
 	font-weight: 500;
 	color: ${ props => props.textColor };
 	line-height: 16px;
-	
+
 	background-color: ${ props => props.backgroundColor };
 	padding: 8px 16px;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -22,10 +22,10 @@ const BannerContents = styled.span`
 
 const BannerTriangle = styled.span`
 	position: absolute;
-	
+
 	top: 40px;
 	left: -8px;
-	
+
 	/* This code makes the triangle. */
 	border-top: 8px solid ${ colors.$color_purple_dark };
 	border-left: 8px solid transparent;

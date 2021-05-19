@@ -1,23 +1,19 @@
-.yoast-feature {
-	max-width: 600px;
-	margin-right: 150px;
-}
-
 .yoast-toggle__item {
 	display: flex;
 	justify-content: space-between;
-	padding-bottom: 16px;
-	border-bottom: 1px solid var(--yoast-color-border);
-	margin-bottom: 16px;
+	padding-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 .yoast-toggle__item-disabled {
 	position: relative;
 }
 
+.yoast-toggle__item-disabled .yoast-toggle {
+	display: none;
+}
+
 .yoast-toggle__item-disabled .yoast-button.yoast-button--buy {
-	position: absolute;
-	left: 100%;
 	margin-left: 32px;
 	white-space: nowrap;
 }
@@ -29,8 +25,9 @@
 
 .yoast-toggle__item-title {
 	display: flex;
-	font-weight: bold;
+	font-weight: 500;
 	align-items: center;
+	color: var(--yoast-color-default-darker);
 }
 
 input[type=checkbox].yoast-toggle__checkbox {
