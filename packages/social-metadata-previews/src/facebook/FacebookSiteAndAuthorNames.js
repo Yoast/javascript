@@ -63,7 +63,7 @@ function renderFacebookAuthorName( authorName ) {
  * @returns {React.Element} The rendered element.
  */
 const FacebookSiteAndAuthorNames = ( props ) => {
-	const hasAuthorName = props.authorName.length > 0;
+	const hasAuthorName = props.authorName && props.authorName.length > 0;
 	const screenReaderText = hasAuthorName
 		/* Translators: 1: site name, 2: post author name */
 		? sprintf( __( "%1$s by %2$s", "yoast-components" ), props.siteUrl, props.authorName )
