@@ -1,5 +1,7 @@
 # JavaScript
 
+❗This repository has been archived. Please create your issues and PRs on https://github.com/Yoast/wordpress-seo. ❗
+
 ## Packages
 
 Monorepo for all the JavaScript within Yoast.
