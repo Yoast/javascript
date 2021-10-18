@@ -10,7 +10,11 @@ import removePunctuationExceptQuotes from "../stringProcessing/removePunctuation
  *
  * @returns {Array} An array with all synonyms.
  */
-export default function( synonyms ) {
+module.exports = function( synonyms ) {
+	if ( typeof synonyms !== "string" ) {
+		synonyms = "";
+	}
+
 	let synonymsSplit = synonyms.split( "," );
 
 	synonymsSplit = synonymsSplit.map( function( synonym ) {
